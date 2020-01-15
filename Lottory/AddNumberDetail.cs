@@ -2526,22 +2526,28 @@ namespace Lottory
                     dbTableName = "Number_1upfront";
                     break;
                 case BaseTypeID.upcenter1:
-                    dbTableName = "Number_1upcenter";
+                    dbTableName = "Number_1upcenter"; // set update table to Number_1upcenter
                     break;
                 case BaseTypeID.upback1:
-                    dbTableName = "Number_1upback";
+                    dbTableName = "Number_1upback"; // set update table to Number_1upback
                     break;
                 case BaseTypeID.low1: // set update table to Number_1low
                     dbTableName = "Number_1low";
                     break;
                 case BaseTypeID.lowfront1:
-                    dbTableName = "Number_1lowfront";
+                    dbTableName = "Number_1lowfront"; // set update table to Number_1lowfront
                     break;
                 case BaseTypeID.lowback1:
-                    dbTableName = "Number_1lowback";
+                    dbTableName = "Number_1lowback"; // set update table to Number_1lowback
                     break;
                 case BaseTypeID.up2: // set update table to Number_2up
                     dbTableName = "Number_2up";
+                    break;
+                case BaseTypeID.ht2:
+                    dbTableName = "Number_2ht"; // set update table to Number_2ht
+                    break;
+                case BaseTypeID.hu2:
+                    dbTableName = "Number_2hu"; // set update table to Number_2hu
                     break;
                 case BaseTypeID.low2: // set update table to to Number_2low
                     dbTableName = "Number_2low";
