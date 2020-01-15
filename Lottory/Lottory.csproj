@@ -8,11 +8,12 @@
     <OutputType>WinExe</OutputType>
     <RootNamespace>Lottory</RootNamespace>
     <AssemblyName>Lottory</AssemblyName>
-    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
     <IsWebBootstrapper>false</IsWebBootstrapper>
+    <TargetFrameworkProfile />
     <PublishUrl>D:\Lotto\Publish\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -119,33 +120,8 @@
     <Compile Include="Choose_customer_dialog.Designer.cs">
       <DependentUpon>Choose_customer_dialog.cs</DependentUpon>
     </Compile>
-    <Compile Include="LottoDBDataSet.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>LottoDBDataSet.xsd</DependentUpon>
-    </Compile>
-    <Compile Include="Lotto_DBDataSet.Designer.cs">
-      <DependentUpon>Lotto_DBDataSet.xsd</DependentUpon>
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-    </Compile>
-    <Compile Include="Lotto_DBDataSet1.Designer.cs">
-      <DependentUpon>Lotto_DBDataSet1.xsd</DependentUpon>
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-    </Compile>
-    <Compile Include="Lotto_DBDataSet2.Designer.cs">
-      <DependentUpon>Lotto_DBDataSet2.xsd</DependentUpon>
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-    </Compile>
-    <Compile Include="Lotto_DBDataSet3.Designer.cs">
-      <DependentUpon>Lotto_DBDataSet3.xsd</DependentUpon>
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-    </Compile>
-    <Compile Include="Lotto_DBDataSet4.Designer.cs">
-      <DependentUpon>Lotto_DBDataSet4.xsd</DependentUpon>
+    <Compile Include="MyLottoDBDataSet.Designer.cs">
+      <DependentUpon>MyLottoDBDataSet.xsd</DependentUpon>
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
     </Compile>
@@ -277,6 +253,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <EmbeddedResource Include="MainMenu.resx">
       <DependentUpon>MainMenu.cs</DependentUpon>
@@ -295,71 +272,16 @@
     <EmbeddedResource Include="WinNumberSetting.resx">
       <DependentUpon>WinNumberSetting.cs</DependentUpon>
     </EmbeddedResource>
-    <None Include="LottoDBDataSet.xsc">
-      <DependentUpon>LottoDBDataSet.xsd</DependentUpon>
+    <None Include="MyLottoDBDataSet.xsc">
+      <DependentUpon>MyLottoDBDataSet.xsd</DependentUpon>
     </None>
-    <None Include="LottoDBDataSet.xsd">
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>LottoDBDataSet.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="LottoDBDataSet.xss">
-      <DependentUpon>LottoDBDataSet.xsd</DependentUpon>
-    </None>
-    <None Include="Lotto_DBDataSet.xsc">
-      <DependentUpon>Lotto_DBDataSet.xsd</DependentUpon>
-    </None>
-    <None Include="Lotto_DBDataSet.xsd">
+    <None Include="MyLottoDBDataSet.xsd">
       <SubType>Designer</SubType>
       <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>Lotto_DBDataSet.Designer.cs</LastGenOutput>
+      <LastGenOutput>MyLottoDBDataSet.Designer.cs</LastGenOutput>
     </None>
-    <None Include="Lotto_DBDataSet.xss">
-      <DependentUpon>Lotto_DBDataSet.xsd</DependentUpon>
-    </None>
-    <None Include="Lotto_DBDataSet1.xsc">
-      <DependentUpon>Lotto_DBDataSet1.xsd</DependentUpon>
-    </None>
-    <None Include="Lotto_DBDataSet1.xsd">
-      <SubType>Designer</SubType>
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>Lotto_DBDataSet1.Designer.cs</LastGenOutput>
-    </None>
-    <None Include="Lotto_DBDataSet1.xss">
-      <DependentUpon>Lotto_DBDataSet1.xsd</DependentUpon>
-    </None>
-    <None Include="Lotto_DBDataSet2.xsc">
-      <DependentUpon>Lotto_DBDataSet2.xsd</DependentUpon>
-    </None>
-    <None Include="Lotto_DBDataSet2.xsd">
-      <SubType>Designer</SubType>
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>Lotto_DBDataSet2.Designer.cs</LastGenOutput>
-    </None>
-    <None Include="Lotto_DBDataSet2.xss">
-      <DependentUpon>Lotto_DBDataSet2.xsd</DependentUpon>
-    </None>
-    <None Include="Lotto_DBDataSet3.xsc">
-      <DependentUpon>Lotto_DBDataSet3.xsd</DependentUpon>
-    </None>
-    <None Include="Lotto_DBDataSet3.xsd">
-      <SubType>Designer</SubType>
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>Lotto_DBDataSet3.Designer.cs</LastGenOutput>
-    </None>
-    <None Include="Lotto_DBDataSet3.xss">
-      <DependentUpon>Lotto_DBDataSet3.xsd</DependentUpon>
-    </None>
-    <None Include="Lotto_DBDataSet4.xsc">
-      <DependentUpon>Lotto_DBDataSet4.xsd</DependentUpon>
-    </None>
-    <None Include="Lotto_DBDataSet4.xsd">
-      <SubType>Designer</SubType>
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>Lotto_DBDataSet4.Designer.cs</LastGenOutput>
-    </None>
-    <None Include="Lotto_DBDataSet4.xss">
-      <DependentUpon>Lotto_DBDataSet4.xsd</DependentUpon>
+    <None Include="MyLottoDBDataSet.xss">
+      <DependentUpon>MyLottoDBDataSet.xsd</DependentUpon>
     </None>
     <None Include="packages.config" />
     <None Include="Properties\DataSources\BaseType.datasource" />
@@ -383,13 +305,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="LottoDB.mdf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="LottoDB_log.ldf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      <DependentUpon>LottoDB.mdf</DependentUpon>
-    </Content>
     <Content Include="SqlServerTypes\readme.htm" />
     <Content Include="SqlServerTypes\x64\msvcr120.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

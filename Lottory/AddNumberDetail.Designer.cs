@@ -84,9 +84,7 @@
             this.dgvNumber1up = new System.Windows.Forms.DataGridView();
             this.groupBox16 = new System.Windows.Forms.GroupBox();
             this.dgvNumber1low = new System.Windows.Forms.DataGridView();
-            this.lotto_DBDataSet = new Lottory.Lotto_DBDataSet();
             this.employeeBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.employeeTableAdapter = new Lottory.Lotto_DBDataSetTableAdapters.EmployeeTableAdapter();
             this.groupBox17 = new System.Windows.Forms.GroupBox();
             this.customerInfo = new System.Windows.Forms.Label();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
@@ -117,7 +115,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvNumber1up)).BeginInit();
             this.groupBox16.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvNumber1low)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lotto_DBDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.employeeBindingSource)).BeginInit();
             this.groupBox17.SuspendLayout();
             this.SuspendLayout();
@@ -718,19 +715,13 @@
             this.dgvNumber1low.Size = new System.Drawing.Size(227, 312);
             this.dgvNumber1low.TabIndex = 0;
             // 
-            // lotto_DBDataSet
-            // 
-            this.lotto_DBDataSet.DataSetName = "Lotto_DBDataSet";
-            this.lotto_DBDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+
             // 
             // employeeBindingSource
             // 
-            this.employeeBindingSource.DataMember = "Employee";
-            this.employeeBindingSource.DataSource = this.lotto_DBDataSet;
+            // DELETE this.employeeBindingSource.DataMember = "Employee";
             // 
-            // employeeTableAdapter
-            // 
-            this.employeeTableAdapter.ClearBeforeFill = true;
+
             // 
             // groupBox17
             // 
@@ -820,7 +811,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvNumber1up)).EndInit();
             this.groupBox16.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvNumber1low)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lotto_DBDataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.employeeBindingSource)).EndInit();
             this.groupBox17.ResumeLayout(false);
             this.groupBox17.PerformLayout();
@@ -866,9 +856,7 @@
         private System.Windows.Forms.DataGridView dgvNumber1up;
         private System.Windows.Forms.GroupBox groupBox16;
         private System.Windows.Forms.DataGridView dgvNumber1low;
-        private Lotto_DBDataSet lotto_DBDataSet;
         private System.Windows.Forms.BindingSource employeeBindingSource;
-        private Lotto_DBDataSetTableAdapters.EmployeeTableAdapter employeeTableAdapter;
         private System.Windows.Forms.GroupBox groupBox17;
         public System.Windows.Forms.Label customerInfo;
         private System.Windows.Forms.TextBox tbType;

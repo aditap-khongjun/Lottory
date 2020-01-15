@@ -32,40 +32,41 @@
             Microsoft.Reporting.WinForms.ReportDataSource reportDataSource1 = new Microsoft.Reporting.WinForms.ReportDataSource();
             Microsoft.Reporting.WinForms.ReportDataSource reportDataSource2 = new Microsoft.Reporting.WinForms.ReportDataSource();
             this.reportViewer1 = new Microsoft.Reporting.WinForms.ReportViewer();
-            this.Lotto_DBDataSet4 = new Lottory.Lotto_DBDataSet4();
-            this.BSCustomerList = new System.Windows.Forms.BindingSource(this.components);
-            this.Customer_Report_DatasetTableAdapter = new Lottory.Lotto_DBDataSet4TableAdapters.Customer_Report_DatasetTableAdapter();
+            this.MyLottoDBDataSet = new Lottory.MyLottoDBDataSet();
+            this.BSCustomerBuying = new System.Windows.Forms.BindingSource(this.components);
+            this.Customer_Report_DatasetTableAdapter = new Lottory.MyLottoDBDataSetTableAdapters.Customer_Report_DatasetTableAdapter();
             this.BSSummary = new System.Windows.Forms.BindingSource(this.components);
-            ((System.ComponentModel.ISupportInitialize)(this.Lotto_DBDataSet4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.BSCustomerList)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.MyLottoDBDataSet)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.BSCustomerBuying)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.BSSummary)).BeginInit();
             this.SuspendLayout();
             // 
             // reportViewer1
             // 
             this.reportViewer1.Dock = System.Windows.Forms.DockStyle.Fill;
-            reportDataSource1.Name = "CustomerDataset";
-            reportDataSource1.Value = this.BSCustomerList;
-            reportDataSource2.Name = "SumDataSet";
-            reportDataSource2.Value = this.BSSummary;
+            reportDataSource1.Name = "SumDataSet";
+            reportDataSource1.Value = this.BSSummary;
+            reportDataSource2.Name = "CustomerTable";
+            reportDataSource2.Value = this.BSCustomerBuying;
             this.reportViewer1.LocalReport.DataSources.Add(reportDataSource1);
             this.reportViewer1.LocalReport.DataSources.Add(reportDataSource2);
             this.reportViewer1.LocalReport.ReportEmbeddedResource = "Lottory.Summary_Customer_Report.rdlc";
             this.reportViewer1.Location = new System.Drawing.Point(0, 0);
+            this.reportViewer1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.reportViewer1.Name = "reportViewer1";
             this.reportViewer1.ServerReport.BearerToken = null;
-            this.reportViewer1.Size = new System.Drawing.Size(962, 661);
+            this.reportViewer1.Size = new System.Drawing.Size(641, 430);
             this.reportViewer1.TabIndex = 0;
             // 
-            // Lotto_DBDataSet4
+            // MyLottoDBDataSet
             // 
-            this.Lotto_DBDataSet4.DataSetName = "Lotto_DBDataSet4";
-            this.Lotto_DBDataSet4.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            this.MyLottoDBDataSet.DataSetName = "MyLottoDBDataSet";
+            this.MyLottoDBDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
-            // BSCustomerList
+            // BSCustomerBuying
             // 
-            this.BSCustomerList.DataMember = "Customer_Report_Dataset";
-            this.BSCustomerList.DataSource = this.Lotto_DBDataSet4;
+            this.BSCustomerBuying.DataMember = "Customer_Report_Dataset";
+            this.BSCustomerBuying.DataSource = this.MyLottoDBDataSet;
             // 
             // Customer_Report_DatasetTableAdapter
             // 
@@ -77,16 +78,17 @@
             // 
             // Summary_Customer_Report
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(962, 661);
+            this.ClientSize = new System.Drawing.Size(641, 430);
             this.Controls.Add(this.reportViewer1);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "Summary_Customer_Report";
             this.Text = "Summary_Customer_Report";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Summary_Customer_Report_FormClosed);
             this.Load += new System.EventHandler(this.Summary_Customer_Report_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.Lotto_DBDataSet4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.BSCustomerList)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.MyLottoDBDataSet)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.BSCustomerBuying)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.BSSummary)).EndInit();
             this.ResumeLayout(false);
 
@@ -95,9 +97,9 @@
         #endregion
 
         private Microsoft.Reporting.WinForms.ReportViewer reportViewer1;
-        private System.Windows.Forms.BindingSource BSCustomerList;
-        private Lotto_DBDataSet4 Lotto_DBDataSet4;
         private System.Windows.Forms.BindingSource BSSummary;
-        private Lotto_DBDataSet4TableAdapters.Customer_Report_DatasetTableAdapter Customer_Report_DatasetTableAdapter;
+        private System.Windows.Forms.BindingSource BSCustomerBuying;
+        private MyLottoDBDataSet MyLottoDBDataSet;
+        private MyLottoDBDataSetTableAdapters.Customer_Report_DatasetTableAdapter Customer_Report_DatasetTableAdapter;
     }
 }
