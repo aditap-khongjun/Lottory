@@ -715,14 +715,6 @@
             this.dgvNumber1low.Size = new System.Drawing.Size(227, 312);
             this.dgvNumber1low.TabIndex = 0;
             // 
-
-            // 
-            // employeeBindingSource
-            // 
-            // DELETE this.employeeBindingSource.DataMember = "Employee";
-            // 
-
-            // 
             // groupBox17
             // 
             this.groupBox17.BackColor = System.Drawing.SystemColors.Control;

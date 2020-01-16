@@ -209,7 +209,8 @@ namespace Lottory
             initialCustomerInfo();
 
             //show Shortkey label for startup
-            tbNumber.MaxLength = 1;
+            // Default 3
+            tbNumber.MaxLength = 3;
             showShortKey(tbNumber.MaxLength);
 
             // check Previous state of Money Text
@@ -271,13 +272,13 @@ namespace Lottory
                 case 2:
                     lbTypeShortKey.Text  = "2 ตัว" + Environment.NewLine;
                     lbTypeShortKey.Text += "(*)บน/ล่าง, (+)บน, (-)ล่าง, (7)ร้อยสิบ, (8)ร้อยหน่วย," + Environment.NewLine;
-                    lbTypeShortKey.Text += "(/)โต๊ด, (6)6 ประตู, (9)19 ประตูบนล่าง, (1)19 ประตูบน," + Environment.NewLine;
+                    lbTypeShortKey.Text += "(/)โต๊ด, (6)6 ประตู, (/)19 ประตูบนล่าง, (9)19 ประตูบน," + Environment.NewLine;
                     lbTypeShortKey.Text += "(0)19 ประตูล่าง";
                     break;
                 case 3:
                     lbTypeShortKey.Text  = "3 ตัว" + Environment.NewLine;
                     lbTypeShortKey.Text += "(*)บน/โต๊ด, (+)บน, (-)ล่าง, (.)ชุด, (/)โต๊ด," + Environment.NewLine;
-                    lbTypeShortKey.Text += "(9)54 ประตู, (1)ตรงชุด, (5)ตรง5, (2)ล่างชุด, (0)บน/โตีด/ล่าง";
+                    lbTypeShortKey.Text += "(9)54 ประตู, (5)ตรงชุด, (2)ล่างชุด, (0)บน/โตีด/ล่าง";
                     break;
                 case 4:
                     lbTypeShortKey.Text  = "4 ตัว" + Environment.NewLine;
@@ -422,13 +423,23 @@ namespace Lottory
             }
 
         }
+        private void MoveToMoney1()
+        {
+            tbMoney1.Focus();
+            tbMoney1.SelectAll();
+        }
+        private void MoveToMoney2()
+        {
+            tbMoney2.Focus();
+            tbMoney2.SelectAll();
+        }
         private void AddTypeList(KeyEventArgs e)
         {
             // Test state : OK 
 
             tbType.SelectAll();
             // Manual Auto complete for Type
-            switch (tbNumber.MaxLength)
+            switch (tbNumber.Text.Length)
             {
                 case 1:
                     //Check key down
@@ -436,50 +447,109 @@ namespace Lottory
                     {
                         case Keys.OemMinus:
                         case Keys.Subtract:
-                            //(-)
+                            //(-) ล่าง
+                            tbType.Text = BaseType.low1;
                             // Next state is 1 [Money1 => enable, Group => disable]
-                            controlTypeList(BaseType.low1, 1);
+                            //controlTypeList(BaseType.low1, 1);
+                            enableMoney1Only();
+                            MoveToMoney1();
                             break;
                         case Keys.Add:
-                            //(*)
+                            //(+) บน
+                            tbType.Text = BaseType.up1;
                             // Next state is 1 [Money1 => enable, Group => disable]
-                            controlTypeList(BaseType.up1, 1);
+                            //controlTypeList(BaseType.up1, 1);
+                            enableMoney1Only();
+                            MoveToMoney1();
                             break;
                         case Keys.NumPad1:
                         case Keys.D1:
-                            //(1)
+                            //(1) หน้า
+                            tbType.Text = BaseType.upfront1;
                             // Next state is 1 [Money1 => enable, Group => disable]
-                            controlTypeList(BaseType.upfront1, 1);
+                            //controlTypeList(BaseType.upfront1, 1);
+                            enableMoney1Only();
+                            MoveToMoney1();
                             break;
                         case Keys.NumPad2:
                         case Keys.D2:
-                            //(2)
+                            //(2) กลาง
+                            tbType.Text = BaseType.upcenter1;
                             // Next state is 1 [Money1 => enable, Group => disable]
-                            controlTypeList(BaseType.upcenter1, 1);
+                            //controlTypeList(BaseType.upcenter1, 1);
+                            enableMoney1Only();
+                            MoveToMoney1();
                             break;
                         case Keys.NumPad3:
                         case Keys.D3:
-                            //(3)
+                            //(3) หลัง
+                            tbType.Text = BaseType.upback1;
                             // Next state is 1 [Money1 => enable, Group => disable]
-                            controlTypeList(BaseType.upback1, 1);
+                            //controlTypeList(BaseType.upback1, 1);
+                            enableMoney1Only();
+                            MoveToMoney1();
                             break;
                         case Keys.NumPad4:
                         case Keys.D4:
-                            //(4)
+                            //(4) หน้าล่าง
+                            tbType.Text = BaseType.lowfront1;
                             // Next state is 1 [Money1 => enable, Group => disable]
-                            controlTypeList(BaseType.lowfront1, 1);
+                            //controlTypeList(BaseType.lowfront1, 1);
+                            enableMoney1Only();
+                            MoveToMoney1();
                             break;
                         case Keys.NumPad5:
                         case Keys.D5:
-                            //(5)
+                            //(5) หลังล่าง
+                            tbType.Text = BaseType.lowback1;
                             // Next state is 1 [Money1 => enable, Group => disable]
-                            controlTypeList(BaseType.lowback1, 1);
+                            //controlTypeList(BaseType.lowback1, 1);
+                            enableMoney1Only();
+                            MoveToMoney1();
                             break;
                         case Keys.Multiply:
                         case Keys.D8:
-                            //(*)
+                            //(*) บน/ล่าง
+                            tbType.Text = BaseType.uplow1;
                             // Next state is 1 [Money1 => enable, Group => disable]
-                            controlTypeList(BaseType.uplow1, 1);
+                            // controlTypeList(BaseType.uplow1, 1);
+                            enableMoney1Only();
+                            MoveToMoney1();
+                            break;
+
+                        // for 2 Number
+                        case Keys.Divide:
+                        case Keys.OemQuestion:
+                            // (/) 19 ประตูบนล่าง
+                            tbType.Text = BaseType.door19uplow2;
+                            // Next state is 1 [Money1 => enable, Group => disable]
+                            //controlTypeList(BaseType.door19uplow2, 1);
+                            // remove digit 2
+                            //tbNumber.Text = tbNumber.Text.Remove(1, 1);
+                            enableMoney1Only();
+                            MoveToMoney1();
+                            break;
+                        case Keys.NumPad9:
+                        case Keys.D9:
+                            // (9) 19 ประตูบน
+                            tbType.Text = BaseType.door19up2;
+                            // Next state is 1 [Money1 => enable, Group => disable]
+                            //controlTypeList(BaseType.door19up2, 1);
+                            // remove digit 2
+                            //tbNumber.Text = tbNumber.Text.Remove(1, 1);
+                            enableMoney1Only();
+                            MoveToMoney1();
+                            break;
+                        case Keys.NumPad0:
+                        case Keys.D0:
+                            // (0) 19 ประตูล่าง
+                            tbType.Text = BaseType.door19low2;
+                            // Next state is 1 [Money1 => enable, Group => disable]
+                            //controlTypeList(BaseType.door19low2, 1);
+                            // remove digit 2
+                            //tbNumber.Text = tbNumber.Text.Remove(1, 1);
+                            enableMoney1Only();
+                            MoveToMoney1();
                             break;
                         case Keys.Back:
                             // clear text
@@ -487,7 +557,7 @@ namespace Lottory
                             break;
                         default:
                             // error
-                            tbType.Clear();
+                            MessageBox.Show("กรุณาใส่ชนิดให้ถูกต้อง", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             break;
                     }
                     break;
@@ -496,70 +566,80 @@ namespace Lottory
                     switch (e.KeyCode)
                     {
                         case Keys.Multiply:
-                        //case Keys.D8:
-                            // (*)
+                            //case Keys.D8:
+                            // (*) บน/ล่าง
+                            tbType.Text = BaseType.uplow2;
                             // Next state is 1 [Money1 => enable, Group => disable]
-                            controlTypeList(BaseType.uplow2, 1);
+                            //controlTypeList(BaseType.uplow2, 1);
+                            enableMoney1Only();
+                            MoveToMoney1();
                             break;
                         case Keys.Add:
                         case Keys.Oemplus:
-                            // (+)
+                            // (+) บน
+                            tbType.Text = BaseType.up2;
                             // Next state is 1 [Money1 => enable, Group => disable]
-                            controlTypeList(BaseType.up2, 1);
+                            //controlTypeList(BaseType.up2, 1);
+                            enableMoney1Only();
+                            MoveToMoney1();
                             break;
                         case Keys.Subtract:
                         case Keys.OemMinus:
-                            // (-)
+                            // (-) ล่าง
+                            tbType.Text = BaseType.low2;
                             // Next state is 1 [Money1 => enable, Group => disable]
-                            controlTypeList(BaseType.low2, 1);
+                            //controlTypeList(BaseType.low2, 1);
+                            enableMoney1Only();
+                            MoveToMoney1();
                             break;
                         case Keys.NumPad7:
                         case Keys.D7:
-                            // (7)
+                            // (7) ร้อยสิบ
+                            tbType.Text = BaseType.ht2;
                             // Next state is 1 [Money1 => enable, Group => disable]
-                            controlTypeList(BaseType.ht2, 1);
+                            //controlTypeList(BaseType.ht2, 1);
+                            enableMoney1Only();
+                            MoveToMoney1();
                             break;
                         case Keys.NumPad8:
-                        //case Keys.D8:
-                            // (8)
+                            //case Keys.D8:
+                            // (8) ร้อยหน่วย
+                            tbType.Text = BaseType.hu2;
                             // Next state is 1 [Money1 => enable, Group => disable]
-                            controlTypeList(BaseType.hu2, 1);
+                            //controlTypeList(BaseType.hu2, 1);
+                            enableMoney1Only();
+                            MoveToMoney1();
                             break;
                         case Keys.Divide:
                         case Keys.OemQuestion:
-                            // (/)
+                            // (/) โต๊ด
+                            tbType.Text = BaseType.tod2;
                             // Next state is 1 [Money1 => enable, Group => disable]
-                            controlTypeList(BaseType.tod2, 1);
+                            //controlTypeList(BaseType.tod2, 1);
+                            enableMoney1Only();
+                            MoveToMoney1();
                             break;
                         case Keys.NumPad6:
                         case Keys.D6:
-                            // (6)
+                            // (6) 6 ประตู
+                            tbType.Text = BaseType.door62;
                             // Next state is 1 [Money1 => enable, Group => disable]
-                            controlTypeList(BaseType.door62, 1);
+                            //controlTypeList(BaseType.door62, 1);
+                            enableMoney1Only();
+                            MoveToMoney1();
                             break;
-                        case Keys.NumPad1:
-                        case Keys.D1:
-                            // (1)
-                            // Next state is 1 [Money1 => enable, Group => disable]
-                            controlTypeList(BaseType.door19up2, 1);
-                            // remove digit 2
-                            tbNumber.Text = tbNumber.Text.Remove(1, 1);
-                            break;
-                        case Keys.NumPad0:
-                        case Keys.D0:
-                            // (0)
-                            // Next state is 1 [Money1 => enable, Group => disable]
-                            controlTypeList(BaseType.door19low2, 1);
-                            // remove digit 2
-                            tbNumber.Text = tbNumber.Text.Remove(1, 1);
-                            break;
+
+                        // for 3 Number
                         case Keys.NumPad9:
                         case Keys.D9:
-                            // (9)
-                            // Next state is 1 [Money1 => enable, Group => disable]
-                            controlTypeList(BaseType.door19uplow2, 1);
-                            // remove digit 2
-                            tbNumber.Text = tbNumber.Text.Remove(1, 1);
+                            // (9) 54 ประตู
+                            tbType.Text = BaseType.door543;
+                            // Next state is 1 [Money1 => disable, Group => enable]
+                            //controlTypeList(BaseType.door543, 1);
+                            // remove digit 3
+                            //tbNumber.Text = tbNumber.Text.Remove(2, 1);
+                            enableMoney1Only();
+                            MoveToMoney1();
                             break;
                         case Keys.Back:
                             // clear Text
@@ -567,7 +647,7 @@ namespace Lottory
                             break;
                         default:
                             // error
-                            tbType.Clear();
+                            MessageBox.Show("กรุณาใส่ชนิดให้ถูกต้อง", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             break;
                     }
                     break;
@@ -575,67 +655,78 @@ namespace Lottory
                     // Check key code
                     switch (e.KeyCode)
                     {
-                        case Keys.Multiply:
-                        case Keys.D8:
-                            // (*)
-                            // Next state is 1 [Money1 => enable, Group => disable]
-                            controlTypeList(BaseType.uptod3, 1);
-                            break;
-                        case Keys.Add:
-                        case Keys.Oemplus:
-                            // (+)
-                            // Next state is 1 [Money1 => enable, Group => disable] 
-                            controlTypeList(BaseType.up3, 1);
-                            break;
                         case Keys.Subtract:
                         case Keys.OemMinus:
-                            // (-)
+                            // (-) ล่าง
+                            tbType.Text = BaseType.low3;
                             // Next state is 1 [Money1 => enable, Group => disable]
-                            controlTypeList(BaseType.low3, 1);
-                            break;
-                        case Keys.Decimal:
-                        case Keys.OemPeriod:
-                            // (.)
-                            // Next state is 3 [Money1 => disable, Group => enable]
-                            controlTypeList(BaseType.group3, 3);
+                            //controlTypeList(BaseType.low3, 1);
+                            enableMoney1Only();
+                            MoveToMoney1();
                             break;
                         case Keys.Divide:
                         case Keys.OemQuestion:
-                            // (/)
+                            // (/) โต๊ด
+                            tbType.Text = BaseType.tod3;
                             // Next state is 1 [Money1 => disable, Group => enable]
-                            controlTypeList(BaseType.tod3, 1);
+                            //controlTypeList(BaseType.tod3, 1);
+                            enableMoney1Only();
+                            MoveToMoney1();
                             break;
-                        case Keys.NumPad9:
-                        case Keys.D9:
-                            // (9)
-                            // Next state is 1 [Money1 => disable, Group => enable]
-                            controlTypeList(BaseType.door543, 1);
-                            // remove digit 3
-                            tbNumber.Text = tbNumber.Text.Remove(2, 1);
+
+                        case Keys.Multiply:
+                        case Keys.D8:
+                            // (*) บนโต๊ด
+                            tbType.Text = BaseType.uptod3;
+                            // Next state is 1 [Money1 => enable, Group => disable]
+                            // controlTypeList(BaseType.uptod3, 1);
+                            enableMoney12();
+                            MoveToMoney1();
                             break;
-                        case Keys.NumPad1:
-                        case Keys.D1:
-                            // (1)
-                            // Next state is 2 [Money1 => enable, Group => enable]
-                            controlTypeList(BaseType.tgroup3, 2);
+                        case Keys.Add:
+                        case Keys.Oemplus:
+                            // (+) บน
+                            tbType.Text = BaseType.up3;
+                            // Next state is 1 [Money1 => enable, Group => disable] 
+                            //controlTypeList(BaseType.up3, 1);
+                            enableMoney12();
+                            MoveToMoney1();
                             break;
                         case Keys.NumPad5:
                         case Keys.D5:
-                            // (5)
+                            // (5) ตรงชุด
+                            tbType.Text = BaseType.tgroup3;
                             // Next state is 2 [Money1 => enable, Group => enable]
-                            controlTypeList(BaseType.group53, 2);
+                            //controlTypeList(BaseType.group53, 2);
+                            enableMoney12();
+                            MoveToMoney1();
                             break;
                         case Keys.NumPad2:
                         case Keys.D2:
-                            // (2)
+                            // (2) ล่างชุด
+                            tbType.Text = BaseType.lowgroup3;
                             // Next state is 3 [Money => disable, Group => enable]
-                            controlTypeList(BaseType.lowgroup3, 3);
+                            //controlTypeList(BaseType.lowgroup3, 3);
+                            enableMoney2Only();
+                            MoveToMoney2();
                             break;
                         case Keys.NumPad0:
                         case Keys.D0:
-                            // (0)
+                            // (0) บน/โต๊ด/ล่าง
+                            tbType.Text = BaseType.uplowtod3;
                             // Next state is 1 [Money => enable, Group => disable]
-                            controlTypeList(BaseType.uplowtod3, 1);
+                            //controlTypeList(BaseType.uplowtod3, 1);
+                            enableMoney12();
+                            MoveToMoney1();
+                            break;
+                        case Keys.Decimal:
+                        case Keys.OemPeriod:
+                            // (.) ชุด
+                            tbType.Text = BaseType.group3;
+                            // Next state is 3 [Money1 => disable, Group => enable]
+                            //controlTypeList(BaseType.group3, 3);
+                            enableMoney2Only();
+                            MoveToMoney2();
                             break;
                         case Keys.Back:
                             // clear text
@@ -643,7 +734,7 @@ namespace Lottory
                             break;
                         default:
                             // error
-                            tbType.Clear();
+                            MessageBox.Show("กรุณาใส่ชนิดให้ถูกต้อง", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             break;
                     }
                     break;
@@ -653,9 +744,12 @@ namespace Lottory
                     {
                         case Keys.Decimal:
                         case Keys.OemPeriod:
-                            //(.)
+                            //(.) ชุด
+                            tbType.Text = BaseType.group4;
                             // Next state is 3 [Money1 => disable, Group => enable]
-                            controlTypeList(BaseType.group4, 3);
+                            //controlTypeList(BaseType.group4, 3);
+                            enableMoney2Only();
+                            MoveToMoney2();
                             break;
                         case Keys.Back:
                             // clear text
@@ -663,7 +757,7 @@ namespace Lottory
                             break;
                         default:
                             // error
-                            tbType.Clear();
+                            MessageBox.Show("กรุณาใส่ชนิดให้ถูกต้อง", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             break;
                     }
                     break;
@@ -673,15 +767,21 @@ namespace Lottory
                     {
                         case Keys.Decimal:
                         case Keys.OemPeriod:
-                            //(.)
+                            //(.) ชุด
+                            tbType.Text = BaseType.group5;
                             // Next state is 3 [Money1 => disable, Group => enable]
-                            controlTypeList(BaseType.group5, 3);
+                            //controlTypeList(BaseType.group5, 3);
+                            enableMoney2Only();
+                            MoveToMoney2();
                             break;
                         case Keys.Divide:
                         case Keys.OemQuestion:
-                            //(/)
+                            //(/) โต๊ด
+                            tbType.Text = BaseType.tod5;
                             // Next state is 1 [Money1 => enable, Group => disable]
-                            controlTypeList(BaseType.tod5, 1);
+                            //controlTypeList(BaseType.tod5, 1);
+                            enableMoney1Only();
+                            MoveToMoney1();
                             break;
                         case Keys.Back:
                             // clear text
@@ -689,7 +789,7 @@ namespace Lottory
                             break;
                         default:
                             // error
-                            tbType.Clear();
+                            MessageBox.Show("กรุณาใส่ชนิดให้ถูกต้อง", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             break;
                     }
                     break;
@@ -703,6 +803,7 @@ namespace Lottory
             int t_MaxLength;
             switch (e.KeyCode)
             {
+                // Arrow up
                 case Keys.Up:
                     t_MaxLength = tbNumber.MaxLength;
                     t_MaxLength += 1;
@@ -717,6 +818,7 @@ namespace Lottory
                     // Clear Number
                     tbNumber.Clear();
                     break;
+                // Arrow Down
                 case Keys.Down:
                     t_MaxLength = tbNumber.MaxLength;
                     t_MaxLength -= 1;
@@ -731,25 +833,376 @@ namespace Lottory
                     // Clear Number
                     tbNumber.Clear();
                     break;
+                case Keys.Enter:
+                    e.Handled = true;
+                    e.SuppressKeyPress = true;
+                    // Focus Type
+                    tbType.Focus();
+
+                    AutoBuyingCommand();
+
+                    // Select All
+                    tbType.SelectAll();
+                    break;
                 default:
                     break;
             }
             // Show Text in Short Key
             showShortKey(tbNumber.MaxLength);
         }
+        private void AutoBuyingCommand()
+        {
+            // Auto choose proper Type refer Number.
+            int row = dgvCusBuyList.Rows.Count;
+            if(row > 0)
+            {
+                bool found = false;
+                for (int i = row - 1; i >= 0; i--)
+                {
+                    int NumLen = dgvCusBuyList.Rows[i].Cells[0].Value.ToString().Length;
+                    if (NumLen == tbNumber.Text.Length)
+                    {
+                        string _type = dgvCusBuyList.Rows[i].Cells[1].Value.ToString();
+                        int _numlen = NumLen;
+                        tbType.Text = returnType(_type, _numlen);
 
+                        // get Money
+                        string _money1 = dgvCusBuyList.Rows[i].Cells[2].Value.ToString();
+                        string _money2 = string.Empty;
+                        if (dgvCusBuyList.Rows[i].Cells[3].Value != null)
+                        {
+                            _money2 = dgvCusBuyList.Rows[i].Cells[3].Value.ToString();
+                        }
+
+                        // enable Money and fill money
+                        setEnableMoney(_type, _numlen, _money1, _money2);
+                        found = true;
+                        break;
+                    }
+                }
+                if(!found)
+                {
+                    // not found old item in list
+                    string _type = defaultType();
+                    int _numlen = tbNumber.Text.Length;
+                    tbType.Text = returnType(_type, _numlen);
+                    setEnableMoney(_type,_numlen,string.Empty,string.Empty);
+                }
+            }
+            else
+            {
+                //No item in list
+                string _type = defaultType();
+                int _numlen = tbNumber.Text.Length;
+                tbType.Text = returnType(_type, _numlen);
+                setEnableMoney(_type, _numlen, string.Empty, string.Empty);
+            } 
+        }
+        private string defaultType()
+        {
+            string outTypeDefault = string.Empty;
+            switch (tbNumber.Text.Length)
+            {
+                case 1:
+                    outTypeDefault = BaseType.up1;
+                    break;
+                case 2:
+                    outTypeDefault = BaseType.up2;
+                    break;
+                case 3:
+                    outTypeDefault = BaseType.up3;
+                    break;
+                case 4:
+                    outTypeDefault = BaseType.group4;
+                    break;
+                case 5:
+                    outTypeDefault = BaseType.group5;
+                    break;
+            }
+            return outTypeDefault;
+        }
+        private void setEnableMoney(string typeName, int Numlen, string money1, string money2)
+        {
+            switch(Numlen)
+            {
+                case 1:
+                    // Enable Money1 Only
+                    enableMoney1Only(money1);
+                    break;
+                case 2:
+                    // Enable Money1 Only
+                    enableMoney1Only(money1);
+                    break;
+                case 3:
+                    switch(typeName)
+                    {
+                        case "ล่าง":
+                        case "โต๊ด":
+                        case "54 ประตู":
+                            // Enable Money1 Only
+                            enableMoney1Only(money1);
+                            break;
+                        case "บน/โต๊ด":
+                        case "บน":
+                        case "ตรงชุด":
+                        case "ล่างชุด":
+                        case "บน/โต๊ด/ล่าง":
+                            // Enable Money 1,2 Only
+                            enableMoney12(money1,money2);
+                            break;
+                        case "ชุด":
+                            // Enable Money2 Only
+                            enableMoney2Only(money2);
+                            break;
+                    }
+                    break;
+                case 4:
+                    // Enable Money2 Only
+                    enableMoney2Only(money2);
+                    break;
+                case 5:
+                    switch(typeName)
+                    {
+                        case "โต๊ด":
+                            // Enable Money1 Only
+                            enableMoney1Only(money1);
+                            break;
+                        case "ชุด":
+                            enableMoney2Only(money2);
+                            break;
+                    }
+                    break;
+            }
+        }
+        private void enableMoney1Only(string money)
+        {
+            //Money 1 Enable only
+            tbMoney1.Enabled = true;
+            tbMoney1.Text = money;
+            //Money 2 disable
+            tbMoney2.Clear();
+            tbMoney2.Enabled = false;
+        }
+        private void enableMoney1Only()
+        {
+            //Money 1 Enable only
+            tbMoney1.Enabled = true;
+            //tbMoney1.Text = money;
+            //Money 2 disable
+            tbMoney2.Clear();
+            tbMoney2.Enabled = false;
+        }
+        private void enableMoney12(string money1, string money2)
+        {
+            //Enable Money1 
+            tbMoney1.Enabled = true;
+            tbMoney1.Text = money1;
+            //Enable Money2
+            tbMoney2.Enabled = true;
+            tbMoney2.Text = money2;
+        }
+        private void enableMoney12()
+        {
+            //Enable Money1 
+            tbMoney1.Enabled = true;
+            //tbMoney1.Text = money1;
+            //Enable Money2
+            tbMoney2.Enabled = true;
+            //tbMoney2.Text = money2;
+        }
+        private void enableMoney2Only(string money)
+        {
+            // Disable Money1
+            tbMoney1.Clear();
+            tbMoney1.Enabled = false;
+            // Enable Money2
+            tbMoney2.Enabled = true;
+            tbMoney2.Text = money;
+        }
+        private void enableMoney2Only()
+        {
+            // Disable Money1
+            tbMoney1.Clear();
+            tbMoney1.Enabled = false;
+            // Enable Money2
+            tbMoney2.Enabled = true;
+            //tbMoney2.Text = money;
+        }
+        private string returnType(string typeName, int NumLen)
+        {
+            string outType = string.Empty;
+            string sign = string.Empty;
+            switch(NumLen)
+            {
+                case 1:
+                    switch(typeName)
+                    {
+                        case "ล่าง":
+                            sign = "-";
+                            break;
+                        case "บน":
+                            sign = "+";
+                            break;
+                        case "หน้า":
+                            sign = "1";
+                            break;
+                        case "กลาง":
+                            sign = "2";
+                            break;
+                        case "หลัง":
+                            sign = "3";
+                            break;
+                        case "หน้าล่าง":
+                            sign = "4";
+                            break;
+                        case "หลังล่าง":
+                            sign = "5";
+                            break;
+                        case "บน/ล่าง":
+                            sign = "*";
+                            break;
+                        case "19 ประตูบนล่าง":
+                            sign = "/";
+                            break;
+                        case "19 ประตูบน":
+                            sign = "9";
+                            break;
+                        case "19 ประตูล่าง":
+                            sign = "0";
+                            break;
+                    }
+                    break;
+                case 2:
+                    switch(typeName)
+                    {
+                        case "บน/ล่าง":
+                            sign = "*";
+                            break;
+                        case "บน":
+                            sign = "+";
+                            break;
+                        case "ล่าง":
+                            sign = "-";
+                            break;
+                        case "ร้อยสิบ":
+                            sign = "7";
+                            break;
+                        case "ร้อยหน่วย":
+                            sign = "8";
+                            break;
+                        case "โต๊ด":
+                            sign = "/";
+                            break;
+                        case "6 ประตู":
+                            sign = "6";
+                            break;
+                        case "54 ประตู":
+                            sign = "9";
+                            break;
+
+                    }
+                    break;
+                case 3:
+                    switch(typeName)
+                    {
+                        case "บน/โต๊ด":
+                            sign = "*";
+                            break;
+                        case "บน":
+                            sign = "+";
+                            break;
+                        case "ล่าง":
+                            sign = "-";
+                            break;
+                        case "ชุด":
+                            sign = ".";
+                            break;
+                        case "โต๊ด":
+                            sign = "/";
+                            break;
+                        case "ตรงชุด":
+                            sign = "5";
+                            break;
+                        case "ล่างชุด":
+                            sign = "2";
+                            break;
+                        case "บน/โต๊ด/ล่าง":
+                            sign = "0";
+                            break;
+                    }
+                    break;
+                case 4:
+                    switch(typeName)
+                    {
+                        case "ชุด":
+                            sign = ".";
+                            break;
+
+                    }
+                    break;
+                case 5:
+                    switch(typeName)
+                    {
+                        case "ชุด":
+                            sign = ".";
+                            break;
+                        case "โต๊ด":
+                            sign = "/";
+                            break;
+                    }
+                    break;
+            }
+            outType = string.Format("{0}{1}", sign, typeName);
+            return outType;
+        }
         private void tbNumber_TextChanged(object sender, EventArgs e)
         {
+            // Auto Focus to Type box
             if(tbNumber.TextLength == tbNumber.MaxLength)
             {
+                // Auto Type and Money
                 tbType.Focus();
+
+                AutoBuyingCommand();
+
+                // Select All
+                tbType.SelectAll();
             }
         }
 
         private void tbType_KeyDown(object sender, KeyEventArgs e)
         {
-            // Add Type List
-            AddTypeList(e);
+            switch(e.KeyCode)
+            {
+                case Keys.Enter:
+                    e.Handled = true;
+                    e.SuppressKeyPress = true;
+                    // Move to Money1 or Money2
+                    MovetoMoney();
+                    break;
+                default:
+                    // Add Type List
+                    AddTypeList(e);
+                    break;
+            }
+
+        }
+        private void MovetoMoney()
+        {
+            // Check Enable money
+            if(tbMoney1.Enabled)
+            {
+                tbMoney1.Focus();
+                tbMoney1.SelectAll();
+            }
+            else
+            {
+                if(tbMoney2.Enabled)
+                {
+                    tbMoney2.Focus();
+                    tbMoney2.SelectAll();
+                }
+            }
         }
 
         private void tbMoney1_TextChanged(object sender, EventArgs e)
@@ -771,70 +1224,73 @@ namespace Lottory
                 MessageBox.Show("กรุณาใส่จำนวนเงินเป็นตัวเลขให้ถูกต้อง");
             }
         }
+        private void AddBuyingListTable(string Money, string Group)
+        {
+            dgvCusBuyList.Rows.Add(tbNumber.Text, tbType.Text.Substring(1, tbType.Text.Length - 1), Money, Group);
+            // auto scolling down
+            dgvCusBuyList.FirstDisplayedScrollingRowIndex = dgvCusBuyList.RowCount - 1;
+        }
         private void AddNumberToTable()
         {
             // Add Number to Table
-            if(!tbMoney2.Enabled)
+
+            if ((tbMoney2.Enabled == false) && (tbMoney1.Enabled == true))
             {
                 // Money State 1 : Money1 => Enable, Money2 => Disable
-                
+
                 // update Buying to List Table Form
                 // Add(Number, Type, Money)
-                dgvCusBuyList.Rows.Add(tbNumber.Text, tbType.Text.Substring(1, tbType.Text.Length - 1), tbMoney1.Text,string.Empty);
+                //dgvCusBuyList.Rows.Add(tbNumber.Text, tbType.Text.Substring(1, tbType.Text.Length - 1), tbMoney1.Text,string.Empty);
                 // auto scolling down
-                dgvCusBuyList.FirstDisplayedScrollingRowIndex = dgvCusBuyList.RowCount - 1;
+                //dgvCusBuyList.FirstDisplayedScrollingRowIndex = dgvCusBuyList.RowCount - 1;
 
                 // update OrderList in DB
-                updateOrderListDB(tbNumber.Text, tbType.Text.Substring(1, tbType.Text.Length - 1), tbMoney1.Text,string.Empty);
+                updateOrderToDB(tbNumber.Text, tbType.Text.Substring(1, tbType.Text.Length - 1), tbMoney1.Text, string.Empty);
 
             }
-            else
+            else if ((tbMoney1.Enabled == true) && (tbMoney2.Enabled == true))
             {
-                if (tbMoney1.Enabled)
+                // Money State 2 : Money1 => Enable, Money2 => Enable
+                if (string.IsNullOrEmpty(tbMoney2.Text))
                 {
-                    // Money State 2 : Money1 => Enable, Money2 => Enable
-                    if (string.IsNullOrEmpty(tbMoney2.Text))
-                    {
 
-                        // update Buying to List Table Form
-                        // Add(Number, Type, Money, Group)
-                        dgvCusBuyList.Rows.Add(tbNumber.Text, tbType.Text.Substring(1, tbType.Text.Length - 1), tbMoney1.Text, tbMoney1.Text);
-                        // auto scolling down
-                        dgvCusBuyList.FirstDisplayedScrollingRowIndex = dgvCusBuyList.RowCount - 1;
+                    // update Buying to List Table Form
+                    // Add(Number, Type, Money, Group)
+                    //dgvCusBuyList.Rows.Add(tbNumber.Text, tbType.Text.Substring(1, tbType.Text.Length - 1), tbMoney1.Text, tbMoney1.Text);
+                    // auto scolling down
+                    //dgvCusBuyList.FirstDisplayedScrollingRowIndex = dgvCusBuyList.RowCount - 1;
 
-                        // update OrderList in DB &
-                        // update OrderListExpand in DB
-                        updateOrderListDB(tbNumber.Text, tbType.Text.Substring(1, tbType.Text.Length - 1), tbMoney1.Text, tbMoney1.Text);
-                    }
-                    else
-                    {
-                        // update Buying to List Table Form
-                        // Add(Number, Type, Money, Group)
-                        dgvCusBuyList.Rows.Add(tbNumber.Text, tbType.Text.Substring(1, tbType.Text.Length - 1), tbMoney1.Text, tbMoney2.Text);
-                        // auto scolling down
-                        dgvCusBuyList.FirstDisplayedScrollingRowIndex = dgvCusBuyList.RowCount - 1;
-
-                        // update OrderList in DB
-                        // update OrderListExpand in DB
-                        updateOrderListDB(tbNumber.Text, tbType.Text.Substring(1, tbType.Text.Length - 1), tbMoney1.Text, tbMoney2.Text);
-                    }
+                    // update OrderList in DB &
+                    // update OrderListExpand in DB
+                    updateOrderToDB(tbNumber.Text, tbType.Text.Substring(1, tbType.Text.Length - 1), tbMoney1.Text, tbMoney1.Text);
                 }
                 else
                 {
-                    // Money State 3 : Money1 => Diable, Money2 => Enable
-
                     // update Buying to List Table Form
-                    // Add(Number, Type, Group)
-                    dgvCusBuyList.Rows.Add(tbNumber.Text, tbType.Text.Substring(1, tbType.Text.Length - 1), string.Empty, tbMoney2.Text);
+                    // Add(Number, Type, Money, Group)
+                    //dgvCusBuyList.Rows.Add(tbNumber.Text, tbType.Text.Substring(1, tbType.Text.Length - 1), tbMoney1.Text, tbMoney2.Text);
                     // auto scolling down
-                    dgvCusBuyList.FirstDisplayedScrollingRowIndex = dgvCusBuyList.RowCount - 1;
+                    //dgvCusBuyList.FirstDisplayedScrollingRowIndex = dgvCusBuyList.RowCount - 1;
 
-                    // update OrderList in DB & 
+                    // update OrderList in DB
                     // update OrderListExpand in DB
-                    updateOrderListDB(tbNumber.Text, tbType.Text.Substring(1, tbType.Text.Length - 1), string.Empty,tbMoney2.Text);
+                    updateOrderToDB(tbNumber.Text, tbType.Text.Substring(1, tbType.Text.Length - 1), tbMoney1.Text, tbMoney2.Text);
                 }
-                
-                
+            }
+            else if((tbMoney1.Enabled == false) && (tbMoney2.Enabled == true))
+            {
+
+                // Money State 3 : Money1 => Diable, Money2 => Enable
+
+                // update Buying to List Table Form
+                // Add(Number, Type, Group)
+                //dgvCusBuyList.Rows.Add(tbNumber.Text, tbType.Text.Substring(1, tbType.Text.Length - 1), string.Empty, tbMoney2.Text);
+                // auto scolling down
+                //dgvCusBuyList.FirstDisplayedScrollingRowIndex = dgvCusBuyList.RowCount - 1;
+
+                // update OrderList in DB & 
+                // update OrderListExpand in DB
+                updateOrderToDB(tbNumber.Text, tbType.Text.Substring(1, tbType.Text.Length - 1), string.Empty,tbMoney2.Text);
             }
              
         }
@@ -995,11 +1451,11 @@ namespace Lottory
                 connection.Open(); // Open Database
             }
             // get TypeID
-            string sqlgetTypeID = string.Format("SELECT TypeID, TypeName FROM TypeNumberInfo WHERE (TypeName = N'{0}') AND (NDigit = {1})", Type,Number.Length.ToString());
+            string sqlgetTypeID = string.Format("SELECT TypeID, TypeName FROM TypeNumberInfo WHERE (TypeName = N'{0}') AND (NDigit = {1})", Type, Number.Length.ToString());
             SqlCommand sqlgetTypeIDCom = new SqlCommand(sqlgetTypeID, connection);
             SqlDataReader TypeIDInfo = sqlgetTypeIDCom.ExecuteReader();
             int typeID = 0;
-            if(TypeIDInfo.Read())
+            if (TypeIDInfo.Read())
             {
                 typeID = (int)TypeIDInfo["TypeID"];
             }
@@ -1011,26 +1467,26 @@ namespace Lottory
                 connection.Open(); // Open Database
             }
             string sqlupdateOrderList = null;
-            if(!string.IsNullOrEmpty(Money))
+            if (!string.IsNullOrEmpty(Money))
             {
-                if(string.IsNullOrEmpty(Group))
+                if (string.IsNullOrEmpty(Group))
                 {
                     // command For Money state 1
 
                     // Money1(not empty), Group(empty)
-                    sqlupdateOrderList = string.Format("INSERT INTO OrderList(OrderID, TypeID, Number, Price) VALUES({0},{1},'{2}',{3})",this.OrderID,typeID.ToString(),Number, Money);
+                    sqlupdateOrderList = string.Format("INSERT INTO OrderList(OrderID, TypeID, Number, Price) VALUES({0},{1},'{2}',{3})", this.OrderID, typeID.ToString(), Number, Money);
                 }
                 else
                 {
                     // command For Money state 2
 
                     // Money1(not empty), Group(not empty)
-                    sqlupdateOrderList = string.Format("INSERT INTO OrderList(OrderID, TypeID, Number, Price, GroupPrice) VALUES({0},{1},'{2}',{3},{4})", this.OrderID, typeID.ToString(), Number, Money,Group);
+                    sqlupdateOrderList = string.Format("INSERT INTO OrderList(OrderID, TypeID, Number, Price, GroupPrice) VALUES({0},{1},'{2}',{3},{4})", this.OrderID, typeID.ToString(), Number, Money, Group);
                 }
             }
             else
             {
-                if(!string.IsNullOrEmpty(Group))
+                if (!string.IsNullOrEmpty(Group))
                 {
                     // command For Money state 3
 
@@ -1041,12 +1497,11 @@ namespace Lottory
             SqlCommand sqlupdateOrderListCom = new SqlCommand(sqlupdateOrderList, connection);
             sqlupdateOrderListCom.ExecuteNonQuery();
             connection.Close();
-
-            // get OrderListID
-            int OrderListID = getOrderListIDDB();
-           
+        }
+        private void updateOrderToDB(string Number, string Type, string Money, string Group)
+        {
+            int OrderListID;
             int discount; // customer discount
-
             List<string> NumberList = new List<string>();
             List<int> TypeIDList = new List<int>();
 
@@ -1058,7 +1513,16 @@ namespace Lottory
                     {
                        case BaseType.up1:
                             // one-to-one
-                           
+
+                            // Add to Buying Table Form
+                            AddBuyingListTable(Money, Group);
+
+                            // update OrderList DB
+                            updateOrderListDB(Number, Type, Money, Group);
+
+                            // get OrderListID
+                            OrderListID = getOrderListIDDB();
+
                             // get customer discount (%)
                             discount = getCustomerDiscount(BaseTypeID.up1);
 
@@ -1080,6 +1544,15 @@ namespace Lottory
                             break;
                         case BaseType.low1:
                             // one-to-one
+
+                            // Add to Buying Table Form
+                            AddBuyingListTable(Money, Group);
+
+                            // update OrderList DB
+                            updateOrderListDB(Number, Type, Money, Group);
+
+                            // get OrderListID
+                            OrderListID = getOrderListIDDB();
 
                             // get customer discount (%)
                             discount = getCustomerDiscount(BaseTypeID.low1);
@@ -1103,6 +1576,15 @@ namespace Lottory
                         case BaseType.upfront1:
                             // one-to-one
 
+                            // Add to Buying Table Form
+                            AddBuyingListTable(Money, Group);
+
+                            // update OrderList DB
+                            updateOrderListDB(Number, Type, Money, Group);
+
+                            // get OrderListID
+                            OrderListID = getOrderListIDDB();
+
                             // get customer discount (%)
                             discount = getCustomerDiscount(BaseTypeID.upfront1);
 
@@ -1121,6 +1603,15 @@ namespace Lottory
                             break;
                         case BaseType.upcenter1:
                             // one-to-one
+
+                            // Add to Buying Table Form
+                            AddBuyingListTable(Money, Group);
+
+                            // update OrderList DB
+                            updateOrderListDB(Number, Type, Money, Group);
+
+                            // get OrderListID
+                            OrderListID = getOrderListIDDB();
 
                             // get customer discount (%)
                             discount = getCustomerDiscount(BaseTypeID.upcenter1);
@@ -1141,6 +1632,15 @@ namespace Lottory
                         case BaseType.upback1:
                             // one-to-one
 
+                            // Add to Buying Table Form
+                            AddBuyingListTable(Money, Group);
+
+                            // update OrderList DB
+                            updateOrderListDB(Number, Type, Money, Group);
+
+                            // get OrderListID
+                            OrderListID = getOrderListIDDB();
+                            
                             // get customer discount (%)
                             discount = getCustomerDiscount(BaseTypeID.upback1);
 
@@ -1160,6 +1660,15 @@ namespace Lottory
                         case BaseType.lowfront1:
                             // one-to-one
 
+                            // Add to Buying Table Form
+                            AddBuyingListTable(Money, Group);
+
+                            // update OrderList DB
+                            updateOrderListDB(Number, Type, Money, Group);
+
+                            // get OrderListID
+                            OrderListID = getOrderListIDDB();
+                            
                             // get customer discount (%)
                             discount = getCustomerDiscount(BaseTypeID.lowfront1);
 
@@ -1179,6 +1688,15 @@ namespace Lottory
                         case BaseType.lowback1:
                             // one-to-one
 
+                            // Add to Buying Table Form
+                            AddBuyingListTable(Money, Group);
+
+                            // update OrderList DB
+                            updateOrderListDB(Number, Type, Money, Group);
+
+                            // get OrderListID
+                            OrderListID = getOrderListIDDB();
+
                             // get customer discount (%)
                             discount = getCustomerDiscount(BaseTypeID.lowback1);
 
@@ -1197,6 +1715,16 @@ namespace Lottory
                             break;
                         case BaseType.uplow1:
                             // one-to-many
+
+                            // Add to Buying Table Form
+                            AddBuyingListTable(Money, Group);
+
+                            // update OrderList DB
+                            updateOrderListDB(Number, Type, Money, Group);
+
+                            // get OrderListID
+                            OrderListID = getOrderListIDDB();
+
                             // for up1
                             // get customer discount (%)
                             discount = getCustomerDiscount(BaseTypeID.up1);
@@ -1232,6 +1760,16 @@ namespace Lottory
                         // Number 2
                         case BaseType.door19up2:
                             // one-to-many
+
+                            // Add to Buying Table Form
+                            AddBuyingListTable(Money, Group);
+
+                            // update OrderList DB
+                            updateOrderListDB(Number, Type, Money, Group);
+
+                            // get OrderListID
+                            OrderListID = getOrderListIDDB();
+
                             // Expand Number for 19 door up
                             foreach (string itemNumber in ExpandDoor19(Number))
                             {
@@ -1255,8 +1793,18 @@ namespace Lottory
                             break;
                         case BaseType.door19low2:
                             // one-to-many
+
+                            // Add to Buying Table Form
+                            AddBuyingListTable(Money, Group);
+
+                            // update OrderList DB
+                            updateOrderListDB(Number, Type, Money, Group);
+
+                            // get OrderListID
+                            OrderListID = getOrderListIDDB();
+
                             // Expand Number for 19 door low
-                            foreach(string itemNumber in ExpandDoor19(Number))
+                            foreach (string itemNumber in ExpandDoor19(Number))
                             {
                                 // get customer discount (%)
                                 discount = getCustomerDiscount(BaseTypeID.low2);
@@ -1277,8 +1825,19 @@ namespace Lottory
                             break;
                         case BaseType.door19uplow2:
                             // one-to-many
+
+                            // Add to Buying Table Form
+                            AddBuyingListTable(Money, Group);
+
+                            // update OrderList DB
+                            updateOrderListDB(Number, Type, Money, Group);
+
+                            // get OrderListID
+                            OrderListID = getOrderListIDDB();
+
+                            // for up2
                             // Expand Number for 19 door up
-                            foreach(string itemNumber in ExpandDoor19(Number))
+                            foreach (string itemNumber in ExpandDoor19(Number))
                             {
                                 // get customer discount (%)
                                 discount = getCustomerDiscount(BaseTypeID.up2);
@@ -1293,6 +1852,7 @@ namespace Lottory
                             // Customer Buying Check
                             buyingCustomerChecking(Convert.ToInt32(Money), BaseTypeID.up2);
 
+                            // for low2
                             // Expand Number for 19 door low
                             foreach (string itemNumber in ExpandDoor19(Number))
                             {
@@ -1323,6 +1883,16 @@ namespace Lottory
                     {
                         case BaseType.up2:
                             // one-to-one
+
+                            // Add to Buying Table Form
+                            AddBuyingListTable(Money, Group);
+
+                            // update OrderList DB
+                            updateOrderListDB(Number, Type, Money, Group);
+
+                            // get OrderListID
+                            OrderListID = getOrderListIDDB();
+
                             // get customer discount (%)
                             discount = getCustomerDiscount(BaseTypeID.up2);
                             // update OrderListExpand
@@ -1343,6 +1913,16 @@ namespace Lottory
                             break;
                         case BaseType.low2:
                             // one-to-one
+
+                            // Add to Buying Table Form
+                            AddBuyingListTable(Money, Group);
+
+                            // update OrderList DB
+                            updateOrderListDB(Number, Type, Money, Group);
+
+                            // get OrderListID
+                            OrderListID = getOrderListIDDB();
+
                             // get customer discount (%)
                             discount = getCustomerDiscount(BaseTypeID.low2);
                             // update OrderListExpand
@@ -1363,7 +1943,16 @@ namespace Lottory
                             break;
                         case BaseType.tod2:
                             // one-to-many
-                            
+
+                            // Add to Buying Table Form
+                            AddBuyingListTable(Money, Group);
+
+                            // update OrderList DB
+                            updateOrderListDB(Number, Type, Money, Group);
+
+                            // get OrderListID
+                            OrderListID = getOrderListIDDB();
+
                             string todMoney = Convert.ToString(Convert.ToDouble(Money)*rateConvert(this.WinRate2freeup,this.WinRate2up));
                             string OwnPrice = Convert.ToString(Convert.ToDouble(Money) / (ExpandTod2(Number).Count*3));
                             // Exapnd Number for up2
@@ -1412,6 +2001,16 @@ namespace Lottory
                             break;
                         case BaseType.uplow2:
                             // one-to-many
+
+                            // Add to Buying Table Form
+                            AddBuyingListTable(Money, Group);
+
+                            // update OrderList DB
+                            updateOrderListDB(Number, Type, Money, Group);
+
+                            // get OrderListID
+                            OrderListID = getOrderListIDDB();
+
                             // for up2
                             // get customer discount (%)
                             discount = getCustomerDiscount(BaseTypeID.up2);
@@ -1447,8 +2046,18 @@ namespace Lottory
                             break;
                         case BaseType.door62:
                             // one-to-many
+
+                            // Add to Buying Table Form
+                            AddBuyingListTable(Money, Group);
+
+                            // update OrderList DB
+                            updateOrderListDB(Number, Type, Money, Group);
+
+                            // get OrderListID
+                            OrderListID = getOrderListIDDB();
+
                             // Expand for ht2
-                            foreach(string itemNumber in ExpandDoor6(Number))
+                            foreach (string itemNumber in ExpandDoor6(Number))
                             {
                                 // get customer discount (%)
                                 discount = getCustomerDiscount(BaseTypeID.up2);
@@ -1493,6 +2102,16 @@ namespace Lottory
                             break;
                         case BaseType.ht2:
                             // one-to-one
+
+                            // Add to Buying Table Form
+                            AddBuyingListTable(Money, Group);
+
+                            // update OrderList DB
+                            updateOrderListDB(Number, Type, Money, Group);
+
+                            // get OrderListID
+                            OrderListID = getOrderListIDDB();
+
                             // get customer discount (%)
                             discount = getCustomerDiscount(BaseTypeID.ht2);
                             // update OrderListExpand
@@ -1510,6 +2129,16 @@ namespace Lottory
                             break;
                         case BaseType.hu2:
                             // one-to-one
+
+                            // Add to Buying Table Form
+                            AddBuyingListTable(Money, Group);
+
+                            // update OrderList DB
+                            updateOrderListDB(Number, Type, Money, Group);
+
+                            // get OrderListID
+                            OrderListID = getOrderListIDDB();
+
                             // get customer discount (%)
                             discount = getCustomerDiscount(BaseTypeID.hu2);
                             // update OrderListExpand
@@ -1529,7 +2158,17 @@ namespace Lottory
                         // Number 3
                         case BaseType.door543:
                             // one-to-many
-                            foreach(string itemNumber in ExpandDoor54(Number))
+
+                            // Add to Buying Table Form
+                            AddBuyingListTable(Money, Group);
+
+                            // update OrderList DB
+                            updateOrderListDB(Number, Type, Money, Group);
+
+                            // get OrderListID
+                            OrderListID = getOrderListIDDB();
+
+                            foreach (string itemNumber in ExpandDoor54(Number))
                             {
                                 // get customer discount (%)
                                 discount = getCustomerDiscount(BaseTypeID.up3);
@@ -1559,6 +2198,26 @@ namespace Lottory
                     {
                         case BaseType.up3:
                             // one-to-one
+                            
+                            // Add to Buying Table Form
+                            if(!string.IsNullOrEmpty(Group))
+                            {
+                                if(Convert.ToInt32(Group) > 0)
+                                {
+                                    AddBuyingListTable(Money, Group);
+                                }
+                                else
+                                {
+                                    AddBuyingListTable(Money, string.Empty);
+                                }
+                            }
+                            
+                            // update OrderList DB
+                            updateOrderListDB(Number, Type, Money, Group);
+
+                            // get OrderListID
+                            OrderListID = getOrderListIDDB();
+
                             // get customer discount (%)
                             discount = getCustomerDiscount(BaseTypeID.up3);
                             // update OrderListExpand
@@ -1566,6 +2225,30 @@ namespace Lottory
                             NumberList.Add(Number);
                             TypeIDList.Add(BaseTypeID.up3);
 
+                            // for group
+                            if(!string.IsNullOrEmpty(Group))
+                            {
+                                if(Convert.ToInt32(Group) > 0)
+                                {
+                                    foreach (string itemNumber in ExpandGroup3(Number))
+                                    {
+                                        if(!string.Equals(itemNumber,Number))
+                                        {
+                                            // get customer discount (%)
+                                            discount = getCustomerDiscount(BaseTypeID.tod3);
+                                            //update OrderListExpand
+                                            updateOrderListExpandDB(OrderListID.ToString(), BaseTypeID.up3.ToString(), itemNumber, Group, Group, discount);
+                                            NumberList.Add(Number);
+                                            TypeIDList.Add(BaseTypeID.up3);
+
+                                            // update to Number_xxx
+                                            updateNumberXXXToDB(BaseTypeID.up3, itemNumber, Group, Group);
+                                        }
+
+                                    }
+                                }
+
+                            }
                             // update Customer Buying Summary
                             updateCustomerBuyingToForm(NumberList, TypeIDList);
                             // update Buying Summary
@@ -1579,6 +2262,16 @@ namespace Lottory
                             break;
                         case BaseType.uptod3:
                             // one-to-many
+
+                            // Add to Buying Table Form
+                            AddBuyingListTable(Money, Group);
+
+                            // update OrderList DB
+                            updateOrderListDB(Number, Type, Money, Group);
+
+                            // get OrderListID
+                            OrderListID = getOrderListIDDB();
+
                             // for up3
                             // get customer discount (%)
                             discount = getCustomerDiscount(BaseTypeID.up3);
@@ -1590,8 +2283,8 @@ namespace Lottory
                             // for tod3
                             foreach(string itemNumber in ExpandTod3(Number))
                             {
-                                string todMoney = Convert.ToString(Convert.ToDouble(Money)*rateConvert(this.WinRate3freeup,this.WinRate3up));
-                                string OwnPrice = Convert.ToString(Convert.ToDouble(Money) / ExpandTod3(Number).Count);
+                                string todMoney = Convert.ToString(Convert.ToDouble(Group) *rateConvert(this.WinRate3freeup,this.WinRate3up));
+                                string OwnPrice = Convert.ToString(Convert.ToDouble(Group) / ExpandTod3(Number).Count);
                                 // get customer discount (%)
                                 discount = getCustomerDiscount(BaseTypeID.tod3);
                                 //update OrderListExpand
@@ -1612,8 +2305,18 @@ namespace Lottory
                             break;
                         case BaseType.group3:
                             // one-to-mnay
+
+                            // Add to Buying Table Form
+                            AddBuyingListTable(Money, Group);
+
+                            // update OrderList DB
+                            updateOrderListDB(Number, Type, Money, Group);
+
+                            // get OrderListID
+                            OrderListID = getOrderListIDDB();
+
                             // Expand for group3
-                            foreach(string itemNumber in ExpandGroup3(Number))
+                            foreach (string itemNumber in ExpandGroup3(Number))
                             {
                                 // get customer discount (%)
                                 discount = getCustomerDiscount(BaseTypeID.up3);
@@ -1635,29 +2338,48 @@ namespace Lottory
                             break;
                         case BaseType.tgroup3:
                             // one-to-many
+                            int _money = Convert.ToInt32(Money) + Convert.ToInt32(Group);
+                            
+                            // Add to Buying Table Form
+                            AddBuyingListTable(_money.ToString(), Group);
+                            // update OrderList DB
+                            updateOrderListDB(Number, Type, _money.ToString(), Group);
+
+                            // get OrderListID
+                            OrderListID = getOrderListIDDB();
+
                             // Expand for up3
                             // get customer discount (%)
-                            discount = getCustomerDiscount(BaseTypeID.up3);
+                            //discount = getCustomerDiscount(BaseTypeID.up3);
                             // update OrderListExpand
-                            updateOrderListExpandDB(OrderListID.ToString(), BaseTypeID.up3.ToString(), Number, Money, Money, discount);
+                            //updateOrderListExpandDB(OrderListID.ToString(), BaseTypeID.up3.ToString(), Number, Money, Money, discount);
                             // update to Number_xxx
-                            updateNumberXXXToDB(BaseTypeID.up3, Number, Money, Money);
+                           // updateNumberXXXToDB(BaseTypeID.up3, Number, Money, Money);
                             // Customer Buying Check
-                            buyingCustomerChecking(Convert.ToInt32(Money), BaseTypeID.up3);
+                            //buyingCustomerChecking(Convert.ToInt32(Money), BaseTypeID.up3);
 
                             // Expand for group3
                             foreach (string itemNumber in ExpandGroup3(Number))
                             {
                                 // get customer discount (%)
                                 discount = getCustomerDiscount(BaseTypeID.up3);
-                                // update OrderListExpand
-                                updateOrderListExpandDB(OrderListID.ToString(), BaseTypeID.up3.ToString(), itemNumber, Group, Group, discount);
+                                if(string.Equals(itemNumber,Number))
+                                {
+                                    // update OrderListExpand
+                                    updateOrderListExpandDB(OrderListID.ToString(), BaseTypeID.up3.ToString(), itemNumber, _money.ToString(), _money.ToString(), discount);
+                                    // update to Number_xxx
+                                    updateNumberXXXToDB(BaseTypeID.up3, itemNumber, _money.ToString(), _money.ToString());
+                                }
+                                else
+                                {
+                                    // update OrderListExpand
+                                    updateOrderListExpandDB(OrderListID.ToString(), BaseTypeID.up3.ToString(), itemNumber, Group, Group, discount);
+                                    // update to Number_xxx
+                                    updateNumberXXXToDB(BaseTypeID.up3, itemNumber, Group, Group);
+                                }
+                                
                                 NumberList.Add(itemNumber);
                                 TypeIDList.Add(BaseTypeID.up3);
-
-                                // update to Number_xxx
-                                updateNumberXXXToDB(BaseTypeID.up3, itemNumber, Group, Group);
-
                             }
                             
                             // update Customer Buying Summary
@@ -1667,6 +2389,16 @@ namespace Lottory
                             break;
                         case BaseType.group53:
                             // one-to-many
+
+                            // Add to Buying Table Form
+                            AddBuyingListTable(Money, Group);
+
+                            // update OrderList DB
+                            updateOrderListDB(Number, Type, Money, Group);
+
+                            // get OrderListID
+                            OrderListID = getOrderListIDDB();
+
                             // Expand for up3
                             // get customer discount (%)
                             discount = getCustomerDiscount(BaseTypeID.up3);
@@ -1704,6 +2436,16 @@ namespace Lottory
                             break;
                         case BaseType.tod3:
                             // one-to-many
+                            
+                            // Add to Buying Table Form
+                            AddBuyingListTable(Money, Group);
+
+                            // update OrderList DB
+                            updateOrderListDB(Number, Type, Money, Group);
+
+                            // get OrderListID
+                            OrderListID = getOrderListIDDB();
+
                             // for tod3
                             foreach (string itemNumber in ExpandTod3(Number))
                             {
@@ -1727,6 +2469,16 @@ namespace Lottory
                             break;
                         case BaseType.low3:
                             // one-to-one
+
+                            // Add to Buying Table Form
+                            AddBuyingListTable(Money, Group);
+
+                            // update OrderList DB
+                            updateOrderListDB(Number, Type, Money, Group);
+
+                            // get OrderListID
+                            OrderListID = getOrderListIDDB();
+
                             // get customer discount (%)
                             discount = getCustomerDiscount(BaseTypeID.low3);
                             // update OrderListExpand
@@ -1747,7 +2499,17 @@ namespace Lottory
                             break;
                         case BaseType.lowgroup3:
                             // one-to-many
-                            foreach(string itemNumber in ExpandGroup3(Number))
+
+                            // Add to Buying Table Form
+                            AddBuyingListTable(Money, Group);
+
+                            // update OrderList DB
+                            updateOrderListDB(Number, Type, Money, Group);
+
+                            // get OrderListID
+                            OrderListID = getOrderListIDDB();
+
+                            foreach (string itemNumber in ExpandGroup3(Number))
                             {
                                 // get customer discount (%)
                                 discount = getCustomerDiscount(BaseTypeID.low3);
@@ -1760,7 +2522,7 @@ namespace Lottory
                                 updateNumberXXXToDB(BaseTypeID.low3, itemNumber, Group, Group);
                             }
                             // Customer Buying Check
-                            buyingCustomerChecking(Convert.ToInt32(Money), BaseTypeID.low3);
+                            buyingCustomerChecking(Convert.ToInt32(Group), BaseTypeID.low3);
 
                             // update Customer Buying Summary
                             updateCustomerBuyingToForm(NumberList, TypeIDList);
@@ -1769,6 +2531,16 @@ namespace Lottory
                             break;
                         case BaseType.uplowtod3:
                             // one-to-one (up3)
+
+                            // Add to Buying Table Form
+                            AddBuyingListTable(Money, Group);
+                            
+                            // update OrderList DB
+                            updateOrderListDB(Number, Type, Money, Group);
+
+                            // get OrderListID
+                            OrderListID = getOrderListIDDB();
+
                             // get customer discount (%)
                             discount = getCustomerDiscount(BaseTypeID.up3);
                             // update OrderListExpand
@@ -1797,8 +2569,8 @@ namespace Lottory
                             // one-to-many (tod3)
                             foreach (string itemNumber in ExpandTod3(Number))
                             {
-                                string todMoney = Convert.ToString(Convert.ToDouble(Money)*rateConvert(this.WinRate3freeup,this.WinRate3up));
-                                string OwnPrice = Convert.ToString(Convert.ToDouble(Money) / ExpandTod3(Number).Count);
+                                string todMoney = Convert.ToString(Convert.ToDouble(Group) *rateConvert(this.WinRate3freeup,this.WinRate3up));
+                                string OwnPrice = Convert.ToString(Convert.ToDouble(Group) / ExpandTod3(Number).Count);
                                 // get customer discount (%)
                                 discount = getCustomerDiscount(BaseTypeID.tod3);
                                 // update OrderListExpand
@@ -1825,8 +2597,18 @@ namespace Lottory
                     {
                         case BaseType.group4:
                             // one-to-many
+
+                            // Add to Buying Table Form
+                            AddBuyingListTable(Money, Group);
+
+                            // update OrderList DB
+                            updateOrderListDB(Number, Type, Money, Group);
+
+                            // get OrderListID
+                            OrderListID = getOrderListIDDB();
+
                             // Expand for group4
-                            foreach(string itemNumber in ExpandGroup4(Number))
+                            foreach (string itemNumber in ExpandGroup4(Number))
                             {
                                 // get customer discount (%)
                                 discount = getCustomerDiscount(BaseTypeID.up3);
@@ -1857,8 +2639,18 @@ namespace Lottory
                     {
                         case BaseType.group5:
                             // one-to-many
+
+                            // Add to Buying Table Form
+                            AddBuyingListTable(Money, Group);
+
+                            // update OrderList DB
+                            updateOrderListDB(Number, Type, Money, Group);
+
+                            // get OrderListID
+                            OrderListID = getOrderListIDDB();
+
                             // Expand for Group5
-                            foreach(string itemNumber in ExpandGroup5(Number))
+                            foreach (string itemNumber in ExpandGroup5(Number))
                             {
                                 // get customer discount (%)
                                 discount = getCustomerDiscount(BaseTypeID.up3);
@@ -1880,8 +2672,18 @@ namespace Lottory
                             break;
                         case BaseType.tod5:
                             // one-to-many
+
+                            // Add to Buying Table Form
+                            AddBuyingListTable(Money, Group);
+
+                            // update OrderList DB
+                            updateOrderListDB(Number, Type, Money, Group);
+
+                            // get OrderListID
+                            OrderListID = getOrderListIDDB();
+
                             // Expand for Tod5
-                            foreach(string itemNumber in ExpandTod5(Number))
+                            foreach (string itemNumber in ExpandTod5(Number))
                             {
                                 string todMoney = Convert.ToString(Convert.ToDouble(Money) * rateConvert(this.WinRate5free, this.WinRate3up));
                                 string OwnPrice = Convert.ToString(Convert.ToDouble(Money) / ExpandTod5(Number).Count);
@@ -2126,17 +2928,25 @@ namespace Lottory
                     // stop sound when enter
                     e.Handled = true;
                     e.SuppressKeyPress = true;
-                    //check buying error and warning
-                    if (buyingLimitChecking(Convert.ToInt32(tbMoney1.Text)))
-                    {// over buying
-                        MessageBox.Show(string.Format("คำสั่งซื้อเกินวงเงินที่กำหนด", "จำกัดวงเงิน"));
+                    if(!string.IsNullOrEmpty(tbMoney1.Text)) // Check Money1 Empty 
+                    {
+                        //check buying error and warning
+                        if (buyingLimitChecking(Convert.ToInt32(tbMoney1.Text)))
+                        {// over buying
+                            MessageBox.Show(string.Format("คำสั่งซื้อเกินวงเงินที่กำหนด", "จำกัดวงเงิน"));
+                        }
+                        else
+                        {// not over buying
+                         // Move to Money2
+                            tbMoney2.SelectAll();
+                            tbMoney2.Focus();
+                        }
                     }
                     else
-                    {// not over buying
-                        // Move to Money2
-                        tbMoney2.SelectAll();
-                        tbMoney2.Focus();
+                    {
+                        MessageBox.Show("กรุณาใส่จำนวนเงิน","Warning",MessageBoxButtons.OK,MessageBoxIcon.Warning);
                     }
+
                     
                 }
                 else
@@ -2144,24 +2954,31 @@ namespace Lottory
                     // stop sound when enter
                     e.Handled = true;
                     e.SuppressKeyPress = true;
-
-                    //check buying error and warning
-                    if(buyingLimitChecking(Convert.ToInt32(tbMoney1.Text)))
-                    {// over buying
-                        MessageBox.Show(string.Format("คำสั่งซื้อเกินวงเงินที่กำหนด", "จำกัดวงเงิน"));
-                    }
-                    else if(NumberLimitChecking(tbNumber.Text, tbType.Text.Substring(1, tbType.Text.Length - 1),tbMoney1.Text))
+                    if(!string.IsNullOrEmpty(tbMoney1.Text))
                     {
-                        MessageBox.Show("คำสั่งซื้อตัวเลขนี้เกินวงเงินอั้น", "เกินวงเงินอั้น");
+                        //check buying error and warning
+                        if (buyingLimitChecking(Convert.ToInt32(tbMoney1.Text)))
+                        {// over buying
+                            MessageBox.Show(string.Format("คำสั่งซื้อเกินวงเงินที่กำหนด", "จำกัดวงเงิน"));
+                        }
+                        else if (NumberLimitChecking(tbNumber.Text, tbType.Text.Substring(1, tbType.Text.Length - 1), tbMoney1.Text))
+                        {
+                            MessageBox.Show("คำสั่งซื้อตัวเลขนี้เกินวงเงินอั้น", "เกินวงเงินอั้น");
+                        }
+                        else
+                        {// not over buying
+                         // Add Buying command to Display Table
+                            AddNumberToTable();
+                            //Move to Number 
+                            tbNumber.SelectAll();
+                            tbNumber.Focus();
+                        }
                     }
                     else
-                    {// not over buying
-                        // Add Buying command to Display Table
-                        AddNumberToTable();
-                        //Move to Number 
-                        tbNumber.SelectAll();
-                        tbNumber.Focus();
+                    {
+                        MessageBox.Show("กรุณาใส่จำนวนเงิน", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     }
+
                     
                 }
 
@@ -2226,19 +3043,47 @@ namespace Lottory
                 e.Handled = true;
                 e.SuppressKeyPress = true;
                 //check buying error and warning
-                if (buyingLimitChecking(Convert.ToInt32(tbMoney2.Text)))
-                {// over buying
-                    MessageBox.Show(string.Format("คำสั่งซื้อเกินวงเงินที่กำหนด", "จำกัดวงเงิน"));
+
+                if ((tbMoney1.Enabled == true) && (tbMoney2.Enabled == true))
+                {
+                    if (!string.IsNullOrEmpty(tbMoney2.Text))
+                    {
+                        int _money1 = Convert.ToInt32(tbMoney1.Text);
+                        int _money2 = Convert.ToInt32(tbMoney2.Text);
+                        if (buyingLimitChecking(_money1) || buyingLimitChecking(_money2))
+                        {// over buying
+                            MessageBox.Show(string.Format("คำสั่งซื้อเกินวงเงินที่กำหนด", "จำกัดวงเงิน"));
+                        }
+                        else
+                        {// not over buying
+                         // Add Buying command to Display Table
+                            AddNumberToTable();
+                            // Move to Number
+                            tbNumber.SelectAll();
+                            tbNumber.Focus();
+                        }
+                    }
                 }
-                else
-                {// not over buying
-                 // Add Buying command to Display Table
-                    AddNumberToTable();
-                    // Move to Number
-                    tbNumber.SelectAll();
-                    tbNumber.Focus();
+                else if ((tbMoney1.Enabled == false) && (tbMoney2.Enabled == true))
+                {
+                    if (!string.IsNullOrEmpty(tbMoney2.Text))
+                    {
+                        int _money2 = Convert.ToInt32(tbMoney2.Text);
+                        if (buyingLimitChecking(_money2))
+                        {// over buying
+                            MessageBox.Show(string.Format("คำสั่งซื้อเกินวงเงินที่กำหนด", "จำกัดวงเงิน"));
+                        }
+                        else
+                        {// not over buying
+                         // Add Buying command to Display Table
+                            AddNumberToTable();
+                            // Move to Number
+                            tbNumber.SelectAll();
+                            tbNumber.Focus();
+                        }
+                    }
+
                 }
-                
             }
         }
         private bool buyingLimitChecking(int BuyingPrice)
