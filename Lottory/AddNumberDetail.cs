@@ -1163,17 +1163,27 @@ namespace Lottory
         }
         private void tbNumber_TextChanged(object sender, EventArgs e)
         {
-            // Auto Focus to Type box
-            if(tbNumber.TextLength == tbNumber.MaxLength)
+            int x;
+            if(!Int32.TryParse(tbNumber.Text,out x) && !string.IsNullOrEmpty(tbNumber.Text))
             {
-                // Auto Type and Money
-                tbType.Focus();
-
-                AutoBuyingCommand();
-
-                // Select All
-                tbType.SelectAll();
+                MessageBox.Show("กรุณาใส่เบอร์เป็นตัวเลขเท่านั้น", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
+            else
+            {
+                // Auto Focus to Type box
+                if (tbNumber.TextLength == tbNumber.MaxLength)
+                {
+                    // Auto Type and Money
+                    tbType.Focus();
+
+                    AutoBuyingCommand();
+
+                    // Select All
+                    tbType.SelectAll();
+                }
+            }
+            
+
         }
 
         private void tbType_KeyDown(object sender, KeyEventArgs e)
