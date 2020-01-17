@@ -230,10 +230,9 @@ namespace Lottory
             MainLotto mainLotto = (MainLotto)MdiParent;
             mainLotto.ShowForm(MainMenu.Instance);
         }
-
-        private void btAddNumber_Click(object sender, EventArgs e)
+        private void CreateOrder()
         {
-            if(string.IsNullOrEmpty(pageNumber.Text))
+            if (string.IsNullOrEmpty(pageNumber.Text))
             {
                 // Create new Order
                 SqlConnection connection = new SqlConnection(Database.CnnVal("LottoryDB"));
@@ -247,7 +246,7 @@ namespace Lottory
                 SqlCommand sqlgetPageCom = new SqlCommand(sqlgetPage, connection);
                 SqlDataReader pageInfo = sqlgetPageCom.ExecuteReader();
                 List<int> pageListInfo = new List<int>();
-                
+
                 while (pageInfo.Read())
                 {
                     pageListInfo.Add((int)pageInfo["Page"]);
@@ -256,22 +255,22 @@ namespace Lottory
 
                 // find proper page
                 int properPage = 0;
-                for (int t_page = 1;t_page < 1000;t_page++)
+                for (int t_page = 1; t_page < 1000; t_page++)
                 {
                     bool foundPage = false;
-                    foreach(int pageList in pageListInfo)
+                    foreach (int pageList in pageListInfo)
                     {
-                        if(t_page == pageList)
+                        if (t_page == pageList)
                         {
                             foundPage = true;
                         }
                     }
-                    if(!foundPage)
+                    if (!foundPage)
                     {
                         properPage = t_page;
                         break;
                     }
-                    
+
                 }
                 // get customer name
 
@@ -282,7 +281,7 @@ namespace Lottory
                 // get Customer name
                 string customerName = getCustomerName(customerID.Text);
                 // Open AddNumberDetail
-                OpenAddNumberDetail(orderID,customerID.Text, Convert.ToString(properPage), customerName);
+                OpenAddNumberDetail(orderID, customerID.Text, Convert.ToString(properPage), customerName);
 
 
             }
@@ -298,8 +297,8 @@ namespace Lottory
                 // check order from DB
                 string sqlCustomerOrder = "SELECT OrderID, CustomerID, Page FROM CustomerOrder WHERE (CustomerID = '" + customerID.Text + "') AND (Page = " + pageNumber.Text + ")";
                 SqlCommand sqlCustomerOrderCom = new SqlCommand(sqlCustomerOrder, connection);
-                SqlDataReader customerOrderInfo =  sqlCustomerOrderCom.ExecuteReader();
-                if(customerOrderInfo.HasRows)
+                SqlDataReader customerOrderInfo = sqlCustomerOrderCom.ExecuteReader();
+                if (customerOrderInfo.HasRows)
                 {
                     // Found Order
                     // Use that Order
@@ -308,7 +307,7 @@ namespace Lottory
                     // get Customer name
                     string customerName = getCustomerName(customerID.Text);
                     // Open AddNumberDetail
-                    OpenAddNumberDetail(orderID,customerID.Text, pageNumber.Text,customerName);
+                    OpenAddNumberDetail(orderID, customerID.Text, pageNumber.Text, customerName);
                 }
                 else
                 {
@@ -320,12 +319,58 @@ namespace Lottory
                     // get Customer name
                     string customerName = getCustomerName(customerID.Text);
                     // Open AddNumberDetail
-                    OpenAddNumberDetail(orderID, customerID.Text, pageNumber.Text,customerName);
+                    OpenAddNumberDetail(orderID, customerID.Text, pageNumber.Text, customerName);
                 }
                 connection.Close();
             }
-        
-            
+        }
+        private void btAddNumber_Click(object sender, EventArgs e)
+        {
+            if(CheckCorrectOrder())
+            {
+                // start create order
+                CreateOrder();
+            }
+        }
+        private bool CheckCorrectOrder()
+        {
+            bool correct = false;
+            if(string.IsNullOrEmpty(customerID.Text))
+            {
+
+                MessageBox.Show("กรุณาใส่รหัสลูกค้า", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+            }
+            else if (!findCustomerIDinDB(customerID.Text))
+            {
+                MessageBox.Show("ไม่พบรหัสลูกค้าในฐานข้อมูล", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            else
+            {
+                correct = true;
+            }
+            return correct;
+        }
+        private bool findCustomerIDinDB(string customerid)
+        {
+            SqlConnection connection = new SqlConnection(Database.CnnVal("LottoryDB"));
+
+            if (connection.State == ConnectionState.Closed)
+            {
+                connection.Open();
+            }
+            string getcustomerid = string.Format("SELECT CustomerID FROM CustomerInfo WHERE CustomerID = '{0}'", customerid);
+            SqlCommand getcustomeridCom = new SqlCommand(getcustomerid, connection);
+            SqlDataReader customerInfo = getcustomeridCom.ExecuteReader();
+            if(customerInfo.HasRows)
+            {
+                return true;
+            }
+            else
+            {
+                
+                return false;
+            }
         }
         private string getCustomerName(string customerID)
         {
@@ -397,5 +442,66 @@ namespace Lottory
             connection.Close();
         }
 
+        private void customerID_KeyDown(object sender, KeyEventArgs e)
+        {
+            switch(e.KeyCode)
+            {
+                case Keys.Enter:
+                    pageNumber.Focus();
+                    // get PageNumber from DB
+                    updatePageNumber();
+                    break;
+            }
+        }
+        private void updatePageNumber()
+        {
+            SqlConnection connection = new SqlConnection(Database.CnnVal("LottoryDB"));
+
+            if (connection.State == ConnectionState.Closed)
+            {
+                connection.Open(); // Open Database
+            }
+            // Insert Order
+            List<string> pageList = new List<string>();
+            string sqlgetAllPageNumber = string.Format("SELECT Page FROM CustomerOrder WHERE CustomerID = '{0}'",customerID.Text);
+            SqlCommand sqlgetAllPageNumberCom = new SqlCommand(sqlgetAllPageNumber, connection);
+            SqlDataReader PageNumberInfo = sqlgetAllPageNumberCom.ExecuteReader();
+            while(PageNumberInfo.Read())
+            {
+                pageList.Add(PageNumberInfo["Page"].ToString());
+            }
+            connection.Close();
+            pageNumber.DataSource = pageList;
+            pageNumber.Text = string.Empty;
+        }
+
+        private void pageNumber_KeyDown(object sender, KeyEventArgs e)
+        {
+            switch(e.KeyCode)
+            {
+                case Keys.Enter:
+                    if (CheckCorrectOrder())
+                    {
+                        // start create order
+                        CreateOrder();
+                    }
+                    break;
+            }
+        }
+
+        private void customerID_SelectedValueChanged(object sender, EventArgs e)
+        {
+            // update Page Number
+            updatePageNumber();
+        }
+
+        private void pageNumber_TextChanged(object sender, EventArgs e)
+        {
+            int x;
+            if(!Int32.TryParse(pageNumber.Text,out x) && !string.IsNullOrEmpty(pageNumber.Text))
+            {
+                MessageBox.Show("กรุณากำหนดเลขหน้าให้เป็นตัวเลข", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
     }
 }

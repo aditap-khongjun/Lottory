@@ -874,6 +874,12 @@ namespace Lottory
                             _money2 = dgvCusBuyList.Rows[i].Cells[3].Value.ToString();
                         }
 
+                        // case บน
+                        if(string.Equals(_type,"บน") && string.IsNullOrEmpty(_money2))
+                        {
+                            _money2 = (0).ToString();
+                        }
+
                         // enable Money and fill money
                         setEnableMoney(_type, _numlen, _money1, _money2);
                         found = true;
@@ -1180,12 +1186,99 @@ namespace Lottory
                     // Move to Money1 or Money2
                     MovetoMoney();
                     break;
+                case Keys.PageDown:
+                    // Buy
+                    ShortBuying(); 
+                    break;
                 default:
                     // Add Type List
                     AddTypeList(e);
                     break;
             }
 
+        }
+        private void ShortBuying()
+        {
+            if((tbMoney1.Enabled == true) && (tbMoney2.Enabled == false))
+            {
+                if(!string.IsNullOrEmpty(tbMoney1.Text))
+                {
+                    //check buying error and warning
+                    if (buyingLimitChecking(Convert.ToInt32(tbMoney1.Text)))
+                    {// over buying
+                        MessageBox.Show(string.Format("คำสั่งซื้อเกินวงเงินที่กำหนด", "จำกัดวงเงิน"));
+                    }
+                    else if (NumberLimitChecking(tbNumber.Text, tbType.Text.Substring(1, tbType.Text.Length - 1), tbMoney1.Text))
+                    {
+                        MessageBox.Show("คำสั่งซื้อตัวเลขนี้เกินวงเงินอั้น", "เกินวงเงินอั้น");
+                    }
+                    else
+                    {// not over buying
+                     // Add Buying command to Display Table
+                        AddNumberToTable();
+                        //Move to Number 
+                        tbNumber.SelectAll();
+                        tbNumber.Focus();
+                    }
+                }
+                else
+                {
+                    //error
+                    MessageBox.Show("กรุณาใส่จำนวนเงิน", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            }
+            else if((tbMoney1.Enabled == true) && (tbMoney2.Enabled == true))
+            {
+                if(!string.IsNullOrEmpty(tbMoney1.Text) && !string.IsNullOrEmpty(tbMoney2.Text))
+                {
+                    if (!string.IsNullOrEmpty(tbMoney1.Text) && !string.IsNullOrEmpty(tbMoney2.Text))
+                    {
+                        int _money1 = Convert.ToInt32(tbMoney1.Text);
+                        int _money2 = Convert.ToInt32(tbMoney2.Text);
+                        if (buyingLimitChecking(_money1) || buyingLimitChecking(_money2))
+                        {// over buying
+                            MessageBox.Show(string.Format("คำสั่งซื้อเกินวงเงินที่กำหนด", "จำกัดวงเงิน"));
+                        }
+                        else
+                        {// not over buying
+                         // Add Buying command to Display Table
+                            AddNumberToTable();
+                            // Move to Number
+                            tbNumber.SelectAll();
+                            tbNumber.Focus();
+                        }
+                    }
+                }
+                else
+                {
+                    // error
+                    MessageBox.Show("กรุณาใส่จำนวนเงิน", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            }
+            else if((tbMoney1.Enabled == false) && (tbMoney2.Enabled == true))
+            {
+                if(!string.IsNullOrEmpty(tbMoney2.Text))
+                {
+                    int _money2 = Convert.ToInt32(tbMoney2.Text);
+                    if (buyingLimitChecking(_money2))
+                    {// over buying
+                        MessageBox.Show(string.Format("คำสั่งซื้อเกินวงเงินที่กำหนด", "จำกัดวงเงิน"));
+                    }
+                    else
+                    {// not over buying
+                        // Add Buying command to Display Table
+                        AddNumberToTable();
+                        // Move to Number
+                        tbNumber.SelectAll();
+                        tbNumber.Focus();
+                    }
+                }
+                else
+                {
+                    // error
+                    MessageBox.Show("กรุณาใส่จำนวนเงิน", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            }
         }
         private void MovetoMoney()
         {
@@ -1300,6 +1393,7 @@ namespace Lottory
             NumberTable.Columns.Add("เบอร์");
             NumberTable.Columns.Add("ชนิด");
             NumberTable.Columns.Add("จำนวนเงิน");
+            NumberTable.Columns["จำนวนเงิน"].DataType = Type.GetType("System.Int32");
 
             for(int i = 0 ; i < Number.Count ; i++)
             {   
@@ -1321,8 +1415,9 @@ namespace Lottory
                 }
                 connection.Close();
             }
-            NumberTable.DefaultView.Sort = "จำนวนเงิน";
+            //NumberTable.DefaultView.Sort = "จำนวนเงิน DESC";
             TbCustomerBuying.DataSource = NumberTable;
+            TbCustomerBuying.Sort(TbCustomerBuying.Columns[2], ListSortDirection.Descending);
             TbCustomerBuying.ClearSelection();
         }
         private void updateBuyingToForm(List<string> Number, List<int> TypeID)
@@ -1331,6 +1426,7 @@ namespace Lottory
             NumberTable.Columns.Add("เบอร์");
             NumberTable.Columns.Add("ชนิด");
             NumberTable.Columns.Add("จำนวนเงิน");
+            NumberTable.Columns["จำนวนเงิน"].DataType = Type.GetType("System.Int32");
 
             for (int i = 0; i < Number.Count; i++)
             {
@@ -1351,8 +1447,9 @@ namespace Lottory
                 }
                 connection.Close();
             }
-            NumberTable.DefaultView.Sort = "จำนวนเงิน DESC";
+            //NumberTable.DefaultView.Sort = "จำนวนเงิน DESC";
             TbAllBuying.DataSource = NumberTable;
+            TbAllBuying.Sort(TbAllBuying.Columns[2], ListSortDirection.Descending);
             TbAllBuying.ClearSelection();
         }
 
@@ -2238,7 +2335,7 @@ namespace Lottory
                                             discount = getCustomerDiscount(BaseTypeID.tod3);
                                             //update OrderListExpand
                                             updateOrderListExpandDB(OrderListID.ToString(), BaseTypeID.up3.ToString(), itemNumber, Group, Group, discount);
-                                            NumberList.Add(Number);
+                                            NumberList.Add(itemNumber);
                                             TypeIDList.Add(BaseTypeID.up3);
 
                                             // update to Number_xxx
@@ -2289,7 +2386,7 @@ namespace Lottory
                                 discount = getCustomerDiscount(BaseTypeID.tod3);
                                 //update OrderListExpand
                                 updateOrderListExpandDB(OrderListID.ToString(), BaseTypeID.up3.ToString(), itemNumber, todMoney, OwnPrice, discount);
-                                NumberList.Add(Number);
+                                NumberList.Add(itemNumber);
                                 TypeIDList.Add(BaseTypeID.up3);
 
                                 // update to Number_xxx
@@ -2921,68 +3018,72 @@ namespace Lottory
 
         private void tbMoney1_KeyDown(object sender, KeyEventArgs e)
         {
-            if(e.KeyCode == Keys.Enter)
+            switch(e.KeyCode)
             {
-                if(tbMoney2.Enabled)
-                {
-                    // stop sound when enter
-                    e.Handled = true;
-                    e.SuppressKeyPress = true;
-                    if(!string.IsNullOrEmpty(tbMoney1.Text)) // Check Money1 Empty 
+                case Keys.Enter:
+                    if (tbMoney2.Enabled)
                     {
-                        //check buying error and warning
-                        if (buyingLimitChecking(Convert.ToInt32(tbMoney1.Text)))
-                        {// over buying
-                            MessageBox.Show(string.Format("คำสั่งซื้อเกินวงเงินที่กำหนด", "จำกัดวงเงิน"));
-                        }
-                        else
-                        {// not over buying
-                         // Move to Money2
-                            tbMoney2.SelectAll();
-                            tbMoney2.Focus();
-                        }
-                    }
-                    else
-                    {
-                        MessageBox.Show("กรุณาใส่จำนวนเงิน","Warning",MessageBoxButtons.OK,MessageBoxIcon.Warning);
-                    }
-
-                    
-                }
-                else
-                {
-                    // stop sound when enter
-                    e.Handled = true;
-                    e.SuppressKeyPress = true;
-                    if(!string.IsNullOrEmpty(tbMoney1.Text))
-                    {
-                        //check buying error and warning
-                        if (buyingLimitChecking(Convert.ToInt32(tbMoney1.Text)))
-                        {// over buying
-                            MessageBox.Show(string.Format("คำสั่งซื้อเกินวงเงินที่กำหนด", "จำกัดวงเงิน"));
-                        }
-                        else if (NumberLimitChecking(tbNumber.Text, tbType.Text.Substring(1, tbType.Text.Length - 1), tbMoney1.Text))
+                        // stop sound when enter
+                        e.Handled = true;
+                        e.SuppressKeyPress = true;
+                        if (!string.IsNullOrEmpty(tbMoney1.Text)) // Check Money1 Empty 
                         {
-                            MessageBox.Show("คำสั่งซื้อตัวเลขนี้เกินวงเงินอั้น", "เกินวงเงินอั้น");
+                            //check buying error and warning
+                            if (buyingLimitChecking(Convert.ToInt32(tbMoney1.Text)))
+                            {// over buying
+                                MessageBox.Show(string.Format("คำสั่งซื้อเกินวงเงินที่กำหนด", "จำกัดวงเงิน"));
+                            }
+                            else
+                            {// not over buying
+                             // Move to Money2
+                                tbMoney2.SelectAll();
+                                tbMoney2.Focus();
+                            }
                         }
                         else
-                        {// not over buying
-                         // Add Buying command to Display Table
-                            AddNumberToTable();
-                            //Move to Number 
-                            tbNumber.SelectAll();
-                            tbNumber.Focus();
+                        {
+                            MessageBox.Show("กรุณาใส่จำนวนเงิน", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         }
+
+
                     }
                     else
                     {
-                        MessageBox.Show("กรุณาใส่จำนวนเงิน", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        // stop sound when enter
+                        e.Handled = true;
+                        e.SuppressKeyPress = true;
+                        if (!string.IsNullOrEmpty(tbMoney1.Text))
+                        {
+                            //check buying error and warning
+                            if (buyingLimitChecking(Convert.ToInt32(tbMoney1.Text)))
+                            {// over buying
+                                MessageBox.Show(string.Format("คำสั่งซื้อเกินวงเงินที่กำหนด", "จำกัดวงเงิน"));
+                            }
+                            else if (NumberLimitChecking(tbNumber.Text, tbType.Text.Substring(1, tbType.Text.Length - 1), tbMoney1.Text))
+                            {
+                                MessageBox.Show("คำสั่งซื้อตัวเลขนี้เกินวงเงินอั้น", "เกินวงเงินอั้น");
+                            }
+                            else
+                            {// not over buying
+                             // Add Buying command to Display Table
+                                AddNumberToTable();
+                                //Move to Number 
+                                tbNumber.SelectAll();
+                                tbNumber.Focus();
+                            }
+                        }
+                        else
+                        {
+                            MessageBox.Show("กรุณาใส่จำนวนเงิน", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        }
                     }
-
-                    
-                }
-
+                    break;
+                case Keys.PageDown:
+                    // Buy 
+                    ShortBuying();
+                    break;
             }
+
         }
         private bool NumberLimitChecking(string Number, string TypeName, string Price)
         {
@@ -3177,21 +3278,43 @@ namespace Lottory
         }
         private void Delete_specific_Click(object sender, EventArgs e)
         {
-            foreach(DataGridViewRow item in this.dgvCusBuyList.Rows)
-            { 
-                if(Convert.ToBoolean(item.Cells[4].Value))
-                {
-                    deleteBuyingListItem(item);
-                }
+            DialogResult deleteRes = MessageBox.Show("ต้องการลบข้อมูลที่เลือกหรือไม่", "ยืนยันการลบข้อมูล", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            switch (deleteRes)
+            {
+                case DialogResult.Yes:
+                    // Delete specific Rows
+                    foreach (DataGridViewRow item in this.dgvCusBuyList.Rows)
+                    {
+                        if (Convert.ToBoolean(item.Cells[4].Value))
+                        {
+                            deleteBuyingListItem(item);
+                        }
+                    }
+                    break;
+                case DialogResult.No:
+                    // Do Nothing
+                    break;
             }
+
         }
 
         private void Delete_all_Click(object sender, EventArgs e)
         {
-            foreach (DataGridViewRow item in this.dgvCusBuyList.Rows)
+            DialogResult deleteRes = MessageBox.Show("ต้องการลบข้อมูลทั้งหมดหรือไม่", "ยืนยันการลบข้อมูล", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            switch (deleteRes)
             {
+                case DialogResult.Yes:
+                // Delete Seleted Rows
+                foreach (DataGridViewRow item in this.dgvCusBuyList.Rows)
+                {
 
-                deleteBuyingListItem(item);
+                    deleteBuyingListItem(item);
+
+                }
+                break;
+                case DialogResult.No:
+                    // Do Nothing
+                    break;
             }
         }
 
@@ -3200,11 +3323,21 @@ namespace Lottory
             // Delete Key Down
             if(e.KeyCode == Keys.Delete)
             {
-                // Delete Seleted Rows
-                foreach (DataGridViewRow item in this.dgvCusBuyList.SelectedRows)
+                DialogResult deleteRes = MessageBox.Show("ต้องการลบข้อมูลหรือไม่", "ยืนยันการลบข้อมูล", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                switch(deleteRes)
                 {
-                    deleteBuyingListItem(item);
+                    case DialogResult.Yes:
+                        // Delete Seleted Rows
+                        foreach (DataGridViewRow item in this.dgvCusBuyList.SelectedRows)
+                        {
+                            deleteBuyingListItem(item);
+                        }
+                        break;
+                    case DialogResult.No:
+                        // Do Nothing
+                        break;
                 }
+
             }
 
         }
@@ -3305,7 +3438,7 @@ namespace Lottory
 
             SqlCommand sqlgetOrderListIDCom = new SqlCommand(sqlgetOrderListID, connection);
             SqlDataReader OrderListID = sqlgetOrderListIDCom.ExecuteReader();
-            while (OrderListID.Read())
+            if (OrderListID.Read())
             {
                 // Reduce Price from Number_xxx
                 SqlConnection connection1 = new SqlConnection(Database.CnnVal("LottoryDB"));

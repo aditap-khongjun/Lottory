@@ -32,7 +32,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.customerID = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.pageNumber = new System.Windows.Forms.TextBox();
             this.btBackToMain = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.editMLim5 = new System.Windows.Forms.Button();
@@ -50,13 +49,14 @@
             this.editMLim1 = new System.Windows.Forms.Button();
             this.MoneyLimit1 = new System.Windows.Forms.TextBox();
             this.lbLimit1 = new System.Windows.Forms.Label();
+            this.pageNumber = new System.Windows.Forms.ComboBox();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // btAddNumber
             // 
             this.btAddNumber.Location = new System.Drawing.Point(16, 99);
-            this.btAddNumber.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btAddNumber.Margin = new System.Windows.Forms.Padding(2);
             this.btAddNumber.Name = "btAddNumber";
             this.btAddNumber.Size = new System.Drawing.Size(135, 27);
             this.btAddNumber.TabIndex = 0;
@@ -81,10 +81,12 @@
             this.customerID.BackColor = System.Drawing.SystemColors.Window;
             this.customerID.FormattingEnabled = true;
             this.customerID.Location = new System.Drawing.Point(16, 27);
-            this.customerID.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.customerID.Margin = new System.Windows.Forms.Padding(2);
             this.customerID.Name = "customerID";
             this.customerID.Size = new System.Drawing.Size(137, 21);
             this.customerID.TabIndex = 2;
+            this.customerID.SelectedValueChanged += new System.EventHandler(this.customerID_SelectedValueChanged);
+            this.customerID.KeyDown += new System.Windows.Forms.KeyEventHandler(this.customerID_KeyDown);
             // 
             // label2
             // 
@@ -96,18 +98,10 @@
             this.label2.TabIndex = 3;
             this.label2.Text = "หน้า";
             // 
-            // pageNumber
-            // 
-            this.pageNumber.Location = new System.Drawing.Point(16, 66);
-            this.pageNumber.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.pageNumber.Name = "pageNumber";
-            this.pageNumber.Size = new System.Drawing.Size(137, 20);
-            this.pageNumber.TabIndex = 4;
-            // 
             // btBackToMain
             // 
             this.btBackToMain.Location = new System.Drawing.Point(16, 218);
-            this.btBackToMain.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btBackToMain.Margin = new System.Windows.Forms.Padding(2);
             this.btBackToMain.Name = "btBackToMain";
             this.btBackToMain.Size = new System.Drawing.Size(135, 28);
             this.btBackToMain.TabIndex = 5;
@@ -133,9 +127,9 @@
             this.groupBox1.Controls.Add(this.MoneyLimit1);
             this.groupBox1.Controls.Add(this.lbLimit1);
             this.groupBox1.Location = new System.Drawing.Point(168, 12);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(2);
             this.groupBox1.Size = new System.Drawing.Size(241, 234);
             this.groupBox1.TabIndex = 6;
             this.groupBox1.TabStop = false;
@@ -144,7 +138,7 @@
             // editMLim5
             // 
             this.editMLim5.Location = new System.Drawing.Point(185, 200);
-            this.editMLim5.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.editMLim5.Margin = new System.Windows.Forms.Padding(2);
             this.editMLim5.Name = "editMLim5";
             this.editMLim5.Size = new System.Drawing.Size(44, 20);
             this.editMLim5.TabIndex = 14;
@@ -155,7 +149,7 @@
             // MoneyLimit5
             // 
             this.MoneyLimit5.Location = new System.Drawing.Point(16, 200);
-            this.MoneyLimit5.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.MoneyLimit5.Margin = new System.Windows.Forms.Padding(2);
             this.MoneyLimit5.Name = "MoneyLimit5";
             this.MoneyLimit5.Size = new System.Drawing.Size(165, 20);
             this.MoneyLimit5.TabIndex = 13;
@@ -174,7 +168,7 @@
             // editMLim4
             // 
             this.editMLim4.Location = new System.Drawing.Point(185, 163);
-            this.editMLim4.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.editMLim4.Margin = new System.Windows.Forms.Padding(2);
             this.editMLim4.Name = "editMLim4";
             this.editMLim4.Size = new System.Drawing.Size(44, 19);
             this.editMLim4.TabIndex = 11;
@@ -185,7 +179,7 @@
             // MoneyLimit4
             // 
             this.MoneyLimit4.Location = new System.Drawing.Point(16, 162);
-            this.MoneyLimit4.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.MoneyLimit4.Margin = new System.Windows.Forms.Padding(2);
             this.MoneyLimit4.Name = "MoneyLimit4";
             this.MoneyLimit4.Size = new System.Drawing.Size(165, 20);
             this.MoneyLimit4.TabIndex = 10;
@@ -204,7 +198,7 @@
             // editMLim3
             // 
             this.editMLim3.Location = new System.Drawing.Point(185, 124);
-            this.editMLim3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.editMLim3.Margin = new System.Windows.Forms.Padding(2);
             this.editMLim3.Name = "editMLim3";
             this.editMLim3.Size = new System.Drawing.Size(44, 19);
             this.editMLim3.TabIndex = 8;
@@ -215,7 +209,7 @@
             // MoneyLimit3
             // 
             this.MoneyLimit3.Location = new System.Drawing.Point(16, 123);
-            this.MoneyLimit3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.MoneyLimit3.Margin = new System.Windows.Forms.Padding(2);
             this.MoneyLimit3.Name = "MoneyLimit3";
             this.MoneyLimit3.Size = new System.Drawing.Size(165, 20);
             this.MoneyLimit3.TabIndex = 7;
@@ -234,7 +228,7 @@
             // editMLim2
             // 
             this.editMLim2.Location = new System.Drawing.Point(185, 80);
-            this.editMLim2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.editMLim2.Margin = new System.Windows.Forms.Padding(2);
             this.editMLim2.Name = "editMLim2";
             this.editMLim2.Size = new System.Drawing.Size(44, 19);
             this.editMLim2.TabIndex = 5;
@@ -245,7 +239,7 @@
             // MoneyLimit2
             // 
             this.MoneyLimit2.Location = new System.Drawing.Point(16, 79);
-            this.MoneyLimit2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.MoneyLimit2.Margin = new System.Windows.Forms.Padding(2);
             this.MoneyLimit2.Name = "MoneyLimit2";
             this.MoneyLimit2.Size = new System.Drawing.Size(165, 20);
             this.MoneyLimit2.TabIndex = 4;
@@ -264,7 +258,7 @@
             // editMLim1
             // 
             this.editMLim1.Location = new System.Drawing.Point(185, 36);
-            this.editMLim1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.editMLim1.Margin = new System.Windows.Forms.Padding(2);
             this.editMLim1.Name = "editMLim1";
             this.editMLim1.Size = new System.Drawing.Size(44, 19);
             this.editMLim1.TabIndex = 2;
@@ -275,7 +269,7 @@
             // MoneyLimit1
             // 
             this.MoneyLimit1.Location = new System.Drawing.Point(16, 35);
-            this.MoneyLimit1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.MoneyLimit1.Margin = new System.Windows.Forms.Padding(2);
             this.MoneyLimit1.Name = "MoneyLimit1";
             this.MoneyLimit1.Size = new System.Drawing.Size(165, 20);
             this.MoneyLimit1.TabIndex = 1;
@@ -291,19 +285,33 @@
             this.lbLimit1.TabIndex = 0;
             this.lbLimit1.Text = "1 ลอย, หน้า, กลาง, หลัง, ลอยล่าง";
             // 
+            // pageNumber
+            // 
+            this.pageNumber.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.pageNumber.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.pageNumber.BackColor = System.Drawing.SystemColors.Window;
+            this.pageNumber.FormattingEnabled = true;
+            this.pageNumber.Location = new System.Drawing.Point(16, 66);
+            this.pageNumber.Margin = new System.Windows.Forms.Padding(2);
+            this.pageNumber.Name = "pageNumber";
+            this.pageNumber.Size = new System.Drawing.Size(137, 21);
+            this.pageNumber.TabIndex = 7;
+            this.pageNumber.TextChanged += new System.EventHandler(this.pageNumber_TextChanged);
+            this.pageNumber.KeyDown += new System.Windows.Forms.KeyEventHandler(this.pageNumber_KeyDown);
+            // 
             // AddNumberSetting
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(430, 265);
+            this.Controls.Add(this.pageNumber);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btBackToMain);
-            this.Controls.Add(this.pageNumber);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.customerID);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btAddNumber);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "AddNumberSetting";
             this.Text = "ตั้งค่าการป้อนตัวเลข";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.AddNumberSetting_FormClosed);
@@ -321,7 +329,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox customerID;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox pageNumber;
         private System.Windows.Forms.Button btBackToMain;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label lbLimit1;
@@ -339,5 +346,6 @@
         private System.Windows.Forms.Label lbLimit2;
         private System.Windows.Forms.Button editMLim1;
         private System.Windows.Forms.TextBox MoneyLimit1;
+        private System.Windows.Forms.ComboBox pageNumber;
     }
 }
