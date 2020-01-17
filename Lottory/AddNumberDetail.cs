@@ -859,7 +859,11 @@ namespace Lottory
                         {
                             BuyingAsGroup(number, tbType.Text.Substring(1, tbType.Text.Length - 1), tbMoney1.Text, tbMoney2.Text);
                         }
+                        
                     }
+                    // clear tbNumber and focus
+                    tbNumber.Clear();
+                    tbNumber.Focus();
                     break;
                 default:
                     break;
