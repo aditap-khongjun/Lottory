@@ -844,11 +844,52 @@ namespace Lottory
                     // Select All
                     tbType.SelectAll();
                     break;
+                case Keys.Decimal:
+                    // Open Dialog
+                    AddNumberGroup groupNumberDiaglog = new AddNumberGroup();
+                    int lastIdx = dgvCusBuyList.Rows.Count - 1;
+                    groupNumberDiaglog.maxLength = dgvCusBuyList.Rows[lastIdx].Cells[0].Value.ToString().Length;
+                    if(groupNumberDiaglog.ShowDialog() == DialogResult.OK)
+                    {
+                        //MessageBox.Show("Click OK");
+                        List<string> gNumber = groupNumberDiaglog.groupNumberOut;
+                        //MessageBox.Show(string.Join(", ", test.ToArray()));
+                        // Buying as Group
+                        foreach(string number in gNumber)
+                        {
+                            BuyingAsGroup(number, tbType.Text.Substring(1, tbType.Text.Length - 1), tbMoney1.Text, tbMoney2.Text);
+                        }
+                    }
+                    break;
                 default:
                     break;
             }
             // Show Text in Short Key
             showShortKey(tbNumber.MaxLength);
+        }
+        private void BuyingAsGroup(string Number, string Type, string Money, string Group)
+        {
+            if ((tbMoney2.Enabled == false) && (tbMoney1.Enabled == true))
+            {
+                updateOrderToDB(Number, Type, Money, string.Empty);
+            }
+            else if ((tbMoney1.Enabled == true) && (tbMoney2.Enabled == true))
+            {
+                // Money State 2 : Money1 => Enable, Money2 => Enable
+                if (string.IsNullOrEmpty(Group))
+                {
+
+                    updateOrderToDB(Number, Type, Money, Group);
+                }
+                else
+                {
+                    updateOrderToDB(Number, Type, Money, Group);
+                }
+            }
+            else if ((tbMoney1.Enabled == false) && (tbMoney2.Enabled == true))
+            {
+                updateOrderToDB(Number, Type, string.Empty, Group);
+            }
         }
         private void AutoBuyingCommand()
         {
@@ -1164,7 +1205,7 @@ namespace Lottory
         private void tbNumber_TextChanged(object sender, EventArgs e)
         {
             int x;
-            if(!Int32.TryParse(tbNumber.Text,out x) && !string.IsNullOrEmpty(tbNumber.Text))
+            if(!Int32.TryParse(tbNumber.Text,out x) && !string.IsNullOrEmpty(tbNumber.Text) && !string.Equals(tbNumber.Text,"."))
             {
                 MessageBox.Show("กรุณาใส่เบอร์เป็นตัวเลขเท่านั้น", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
@@ -1327,9 +1368,9 @@ namespace Lottory
                 MessageBox.Show("กรุณาใส่จำนวนเงินเป็นตัวเลขให้ถูกต้อง");
             }
         }
-        private void AddBuyingListTable(string Money, string Group)
+        private void AddBuyingListTable(string Number, string Type, string Money, string Group)
         {
-            dgvCusBuyList.Rows.Add(tbNumber.Text, tbType.Text.Substring(1, tbType.Text.Length - 1), Money, Group);
+            dgvCusBuyList.Rows.Add(Number, Type, Money, Group);
             // auto scolling down
             dgvCusBuyList.FirstDisplayedScrollingRowIndex = dgvCusBuyList.RowCount - 1;
         }
@@ -1622,7 +1663,7 @@ namespace Lottory
                             // one-to-one
 
                             // Add to Buying Table Form
-                            AddBuyingListTable(Money, Group);
+                            AddBuyingListTable(Number, Type, Money, Group);
 
                             // update OrderList DB
                             updateOrderListDB(Number, Type, Money, Group);
@@ -1653,7 +1694,7 @@ namespace Lottory
                             // one-to-one
 
                             // Add to Buying Table Form
-                            AddBuyingListTable(Money, Group);
+                            AddBuyingListTable(Number, Type, Money, Group);
 
                             // update OrderList DB
                             updateOrderListDB(Number, Type, Money, Group);
@@ -1684,7 +1725,7 @@ namespace Lottory
                             // one-to-one
 
                             // Add to Buying Table Form
-                            AddBuyingListTable(Money, Group);
+                            AddBuyingListTable(Number, Type, Money, Group);
 
                             // update OrderList DB
                             updateOrderListDB(Number, Type, Money, Group);
@@ -1712,7 +1753,7 @@ namespace Lottory
                             // one-to-one
 
                             // Add to Buying Table Form
-                            AddBuyingListTable(Money, Group);
+                            AddBuyingListTable(Number, Type, Money, Group);
 
                             // update OrderList DB
                             updateOrderListDB(Number, Type, Money, Group);
@@ -1740,7 +1781,7 @@ namespace Lottory
                             // one-to-one
 
                             // Add to Buying Table Form
-                            AddBuyingListTable(Money, Group);
+                            AddBuyingListTable(Number, Type, Money, Group);
 
                             // update OrderList DB
                             updateOrderListDB(Number, Type, Money, Group);
@@ -1768,7 +1809,7 @@ namespace Lottory
                             // one-to-one
 
                             // Add to Buying Table Form
-                            AddBuyingListTable(Money, Group);
+                            AddBuyingListTable(Number, Type, Money, Group);
 
                             // update OrderList DB
                             updateOrderListDB(Number, Type, Money, Group);
@@ -1796,7 +1837,7 @@ namespace Lottory
                             // one-to-one
 
                             // Add to Buying Table Form
-                            AddBuyingListTable(Money, Group);
+                            AddBuyingListTable(Number, Type, Money, Group);
 
                             // update OrderList DB
                             updateOrderListDB(Number, Type, Money, Group);
@@ -1824,7 +1865,7 @@ namespace Lottory
                             // one-to-many
 
                             // Add to Buying Table Form
-                            AddBuyingListTable(Money, Group);
+                            AddBuyingListTable(Number, Type, Money, Group);
 
                             // update OrderList DB
                             updateOrderListDB(Number, Type, Money, Group);
@@ -1869,7 +1910,7 @@ namespace Lottory
                             // one-to-many
 
                             // Add to Buying Table Form
-                            AddBuyingListTable(Money, Group);
+                            AddBuyingListTable(Number, Type, Money, Group);
 
                             // update OrderList DB
                             updateOrderListDB(Number, Type, Money, Group);
@@ -1902,7 +1943,7 @@ namespace Lottory
                             // one-to-many
 
                             // Add to Buying Table Form
-                            AddBuyingListTable(Money, Group);
+                            AddBuyingListTable(Number, Type, Money, Group);
 
                             // update OrderList DB
                             updateOrderListDB(Number, Type, Money, Group);
@@ -1934,7 +1975,7 @@ namespace Lottory
                             // one-to-many
 
                             // Add to Buying Table Form
-                            AddBuyingListTable(Money, Group);
+                            AddBuyingListTable(Number, Type, Money, Group);
 
                             // update OrderList DB
                             updateOrderListDB(Number, Type, Money, Group);
@@ -1992,7 +2033,7 @@ namespace Lottory
                             // one-to-one
 
                             // Add to Buying Table Form
-                            AddBuyingListTable(Money, Group);
+                            AddBuyingListTable(Number, Type, Money, Group);
 
                             // update OrderList DB
                             updateOrderListDB(Number, Type, Money, Group);
@@ -2022,7 +2063,7 @@ namespace Lottory
                             // one-to-one
 
                             // Add to Buying Table Form
-                            AddBuyingListTable(Money, Group);
+                            AddBuyingListTable(Number, Type, Money, Group);
 
                             // update OrderList DB
                             updateOrderListDB(Number, Type, Money, Group);
@@ -2052,7 +2093,7 @@ namespace Lottory
                             // one-to-many
 
                             // Add to Buying Table Form
-                            AddBuyingListTable(Money, Group);
+                            AddBuyingListTable(Number, Type, Money, Group);
 
                             // update OrderList DB
                             updateOrderListDB(Number, Type, Money, Group);
@@ -2110,7 +2151,7 @@ namespace Lottory
                             // one-to-many
 
                             // Add to Buying Table Form
-                            AddBuyingListTable(Money, Group);
+                            AddBuyingListTable(Number, Type, Money, Group);
 
                             // update OrderList DB
                             updateOrderListDB(Number, Type, Money, Group);
@@ -2155,7 +2196,7 @@ namespace Lottory
                             // one-to-many
 
                             // Add to Buying Table Form
-                            AddBuyingListTable(Money, Group);
+                            AddBuyingListTable(Number, Type, Money, Group);
 
                             // update OrderList DB
                             updateOrderListDB(Number, Type, Money, Group);
@@ -2211,7 +2252,7 @@ namespace Lottory
                             // one-to-one
 
                             // Add to Buying Table Form
-                            AddBuyingListTable(Money, Group);
+                            AddBuyingListTable(Number, Type, Money, Group);
 
                             // update OrderList DB
                             updateOrderListDB(Number, Type, Money, Group);
@@ -2238,7 +2279,7 @@ namespace Lottory
                             // one-to-one
 
                             // Add to Buying Table Form
-                            AddBuyingListTable(Money, Group);
+                            AddBuyingListTable(Number, Type, Money, Group);
 
                             // update OrderList DB
                             updateOrderListDB(Number, Type, Money, Group);
@@ -2267,7 +2308,7 @@ namespace Lottory
                             // one-to-many
 
                             // Add to Buying Table Form
-                            AddBuyingListTable(Money, Group);
+                            AddBuyingListTable(Number, Type, Money, Group);
 
                             // update OrderList DB
                             updateOrderListDB(Number, Type, Money, Group);
@@ -2311,11 +2352,11 @@ namespace Lottory
                             {
                                 if(Convert.ToInt32(Group) > 0)
                                 {
-                                    AddBuyingListTable(Money, Group);
+                                    AddBuyingListTable(Number, Type, Money, Group);
                                 }
                                 else
                                 {
-                                    AddBuyingListTable(Money, string.Empty);
+                                    AddBuyingListTable(Number, Type, Money, string.Empty);
                                 }
                             }
                             
@@ -2371,7 +2412,7 @@ namespace Lottory
                             // one-to-many
 
                             // Add to Buying Table Form
-                            AddBuyingListTable(Money, Group);
+                            AddBuyingListTable(Number, Type, Money, Group);
 
                             // update OrderList DB
                             updateOrderListDB(Number, Type, Money, Group);
@@ -2414,7 +2455,7 @@ namespace Lottory
                             // one-to-mnay
 
                             // Add to Buying Table Form
-                            AddBuyingListTable(Money, Group);
+                            AddBuyingListTable(Number, Type, Money, Group);
 
                             // update OrderList DB
                             updateOrderListDB(Number, Type, Money, Group);
@@ -2448,7 +2489,7 @@ namespace Lottory
                             int _money = Convert.ToInt32(Money) + Convert.ToInt32(Group);
                             
                             // Add to Buying Table Form
-                            AddBuyingListTable(_money.ToString(), Group);
+                            AddBuyingListTable(Number, Type, _money.ToString(), Group);
                             // update OrderList DB
                             updateOrderListDB(Number, Type, _money.ToString(), Group);
 
@@ -2498,7 +2539,7 @@ namespace Lottory
                             // one-to-many
 
                             // Add to Buying Table Form
-                            AddBuyingListTable(Money, Group);
+                            AddBuyingListTable(Number, Type, Money, Group);
 
                             // update OrderList DB
                             updateOrderListDB(Number, Type, Money, Group);
@@ -2545,7 +2586,7 @@ namespace Lottory
                             // one-to-many
                             
                             // Add to Buying Table Form
-                            AddBuyingListTable(Money, Group);
+                            AddBuyingListTable(Number, Type, Money, Group);
 
                             // update OrderList DB
                             updateOrderListDB(Number, Type, Money, Group);
@@ -2578,7 +2619,7 @@ namespace Lottory
                             // one-to-one
 
                             // Add to Buying Table Form
-                            AddBuyingListTable(Money, Group);
+                            AddBuyingListTable(Number, Type, Money, Group);
 
                             // update OrderList DB
                             updateOrderListDB(Number, Type, Money, Group);
@@ -2608,7 +2649,7 @@ namespace Lottory
                             // one-to-many
 
                             // Add to Buying Table Form
-                            AddBuyingListTable(Money, Group);
+                            AddBuyingListTable(Number, Type, Money, Group);
 
                             // update OrderList DB
                             updateOrderListDB(Number, Type, Money, Group);
@@ -2640,7 +2681,7 @@ namespace Lottory
                             // one-to-one (up3)
 
                             // Add to Buying Table Form
-                            AddBuyingListTable(Money, Group);
+                            AddBuyingListTable(Number, Type, Money, Group);
                             
                             // update OrderList DB
                             updateOrderListDB(Number, Type, Money, Group);
@@ -2706,7 +2747,7 @@ namespace Lottory
                             // one-to-many
 
                             // Add to Buying Table Form
-                            AddBuyingListTable(Money, Group);
+                            AddBuyingListTable(Number, Type, Money, Group);
 
                             // update OrderList DB
                             updateOrderListDB(Number, Type, Money, Group);
@@ -2748,7 +2789,7 @@ namespace Lottory
                             // one-to-many
 
                             // Add to Buying Table Form
-                            AddBuyingListTable(Money, Group);
+                            AddBuyingListTable(Number, Type, Money, Group);
 
                             // update OrderList DB
                             updateOrderListDB(Number, Type, Money, Group);
@@ -2781,7 +2822,7 @@ namespace Lottory
                             // one-to-many
 
                             // Add to Buying Table Form
-                            AddBuyingListTable(Money, Group);
+                            AddBuyingListTable(Number, Type, Money, Group);
 
                             // update OrderList DB
                             updateOrderListDB(Number, Type, Money, Group);

@@ -24,7 +24,7 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <ApplicationRevision>1</ApplicationRevision>
+    <ApplicationRevision>2</ApplicationRevision>
     <ApplicationVersion>0.2.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -101,6 +101,12 @@
     </Compile>
     <Compile Include="AddNumberDetail.Designer.cs">
       <DependentUpon>AddNumberDetail.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AddNumberGroup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddNumberGroup.Designer.cs">
+      <DependentUpon>AddNumberGroup.cs</DependentUpon>
     </Compile>
     <Compile Include="AddNumberSetting.cs">
       <SubType>Form</SubType>
@@ -211,6 +217,9 @@
     </Compile>
     <EmbeddedResource Include="AddNumberDetail.resx">
       <DependentUpon>AddNumberDetail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AddNumberGroup.resx">
+      <DependentUpon>AddNumberGroup.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AddNumberSetting.resx">
       <DependentUpon>AddNumberSetting.cs</DependentUpon>

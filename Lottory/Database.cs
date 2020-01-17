@@ -13,11 +13,6 @@ namespace Lottory
         {
             return ConfigurationManager.ConnectionStrings[name].ConnectionString;
         }
-        /*
-        public const string dbsource = @"Data Source=(LocalDB)\MSSQLLocalDB;
-                                     AttachDbFilename=D:\project\C#\Lottory\Lottory\Lottory\Lotto_DB.mdf;
-                                     Integrated Security=True";
-                                     */
 
     }
     class BaseType
