@@ -421,9 +421,9 @@ namespace Lottory
             addNumDetail.OrderID = orderID;
             addNumDetail.CustomerID = customerID;
             addNumDetail.Page = pageNumber;
-            addNumDetail.customerInfo.Text = "Customer ID : " + customerID + Environment.NewLine
-                              + "Customer Name : " + customerName + Environment.NewLine
-                              + "Page : " + pageNumber + Environment.NewLine;
+            addNumDetail.lbCustomerID.Text = customerID;
+            addNumDetail.lbCustomerName.Text = customerName;
+            addNumDetail.lbPage.Text = pageNumber;
             addNumDetail.Show();
         }
         private void CreateOrder(string customerID,string pageNumber)
