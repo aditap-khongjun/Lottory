@@ -131,6 +131,19 @@
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
     </Compile>
+    <Compile Include="MyLottoDBDataSet2.cs">
+      <DependentUpon>MyLottoDBDataSet2.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="MyLottoDBDataSet2.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MyLottoDBDataSet2.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="MyLottoDBDataSet3.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MyLottoDBDataSet3.xsd</DependentUpon>
+    </Compile>
     <Compile Include="SummaryInfo.cs" />
     <Compile Include="CustomerInformation.cs">
       <SubType>Form</SubType>
@@ -197,6 +210,12 @@
     </Compile>
     <Compile Include="SqlServerTypes\Loader.cs" />
     <Compile Include="Summary_CustomerInfo.cs" />
+    <Compile Include="Summary_Customer_pay_Report.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Summary_Customer_pay_Report.Designer.cs">
+      <DependentUpon>Summary_Customer_pay_Report.cs</DependentUpon>
+    </Compile>
     <Compile Include="Summary_Customer_Report.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -267,6 +286,10 @@
     <EmbeddedResource Include="MainMenu.resx">
       <DependentUpon>MainMenu.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Summary_Customer_pay_Report.rdlc" />
+    <EmbeddedResource Include="Summary_Customer_pay_Report.resx">
+      <DependentUpon>Summary_Customer_pay_Report.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Summary_Customer_Report.rdlc" />
     <EmbeddedResource Include="Summary_Customer_Report.resx">
       <DependentUpon>Summary_Customer_Report.cs</DependentUpon>
@@ -292,6 +315,28 @@
     <None Include="MyLottoDBDataSet.xss">
       <DependentUpon>MyLottoDBDataSet.xsd</DependentUpon>
     </None>
+    <None Include="MyLottoDBDataSet2.xsc">
+      <DependentUpon>MyLottoDBDataSet2.xsd</DependentUpon>
+    </None>
+    <None Include="MyLottoDBDataSet2.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>MyLottoDBDataSet2.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="MyLottoDBDataSet2.xss">
+      <DependentUpon>MyLottoDBDataSet2.xsd</DependentUpon>
+    </None>
+    <None Include="MyLottoDBDataSet3.xsc">
+      <DependentUpon>MyLottoDBDataSet3.xsd</DependentUpon>
+    </None>
+    <None Include="MyLottoDBDataSet3.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>MyLottoDBDataSet3.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="MyLottoDBDataSet3.xss">
+      <DependentUpon>MyLottoDBDataSet3.xsd</DependentUpon>
+    </None>
     <None Include="packages.config" />
     <None Include="Properties\DataSources\BaseType.datasource" />
     <None Include="Properties\DataSources\Database.datasource" />
@@ -299,7 +344,10 @@
     <None Include="Properties\DataSources\SummaryInfo.netPrice.datasource" />
     <None Include="Properties\DataSources\SummaryInfo.Price.datasource" />
     <None Include="Properties\DataSources\SummaryInfo.WinPrice.datasource" />
+    <None Include="Properties\DataSources\Summary_Buying.datasource" />
     <None Include="Properties\DataSources\Summary_CustomerInfo.datasource" />
+    <None Include="Properties\DataSources\Summary_Customer_Report.datasource" />
+    <None Include="Properties\DataSources\Summary_Pay.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

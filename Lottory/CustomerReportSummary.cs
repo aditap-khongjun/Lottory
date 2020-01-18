@@ -51,6 +51,9 @@ namespace Lottory
         private void ReportCustomer_pay_Click(object sender, EventArgs e)
         {
             // Document
+            Summary_Customer_pay_Report customerPaySummary = Summary_Customer_pay_Report.Instance;
+            customerPaySummary.MdiParent = this.MdiParent;
+            customerPaySummary.Show();
         }
 
         private void ReportCustomerPage_Click(object sender, EventArgs e)

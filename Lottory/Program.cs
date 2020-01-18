@@ -19,7 +19,7 @@ namespace Lottory
             // Open Main windows
             Application.Run(new MainLotto());
             // Test
-           //Application.Run(new WinNumberSetting());
+          // Application.Run(new Summary_Customer_Page_Report());
         }
     }
 }
