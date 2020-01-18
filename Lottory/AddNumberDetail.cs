@@ -272,7 +272,7 @@ namespace Lottory
                 case 2:
                     lbTypeShortKey.Text  = "2 ตัว" + Environment.NewLine;
                     lbTypeShortKey.Text += "(*)บน/ล่าง, (+)บน, (-)ล่าง, (7)ร้อยสิบ, (8)ร้อยหน่วย," + Environment.NewLine;
-                    lbTypeShortKey.Text += "(/)โต๊ด, (6)6 ประตู, (/)19 ประตูบนล่าง, (9)19 ประตูบน," + Environment.NewLine;
+                    lbTypeShortKey.Text += "(/)โต๊ด, (6)6 ประตู, (\\)19 ประตูบนล่าง, (9)19 ประตูบน," + Environment.NewLine;
                     lbTypeShortKey.Text += "(0)19 ประตูล่าง";
                     break;
                 case 3:
@@ -518,9 +518,8 @@ namespace Lottory
                             break;
 
                         // for 2 Number
-                        case Keys.Divide:
-                        case Keys.OemQuestion:
-                            // (/) 19 ประตูบนล่าง
+                        case Keys.Oem5:
+                            // (\) 19 ประตูบนล่าง
                             tbType.Text = BaseType.door19uplow2;
                             // Next state is 1 [Money1 => enable, Group => disable]
                             //controlTypeList(BaseType.door19uplow2, 1);
@@ -847,20 +846,33 @@ namespace Lottory
                 case Keys.Decimal:
                     // Open Dialog
                     AddNumberGroup groupNumberDiaglog = new AddNumberGroup();
-                    int lastIdx = dgvCusBuyList.Rows.Count - 1;
-                    groupNumberDiaglog.maxLength = dgvCusBuyList.Rows[lastIdx].Cells[0].Value.ToString().Length;
-                    if(groupNumberDiaglog.ShowDialog() == DialogResult.OK)
+                    if(checkGroupBuying())
                     {
-                        //MessageBox.Show("Click OK");
-                        List<string> gNumber = groupNumberDiaglog.groupNumberOut;
-                        //MessageBox.Show(string.Join(", ", test.ToArray()));
-                        // Buying as Group
-                        foreach(string number in gNumber)
+                        int lastIdx = dgvCusBuyList.Rows.Count - 1;
+                        if (lastIdx >= 0)
                         {
-                            BuyingAsGroup(number, tbType.Text.Substring(1, tbType.Text.Length - 1), tbMoney1.Text, tbMoney2.Text);
+                            groupNumberDiaglog.maxLength = dgvCusBuyList.Rows[lastIdx].Cells[0].Value.ToString().Length;
+                            if (groupNumberDiaglog.ShowDialog() == DialogResult.OK)
+                            {
+                                List<string> gNumber = groupNumberDiaglog.groupNumberOut;
+                                // Buying as Group
+                                foreach (string number in gNumber)
+                                {
+                                    BuyingAsGroup(number, tbType.Text.Substring(1, tbType.Text.Length - 1), tbMoney1.Text, tbMoney2.Text);
+                                }
+
+                            }
                         }
-                        
+                        else
+                        {
+                            MessageBox.Show("กรุณากำหนดรายการสั่งซื้อต้นแบบก่อน 1 ครั้ง", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
                     }
+                    else
+                    {
+                        MessageBox.Show("กรุณาระบุจำนวนเงิน", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    
                     // clear tbNumber and focus
                     tbNumber.Clear();
                     tbNumber.Focus();
@@ -870,6 +882,35 @@ namespace Lottory
             }
             // Show Text in Short Key
             showShortKey(tbNumber.MaxLength);
+        }
+        private bool checkGroupBuying()
+        {
+            bool correct = false;
+            if(!string.IsNullOrEmpty(tbType.Text))
+            {
+                if(tbMoney1.Enabled == true && tbMoney2.Enabled == false)
+                {
+                    if(!string.IsNullOrEmpty(tbMoney1.Text))
+                    {
+                        correct = true;
+                    }
+                }
+                else if(tbMoney1.Enabled == true && tbMoney2.Enabled == true)
+                {
+                    if(!string.IsNullOrEmpty(tbMoney1.Text) && !string.IsNullOrEmpty(tbMoney2.Text))
+                    {
+                        correct = true;
+                    }
+                }
+                else if(tbMoney1.Enabled == false && tbMoney2.Enabled == true)
+                {
+                    if(!string.IsNullOrEmpty(tbMoney2.Text))
+                    {
+                        correct = true;
+                    }
+                }
+            }
+            return correct;
         }
         private void BuyingAsGroup(string Number, string Type, string Money, string Group)
         {
@@ -1113,7 +1154,7 @@ namespace Lottory
                             sign = "*";
                             break;
                         case "19 ประตูบนล่าง":
-                            sign = "/";
+                            sign = "\\";
                             break;
                         case "19 ประตูบน":
                             sign = "9";
@@ -1244,6 +1285,11 @@ namespace Lottory
                 case Keys.PageDown:
                     // Buy
                     ShortBuying(); 
+                    break;
+                case Keys.Up:
+                    // back to Number
+                    tbNumber.Focus();
+                    tbNumber.SelectAll();
                     break;
                 default:
                     // Add Type List
@@ -3137,6 +3183,11 @@ namespace Lottory
                     // Buy 
                     ShortBuying();
                     break;
+                case Keys.Up:
+                    // back to Type
+                    tbType.Focus();
+                    tbType.SelectAll();
+                    break;
             }
 
         }
@@ -3193,53 +3244,60 @@ namespace Lottory
         }
         private void tbMoney2_KeyDown(object sender, KeyEventArgs e)
         {
-            if(e.KeyCode == Keys.Enter)
+            switch(e.KeyCode)
             {
-                // stop sound when enter
-                e.Handled = true;
-                e.SuppressKeyPress = true;
-                //check buying error and warning
+                case Keys.Enter:
+                    // stop sound when enter
+                    e.Handled = true;
+                    e.SuppressKeyPress = true;
+                    //check buying error and warning
 
-                if ((tbMoney1.Enabled == true) && (tbMoney2.Enabled == true))
-                {
-                    if (!string.IsNullOrEmpty(tbMoney2.Text))
+                    if ((tbMoney1.Enabled == true) && (tbMoney2.Enabled == true))
                     {
-                        int _money1 = Convert.ToInt32(tbMoney1.Text);
-                        int _money2 = Convert.ToInt32(tbMoney2.Text);
-                        if (buyingLimitChecking(_money1) || buyingLimitChecking(_money2))
-                        {// over buying
-                            MessageBox.Show(string.Format("คำสั่งซื้อเกินวงเงินที่กำหนด", "จำกัดวงเงิน"));
-                        }
-                        else
-                        {// not over buying
-                         // Add Buying command to Display Table
-                            AddNumberToTable();
-                            // Move to Number
-                            tbNumber.SelectAll();
-                            tbNumber.Focus();
+                        if (!string.IsNullOrEmpty(tbMoney2.Text))
+                        {
+                            int _money1 = Convert.ToInt32(tbMoney1.Text);
+                            int _money2 = Convert.ToInt32(tbMoney2.Text);
+                            if (buyingLimitChecking(_money1) || buyingLimitChecking(_money2))
+                            {// over buying
+                                MessageBox.Show(string.Format("คำสั่งซื้อเกินวงเงินที่กำหนด", "จำกัดวงเงิน"));
+                            }
+                            else
+                            {// not over buying
+                                // Add Buying command to Display Table
+                                AddNumberToTable();
+                                // Move to Number
+                                tbNumber.SelectAll();
+                                tbNumber.Focus();
+                            }
                         }
                     }
-                }
-                else if ((tbMoney1.Enabled == false) && (tbMoney2.Enabled == true))
-                {
-                    if (!string.IsNullOrEmpty(tbMoney2.Text))
+                    else if ((tbMoney1.Enabled == false) && (tbMoney2.Enabled == true))
                     {
-                        int _money2 = Convert.ToInt32(tbMoney2.Text);
-                        if (buyingLimitChecking(_money2))
-                        {// over buying
-                            MessageBox.Show(string.Format("คำสั่งซื้อเกินวงเงินที่กำหนด", "จำกัดวงเงิน"));
+                        if (!string.IsNullOrEmpty(tbMoney2.Text))
+                        {
+                            int _money2 = Convert.ToInt32(tbMoney2.Text);
+                            if (buyingLimitChecking(_money2))
+                            {// over buying
+                                MessageBox.Show(string.Format("คำสั่งซื้อเกินวงเงินที่กำหนด", "จำกัดวงเงิน"));
+                            }
+                            else
+                            {// not over buying
+                                // Add Buying command to Display Table
+                                AddNumberToTable();
+                                // Move to Number
+                                tbNumber.SelectAll();
+                                tbNumber.Focus();
+                            }
                         }
-                        else
-                        {// not over buying
-                         // Add Buying command to Display Table
-                            AddNumberToTable();
-                            // Move to Number
-                            tbNumber.SelectAll();
-                            tbNumber.Focus();
-                        }
-                    }
 
-                }
+                    }
+                    break;
+                case Keys.Up:
+                    // back to Money1
+                    tbMoney1.Focus();
+                    tbMoney1.SelectAll();
+                    break;
             }
         }
         private bool buyingLimitChecking(int BuyingPrice)

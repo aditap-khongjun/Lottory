@@ -390,6 +390,8 @@ namespace Lottory
             setZeroToDB("Number_2low");
             setZeroToDB("Number_3up");
             setZeroToDB("Number_3low");
+
+            setEmptyWinNumber();
         }
         private void deleteInfoFromDB(string TableName)
         {
@@ -411,6 +413,18 @@ namespace Lottory
                 connection.Open();
             }
             string sqldeleteInfo = string.Format("UPDATE {0} SET Price = 0, OutPrice = 0, OwnPrice = 0", TableName);
+            SqlCommand sqldeleteInfoCom = new SqlCommand(sqldeleteInfo, connection);
+            sqldeleteInfoCom.ExecuteNonQuery();
+            connection.Close();
+        }
+        private void setEmptyWinNumber()
+        {
+            SqlConnection connection = new SqlConnection(Database.CnnVal("LottoryDB"));
+            if (connection.State == ConnectionState.Closed)
+            {
+                connection.Open();
+            }
+            string sqldeleteInfo = "UPDATE WinNumber SET Number = NULL";
             SqlCommand sqldeleteInfoCom = new SqlCommand(sqldeleteInfo, connection);
             sqldeleteInfoCom.ExecuteNonQuery();
             connection.Close();

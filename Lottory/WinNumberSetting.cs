@@ -72,19 +72,79 @@ namespace Lottory
         private void btSave_Click(object sender, EventArgs e)
         {
             WinNumberToDB();
-            MessageBox.Show("บันทึกเบอร์ออกเรียบร้อย", "บันทึก");
+            
         }
         private void WinNumberToDB()
         {
             // set WinNumber to DB
             // get Number from Form
-            string Number3up = tbNumber3up.Text;
-            string Number3low1 = tbNumber3low1.Text;
-            string Number3low2 = tbNumber3low2.Text;
-            string Number3low3 = tbNumber3low3.Text;
-            string Number3low4 = tbNumber3low4.Text;
-            string Number2low = tbNumber2low.Text;
-
+            string Number3up;
+            string Number3low1;
+            string Number3low2;
+            string Number3low3;
+            string Number3low4;
+            string Number2low;
+            if ((tbNumber3up.Text.Length != tbNumber3up.MaxLength) && !string.IsNullOrEmpty(tbNumber3up.Text))
+            {
+                //error
+                MessageBox.Show("กรุณาใส่เบอร์ออก 3 บนให้ถูกต้อง", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            else
+            {
+                Number3up = tbNumber3up.Text;
+            }
+            if((tbNumber3low1.Text.Length != tbNumber3low1.MaxLength) && !string.IsNullOrEmpty(tbNumber3low1.Text))
+            {
+                //error
+                MessageBox.Show("กรุณาใส่เบอร์ออก 3 ล่างให้ถูกต้อง", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            else
+            {
+                Number3low1 = tbNumber3low1.Text;
+            }
+            if((tbNumber3low2.Text.Length != tbNumber3low2.MaxLength) && !string.IsNullOrEmpty(tbNumber3low2.Text))
+            {
+                //error
+                MessageBox.Show("กรุณาใส่เบอร์ออก 3 ล่างให้ถูกต้อง", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            else
+            {
+                Number3low2 = tbNumber3low2.Text;
+            }
+            if((tbNumber3low3.Text.Length != tbNumber3low3.MaxLength) && !string.IsNullOrEmpty(tbNumber3low3.Text))
+            {
+                //error
+                MessageBox.Show("กรุณาใส่เบอร์ออก 3 ล่างให้ถูกต้อง", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            else
+            {
+                Number3low3 = tbNumber3low3.Text;
+            }
+            if((tbNumber3low4.Text.Length != tbNumber3low4.MaxLength) && !string.IsNullOrEmpty(tbNumber3low4.Text))
+            {
+                //error
+                MessageBox.Show("กรุณาใส่เบอร์ออก 3 ล่างให้ถูกต้อง", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            else
+            {
+                Number3low4 = tbNumber3low4.Text;
+            }
+            if((tbNumber2low.Text.Length != tbNumber2low.MaxLength) && !string.IsNullOrEmpty(tbNumber2low.Text))
+            {
+                //error
+                MessageBox.Show("กรุณาใส่เบอร์ออก 2 ล่างให้ถูกต้อง", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            else
+            {
+                Number2low = tbNumber2low.Text;
+            }
+            
             // 3up
             if(!string.IsNullOrEmpty(Number3up))
             {
@@ -170,7 +230,7 @@ namespace Lottory
                 setWinNumberToDB(WinNumberType.low1, 1, Number1low1);
                 setWinNumberToDB(WinNumberType.low1, 2, Number1low2);
             }
-
+            MessageBox.Show("บันทึกเบอร์ออกเรียบร้อย", "บันทึก");
         }
         private void setWinNumberToDB(string TypeName, int No, string Number)
         {
@@ -202,6 +262,90 @@ namespace Lottory
             tbNumber3low3.Text = string.Empty;
             tbNumber3low4.Text = string.Empty;
             tbNumber2low.Text = string.Empty;
+
+            tbNumber3up.Focus();
+        }
+        private void Number_Change(object sender, EventArgs e)
+        {
+            TextBox winNumber = (TextBox)sender;
+            string tbName = winNumber.Name;
+            int x;
+            if(!Int32.TryParse(winNumber.Text,out x) && !string.IsNullOrEmpty(winNumber.Text))
+            {
+                MessageBox.Show("กรุณาใส่ตัวเลขเท่านั้น", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
+            {
+                if (winNumber.Text.Length == winNumber.MaxLength)
+                {
+                    switch (tbName)
+                    {
+                        case "tbNumber3up":
+                            tbNumber3low1.Focus();
+                            tbNumber3low1.SelectAll();
+                            break;
+                        case "tbNumber3low1":
+                            tbNumber3low2.Focus();
+                            tbNumber3low2.SelectAll();
+                            break;
+                        case "tbNumber3low2":
+                            tbNumber3low3.Focus();
+                            tbNumber3low3.SelectAll();
+                            break;
+                        case "tbNumber3low3":
+                            tbNumber3low4.Focus();
+                            tbNumber3low4.SelectAll();
+                            break;
+                        case "tbNumber3low4":
+                            tbNumber2low.Focus();
+                            tbNumber2low.SelectAll();
+                            break;
+                        case "tbNumber2low":
+                            tbNumber3up.Focus();
+                            tbNumber3up.SelectAll();
+                            break;
+                    }
+                }
+            }
+            
+        }
+
+        private void Number_KeyDown(object sender, KeyEventArgs e)
+        {
+            TextBox tbNumber = (TextBox)sender;
+            string tbName = tbNumber.Name;
+            switch(e.KeyCode)
+            {
+                case Keys.Up:
+                    switch(tbName)
+                    {
+                        case "tbNumber3up":
+                            tbNumber2low.Focus();
+                            tbNumber2low.SelectAll();
+                            break;
+                        case "tbNumber3low1":
+                            tbNumber3up.Focus();
+                            tbNumber3up.SelectAll();
+                            break;
+                        case "tbNumber3low2":
+                            tbNumber3low1.Focus();
+                            tbNumber3low1.SelectAll();
+                            break;
+                        case "tbNumber3low3":
+                            tbNumber3low2.Focus();
+                            tbNumber3low2.SelectAll();
+                            break;
+                        case "tbNumber3low4":
+                            tbNumber3low3.Focus();
+                            tbNumber3low3.SelectAll();
+                            break;
+                        case "tbNumber2low":
+                            tbNumber3low4.Focus();
+                            tbNumber3low4.SelectAll();
+                            break;
+                    }
+                    break;
+            }
         }
     }
 }
