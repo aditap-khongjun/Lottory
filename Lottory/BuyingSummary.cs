@@ -233,19 +233,20 @@ namespace Lottory
             switch (TypeID)
             {
                 case BaseTypeID.up3:
-                    sqlgetNumberInfo = "SELECT Number, (OwnPrice - OutPrice) AS Price FROM Number_3up WHERE Price > 0";
+                    sqlgetNumberInfo = "SELECT Number, (OwnPrice - OutPrice) AS Price FROM Number_3up WHERE Price > 0 ORDER BY Price DESC";
                     break;
                 case BaseTypeID.up2:
-                    sqlgetNumberInfo = "SELECT Number, (OwnPrice - OutPrice) AS Price FROM Number_2up WHERE Price > 0";
+                    sqlgetNumberInfo = "SELECT Number, (OwnPrice - OutPrice) AS Price FROM Number_2up WHERE Price > 0 ORDER BY Price DESC";
                     break;
                 case BaseTypeID.low2:
-                    sqlgetNumberInfo = "SELECT Number, (OwnPrice - OutPrice) AS Price FROM Number_2low WHERE Price > 0";
+                    sqlgetNumberInfo = "SELECT Number, (OwnPrice - OutPrice) AS Price FROM Number_2low WHERE Price > 0 ORDER BY Price DESC";
                     break;
                 default:
                     sqlgetNumberInfo = string.Format(@"SELECT Number, SUM(OwnPrice) AS Price
                                                     FROM OrderListExpand
                                                     WHERE TypeID = {0}
-                                                    Group BY Number", TypeID.ToString());
+                                                    Group BY Number
+                                                    ORDER BY Price DESC", TypeID.ToString());
                     break;
             }
             

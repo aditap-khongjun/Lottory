@@ -193,8 +193,170 @@ namespace Lottory
         {
             InitializeComponent();
             
+            // start timer
             timer1.Start();
 
+            // Row height
+            dgvNumber3up.RowTemplate.Height = 25;
+            dgvNumber2up.RowTemplate.Height = 25;
+            dgvNumber2low.RowTemplate.Height = 25;
+            dgvNumber3low.RowTemplate.Height = 25;
+            dgvNumber1up.RowTemplate.Height = 25;
+            dgvNumber1low.RowTemplate.Height = 25;
+
+            // column width
+            dgvNumber3up.ColumnAdded += new DataGridViewColumnEventHandler(datagridview_columnAdd);
+            dgvNumber2up.ColumnAdded += new DataGridViewColumnEventHandler(datagridview_columnAdd);
+            dgvNumber2low.ColumnAdded += new DataGridViewColumnEventHandler(datagridview_columnAdd);
+            dgvNumber3low.ColumnAdded += new DataGridViewColumnEventHandler(datagridview_columnAdd);
+            dgvNumber1up.ColumnAdded += new DataGridViewColumnEventHandler(datagridview_columnAdd);
+            dgvNumber1low.ColumnAdded += new DataGridViewColumnEventHandler(datagridview_columnAdd);
+
+            // Datagridview formmat
+            dgvNumber3up.CellFormatting += new DataGridViewCellFormattingEventHandler(dataGridView_CellFormatting);
+            dgvNumber2up.CellFormatting += new DataGridViewCellFormattingEventHandler(dataGridView_CellFormatting);
+            dgvNumber2low.CellFormatting += new DataGridViewCellFormattingEventHandler(dataGridView_CellFormatting);
+            dgvNumber3low.CellFormatting += new DataGridViewCellFormattingEventHandler(dataGridView_CellFormatting);
+            dgvNumber1up.CellFormatting += new DataGridViewCellFormattingEventHandler(dataGridView_CellFormatting);
+            dgvNumber1low.CellFormatting += new DataGridViewCellFormattingEventHandler(dataGridView_CellFormatting);
+        }
+        private void dgvNumber3up_CellMouseEnter(object sender, DataGridViewCellEventArgs e)
+        {
+            var cell = dgvNumber3up.Rows[e.RowIndex].Cells[e.ColumnIndex];
+            string Number = cell.Value.ToString();
+            int typeid = 0;
+            switch (dgvNumber3up.Name)
+            {
+                case "dgvNumber3up":
+                    typeid = BaseTypeID.up3;
+                    break;
+                case "dgvNumber3low":
+                    typeid = BaseTypeID.low3;
+                    break;
+                case "dgvNumber2up":
+                    typeid = BaseTypeID.up2;
+                    break;
+                case "dgvNumber2low":
+                    typeid = BaseTypeID.low2;
+                    break;
+                case "dgvNumber1up":
+                    typeid = BaseTypeID.up1;
+                    break;
+                case "dgvNumber1low":
+                    typeid = BaseTypeID.low1;
+                    break;
+            }
+
+            // find customerid,page,price
+
+            //
+            //MessageBox.Show(getNumberTooltip(Number, typeid));
+            cell.ToolTipText = getNumberTooltip(Number,typeid);
+        }
+        private void dataGridView_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            DataGridView dgv = (DataGridView)sender;
+            e.CellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            
+            if(e.ColumnIndex == dgv.Columns["เงิน"].Index)
+            {
+                e.CellStyle.ForeColor = Color.Red;
+            }
+            else if(e.ColumnIndex == dgv.Columns["เบอร์"].Index)
+            {
+                var cell = dgv.Rows[e.RowIndex].Cells[e.ColumnIndex];
+                string Number = cell.Value.ToString();
+                int typeid = 0;
+                switch (dgv.Name)
+                {
+                    case "dgvNumber3up":
+                        typeid = BaseTypeID.up3;
+                        break;
+                    case "dgvNumber3low":
+                        typeid = BaseTypeID.low3;
+                        break;
+                    case "dgvNumber2up":
+                        typeid = BaseTypeID.up2;
+                        break;
+                    case "dgvNumber2low":
+                        typeid = BaseTypeID.low2;
+                        break;
+                    case "dgvNumber1up":
+                        typeid = BaseTypeID.up1;
+                        break;
+                    case "dgvNumber1low":
+                        typeid = BaseTypeID.low1;
+                        break;
+                }
+
+                // find customerid,page,price
+
+                //
+                //MessageBox.Show(getNumberTooltip(Number, typeid));
+                cell.ToolTipText = getNumberTooltip(Number, typeid);
+            }
+            
+        }
+        private string getNumberTooltip(string Number, int TypeID)
+        {
+            SqlConnection connection = new SqlConnection(Database.CnnVal("LottoryDB"));
+            if (connection.State == ConnectionState.Closed)
+            {
+                connection.Open(); // Open Database
+            }
+            // find All CustomerID
+            string getCustomerID = string.Format("SELECT CustomerID FROM CustomerOrder GROUP BY CustomerID");
+            SqlCommand getCustomerIDCom = new SqlCommand(getCustomerID, connection);
+
+            SqlDataAdapter da = new SqlDataAdapter(getCustomerIDCom);
+            DataTable dt = new DataTable();
+            da.Fill(dt);
+            connection.Close();
+
+            DataTable dtCustomerInfo = new DataTable();
+            dtCustomerInfo.Columns.Add("CustomerID");
+            dtCustomerInfo.Columns.Add("Page");
+            dtCustomerInfo.Columns.Add("Price");
+            foreach(DataRow item in dt.Rows)
+            {
+                if (connection.State == ConnectionState.Closed)
+                {
+                    connection.Open(); // Open Database
+                }
+                string getPriceInfo = string.Format(@"SELECT r1.Page,SUM(r1.OwnPrice) AS Price FROM (
+	                                                  SELECT co.CustomerID, co.Page, oe.OwnPrice
+	                                                  FROM (OrderListExpand oe INNER JOIN OrderList o ON oe.OrderListID = o.OrderListID)
+	                                                  INNER JOIN CustomerOrder co ON o.OrderID = co.OrderID
+	                                                  WHERE oe.TypeID = {1} AND oe.Number = '{0}'
+                                                      ) r1 
+                                                      WHERE r1.CustomerID = '{2}'
+                                                      GROUP BY r1.Page",Number,TypeID,item["CustomerID"].ToString());
+                SqlCommand getPriceInfoCom = new SqlCommand(getPriceInfo, connection);
+                SqlDataReader PriceInfo = getPriceInfoCom.ExecuteReader();
+                while(PriceInfo.Read())
+                {
+                    dtCustomerInfo.Rows.Add(item["CustomerID"].ToString(), PriceInfo["Page"].ToString(), Convert.ToInt32(PriceInfo["Price"]).ToString("N0"));
+                }
+                connection.Close();
+            }
+            string outStr = string.Empty;
+            foreach(DataRow row in dtCustomerInfo.Rows)
+            {
+                outStr += string.Format("รหัส:{0}, หน้า:{1}, เงิน:{2}\n", row["CustomerID"].ToString(), row["Page"].ToString(), row["Price"].ToString());
+            }
+            return outStr;
+        }
+        private void datagridview_columnAdd(object sender, DataGridViewColumnEventArgs e)
+        {
+            switch(e.Column.Name)
+            {
+                case "เบอร์":
+                    e.Column.Width = 80;
+                    break;
+                case "เงิน":
+                    e.Column.Width = 100;
+                    break;
+            }
         }
 
         private void AddNumberDetail_FormClosed(object sender, FormClosedEventArgs e)
@@ -265,26 +427,31 @@ namespace Lottory
             switch(idx)
             {
                 case 1:
+                    tbNumber.Width = 14;
                     lbTypeShortKey.Text  = "1 ตัว" + Environment.NewLine;
                     lbTypeShortKey.Text += "(-)ล่าง, (+)บน, (1)หน้า, (2)กลาง," + Environment.NewLine;
                     lbTypeShortKey.Text += "(3)หลัง, (4)หน้าล่าง, (5)หลังล่าง, (*)บน/ล่าง";
                     break;
                 case 2:
+                    tbNumber.Width = 24;
                     lbTypeShortKey.Text  = "2 ตัว" + Environment.NewLine;
                     lbTypeShortKey.Text += "(*)บน/ล่าง, (+)บน, (-)ล่าง, (7)ร้อยสิบ, (8)ร้อยหน่วย," + Environment.NewLine;
-                    lbTypeShortKey.Text += "(/)โต๊ด, (6)6 ประตู, (\\)19 ประตูบนล่าง, (9)19 ประตูบน," + Environment.NewLine;
-                    lbTypeShortKey.Text += "(0)19 ประตูล่าง";
+                    lbTypeShortKey.Text += "(1)บน/โต๊ด, (/)โต๊ด, (6)6 ประตู, (\\)19 ประตูบนล่าง," + Environment.NewLine;
+                    lbTypeShortKey.Text += "(9)19 ประตูบน, (0)19 ประตูล่าง";
                     break;
                 case 3:
+                    tbNumber.Width = 34;
                     lbTypeShortKey.Text  = "3 ตัว" + Environment.NewLine;
                     lbTypeShortKey.Text += "(*)บน/โต๊ด, (+)บน, (-)ล่าง, (.)ชุด, (/)โต๊ด," + Environment.NewLine;
                     lbTypeShortKey.Text += "(9)54 ประตู, (5)ตรงชุด, (2)ล่างชุด, (0)บน/โตีด/ล่าง";
                     break;
                 case 4:
+                    tbNumber.Width = 44;
                     lbTypeShortKey.Text  = "4 ตัว" + Environment.NewLine;
                     lbTypeShortKey.Text += "(.)ชุด";
                     break;
                 case 5:
+                    tbNumber.Width = 54;
                     lbTypeShortKey.Text  = "5 ตัว" + Environment.NewLine;
                     lbTypeShortKey.Text += "(.)ชุด, (/)โต๊ด";
                     break;
@@ -513,7 +680,8 @@ namespace Lottory
                             tbType.Text = BaseType.uplow1;
                             // Next state is 1 [Money1 => enable, Group => disable]
                             // controlTypeList(BaseType.uplow1, 1);
-                            enableMoney1Only();
+                            //enableMoney1Only();
+                            enableMoney13();
                             MoveToMoney1();
                             break;
 
@@ -1074,6 +1242,9 @@ namespace Lottory
             //Money 2 disable
             tbMoney2.Clear();
             tbMoney2.Enabled = false;
+            //Money 3 disable
+            //tbLow.Clear();
+            //tbLow.Enabled = false;
         }
         private void enableMoney1Only()
         {
@@ -1083,6 +1254,16 @@ namespace Lottory
             //Money 2 disable
             tbMoney2.Clear();
             tbMoney2.Enabled = false;
+        }
+        private void enableMoney13()
+        {
+            //Money1 Enable
+            tbMoney1.Enabled = true;
+            //Money2 Disable
+            tbMoney2.Clear();
+            tbMoney2.Enabled = false;
+            //Money3 Enable
+            tbLow.Enabled = true;
         }
         private void enableMoney12(string money1, string money2)
         {
@@ -1491,10 +1672,10 @@ namespace Lottory
         private void updateCustomerBuyingToForm(List<string> Number,List<int> TypeID)
         {
             DataTable NumberTable = new DataTable();
-            NumberTable.Columns.Add("เบอร์");
-            NumberTable.Columns.Add("ชนิด");
-            NumberTable.Columns.Add("จำนวนเงิน");
-            NumberTable.Columns["จำนวนเงิน"].DataType = Type.GetType("System.Int32");
+            NumberTable.Columns.Add("Number");
+            NumberTable.Columns.Add("Type");
+            NumberTable.Columns.Add("Price");
+            NumberTable.Columns["Price"].DataType = Type.GetType("System.Int32");
 
             for(int i = 0 ; i < Number.Count ; i++)
             {   
@@ -1516,18 +1697,52 @@ namespace Lottory
                 }
                 connection.Close();
             }
-            //NumberTable.DefaultView.Sort = "จำนวนเงิน DESC";
-            TbCustomerBuying.DataSource = NumberTable;
-            TbCustomerBuying.Sort(TbCustomerBuying.Columns[2], ListSortDirection.Descending);
-            TbCustomerBuying.ClearSelection();
+
+            tableTodgv(NumberTable, TbCustomerBuying);
+            //TbCustomerBuying.DataSource = NumberTable;
+            //ฝฝTbCustomerBuying.Sort(TbCustomerBuying.Columns[2], ListSortDirection.Descending);
+            //TbCustomerBuying.ClearSelection();
+        }
+        private void tableTodgv(DataTable dt,DataGridView dgv)
+        {
+            // Sort DataTable
+            DataView dv = dt.DefaultView;
+            dv.Sort = "Price DESC";
+            dt = dv.ToTable();
+
+            dgv.Columns.Clear();
+            int col = 4;
+            dgv.ColumnCount = col;
+            dgv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
+
+            int i = 0;
+            int j = 0;
+            string[] data = new string[col];
+            for (int idx = 0; idx < dt.Rows.Count; idx++)
+            {
+                data[i] = string.Format("{1} {0} = {2}", dt.Rows[idx]["Number"].ToString(), dt.Rows[idx]["Type"].ToString(), dt.Rows[idx]["Price"].ToString());
+                i++;
+                if (i > col - 1)
+                {
+                    i = 0;
+                    j++;
+
+                    dgv.Rows.Add(data);
+                    data = new string[col];
+                }
+                if (idx == dt.Rows.Count - 1)
+                {
+                    dgv.Rows.Add(data);
+                }
+            }
         }
         private void updateBuyingToForm(List<string> Number, List<int> TypeID)
         {
             DataTable NumberTable = new DataTable();
-            NumberTable.Columns.Add("เบอร์");
-            NumberTable.Columns.Add("ชนิด");
-            NumberTable.Columns.Add("จำนวนเงิน");
-            NumberTable.Columns["จำนวนเงิน"].DataType = Type.GetType("System.Int32");
+            NumberTable.Columns.Add("Number");
+            NumberTable.Columns.Add("Type");
+            NumberTable.Columns.Add("Price");
+            NumberTable.Columns["Price"].DataType = Type.GetType("System.Int32");
 
             for (int i = 0; i < Number.Count; i++)
             {
@@ -1548,10 +1763,10 @@ namespace Lottory
                 }
                 connection.Close();
             }
-            //NumberTable.DefaultView.Sort = "จำนวนเงิน DESC";
-            TbAllBuying.DataSource = NumberTable;
-            TbAllBuying.Sort(TbAllBuying.Columns[2], ListSortDirection.Descending);
-            TbAllBuying.ClearSelection();
+            tableTodgv(NumberTable, TbAllBuying);
+            //TbAllBuying.DataSource = NumberTable;
+            //TbAllBuying.Sort(TbAllBuying.Columns[2], ListSortDirection.Descending);
+            //TbAllBuying.ClearSelection();
         }
 
         private string convertTypeIDToName(int TypeID)
@@ -2108,6 +2323,25 @@ namespace Lottory
 
                             // Customer Buying Check
                             buyingCustomerChecking(Convert.ToInt32(Money), BaseTypeID.up2);
+                            break;
+                        case BaseType.uptod2:
+                            // Add to Buying Table Form
+
+                            // update OrderList DB
+
+                            // get OrderListID
+
+                            // get customer discount(%)
+
+                            // update OrderList Expand
+
+                            // update Customer Buying Summary
+
+                            // update Buying Summary
+
+                            // update to Number_xxx
+
+                            // Customer Buying Check
                             break;
                         case BaseType.low2:
                             // one-to-one
@@ -3864,7 +4098,7 @@ namespace Lottory
         {
             DataTable resultTable = new DataTable();
             resultTable.Columns.Add("เบอร์");
-            resultTable.Columns.Add("จำนวนเงิน");
+            resultTable.Columns.Add("เงิน");
 
             SqlConnection connection = new SqlConnection(Database.CnnVal("LottoryDB"));
 
@@ -3874,32 +4108,32 @@ namespace Lottory
                 connection.Open(); // Open Database
             }
             string sqlgetNumberxxxInfo = string.Empty;
-            string dbTableName = string.Empty;
+            string dbTableName;
             switch (TypeID)
             {
                 case BaseTypeID.up3:
                     dbTableName = "Number_3up";
-                    sqlgetNumberxxxInfo = string.Format("SELECT TOP(30) Number, (OwnPrice - OutPrice) AS OwnPrice FROM {0} WHERE OwnPrice > 0 ORDER BY OwnPrice DESC", dbTableName);
+                    sqlgetNumberxxxInfo = string.Format("SELECT TOP(25) Number, (OwnPrice - OutPrice) AS OwnPrice FROM {0} WHERE OwnPrice > 0 ORDER BY OwnPrice DESC", dbTableName);
                     break;
                 case BaseTypeID.low3:
                     dbTableName = "Number_3low";
-                    sqlgetNumberxxxInfo = string.Format("SELECT TOP(15) Number, OwnPrice FROM {0} WHERE OwnPrice > 0 ORDER BY OwnPrice DESC", dbTableName);
+                    sqlgetNumberxxxInfo = string.Format("SELECT TOP(25) Number, OwnPrice FROM {0} WHERE OwnPrice > 0 ORDER BY OwnPrice DESC", dbTableName);
                     break;
                 case BaseTypeID.up2:
                     dbTableName = "Number_2up";
-                    sqlgetNumberxxxInfo = string.Format("SELECT TOP(30) Number, (OwnPrice-OutPrice) AS OwnPrice FROM {0} WHERE OwnPrice > 0 ORDER BY OwnPrice DESC", dbTableName);
+                    sqlgetNumberxxxInfo = string.Format("SELECT TOP(25) Number, (OwnPrice-OutPrice) AS OwnPrice FROM {0} WHERE OwnPrice > 0 ORDER BY OwnPrice DESC", dbTableName);
                     break;
                 case BaseTypeID.low2:
                     dbTableName = "Number_2low";
-                    sqlgetNumberxxxInfo = string.Format("SELECT TOP(30) Number, (OwnPrice-OutPrice) AS OwnPrice FROM {0} WHERE OwnPrice > 0 ORDER BY OwnPrice DESC", dbTableName);
+                    sqlgetNumberxxxInfo = string.Format("SELECT TOP(25) Number, (OwnPrice-OutPrice) AS OwnPrice FROM {0} WHERE OwnPrice > 0 ORDER BY OwnPrice DESC", dbTableName);
                     break;
                 case BaseTypeID.up1:
                     dbTableName = "Number_1up";
-                    sqlgetNumberxxxInfo = string.Format("SELECT Number, OwnPrice FROM {0} ORDER BY OwnPrice DESC", dbTableName);
+                    sqlgetNumberxxxInfo = string.Format("SELECT TOP(10) Number, OwnPrice FROM {0} ORDER BY OwnPrice DESC", dbTableName);
                     break;
                 case BaseTypeID.low1:
                     dbTableName = "Number_1low";
-                    sqlgetNumberxxxInfo = string.Format("SELECT Number, OwnPrice FROM {0} ORDER BY OwnPrice DESC", dbTableName);
+                    sqlgetNumberxxxInfo = string.Format("SELECT TOP(10) Number, OwnPrice FROM {0} ORDER BY OwnPrice DESC", dbTableName);
                     break;
                 default:
                     // error
@@ -3917,6 +4151,7 @@ namespace Lottory
 
             return resultTable;
         }
+
 
     }
 }

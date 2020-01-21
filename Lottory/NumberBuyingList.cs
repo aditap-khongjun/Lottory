@@ -238,13 +238,13 @@ namespace Lottory
             switch (TypeID)
             {
                 case BaseTypeID.up3:
-                    sqlgetNumberxxxInfo = "SELECT Number, (OwnPrice-OutPrice) AS Price FROM Number_3up WHERE Price > 0";
+                    sqlgetNumberxxxInfo = "SELECT Number, (OwnPrice-OutPrice) AS Price FROM Number_3up WHERE Price > 0 ORDER BY Price DESC";
                     break;
                 case BaseTypeID.up2:
-                    sqlgetNumberxxxInfo = "SELECT Number, (OwnPrice-OutPrice) AS Price FROM Number_2up WHERE Price > 0";
+                    sqlgetNumberxxxInfo = "SELECT Number, (OwnPrice-OutPrice) AS Price FROM Number_2up WHERE Price > 0 ORDER BY Price DESC";
                     break;
                 case BaseTypeID.low2:
-                    sqlgetNumberxxxInfo = "SELECT Number, (OwnPrice-OutPrice) AS Price FROM Number_2low WHERE Price > 0";
+                    sqlgetNumberxxxInfo = "SELECT Number, (OwnPrice-OutPrice) AS Price FROM Number_2low WHERE Price > 0 ORDER BY Price DESC";
                     break;
                 default:
                     sqlgetNumberxxxInfo = string.Format(@"SELECT Number, SUM(OwnPrice) AS Price
@@ -287,7 +287,8 @@ namespace Lottory
 		                                                    ) r INNER JOIN OrderList o ON o.OrderID = r.OrderID
 	                                                    ) r1 INNER JOIN OrderListExpand oe ON r1.OrderListID = oe.OrderListID
                                                         WHERE TypeID = {1}
-                                                        GROUP BY Number", CustomerID, TypeID.ToString());
+                                                        GROUP BY Number
+                                                        ORDER BY Price DESC", CustomerID, TypeID.ToString());
             }
             else
             {
@@ -301,7 +302,8 @@ namespace Lottory
 		                                                    ) r INNER JOIN OrderList o ON o.OrderID = r.OrderID
 	                                                    ) r1 INNER JOIN OrderListExpand oe ON r1.OrderListID = oe.OrderListID
                                                         WHERE TypeID = {2}
-                                                        GROUP BY Number", CustomerID, PageNumber, TypeID.ToString());
+                                                        GROUP BY Number
+                                                        ORDER BY Price DESC", CustomerID, PageNumber, TypeID.ToString());
             }
 
             SqlCommand sqlgetNumberxxxInfoCom = new SqlCommand(sqlgetNumberxxxInfo, connection);

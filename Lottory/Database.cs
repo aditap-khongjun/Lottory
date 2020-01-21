@@ -29,6 +29,7 @@ namespace Lottory
 
         // Number 2 digit
         public const string up2 = "บน";
+        public const string uptod2 = "บน/โต๊ด";
         public const string low2 = "ล่าง";
         public const string tod2 = "โต๊ด";
         public const string uplow2 = "บน/ล่าง";
@@ -71,6 +72,7 @@ namespace Lottory
 
         // Number 2 digit
         public const int up2 = 9;
+        public const int uptod2 = 32;
         public const int low2 = 10;
         public const int tod2 = 11;
         public const int uplow2 = 12;

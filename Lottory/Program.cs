@@ -17,9 +17,9 @@ namespace Lottory
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             // Open Main windows
-            Application.Run(new MainLotto());
+           Application.Run(new MainLotto());
             // Test
-          // Application.Run(new Summary_Customer_Page_Report());
+          //Application.Run(new Test());
         }
     }
 }

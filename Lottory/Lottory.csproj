@@ -24,7 +24,7 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <ApplicationRevision>5</ApplicationRevision>
+    <ApplicationRevision>6</ApplicationRevision>
     <ApplicationVersion>0.2.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -144,6 +144,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>MyLottoDBDataSet3.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Report.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Report.xsd</DependentUpon>
+    </Compile>
     <Compile Include="SummaryInfo.cs" />
     <Compile Include="CustomerInformation.cs">
       <SubType>Form</SubType>
@@ -210,6 +215,12 @@
     </Compile>
     <Compile Include="SqlServerTypes\Loader.cs" />
     <Compile Include="Summary_CustomerInfo.cs" />
+    <Compile Include="Summary_Customer_Page_Report.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Summary_Customer_Page_Report.Designer.cs">
+      <DependentUpon>Summary_Customer_Page_Report.cs</DependentUpon>
+    </Compile>
     <Compile Include="Summary_Customer_pay_Report.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -227,6 +238,12 @@
     </Compile>
     <Compile Include="Summary_Report.Designer.cs">
       <DependentUpon>Summary_Report.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Test.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Test.Designer.cs">
+      <DependentUpon>Test.cs</DependentUpon>
     </Compile>
     <Compile Include="WinNumberSetting.cs">
       <SubType>Form</SubType>
@@ -286,6 +303,10 @@
     <EmbeddedResource Include="MainMenu.resx">
       <DependentUpon>MainMenu.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Summary_Customer_Page_Report.rdlc" />
+    <EmbeddedResource Include="Summary_Customer_Page_Report.resx">
+      <DependentUpon>Summary_Customer_Page_Report.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Summary_Customer_pay_Report.rdlc" />
     <EmbeddedResource Include="Summary_Customer_pay_Report.resx">
       <DependentUpon>Summary_Customer_pay_Report.cs</DependentUpon>
@@ -300,6 +321,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Summary_Report.resx">
       <DependentUpon>Summary_Report.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Test.resx">
+      <DependentUpon>Test.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="WinNumberSetting.resx">
       <DependentUpon>WinNumberSetting.cs</DependentUpon>
@@ -357,6 +381,17 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="Report.xsc">
+      <DependentUpon>Report.xsd</DependentUpon>
+    </None>
+    <None Include="Report.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>Report.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Report.xss">
+      <DependentUpon>Report.xsd</DependentUpon>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

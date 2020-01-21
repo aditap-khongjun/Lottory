@@ -32,6 +32,14 @@ namespace Lottory
         }
         public void DataTableToFrom(DataTable dbTable)
         {
+            // Sort DataTable
+            /*
+            dbTable.Columns["Price"].DataType = Type.GetType("System.Int32");
+            DataView dv = dbTable.DefaultView;
+            dv.Sort = "Price DESC";
+            dbTable = dv.ToTable();
+            */
+
             int row = dbTable.Rows.Count;
             if(row <= 25)
             {
