@@ -381,5 +381,10 @@ namespace Lottory
             MainLotto mainLotto = (MainLotto)this.MdiParent;
             mainLotto.ShowForm(MainMenu.Instance);
         }
+
+        private void CustomerList_TextChanged(object sender, EventArgs e)
+        {
+            this.CustomerList_SelectedIndexChanged(sender, e);
+        }
     }
 }

@@ -220,39 +220,6 @@ namespace Lottory
             dgvNumber1up.CellFormatting += new DataGridViewCellFormattingEventHandler(dataGridView_CellFormatting);
             dgvNumber1low.CellFormatting += new DataGridViewCellFormattingEventHandler(dataGridView_CellFormatting);
         }
-        private void dgvNumber3up_CellMouseEnter(object sender, DataGridViewCellEventArgs e)
-        {
-            var cell = dgvNumber3up.Rows[e.RowIndex].Cells[e.ColumnIndex];
-            string Number = cell.Value.ToString();
-            int typeid = 0;
-            switch (dgvNumber3up.Name)
-            {
-                case "dgvNumber3up":
-                    typeid = BaseTypeID.up3;
-                    break;
-                case "dgvNumber3low":
-                    typeid = BaseTypeID.low3;
-                    break;
-                case "dgvNumber2up":
-                    typeid = BaseTypeID.up2;
-                    break;
-                case "dgvNumber2low":
-                    typeid = BaseTypeID.low2;
-                    break;
-                case "dgvNumber1up":
-                    typeid = BaseTypeID.up1;
-                    break;
-                case "dgvNumber1low":
-                    typeid = BaseTypeID.low1;
-                    break;
-            }
-
-            // find customerid,page,price
-
-            //
-            //MessageBox.Show(getNumberTooltip(Number, typeid));
-            cell.ToolTipText = getNumberTooltip(Number,typeid);
-        }
         private void dataGridView_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
             DataGridView dgv = (DataGridView)sender;
@@ -262,89 +229,34 @@ namespace Lottory
             {
                 e.CellStyle.ForeColor = Color.Red;
             }
-            else if(e.ColumnIndex == dgv.Columns["เบอร์"].Index)
-            {
-                var cell = dgv.Rows[e.RowIndex].Cells[e.ColumnIndex];
-                string Number = cell.Value.ToString();
-                int typeid = 0;
-                switch (dgv.Name)
-                {
-                    case "dgvNumber3up":
-                        typeid = BaseTypeID.up3;
-                        break;
-                    case "dgvNumber3low":
-                        typeid = BaseTypeID.low3;
-                        break;
-                    case "dgvNumber2up":
-                        typeid = BaseTypeID.up2;
-                        break;
-                    case "dgvNumber2low":
-                        typeid = BaseTypeID.low2;
-                        break;
-                    case "dgvNumber1up":
-                        typeid = BaseTypeID.up1;
-                        break;
-                    case "dgvNumber1low":
-                        typeid = BaseTypeID.low1;
-                        break;
-                }
-
-                // find customerid,page,price
-
-                //
-                //MessageBox.Show(getNumberTooltip(Number, typeid));
-                cell.ToolTipText = getNumberTooltip(Number, typeid);
-            }
             
         }
-        private string getNumberTooltip(string Number, int TypeID)
+        private DataTable getNumberDetail(string Number, int TypeID)
         {
+            DataTable outTable = new DataTable();
+            outTable.Columns.Add("รหัส");
+            outTable.Columns.Add("เงิน");
+            outTable.Columns["เงิน"].DataType = typeof(Int32);
+
             SqlConnection connection = new SqlConnection(Database.CnnVal("LottoryDB"));
             if (connection.State == ConnectionState.Closed)
             {
                 connection.Open(); // Open Database
             }
-            // find All CustomerID
-            string getCustomerID = string.Format("SELECT CustomerID FROM CustomerOrder GROUP BY CustomerID");
-            SqlCommand getCustomerIDCom = new SqlCommand(getCustomerID, connection);
-
-            SqlDataAdapter da = new SqlDataAdapter(getCustomerIDCom);
-            DataTable dt = new DataTable();
-            da.Fill(dt);
+            string getDetailNumber = string.Format(@"SELECT TOP(10) co.CustomerID, SUM(oe.OwnPrice) AS Price
+                                                    FROM (OrderListExpand oe INNER JOIN OrderList o ON oe.OrderListID = o.OrderListID)
+                                                    INNER JOIN CustomerOrder co ON o.OrderID = co.OrderID
+                                                    WHERE oe.TypeID = {1} AND oe.Number = '{0}'
+                                                    GROUP BY co.CustomerID
+                                                    ORDER BY Price DESC", Number, TypeID.ToString());
+            SqlCommand getDetailNumberCom = new SqlCommand(getDetailNumber, connection);
+            SqlDataReader DetailNumberInfo = getDetailNumberCom.ExecuteReader();
+            while(DetailNumberInfo.Read())
+            {
+                outTable.Rows.Add(DetailNumberInfo["CustomerID"].ToString(), Convert.ToInt32(DetailNumberInfo["Price"]));
+            }
             connection.Close();
-
-            DataTable dtCustomerInfo = new DataTable();
-            dtCustomerInfo.Columns.Add("CustomerID");
-            dtCustomerInfo.Columns.Add("Page");
-            dtCustomerInfo.Columns.Add("Price");
-            foreach(DataRow item in dt.Rows)
-            {
-                if (connection.State == ConnectionState.Closed)
-                {
-                    connection.Open(); // Open Database
-                }
-                string getPriceInfo = string.Format(@"SELECT r1.Page,SUM(r1.OwnPrice) AS Price FROM (
-	                                                  SELECT co.CustomerID, co.Page, oe.OwnPrice
-	                                                  FROM (OrderListExpand oe INNER JOIN OrderList o ON oe.OrderListID = o.OrderListID)
-	                                                  INNER JOIN CustomerOrder co ON o.OrderID = co.OrderID
-	                                                  WHERE oe.TypeID = {1} AND oe.Number = '{0}'
-                                                      ) r1 
-                                                      WHERE r1.CustomerID = '{2}'
-                                                      GROUP BY r1.Page",Number,TypeID,item["CustomerID"].ToString());
-                SqlCommand getPriceInfoCom = new SqlCommand(getPriceInfo, connection);
-                SqlDataReader PriceInfo = getPriceInfoCom.ExecuteReader();
-                while(PriceInfo.Read())
-                {
-                    dtCustomerInfo.Rows.Add(item["CustomerID"].ToString(), PriceInfo["Page"].ToString(), Convert.ToInt32(PriceInfo["Price"]).ToString("N0"));
-                }
-                connection.Close();
-            }
-            string outStr = string.Empty;
-            foreach(DataRow row in dtCustomerInfo.Rows)
-            {
-                outStr += string.Format("รหัส:{0}, หน้า:{1}, เงิน:{2}\n", row["CustomerID"].ToString(), row["Page"].ToString(), row["Price"].ToString());
-            }
-            return outStr;
+            return outTable;
         }
         private void datagridview_columnAdd(object sender, DataGridViewColumnEventArgs e)
         {
@@ -4609,6 +4521,61 @@ namespace Lottory
             if (!double.TryParse(tbLow.Text, out x) && !string.IsNullOrEmpty(tbLow.Text))
             {
                 MessageBox.Show("กรุณาใส่จำนวนเงินเป็นตัวเลขให้ถูกต้อง");
+            }
+        }
+
+        private void dgvNumber_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            DataGridView dgv = (DataGridView)sender;
+            var cell = dgv.Rows[e.RowIndex].Cells[e.ColumnIndex];
+            string Number = cell.Value.ToString();
+            int typeid = 0;
+            string uplowstr = string.Empty;
+            if (e.ColumnIndex == dgv.Columns["เบอร์"].Index)
+            {
+                switch (dgv.Name)
+                {
+                    case "dgvNumber3up":
+                        typeid = BaseTypeID.up3;
+                        uplowstr = "บน";
+                        break;
+                    case "dgvNumber3low":
+                        typeid = BaseTypeID.low3;
+                        uplowstr = "ล่าง";
+                        break;
+                    case "dgvNumber2up":
+                        typeid = BaseTypeID.up2;
+                        uplowstr = "บน";
+                        break;
+                    case "dgvNumber2low":
+                        typeid = BaseTypeID.low2;
+                        uplowstr = "ล่าง";
+                        break;
+                    case "dgvNumber1up":
+                        typeid = BaseTypeID.up1;
+                        uplowstr = "บน";
+                        break;
+                    case "dgvNumber1low":
+                        typeid = BaseTypeID.low1;
+                        uplowstr = "ล่าง";
+                        break;
+                }
+                DetailNumber.Text = string.Format("เลข {0} {1}", Number, uplowstr);
+                dgvNumberDetail.DataSource = getNumberDetail(Number, typeid);
+            }
+        }
+
+        private void dgvNumberDetail_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            if (e.ColumnIndex == dgvNumberDetail.Columns["รหัส"].Index)
+            {
+                var cell = dgvNumberDetail.Rows[e.RowIndex].Cells[e.ColumnIndex];
+                string customerID = cell.Value.ToString();
+                BuyingSummary buyingSummary = BuyingSummary.Instance;
+                buyingSummary.MdiParent = this.MdiParent;
+                buyingSummary.CustomerList.Text = customerID;
+                buyingSummary.Show();
+                buyingSummary.Activate();
             }
         }
     }

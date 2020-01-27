@@ -120,11 +120,23 @@
     <Compile Include="BuyingSummary.Designer.cs">
       <DependentUpon>BuyingSummary.cs</DependentUpon>
     </Compile>
+    <Compile Include="Buying_Page_Report.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Buying_Page_Report.Designer.cs">
+      <DependentUpon>Buying_Page_Report.cs</DependentUpon>
+    </Compile>
     <Compile Include="Choose_customer_dialog.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Choose_customer_dialog.Designer.cs">
       <DependentUpon>Choose_customer_dialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Customer_Page_Report.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Customer_Page_Report.Designer.cs">
+      <DependentUpon>Customer_Page_Report.cs</DependentUpon>
     </Compile>
     <Compile Include="MyLottoDBDataSet.Designer.cs">
       <DependentUpon>MyLottoDBDataSet.xsd</DependentUpon>
@@ -144,10 +156,10 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>MyLottoDBDataSet3.xsd</DependentUpon>
     </Compile>
-    <Compile Include="Report.Designer.cs">
+    <Compile Include="page_Report.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Report.xsd</DependentUpon>
+      <DependentUpon>page_Report.xsd</DependentUpon>
     </Compile>
     <Compile Include="SummaryInfo.cs" />
     <Compile Include="CustomerInformation.cs">
@@ -215,12 +227,6 @@
     </Compile>
     <Compile Include="SqlServerTypes\Loader.cs" />
     <Compile Include="Summary_CustomerInfo.cs" />
-    <Compile Include="Summary_Customer_Page_Report.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Summary_Customer_Page_Report.Designer.cs">
-      <DependentUpon>Summary_Customer_Page_Report.cs</DependentUpon>
-    </Compile>
     <Compile Include="Summary_Customer_pay_Report.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -263,6 +269,9 @@
     <EmbeddedResource Include="BuyingSummary.resx">
       <DependentUpon>BuyingSummary.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Buying_Page_Report.resx">
+      <DependentUpon>Buying_Page_Report.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Choose_customer_dialog.resx">
       <DependentUpon>Choose_customer_dialog.cs</DependentUpon>
     </EmbeddedResource>
@@ -271,6 +280,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CustomerReportSummary.resx">
       <DependentUpon>CustomerReportSummary.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Customer_Page_Report.resx">
+      <DependentUpon>Customer_Page_Report.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="DetailNumberXXX.resx">
       <DependentUpon>DetailNumberXXX.cs</DependentUpon>
@@ -302,10 +314,6 @@
     </Compile>
     <EmbeddedResource Include="MainMenu.resx">
       <DependentUpon>MainMenu.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Summary_Customer_Page_Report.rdlc" />
-    <EmbeddedResource Include="Summary_Customer_Page_Report.resx">
-      <DependentUpon>Summary_Customer_Page_Report.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Summary_Customer_pay_Report.rdlc" />
     <EmbeddedResource Include="Summary_Customer_pay_Report.resx">
@@ -362,6 +370,17 @@
       <DependentUpon>MyLottoDBDataSet3.xsd</DependentUpon>
     </None>
     <None Include="packages.config" />
+    <None Include="page_Report.xsc">
+      <DependentUpon>page_Report.xsd</DependentUpon>
+    </None>
+    <None Include="page_Report.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>page_Report.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="page_Report.xss">
+      <DependentUpon>page_Report.xsd</DependentUpon>
+    </None>
     <None Include="Properties\DataSources\BaseType.datasource" />
     <None Include="Properties\DataSources\Database.datasource" />
     <None Include="Properties\DataSources\SummaryInfo.datasource" />
@@ -381,17 +400,6 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <None Include="Report.xsc">
-      <DependentUpon>Report.xsd</DependentUpon>
-    </None>
-    <None Include="Report.xsd">
-      <SubType>Designer</SubType>
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>Report.Designer.cs</LastGenOutput>
-    </None>
-    <None Include="Report.xss">
-      <DependentUpon>Report.xsd</DependentUpon>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

@@ -37,7 +37,7 @@ namespace Lottory
             // TODO: This line of code loads data into the 'MyLottoDBDataSet.Customer_Report_Dataset' table. You can move, or remove it, as needed.
             //this.Customer_Report_DatasetTableAdapter.Fill(this.MyLottoDBDataSet.Customer_Report_Dataset);
 
-            this.Customer_Report_DatasetTableAdapter.Fill(this.MyLottoDBDataSet.Customer_Report_Dataset);
+            //this.Customer_Report_DatasetTableAdapter.Fill(this.MyLottoDBDataSet.Customer_Report_Dataset);
             // try datatable
             DataTable customerInfo = getCustomerBuyingSummary();
 

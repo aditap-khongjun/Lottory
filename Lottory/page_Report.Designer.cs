@@ -20,13 +20,11 @@ namespace Lottory {
     [global::System.ComponentModel.DesignerCategoryAttribute("code")]
     [global::System.ComponentModel.ToolboxItem(true)]
     [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedDataSetSchema")]
-    [global::System.Xml.Serialization.XmlRootAttribute("Report")]
+    [global::System.Xml.Serialization.XmlRootAttribute("page_Report")]
     [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.DataSet")]
-    public partial class Report : global::System.Data.DataSet {
+    public partial class page_Report : global::System.Data.DataSet {
         
         private BuyingTableDataTable tableBuyingTable;
-        
-        private CustomerInfoDataTable tableCustomerInfo;
         
         private BuyingSummaryDataTable tableBuyingSummary;
         
@@ -38,7 +36,7 @@ namespace Lottory {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-        public Report() {
+        public page_Report() {
             this.BeginInit();
             this.InitClass();
             global::System.ComponentModel.CollectionChangeEventHandler schemaChangedHandler = new global::System.ComponentModel.CollectionChangeEventHandler(this.SchemaChanged);
@@ -49,7 +47,7 @@ namespace Lottory {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-        protected Report(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+        protected page_Report(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
                 base(info, context, false) {
             if ((this.IsBinarySerialized(info, context) == true)) {
                 this.InitVars(false);
@@ -64,9 +62,6 @@ namespace Lottory {
                 ds.ReadXmlSchema(new global::System.Xml.XmlTextReader(new global::System.IO.StringReader(strSchema)));
                 if ((ds.Tables["BuyingTable"] != null)) {
                     base.Tables.Add(new BuyingTableDataTable(ds.Tables["BuyingTable"]));
-                }
-                if ((ds.Tables["CustomerInfo"] != null)) {
-                    base.Tables.Add(new CustomerInfoDataTable(ds.Tables["CustomerInfo"]));
                 }
                 if ((ds.Tables["BuyingSummary"] != null)) {
                     base.Tables.Add(new BuyingSummaryDataTable(ds.Tables["BuyingSummary"]));
@@ -102,16 +97,6 @@ namespace Lottory {
         public BuyingTableDataTable BuyingTable {
             get {
                 return this.tableBuyingTable;
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-        [global::System.ComponentModel.Browsable(false)]
-        [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
-        public CustomerInfoDataTable CustomerInfo {
-            get {
-                return this.tableCustomerInfo;
             }
         }
         
@@ -187,7 +172,7 @@ namespace Lottory {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         public override global::System.Data.DataSet Clone() {
-            Report cln = ((Report)(base.Clone()));
+            page_Report cln = ((page_Report)(base.Clone()));
             cln.InitVars();
             cln.SchemaSerializationMode = this.SchemaSerializationMode;
             return cln;
@@ -214,9 +199,6 @@ namespace Lottory {
                 ds.ReadXml(reader);
                 if ((ds.Tables["BuyingTable"] != null)) {
                     base.Tables.Add(new BuyingTableDataTable(ds.Tables["BuyingTable"]));
-                }
-                if ((ds.Tables["CustomerInfo"] != null)) {
-                    base.Tables.Add(new CustomerInfoDataTable(ds.Tables["CustomerInfo"]));
                 }
                 if ((ds.Tables["BuyingSummary"] != null)) {
                     base.Tables.Add(new BuyingSummaryDataTable(ds.Tables["BuyingSummary"]));
@@ -266,12 +248,6 @@ namespace Lottory {
                     this.tableBuyingTable.InitVars();
                 }
             }
-            this.tableCustomerInfo = ((CustomerInfoDataTable)(base.Tables["CustomerInfo"]));
-            if ((initTable == true)) {
-                if ((this.tableCustomerInfo != null)) {
-                    this.tableCustomerInfo.InitVars();
-                }
-            }
             this.tableBuyingSummary = ((BuyingSummaryDataTable)(base.Tables["BuyingSummary"]));
             if ((initTable == true)) {
                 if ((this.tableBuyingSummary != null)) {
@@ -295,15 +271,13 @@ namespace Lottory {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         private void InitClass() {
-            this.DataSetName = "Report";
+            this.DataSetName = "page_Report";
             this.Prefix = "";
-            this.Namespace = "http://tempuri.org/Report.xsd";
+            this.Namespace = "http://tempuri.org/page_Report.xsd";
             this.EnforceConstraints = true;
             this.SchemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
             this.tableBuyingTable = new BuyingTableDataTable();
             base.Tables.Add(this.tableBuyingTable);
-            this.tableCustomerInfo = new CustomerInfoDataTable();
-            base.Tables.Add(this.tableCustomerInfo);
             this.tableBuyingSummary = new BuyingSummaryDataTable();
             base.Tables.Add(this.tableBuyingSummary);
             this.tablePayingTable = new PayingTableDataTable();
@@ -315,12 +289,6 @@ namespace Lottory {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         private bool ShouldSerializeBuyingTable() {
-            return false;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-        private bool ShouldSerializeCustomerInfo() {
             return false;
         }
         
@@ -353,7 +321,7 @@ namespace Lottory {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedDataSetSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
-            Report ds = new Report();
+            page_Report ds = new page_Report();
             global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
             global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
             global::System.Xml.Schema.XmlSchemaAny any = new global::System.Xml.Schema.XmlSchemaAny();
@@ -399,9 +367,6 @@ namespace Lottory {
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         public delegate void BuyingTableRowChangeEventHandler(object sender, BuyingTableRowChangeEvent e);
-        
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-        public delegate void CustomerInfoRowChangeEventHandler(object sender, CustomerInfoRowChangeEvent e);
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         public delegate void BuyingSummaryRowChangeEventHandler(object sender, BuyingSummaryRowChangeEvent e);
@@ -628,7 +593,7 @@ namespace Lottory {
             public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
                 global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
                 global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
-                Report ds = new Report();
+                page_Report ds = new page_Report();
                 global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
                 any1.Namespace = "http://www.w3.org/2001/XMLSchema";
                 any1.MinOccurs = new decimal(0);
@@ -692,286 +657,11 @@ namespace Lottory {
         ///</summary>
         [global::System.Serializable()]
         [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
-        public partial class CustomerInfoDataTable : global::System.Data.TypedTableBase<CustomerInfoRow> {
-            
-            private global::System.Data.DataColumn columnCustomerID;
-            
-            private global::System.Data.DataColumn columnCustomerName;
-            
-            private global::System.Data.DataColumn columnPage;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public CustomerInfoDataTable() {
-                this.TableName = "CustomerInfo";
-                this.BeginInit();
-                this.InitClass();
-                this.EndInit();
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            internal CustomerInfoDataTable(global::System.Data.DataTable table) {
-                this.TableName = table.TableName;
-                if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
-                    this.CaseSensitive = table.CaseSensitive;
-                }
-                if ((table.Locale.ToString() != table.DataSet.Locale.ToString())) {
-                    this.Locale = table.Locale;
-                }
-                if ((table.Namespace != table.DataSet.Namespace)) {
-                    this.Namespace = table.Namespace;
-                }
-                this.Prefix = table.Prefix;
-                this.MinimumCapacity = table.MinimumCapacity;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            protected CustomerInfoDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
-                    base(info, context) {
-                this.InitVars();
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public global::System.Data.DataColumn CustomerIDColumn {
-                get {
-                    return this.columnCustomerID;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public global::System.Data.DataColumn CustomerNameColumn {
-                get {
-                    return this.columnCustomerName;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public global::System.Data.DataColumn PageColumn {
-                get {
-                    return this.columnPage;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            [global::System.ComponentModel.Browsable(false)]
-            public int Count {
-                get {
-                    return this.Rows.Count;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public CustomerInfoRow this[int index] {
-                get {
-                    return ((CustomerInfoRow)(this.Rows[index]));
-                }
-            }
-            
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public event CustomerInfoRowChangeEventHandler CustomerInfoRowChanging;
-            
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public event CustomerInfoRowChangeEventHandler CustomerInfoRowChanged;
-            
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public event CustomerInfoRowChangeEventHandler CustomerInfoRowDeleting;
-            
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public event CustomerInfoRowChangeEventHandler CustomerInfoRowDeleted;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public void AddCustomerInfoRow(CustomerInfoRow row) {
-                this.Rows.Add(row);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public CustomerInfoRow AddCustomerInfoRow(string CustomerID, string CustomerName, string Page) {
-                CustomerInfoRow rowCustomerInfoRow = ((CustomerInfoRow)(this.NewRow()));
-                object[] columnValuesArray = new object[] {
-                        CustomerID,
-                        CustomerName,
-                        Page};
-                rowCustomerInfoRow.ItemArray = columnValuesArray;
-                this.Rows.Add(rowCustomerInfoRow);
-                return rowCustomerInfoRow;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public override global::System.Data.DataTable Clone() {
-                CustomerInfoDataTable cln = ((CustomerInfoDataTable)(base.Clone()));
-                cln.InitVars();
-                return cln;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            protected override global::System.Data.DataTable CreateInstance() {
-                return new CustomerInfoDataTable();
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            internal void InitVars() {
-                this.columnCustomerID = base.Columns["CustomerID"];
-                this.columnCustomerName = base.Columns["CustomerName"];
-                this.columnPage = base.Columns["Page"];
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            private void InitClass() {
-                this.columnCustomerID = new global::System.Data.DataColumn("CustomerID", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnCustomerID);
-                this.columnCustomerName = new global::System.Data.DataColumn("CustomerName", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnCustomerName);
-                this.columnPage = new global::System.Data.DataColumn("Page", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnPage);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public CustomerInfoRow NewCustomerInfoRow() {
-                return ((CustomerInfoRow)(this.NewRow()));
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
-                return new CustomerInfoRow(builder);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            protected override global::System.Type GetRowType() {
-                return typeof(CustomerInfoRow);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
-                base.OnRowChanged(e);
-                if ((this.CustomerInfoRowChanged != null)) {
-                    this.CustomerInfoRowChanged(this, new CustomerInfoRowChangeEvent(((CustomerInfoRow)(e.Row)), e.Action));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
-                base.OnRowChanging(e);
-                if ((this.CustomerInfoRowChanging != null)) {
-                    this.CustomerInfoRowChanging(this, new CustomerInfoRowChangeEvent(((CustomerInfoRow)(e.Row)), e.Action));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
-                base.OnRowDeleted(e);
-                if ((this.CustomerInfoRowDeleted != null)) {
-                    this.CustomerInfoRowDeleted(this, new CustomerInfoRowChangeEvent(((CustomerInfoRow)(e.Row)), e.Action));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
-                base.OnRowDeleting(e);
-                if ((this.CustomerInfoRowDeleting != null)) {
-                    this.CustomerInfoRowDeleting(this, new CustomerInfoRowChangeEvent(((CustomerInfoRow)(e.Row)), e.Action));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public void RemoveCustomerInfoRow(CustomerInfoRow row) {
-                this.Rows.Remove(row);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
-                global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
-                global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
-                Report ds = new Report();
-                global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
-                any1.Namespace = "http://www.w3.org/2001/XMLSchema";
-                any1.MinOccurs = new decimal(0);
-                any1.MaxOccurs = decimal.MaxValue;
-                any1.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
-                sequence.Items.Add(any1);
-                global::System.Xml.Schema.XmlSchemaAny any2 = new global::System.Xml.Schema.XmlSchemaAny();
-                any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
-                any2.MinOccurs = new decimal(1);
-                any2.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
-                sequence.Items.Add(any2);
-                global::System.Xml.Schema.XmlSchemaAttribute attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
-                attribute1.Name = "namespace";
-                attribute1.FixedValue = ds.Namespace;
-                type.Attributes.Add(attribute1);
-                global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
-                attribute2.Name = "tableTypeName";
-                attribute2.FixedValue = "CustomerInfoDataTable";
-                type.Attributes.Add(attribute2);
-                type.Particle = sequence;
-                global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
-                if (xs.Contains(dsSchema.TargetNamespace)) {
-                    global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
-                    global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
-                    try {
-                        global::System.Xml.Schema.XmlSchema schema = null;
-                        dsSchema.Write(s1);
-                        for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
-                            schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
-                            s2.SetLength(0);
-                            schema.Write(s2);
-                            if ((s1.Length == s2.Length)) {
-                                s1.Position = 0;
-                                s2.Position = 0;
-                                for (; ((s1.Position != s1.Length) 
-                                            && (s1.ReadByte() == s2.ReadByte())); ) {
-                                    ;
-                                }
-                                if ((s1.Position == s1.Length)) {
-                                    return type;
-                                }
-                            }
-                        }
-                    }
-                    finally {
-                        if ((s1 != null)) {
-                            s1.Close();
-                        }
-                        if ((s2 != null)) {
-                            s2.Close();
-                        }
-                    }
-                }
-                xs.Add(dsSchema);
-                return type;
-            }
-        }
-        
-        /// <summary>
-        ///Represents the strongly named DataTable class.
-        ///</summary>
-        [global::System.Serializable()]
-        [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
         public partial class BuyingSummaryDataTable : global::System.Data.TypedTableBase<BuyingSummaryRow> {
             
-            private global::System.Data.DataColumn columnsumPrice;
+            private global::System.Data.DataColumn columnSumPrice;
             
-            private global::System.Data.DataColumn columnsumDiscount;
+            private global::System.Data.DataColumn columnSumDiscount;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
@@ -1008,17 +698,17 @@ namespace Lottory {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public global::System.Data.DataColumn sumPriceColumn {
+            public global::System.Data.DataColumn SumPriceColumn {
                 get {
-                    return this.columnsumPrice;
+                    return this.columnSumPrice;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public global::System.Data.DataColumn sumDiscountColumn {
+            public global::System.Data.DataColumn SumDiscountColumn {
                 get {
-                    return this.columnsumDiscount;
+                    return this.columnSumDiscount;
                 }
             }
             
@@ -1059,11 +749,11 @@ namespace Lottory {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public BuyingSummaryRow AddBuyingSummaryRow(string sumPrice, string sumDiscount) {
+            public BuyingSummaryRow AddBuyingSummaryRow(string SumPrice, string SumDiscount) {
                 BuyingSummaryRow rowBuyingSummaryRow = ((BuyingSummaryRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
-                        sumPrice,
-                        sumDiscount};
+                        SumPrice,
+                        SumDiscount};
                 rowBuyingSummaryRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowBuyingSummaryRow);
                 return rowBuyingSummaryRow;
@@ -1086,17 +776,17 @@ namespace Lottory {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             internal void InitVars() {
-                this.columnsumPrice = base.Columns["sumPrice"];
-                this.columnsumDiscount = base.Columns["sumDiscount"];
+                this.columnSumPrice = base.Columns["SumPrice"];
+                this.columnSumDiscount = base.Columns["SumDiscount"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             private void InitClass() {
-                this.columnsumPrice = new global::System.Data.DataColumn("sumPrice", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnsumPrice);
-                this.columnsumDiscount = new global::System.Data.DataColumn("sumDiscount", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnsumDiscount);
+                this.columnSumPrice = new global::System.Data.DataColumn("SumPrice", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnSumPrice);
+                this.columnSumDiscount = new global::System.Data.DataColumn("SumDiscount", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnSumDiscount);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1164,7 +854,7 @@ namespace Lottory {
             public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
                 global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
                 global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
-                Report ds = new Report();
+                page_Report ds = new page_Report();
                 global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
                 any1.Namespace = "http://www.w3.org/2001/XMLSchema";
                 any1.MinOccurs = new decimal(0);
@@ -1439,7 +1129,7 @@ namespace Lottory {
             public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
                 global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
                 global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
-                Report ds = new Report();
+                page_Report ds = new page_Report();
                 global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
                 any1.Namespace = "http://www.w3.org/2001/XMLSchema";
                 any1.MinOccurs = new decimal(0);
@@ -1505,9 +1195,9 @@ namespace Lottory {
         [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
         public partial class PayingSummaryDataTable : global::System.Data.TypedTableBase<PayingSummaryRow> {
             
-            private global::System.Data.DataColumn columnsumWinPrice;
+            private global::System.Data.DataColumn columnSumWinPrice;
             
-            private global::System.Data.DataColumn columnsumPayPrice;
+            private global::System.Data.DataColumn columnSumPayPrice;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
@@ -1544,17 +1234,17 @@ namespace Lottory {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public global::System.Data.DataColumn sumWinPriceColumn {
+            public global::System.Data.DataColumn SumWinPriceColumn {
                 get {
-                    return this.columnsumWinPrice;
+                    return this.columnSumWinPrice;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public global::System.Data.DataColumn sumPayPriceColumn {
+            public global::System.Data.DataColumn SumPayPriceColumn {
                 get {
-                    return this.columnsumPayPrice;
+                    return this.columnSumPayPrice;
                 }
             }
             
@@ -1595,11 +1285,11 @@ namespace Lottory {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public PayingSummaryRow AddPayingSummaryRow(string sumWinPrice, string sumPayPrice) {
+            public PayingSummaryRow AddPayingSummaryRow(string SumWinPrice, string SumPayPrice) {
                 PayingSummaryRow rowPayingSummaryRow = ((PayingSummaryRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
-                        sumWinPrice,
-                        sumPayPrice};
+                        SumWinPrice,
+                        SumPayPrice};
                 rowPayingSummaryRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowPayingSummaryRow);
                 return rowPayingSummaryRow;
@@ -1622,17 +1312,17 @@ namespace Lottory {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             internal void InitVars() {
-                this.columnsumWinPrice = base.Columns["sumWinPrice"];
-                this.columnsumPayPrice = base.Columns["sumPayPrice"];
+                this.columnSumWinPrice = base.Columns["SumWinPrice"];
+                this.columnSumPayPrice = base.Columns["SumPayPrice"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             private void InitClass() {
-                this.columnsumWinPrice = new global::System.Data.DataColumn("sumWinPrice", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnsumWinPrice);
-                this.columnsumPayPrice = new global::System.Data.DataColumn("sumPayPrice", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnsumPayPrice);
+                this.columnSumWinPrice = new global::System.Data.DataColumn("SumWinPrice", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnSumWinPrice);
+                this.columnSumPayPrice = new global::System.Data.DataColumn("SumPayPrice", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnSumPayPrice);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1700,7 +1390,7 @@ namespace Lottory {
             public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
                 global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
                 global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
-                Report ds = new Report();
+                page_Report ds = new page_Report();
                 global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
                 any1.Namespace = "http://www.w3.org/2001/XMLSchema";
                 any1.MinOccurs = new decimal(0);
@@ -1861,105 +1551,6 @@ namespace Lottory {
         /// <summary>
         ///Represents strongly named DataRow class.
         ///</summary>
-        public partial class CustomerInfoRow : global::System.Data.DataRow {
-            
-            private CustomerInfoDataTable tableCustomerInfo;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            internal CustomerInfoRow(global::System.Data.DataRowBuilder rb) : 
-                    base(rb) {
-                this.tableCustomerInfo = ((CustomerInfoDataTable)(this.Table));
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public string CustomerID {
-                get {
-                    try {
-                        return ((string)(this[this.tableCustomerInfo.CustomerIDColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'CustomerID\' in table \'CustomerInfo\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableCustomerInfo.CustomerIDColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public string CustomerName {
-                get {
-                    try {
-                        return ((string)(this[this.tableCustomerInfo.CustomerNameColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'CustomerName\' in table \'CustomerInfo\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableCustomerInfo.CustomerNameColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public string Page {
-                get {
-                    try {
-                        return ((string)(this[this.tableCustomerInfo.PageColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Page\' in table \'CustomerInfo\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableCustomerInfo.PageColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public bool IsCustomerIDNull() {
-                return this.IsNull(this.tableCustomerInfo.CustomerIDColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public void SetCustomerIDNull() {
-                this[this.tableCustomerInfo.CustomerIDColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public bool IsCustomerNameNull() {
-                return this.IsNull(this.tableCustomerInfo.CustomerNameColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public void SetCustomerNameNull() {
-                this[this.tableCustomerInfo.CustomerNameColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public bool IsPageNull() {
-                return this.IsNull(this.tableCustomerInfo.PageColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public void SetPageNull() {
-                this[this.tableCustomerInfo.PageColumn] = global::System.Convert.DBNull;
-            }
-        }
-        
-        /// <summary>
-        ///Represents strongly named DataRow class.
-        ///</summary>
         public partial class BuyingSummaryRow : global::System.Data.DataRow {
             
             private BuyingSummaryDataTable tableBuyingSummary;
@@ -1973,58 +1564,58 @@ namespace Lottory {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public string sumPrice {
+            public string SumPrice {
                 get {
                     try {
-                        return ((string)(this[this.tableBuyingSummary.sumPriceColumn]));
+                        return ((string)(this[this.tableBuyingSummary.SumPriceColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'sumPrice\' in table \'BuyingSummary\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'SumPrice\' in table \'BuyingSummary\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableBuyingSummary.sumPriceColumn] = value;
+                    this[this.tableBuyingSummary.SumPriceColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public string sumDiscount {
+            public string SumDiscount {
                 get {
                     try {
-                        return ((string)(this[this.tableBuyingSummary.sumDiscountColumn]));
+                        return ((string)(this[this.tableBuyingSummary.SumDiscountColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'sumDiscount\' in table \'BuyingSummary\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'SumDiscount\' in table \'BuyingSummary\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableBuyingSummary.sumDiscountColumn] = value;
+                    this[this.tableBuyingSummary.SumDiscountColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public bool IssumPriceNull() {
-                return this.IsNull(this.tableBuyingSummary.sumPriceColumn);
+            public bool IsSumPriceNull() {
+                return this.IsNull(this.tableBuyingSummary.SumPriceColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public void SetsumPriceNull() {
-                this[this.tableBuyingSummary.sumPriceColumn] = global::System.Convert.DBNull;
+            public void SetSumPriceNull() {
+                this[this.tableBuyingSummary.SumPriceColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public bool IssumDiscountNull() {
-                return this.IsNull(this.tableBuyingSummary.sumDiscountColumn);
+            public bool IsSumDiscountNull() {
+                return this.IsNull(this.tableBuyingSummary.SumDiscountColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public void SetsumDiscountNull() {
-                this[this.tableBuyingSummary.sumDiscountColumn] = global::System.Convert.DBNull;
+            public void SetSumDiscountNull() {
+                this[this.tableBuyingSummary.SumDiscountColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -2143,58 +1734,58 @@ namespace Lottory {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public string sumWinPrice {
+            public string SumWinPrice {
                 get {
                     try {
-                        return ((string)(this[this.tablePayingSummary.sumWinPriceColumn]));
+                        return ((string)(this[this.tablePayingSummary.SumWinPriceColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'sumWinPrice\' in table \'PayingSummary\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'SumWinPrice\' in table \'PayingSummary\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tablePayingSummary.sumWinPriceColumn] = value;
+                    this[this.tablePayingSummary.SumWinPriceColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public string sumPayPrice {
+            public string SumPayPrice {
                 get {
                     try {
-                        return ((string)(this[this.tablePayingSummary.sumPayPriceColumn]));
+                        return ((string)(this[this.tablePayingSummary.SumPayPriceColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'sumPayPrice\' in table \'PayingSummary\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'SumPayPrice\' in table \'PayingSummary\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tablePayingSummary.sumPayPriceColumn] = value;
+                    this[this.tablePayingSummary.SumPayPriceColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public bool IssumWinPriceNull() {
-                return this.IsNull(this.tablePayingSummary.sumWinPriceColumn);
+            public bool IsSumWinPriceNull() {
+                return this.IsNull(this.tablePayingSummary.SumWinPriceColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public void SetsumWinPriceNull() {
-                this[this.tablePayingSummary.sumWinPriceColumn] = global::System.Convert.DBNull;
+            public void SetSumWinPriceNull() {
+                this[this.tablePayingSummary.SumWinPriceColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public bool IssumPayPriceNull() {
-                return this.IsNull(this.tablePayingSummary.sumPayPriceColumn);
+            public bool IsSumPayPriceNull() {
+                return this.IsNull(this.tablePayingSummary.SumPayPriceColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public void SetsumPayPriceNull() {
-                this[this.tablePayingSummary.sumPayPriceColumn] = global::System.Convert.DBNull;
+            public void SetSumPayPriceNull() {
+                this[this.tablePayingSummary.SumPayPriceColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -2218,40 +1809,6 @@ namespace Lottory {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public BuyingTableRow Row {
-                get {
-                    return this.eventRow;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public global::System.Data.DataRowAction Action {
-                get {
-                    return this.eventAction;
-                }
-            }
-        }
-        
-        /// <summary>
-        ///Row event argument class
-        ///</summary>
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-        public class CustomerInfoRowChangeEvent : global::System.EventArgs {
-            
-            private CustomerInfoRow eventRow;
-            
-            private global::System.Data.DataRowAction eventAction;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public CustomerInfoRowChangeEvent(CustomerInfoRow row, global::System.Data.DataRowAction action) {
-                this.eventRow = row;
-                this.eventAction = action;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public CustomerInfoRow Row {
                 get {
                     return this.eventRow;
                 }

@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<xs:schema id="Report" targetNamespace="http://tempuri.org/Report.xsd" xmlns:mstns="http://tempuri.org/Report.xsd" xmlns="http://tempuri.org/Report.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+<xs:schema id="page_Report" targetNamespace="http://tempuri.org/page_Report.xsd" xmlns:mstns="http://tempuri.org/page_Report.xsd" xmlns="http://tempuri.org/page_Report.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
   <xs:annotation>
     <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
       <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
@@ -9,7 +9,7 @@
       </DataSource>
     </xs:appinfo>
   </xs:annotation>
-  <xs:element name="Report" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="Report" msprop:Generator_UserDSName="Report">
+  <xs:element name="page_Report" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="page_Report" msprop:Generator_UserDSName="page_Report">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
         <xs:element name="BuyingTable" msprop:Generator_TableClassName="BuyingTableDataTable" msprop:Generator_TableVarName="tableBuyingTable" msprop:Generator_TablePropName="BuyingTable" msprop:Generator_RowDeletingName="BuyingTableRowDeleting" msprop:Generator_RowChangingName="BuyingTableRowChanging" msprop:Generator_RowEvHandlerName="BuyingTableRowChangeEventHandler" msprop:Generator_RowDeletedName="BuyingTableRowDeleted" msprop:Generator_UserTableName="BuyingTable" msprop:Generator_RowChangedName="BuyingTableRowChanged" msprop:Generator_RowEvArgName="BuyingTableRowChangeEvent" msprop:Generator_RowClassName="BuyingTableRow">
@@ -21,20 +21,11 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="CustomerInfo" msprop:Generator_TableClassName="CustomerInfoDataTable" msprop:Generator_TableVarName="tableCustomerInfo" msprop:Generator_TablePropName="CustomerInfo" msprop:Generator_RowDeletingName="CustomerInfoRowDeleting" msprop:Generator_RowChangingName="CustomerInfoRowChanging" msprop:Generator_RowEvHandlerName="CustomerInfoRowChangeEventHandler" msprop:Generator_RowDeletedName="CustomerInfoRowDeleted" msprop:Generator_UserTableName="CustomerInfo" msprop:Generator_RowChangedName="CustomerInfoRowChanged" msprop:Generator_RowEvArgName="CustomerInfoRowChangeEvent" msprop:Generator_RowClassName="CustomerInfoRow">
-          <xs:complexType>
-            <xs:sequence>
-              <xs:element name="CustomerID" msprop:Generator_ColumnVarNameInTable="columnCustomerID" msprop:Generator_ColumnPropNameInRow="CustomerID" msprop:Generator_ColumnPropNameInTable="CustomerIDColumn" msprop:Generator_UserColumnName="CustomerID" type="xs:string" minOccurs="0" />
-              <xs:element name="CustomerName" msprop:Generator_ColumnVarNameInTable="columnCustomerName" msprop:Generator_ColumnPropNameInRow="CustomerName" msprop:Generator_ColumnPropNameInTable="CustomerNameColumn" msprop:Generator_UserColumnName="CustomerName" type="xs:string" minOccurs="0" />
-              <xs:element name="Page" msprop:Generator_ColumnVarNameInTable="columnPage" msprop:Generator_ColumnPropNameInRow="Page" msprop:Generator_ColumnPropNameInTable="PageColumn" msprop:Generator_UserColumnName="Page" type="xs:string" minOccurs="0" />
-            </xs:sequence>
-          </xs:complexType>
-        </xs:element>
         <xs:element name="BuyingSummary" msprop:Generator_TableClassName="BuyingSummaryDataTable" msprop:Generator_TableVarName="tableBuyingSummary" msprop:Generator_TablePropName="BuyingSummary" msprop:Generator_RowDeletingName="BuyingSummaryRowDeleting" msprop:Generator_RowChangingName="BuyingSummaryRowChanging" msprop:Generator_RowEvHandlerName="BuyingSummaryRowChangeEventHandler" msprop:Generator_RowDeletedName="BuyingSummaryRowDeleted" msprop:Generator_UserTableName="BuyingSummary" msprop:Generator_RowChangedName="BuyingSummaryRowChanged" msprop:Generator_RowEvArgName="BuyingSummaryRowChangeEvent" msprop:Generator_RowClassName="BuyingSummaryRow">
           <xs:complexType>
             <xs:sequence>
-              <xs:element name="sumPrice" msprop:Generator_ColumnVarNameInTable="columnsumPrice" msprop:Generator_ColumnPropNameInRow="sumPrice" msprop:Generator_ColumnPropNameInTable="sumPriceColumn" msprop:Generator_UserColumnName="sumPrice" type="xs:string" minOccurs="0" />
-              <xs:element name="sumDiscount" msprop:Generator_ColumnVarNameInTable="columnsumDiscount" msprop:Generator_ColumnPropNameInRow="sumDiscount" msprop:Generator_ColumnPropNameInTable="sumDiscountColumn" msprop:Generator_UserColumnName="sumDiscount" type="xs:string" minOccurs="0" />
+              <xs:element name="SumPrice" msprop:Generator_ColumnVarNameInTable="columnSumPrice" msprop:Generator_ColumnPropNameInRow="SumPrice" msprop:Generator_ColumnPropNameInTable="SumPriceColumn" msprop:Generator_UserColumnName="SumPrice" type="xs:string" minOccurs="0" />
+              <xs:element name="SumDiscount" msprop:Generator_ColumnVarNameInTable="columnSumDiscount" msprop:Generator_ColumnPropNameInRow="SumDiscount" msprop:Generator_ColumnPropNameInTable="SumDiscountColumn" msprop:Generator_UserColumnName="SumDiscount" type="xs:string" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>
@@ -50,8 +41,8 @@
         <xs:element name="PayingSummary" msprop:Generator_TableClassName="PayingSummaryDataTable" msprop:Generator_TableVarName="tablePayingSummary" msprop:Generator_TablePropName="PayingSummary" msprop:Generator_RowDeletingName="PayingSummaryRowDeleting" msprop:Generator_RowChangingName="PayingSummaryRowChanging" msprop:Generator_RowEvHandlerName="PayingSummaryRowChangeEventHandler" msprop:Generator_RowDeletedName="PayingSummaryRowDeleted" msprop:Generator_UserTableName="PayingSummary" msprop:Generator_RowChangedName="PayingSummaryRowChanged" msprop:Generator_RowEvArgName="PayingSummaryRowChangeEvent" msprop:Generator_RowClassName="PayingSummaryRow">
           <xs:complexType>
             <xs:sequence>
-              <xs:element name="sumWinPrice" msprop:Generator_ColumnVarNameInTable="columnsumWinPrice" msprop:Generator_ColumnPropNameInRow="sumWinPrice" msprop:Generator_ColumnPropNameInTable="sumWinPriceColumn" msprop:Generator_UserColumnName="sumWinPrice" type="xs:string" minOccurs="0" />
-              <xs:element name="sumPayPrice" msprop:Generator_ColumnVarNameInTable="columnsumPayPrice" msprop:Generator_ColumnPropNameInRow="sumPayPrice" msprop:Generator_ColumnPropNameInTable="sumPayPriceColumn" msprop:Generator_UserColumnName="sumPayPrice" type="xs:string" minOccurs="0" />
+              <xs:element name="SumWinPrice" msprop:Generator_ColumnVarNameInTable="columnSumWinPrice" msprop:Generator_ColumnPropNameInRow="SumWinPrice" msprop:Generator_ColumnPropNameInTable="SumWinPriceColumn" msprop:Generator_UserColumnName="SumWinPrice" type="xs:string" minOccurs="0" />
+              <xs:element name="SumPayPrice" msprop:Generator_ColumnVarNameInTable="columnSumPayPrice" msprop:Generator_ColumnPropNameInRow="SumPayPrice" msprop:Generator_ColumnPropNameInTable="SumPayPriceColumn" msprop:Generator_UserColumnName="SumPayPrice" type="xs:string" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>

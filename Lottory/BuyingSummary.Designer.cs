@@ -94,6 +94,8 @@
             this.BackToMain = new System.Windows.Forms.Button();
             this.ShowForCustomer = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label11 = new System.Windows.Forms.Label();
+            this.PageList = new System.Windows.Forms.ComboBox();
             this.label55 = new System.Windows.Forms.Label();
             this.CustomerList = new System.Windows.Forms.ComboBox();
             this.Price3low = new System.Windows.Forms.Label();
@@ -104,8 +106,6 @@
             this.Price1center = new System.Windows.Forms.Label();
             this.Price1back = new System.Windows.Forms.Label();
             this.Price1low = new System.Windows.Forms.Label();
-            this.PageList = new System.Windows.Forms.ComboBox();
-            this.label11 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -857,6 +857,23 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "แสดงเลขรายคน";
             // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(19, 79);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(31, 16);
+            this.label11.TabIndex = 56;
+            this.label11.Text = "หน้า";
+            // 
+            // PageList
+            // 
+            this.PageList.FormattingEnabled = true;
+            this.PageList.Location = new System.Drawing.Point(19, 98);
+            this.PageList.Name = "PageList";
+            this.PageList.Size = new System.Drawing.Size(163, 24);
+            this.PageList.TabIndex = 55;
+            // 
             // label55
             // 
             this.label55.AutoSize = true;
@@ -874,6 +891,7 @@
             this.CustomerList.Size = new System.Drawing.Size(163, 24);
             this.CustomerList.TabIndex = 53;
             this.CustomerList.SelectedIndexChanged += new System.EventHandler(this.CustomerList_SelectedIndexChanged);
+            this.CustomerList.TextChanged += new System.EventHandler(this.CustomerList_TextChanged);
             // 
             // Price3low
             // 
@@ -970,23 +988,6 @@
             this.Price1low.TabIndex = 16;
             this.Price1low.Text = "xx,xxx,xxx";
             this.Price1low.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // PageList
-            // 
-            this.PageList.FormattingEnabled = true;
-            this.PageList.Location = new System.Drawing.Point(19, 98);
-            this.PageList.Name = "PageList";
-            this.PageList.Size = new System.Drawing.Size(163, 24);
-            this.PageList.TabIndex = 55;
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(19, 79);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(31, 16);
-            this.label11.TabIndex = 56;
-            this.label11.Text = "หน้า";
             // 
             // BuyingSummary
             // 
@@ -1147,7 +1148,6 @@
         private System.Windows.Forms.Button ShowForCustomer;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label label55;
-        private System.Windows.Forms.ComboBox CustomerList;
         private System.Windows.Forms.Label Price3low;
         private System.Windows.Forms.Label Price2up;
         private System.Windows.Forms.Label Price2low;
@@ -1158,5 +1158,6 @@
         private System.Windows.Forms.Label Price1low;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.ComboBox PageList;
+        public System.Windows.Forms.ComboBox CustomerList;
     }
 }

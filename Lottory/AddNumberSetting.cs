@@ -425,6 +425,7 @@ namespace Lottory
             addNumDetail.lbCustomerName.Text = customerName;
             addNumDetail.lbPage.Text = pageNumber;
             addNumDetail.Show();
+            addNumDetail.Activate();
         }
         private void CreateOrder(string customerID,string pageNumber)
         {
