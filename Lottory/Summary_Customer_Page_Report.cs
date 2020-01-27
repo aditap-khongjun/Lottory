@@ -12,15 +12,15 @@ using System.Data.SqlClient;
 
 namespace Lottory
 {
-    public partial class Summary_Customer_Page_Report_temp : Form
+    public partial class Summary_Customer_Page_Report : Form
     {
-        private static Summary_Customer_Page_Report_temp _instance;
-        public static Summary_Customer_Page_Report_temp Instance
+        private static Summary_Customer_Page_Report _instance;
+        public static Summary_Customer_Page_Report Instance
         {
             get
             {
                 if (_instance == null)
-                    _instance = new Summary_Customer_Page_Report_temp();
+                    _instance = new Summary_Customer_Page_Report();
                 return _instance;
             }
         }
@@ -38,7 +38,7 @@ namespace Lottory
         private DataTable PayingTable;
         private DataTable PayingSummary;
 
-        public Summary_Customer_Page_Report_temp()
+        public Summary_Customer_Page_Report()
         {
             InitializeComponent();
             // DataTable 
@@ -87,6 +87,8 @@ namespace Lottory
         }
         private void Summary_Customer_Page_Report_Load(object sender, EventArgs e)
         {
+            // TODO: This line of code loads data into the 'MyLottoDBDataSet.Customer_Report_Dataset' table. You can move, or remove it, as needed.
+            //this.Customer_Report_DatasetTableAdapter.Fill(this.MyLottoDBDataSet.Customer_Report_Dataset);
             // TODO: This line of code loads data into the 'MyLottoDBDataSet.Customer_Report_Dataset' table. You can move, or remove it, as needed.
             //this.Customer_Report_DatasetTableAdapter.Fill(this.MyLottoDBDataSet.Customer_Report_Dataset);
             // get Customer Name
@@ -146,18 +148,24 @@ namespace Lottory
             reportParamList.Add(CustomerInfo1);
             reportParamList.Add(CustomerInfo2);
             */
-            
+
             //this.BuyingTableBindingSource.DataSource = CustomerBuyingInfo;
-           // this.BuyingSummaryBindingSource.DataSource = CustomerBuyingSummary;
+            // this.BuyingSummaryBindingSource.DataSource = CustomerBuyingSummary;
             //this.PayingTableBindingSource.DataSource = CustomerPayingInfo;
             //this.PayingSummaryBindingSource.DataSource = CustomerPayingSummary;
-            
+
             //ReportDataSource rdsBuyingTable1 = new ReportDataSource("BuyingTable", BuyingTable1);
             //ReportDataSource rdsBuyingTable2 = new ReportDataSource("BuyingTable", BuyingTable2);
             //this.reportViewer1.LocalReport.DataSources.Add(rdsBuyingTable1);
             //this.reportViewer1.RefreshReport();
-           // this.reportViewer1.RefreshReport();
+            // this.reportViewer1.RefreshReport();
 
+            //this.reportViewer1.RefreshReport();
+            //this.reportViewer1.RefreshReport();
+            //this.reportViewer1.RefreshReport();
+            //this.reportViewer1.RefreshReport();
+            //this.reportViewer1.RefreshReport();
+            //this.reportViewer1.RefreshReport();
         }
         private DataTable getBuyingInfo(string CustomerID, string PageID)
         {

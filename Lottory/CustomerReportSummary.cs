@@ -60,7 +60,7 @@ namespace Lottory
         private void ReportCustomerPage_Click(object sender, EventArgs e)
         {
             // Document
-            Summary_Customer_Page_Report_temp customerPageReport = Summary_Customer_Page_Report_temp.Instance;
+            Summary_Customer_Page_Report customerPageReport = Summary_Customer_Page_Report.Instance;
             customerPageReport.MdiParent = this.MdiParent;
             customerPageReport.CustomerID = CustomerIDList.Text;
             customerPageReport.PageID = PageIDList.Text;

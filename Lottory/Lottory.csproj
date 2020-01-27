@@ -132,6 +132,7 @@
     <Compile Include="Choose_customer_dialog.Designer.cs">
       <DependentUpon>Choose_customer_dialog.cs</DependentUpon>
     </Compile>
+    <Compile Include="cusotmerInfo_page_report.cs" />
     <Compile Include="Customer_Page_Report.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -160,6 +161,12 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>page_Report.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="report_page_customer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="report_page_customer.Designer.cs">
+      <DependentUpon>report_page_customer.cs</DependentUpon>
     </Compile>
     <Compile Include="SummaryInfo.cs" />
     <Compile Include="CustomerInformation.cs">
@@ -227,6 +234,12 @@
     </Compile>
     <Compile Include="SqlServerTypes\Loader.cs" />
     <Compile Include="Summary_CustomerInfo.cs" />
+    <Compile Include="Summary_Customer_Page_Report.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Summary_Customer_Page_Report.Designer.cs">
+      <DependentUpon>Summary_Customer_Page_Report.cs</DependentUpon>
+    </Compile>
     <Compile Include="Summary_Customer_pay_Report.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -315,6 +328,13 @@
     <EmbeddedResource Include="MainMenu.resx">
       <DependentUpon>MainMenu.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="report_page_customer.rdlc" />
+    <EmbeddedResource Include="report_page_customer.resx">
+      <DependentUpon>report_page_customer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Summary_Customer_Page_Report.resx">
+      <DependentUpon>Summary_Customer_Page_Report.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Summary_Customer_pay_Report.rdlc" />
     <EmbeddedResource Include="Summary_Customer_pay_Report.resx">
       <DependentUpon>Summary_Customer_pay_Report.cs</DependentUpon>
@@ -382,7 +402,12 @@
       <DependentUpon>page_Report.xsd</DependentUpon>
     </None>
     <None Include="Properties\DataSources\BaseType.datasource" />
+    <None Include="Properties\DataSources\cusotmerInfo_page_report.datasource" />
+    <None Include="Properties\DataSources\Customer_Page_Report.datasource" />
     <None Include="Properties\DataSources\Database.datasource" />
+    <None Include="Properties\DataSources\page_report.datasource" />
+    <None Include="Properties\DataSources\page_Report1.datasource" />
+    <None Include="Properties\DataSources\page_report2.datasource" />
     <None Include="Properties\DataSources\SummaryInfo.datasource" />
     <None Include="Properties\DataSources\SummaryInfo.netPrice.datasource" />
     <None Include="Properties\DataSources\SummaryInfo.Price.datasource" />

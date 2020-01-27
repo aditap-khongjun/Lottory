@@ -1,6 +1,6 @@
 ﻿namespace Lottory
 {
-    partial class Summary_Customer_Page_Report_temp
+    partial class report_page_customer
     {
         /// <summary>
         /// Required designer variable.
@@ -28,21 +28,32 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.reportViewer1 = new Microsoft.Reporting.WinForms.ReportViewer();
             this.SuspendLayout();
             // 
-            // Summary_Customer_Page_Report
+            // reportViewer1
+            // 
+            this.reportViewer1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.reportViewer1.Location = new System.Drawing.Point(0, 0);
+            this.reportViewer1.Name = "reportViewer1";
+            this.reportViewer1.ServerReport.BearerToken = null;
+            this.reportViewer1.Size = new System.Drawing.Size(800, 450);
+            this.reportViewer1.TabIndex = 0;
+            // 
+            // report_page_customer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Name = "Summary_Customer_Page_Report";
-            this.Text = "Summary_Customer_Page_Report";
-            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Summary_Customer_Page_Report_FormClosed);
-            this.Load += new System.EventHandler(this.Summary_Customer_Page_Report_Load);
+            this.Controls.Add(this.reportViewer1);
+            this.Name = "report_page_customer";
+            this.Text = "report_page_customer";
+            this.Load += new System.EventHandler(this.report_page_customer_Load);
             this.ResumeLayout(false);
 
         }
 
         #endregion
+        private Microsoft.Reporting.WinForms.ReportViewer reportViewer1;
     }
 }

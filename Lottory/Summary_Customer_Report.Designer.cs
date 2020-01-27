@@ -31,50 +31,77 @@
             this.components = new System.ComponentModel.Container();
             Microsoft.Reporting.WinForms.ReportDataSource reportDataSource1 = new Microsoft.Reporting.WinForms.ReportDataSource();
             Microsoft.Reporting.WinForms.ReportDataSource reportDataSource2 = new Microsoft.Reporting.WinForms.ReportDataSource();
+            Microsoft.Reporting.WinForms.ReportDataSource reportDataSource3 = new Microsoft.Reporting.WinForms.ReportDataSource();
+            Microsoft.Reporting.WinForms.ReportDataSource reportDataSource4 = new Microsoft.Reporting.WinForms.ReportDataSource();
+            Microsoft.Reporting.WinForms.ReportDataSource reportDataSource5 = new Microsoft.Reporting.WinForms.ReportDataSource();
             this.reportViewer1 = new Microsoft.Reporting.WinForms.ReportViewer();
-            this.MyLottoDBDataSet = new Lottory.MyLottoDBDataSet();
-            this.BSCustomerBuying = new System.Windows.Forms.BindingSource(this.components);
-            this.Customer_Report_DatasetTableAdapter = new Lottory.MyLottoDBDataSetTableAdapters.Customer_Report_DatasetTableAdapter();
-            this.BSSummary = new System.Windows.Forms.BindingSource(this.components);
-            ((System.ComponentModel.ISupportInitialize)(this.MyLottoDBDataSet)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.BSCustomerBuying)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.BSSummary)).BeginInit();
+            this.cusotmerInfo_page_reportBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.page_Report = new Lottory.page_Report();
+            this.BuyingTableBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.BuyingSummaryBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.PayingTableBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.PayingSummaryBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            ((System.ComponentModel.ISupportInitialize)(this.cusotmerInfo_page_reportBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.page_Report)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.BuyingTableBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.BuyingSummaryBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PayingTableBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PayingSummaryBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // reportViewer1
             // 
             this.reportViewer1.Dock = System.Windows.Forms.DockStyle.Fill;
-            reportDataSource1.Name = "SumDataSet";
-            reportDataSource1.Value = this.BSSummary;
-            reportDataSource2.Name = "CustomerTable";
-            reportDataSource2.Value = this.BSCustomerBuying;
+            reportDataSource1.Name = "CustomerInfo";
+            reportDataSource1.Value = this.cusotmerInfo_page_reportBindingSource;
+            reportDataSource2.Name = "buyinginfo";
+            reportDataSource2.Value = this.BuyingTableBindingSource;
+            reportDataSource3.Name = "buyingsum";
+            reportDataSource3.Value = this.BuyingSummaryBindingSource;
+            reportDataSource4.Name = "payinginfo";
+            reportDataSource4.Value = this.PayingTableBindingSource;
+            reportDataSource5.Name = "payingsum";
+            reportDataSource5.Value = this.PayingSummaryBindingSource;
             this.reportViewer1.LocalReport.DataSources.Add(reportDataSource1);
             this.reportViewer1.LocalReport.DataSources.Add(reportDataSource2);
-            this.reportViewer1.LocalReport.ReportEmbeddedResource = "Lottory.Summary_Customer_Report.rdlc";
+            this.reportViewer1.LocalReport.DataSources.Add(reportDataSource3);
+            this.reportViewer1.LocalReport.DataSources.Add(reportDataSource4);
+            this.reportViewer1.LocalReport.DataSources.Add(reportDataSource5);
+            this.reportViewer1.LocalReport.ReportEmbeddedResource = "Lottory.report_page_customer.rdlc";
             this.reportViewer1.Location = new System.Drawing.Point(0, 0);
-            this.reportViewer1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.reportViewer1.Name = "reportViewer1";
             this.reportViewer1.ServerReport.BearerToken = null;
             this.reportViewer1.Size = new System.Drawing.Size(641, 430);
             this.reportViewer1.TabIndex = 0;
             // 
-            // MyLottoDBDataSet
+            // cusotmerInfo_page_reportBindingSource
             // 
-            this.MyLottoDBDataSet.DataSetName = "MyLottoDBDataSet";
-            this.MyLottoDBDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            this.cusotmerInfo_page_reportBindingSource.DataSource = typeof(Lottory.cusotmerInfo_page_report);
             // 
-            // BSCustomerBuying
+            // page_Report
             // 
-            this.BSCustomerBuying.DataMember = "Customer_Report_Dataset";
-            this.BSCustomerBuying.DataSource = this.MyLottoDBDataSet;
+            this.page_Report.DataSetName = "page_Report";
+            this.page_Report.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
-            // Customer_Report_DatasetTableAdapter
+            // BuyingTableBindingSource
             // 
-            this.Customer_Report_DatasetTableAdapter.ClearBeforeFill = true;
+            this.BuyingTableBindingSource.DataMember = "BuyingTable";
+            this.BuyingTableBindingSource.DataSource = this.page_Report;
             // 
-            // BSSummary
+            // BuyingSummaryBindingSource
             // 
-            this.BSSummary.DataSource = typeof(Lottory.Summary_CustomerInfo);
+            this.BuyingSummaryBindingSource.DataMember = "BuyingSummary";
+            this.BuyingSummaryBindingSource.DataSource = this.page_Report;
+            // 
+            // PayingTableBindingSource
+            // 
+            this.PayingTableBindingSource.DataMember = "PayingTable";
+            this.PayingTableBindingSource.DataSource = this.page_Report;
+            // 
+            // PayingSummaryBindingSource
+            // 
+            this.PayingSummaryBindingSource.DataMember = "PayingSummary";
+            this.PayingSummaryBindingSource.DataSource = this.page_Report;
             // 
             // Summary_Customer_Report
             // 
@@ -82,14 +109,17 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(641, 430);
             this.Controls.Add(this.reportViewer1);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Summary_Customer_Report";
             this.Text = "Summary_Customer_Report";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Summary_Customer_Report_FormClosed);
             this.Load += new System.EventHandler(this.Summary_Customer_Report_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.MyLottoDBDataSet)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.BSCustomerBuying)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.BSSummary)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cusotmerInfo_page_reportBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.page_Report)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.BuyingTableBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.BuyingSummaryBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PayingTableBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PayingSummaryBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -97,9 +127,11 @@
         #endregion
 
         private Microsoft.Reporting.WinForms.ReportViewer reportViewer1;
-        private System.Windows.Forms.BindingSource BSSummary;
-        private System.Windows.Forms.BindingSource BSCustomerBuying;
-        private MyLottoDBDataSet MyLottoDBDataSet;
-        private MyLottoDBDataSetTableAdapters.Customer_Report_DatasetTableAdapter Customer_Report_DatasetTableAdapter;
+        private System.Windows.Forms.BindingSource cusotmerInfo_page_reportBindingSource;
+        private System.Windows.Forms.BindingSource BuyingTableBindingSource;
+        private page_Report page_Report;
+        private System.Windows.Forms.BindingSource BuyingSummaryBindingSource;
+        private System.Windows.Forms.BindingSource PayingTableBindingSource;
+        private System.Windows.Forms.BindingSource PayingSummaryBindingSource;
     }
 }
