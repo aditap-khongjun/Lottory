@@ -294,7 +294,7 @@
             this.groupBox1.Controls.Add(this.groupBox4);
             this.groupBox1.Controls.Add(this.groupBox2);
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.groupBox1.Location = new System.Drawing.Point(11, 317);
+            this.groupBox1.Location = new System.Drawing.Point(9, 283);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(2);
@@ -456,7 +456,7 @@
             this.groupBox7.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox7.Name = "groupBox7";
             this.groupBox7.Padding = new System.Windows.Forms.Padding(2);
-            this.groupBox7.Size = new System.Drawing.Size(428, 220);
+            this.groupBox7.Size = new System.Drawing.Size(428, 186);
             this.groupBox7.TabIndex = 3;
             this.groupBox7.TabStop = false;
             this.groupBox7.Text = "รายการเลขลูกค้า";
@@ -488,7 +488,7 @@
             dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             this.TbCustomerBuying.RowsDefaultCellStyle = dataGridViewCellStyle9;
             this.TbCustomerBuying.RowTemplate.Height = 28;
-            this.TbCustomerBuying.Size = new System.Drawing.Size(424, 201);
+            this.TbCustomerBuying.Size = new System.Drawing.Size(424, 167);
             this.TbCustomerBuying.TabIndex = 5;
             // 
             // groupBox8
@@ -508,11 +508,11 @@
             // 
             this.groupBox9.Controls.Add(this.TbAllBuying);
             this.groupBox9.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.groupBox9.Location = new System.Drawing.Point(11, 478);
+            this.groupBox9.Location = new System.Drawing.Point(11, 444);
             this.groupBox9.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox9.Name = "groupBox9";
             this.groupBox9.Padding = new System.Windows.Forms.Padding(2);
-            this.groupBox9.Size = new System.Drawing.Size(428, 248);
+            this.groupBox9.Size = new System.Drawing.Size(428, 197);
             this.groupBox9.TabIndex = 4;
             this.groupBox9.TabStop = false;
             this.groupBox9.Text = "รายการเลขรวม";
@@ -534,18 +534,18 @@
             dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             this.TbAllBuying.RowsDefaultCellStyle = dataGridViewCellStyle10;
             this.TbAllBuying.RowTemplate.Height = 28;
-            this.TbAllBuying.Size = new System.Drawing.Size(424, 229);
+            this.TbAllBuying.Size = new System.Drawing.Size(424, 178);
             this.TbAllBuying.TabIndex = 0;
             // 
             // groupBox10
             // 
             this.groupBox10.Controls.Add(this.TbSummary);
             this.groupBox10.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.groupBox10.Location = new System.Drawing.Point(8, 730);
+            this.groupBox10.Location = new System.Drawing.Point(8, 645);
             this.groupBox10.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox10.Name = "groupBox10";
             this.groupBox10.Padding = new System.Windows.Forms.Padding(2);
-            this.groupBox10.Size = new System.Drawing.Size(428, 229);
+            this.groupBox10.Size = new System.Drawing.Size(428, 314);
             this.groupBox10.TabIndex = 5;
             this.groupBox10.TabStop = false;
             this.groupBox10.Text = "รายการสั่งซื้อทั้งหมด";
@@ -574,7 +574,7 @@
             this.TbSummary.RowHeadersVisible = false;
             this.TbSummary.RowHeadersWidth = 62;
             this.TbSummary.RowTemplate.Height = 28;
-            this.TbSummary.Size = new System.Drawing.Size(424, 210);
+            this.TbSummary.Size = new System.Drawing.Size(424, 295);
             this.TbSummary.TabIndex = 0;
             // 
             // groupBox11

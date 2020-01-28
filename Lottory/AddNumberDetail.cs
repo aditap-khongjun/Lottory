@@ -4231,6 +4231,9 @@ namespace Lottory
             string low3 = "3 ล่าง";
             string up1 = "1 บน";
             string low1 = "1 ล่าง";
+            string upfront1 = "1 หน้า";
+            string upcenter1 = "1 กลาง";
+            string upback1 = "1 หลัง";
 
             // Create Header Column 
             summaryTb.Columns.Add(type);
@@ -4245,6 +4248,9 @@ namespace Lottory
             summaryTb.Rows.Add(low3, 0, 0, 0);
             summaryTb.Rows.Add(up1, 0, 0, 0);
             summaryTb.Rows.Add(low1, 0, 0, 0);
+            summaryTb.Rows.Add(upfront1, 0, 0, 0);
+            summaryTb.Rows.Add(upcenter1, 0, 0, 0);
+            summaryTb.Rows.Add(upback1, 0, 0, 0);
 
             // get Sum Price from DB
             summaryTb.Rows[0][sumPrice] = getSumPriceFromDB(BaseTypeID.up3).ToString("N0");
@@ -4253,6 +4259,9 @@ namespace Lottory
             summaryTb.Rows[3][sumPrice] = getSumPriceFromDB(BaseTypeID.low3).ToString("N0");
             summaryTb.Rows[4][sumPrice] = getSumPriceFromDB(BaseTypeID.up1).ToString("N0");
             summaryTb.Rows[5][sumPrice] = getSumPriceFromDB(BaseTypeID.low1).ToString("N0");
+            summaryTb.Rows[6][sumPrice] = getSumPriceFromDB(BaseTypeID.upfront1).ToString("N0");
+            summaryTb.Rows[7][sumPrice] = getSumPriceFromDB(BaseTypeID.upcenter1).ToString("N0");
+            summaryTb.Rows[8][sumPrice] = getSumPriceFromDB(BaseTypeID.upback1).ToString("N0");
 
             // get Discount Price from DB
             summaryTb.Rows[0][discount] = getDiscountPriceFromDB(BaseTypeID.up3).ToString("N0");
@@ -4261,6 +4270,9 @@ namespace Lottory
             summaryTb.Rows[3][discount] = getDiscountPriceFromDB(BaseTypeID.low3).ToString("N0");
             summaryTb.Rows[4][discount] = getDiscountPriceFromDB(BaseTypeID.up1).ToString("N0");
             summaryTb.Rows[5][discount] = getDiscountPriceFromDB(BaseTypeID.low1).ToString("N0");
+            summaryTb.Rows[6][discount] = getDiscountPriceFromDB(BaseTypeID.upfront1).ToString("N0");
+            summaryTb.Rows[7][discount] = getDiscountPriceFromDB(BaseTypeID.upcenter1).ToString("N0");
+            summaryTb.Rows[8][discount] = getDiscountPriceFromDB(BaseTypeID.upback1).ToString("N0");
 
             // get net price
             summaryTb.Rows[0][net] = Convert.ToDouble(getSumPriceFromDB(BaseTypeID.up3) - getDiscountPriceFromDB(BaseTypeID.up3)).ToString("N0");
@@ -4269,6 +4281,9 @@ namespace Lottory
             summaryTb.Rows[3][net] = Convert.ToDouble(getSumPriceFromDB(BaseTypeID.low3) - getDiscountPriceFromDB(BaseTypeID.low3)).ToString("N0");
             summaryTb.Rows[4][net] = Convert.ToDouble(getSumPriceFromDB(BaseTypeID.up1) - getDiscountPriceFromDB(BaseTypeID.up1)).ToString("N0");
             summaryTb.Rows[5][net] = Convert.ToDouble(getSumPriceFromDB(BaseTypeID.low1) - getDiscountPriceFromDB(BaseTypeID.low1)).ToString("N0");
+            summaryTb.Rows[6][net] = Convert.ToDouble(getSumPriceFromDB(BaseTypeID.upfront1) - getDiscountPriceFromDB(BaseTypeID.upfront1)).ToString("N0");
+            summaryTb.Rows[7][net] = Convert.ToDouble(getSumPriceFromDB(BaseTypeID.upcenter1) - getDiscountPriceFromDB(BaseTypeID.upcenter1)).ToString("N0");
+            summaryTb.Rows[8][net] = Convert.ToDouble(getSumPriceFromDB(BaseTypeID.upback1) - getDiscountPriceFromDB(BaseTypeID.upback1)).ToString("N0");
 
             return summaryTb;
         }
@@ -4282,7 +4297,7 @@ namespace Lottory
             {
                 connection.Open(); // Open Database
             }
-            string sqlgetSumPrice = string.Empty;
+            string sqlgetSumPrice;
             switch(TypeID)
             {
                 case BaseTypeID.up3:
@@ -4294,6 +4309,7 @@ namespace Lottory
                 case BaseTypeID.low2:
                     sqlgetSumPrice = "SELECT SUM(OwnPrice - OutPrice) AS sumPrice FROM Number_2low";
                     break;
+                /*
                 case BaseTypeID.low3:
                     sqlgetSumPrice = string.Format(@"SELECT ISNULL(SUM(OwnPrice),0) AS sumPrice 
                                                      FROM OrderListExpand
@@ -4309,8 +4325,12 @@ namespace Lottory
                                                      FROM OrderListExpand
                                                      WHERE TypeID = {0}", BaseTypeID.low1);
                     break;
+                    */
                 default:
                     // error
+                    sqlgetSumPrice = string.Format(@"SELECT ISNULL(SUM(OwnPrice),0) AS sumPrice 
+                                                     FROM OrderListExpand
+                                                     WHERE TypeID = {0}", TypeID.ToString());
                     break;
             }
             SqlCommand sqlgetSumPriceCom = new SqlCommand(sqlgetSumPrice, connection);
@@ -4332,7 +4352,10 @@ namespace Lottory
             {
                 connection.Open(); // Open Database
             }
-            string sqlgetDiscPrice = string.Empty;
+            string sqlgetDiscPrice = string.Format(@"SELECT ISNULL(SUM(DiscPrice),0) AS sumPrice 
+                                                     FROM OrderListExpand
+                                                     WHERE TypeID = {0}", TypeID.ToString());
+            /*
             switch (TypeID)
             {
                 case BaseTypeID.up3:
@@ -4369,6 +4392,7 @@ namespace Lottory
                     // error
                     break;
             }
+            */
             SqlCommand sqlgetDiscPriceCom = new SqlCommand(sqlgetDiscPrice, connection);
             SqlDataReader discPriceInfo = sqlgetDiscPriceCom.ExecuteReader();
             if (discPriceInfo.Read())
