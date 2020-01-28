@@ -48,7 +48,6 @@ namespace Lottory
             this.BSCustomerBuying.DataSource = customerInfo;
             this.BSSummary.DataSource = summaryCustomer;
             this.reportViewer1.RefreshReport();
-            this.reportViewer1.RefreshReport();
         }
         private Summary_CustomerInfo getSummary(DataTable tableData)
         {
