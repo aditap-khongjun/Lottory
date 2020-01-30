@@ -157,10 +157,26 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>MyLottoDBDataSet3.xsd</DependentUpon>
     </Compile>
+    <Compile Include="NumberSearch.cs" />
+    <Compile Include="page_Report.cs">
+      <DependentUpon>page_Report.xsd</DependentUpon>
+    </Compile>
     <Compile Include="page_Report.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>page_Report.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Report_AllBuying.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Report_AllBuying.Designer.cs">
+      <DependentUpon>Report_AllBuying.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Report_PageBuying.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Report_PageBuying.Designer.cs">
+      <DependentUpon>Report_PageBuying.cs</DependentUpon>
     </Compile>
     <Compile Include="report_page_customer.cs">
       <SubType>Form</SubType>
@@ -328,6 +344,14 @@
     <EmbeddedResource Include="MainMenu.resx">
       <DependentUpon>MainMenu.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Report_AllBuying.rdlc" />
+    <EmbeddedResource Include="Report_AllBuying.resx">
+      <DependentUpon>Report_AllBuying.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report_pageBuying.rdlc" />
+    <EmbeddedResource Include="Report_PageBuying.resx">
+      <DependentUpon>Report_PageBuying.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="report_page_customer.rdlc" />
     <EmbeddedResource Include="report_page_customer.resx">
       <DependentUpon>report_page_customer.cs</DependentUpon>
@@ -405,6 +429,7 @@
     <None Include="Properties\DataSources\cusotmerInfo_page_report.datasource" />
     <None Include="Properties\DataSources\Customer_Page_Report.datasource" />
     <None Include="Properties\DataSources\Database.datasource" />
+    <None Include="Properties\DataSources\NumberSearch.datasource" />
     <None Include="Properties\DataSources\page_report.datasource" />
     <None Include="Properties\DataSources\page_Report1.datasource" />
     <None Include="Properties\DataSources\page_report2.datasource" />

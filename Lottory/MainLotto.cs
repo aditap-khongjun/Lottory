@@ -97,7 +97,22 @@ namespace Lottory
 
             // MenuWinNumber
             MenuWinNumber_Define.Click += new EventHandler(MenuWinNumber_Define_Click);
+
+            // Report
+            MenuReport_AllBuying.Click += new EventHandler(MenuReport_AllBuying_Click);
+            MenuReport_PageBuying.Click += new EventHandler(MenuReport_PageBuying_Click);
         }
+
+        private void MenuReport_PageBuying_Click(object sender, EventArgs e)
+        {
+            ShowForm(Report_PageBuying.Instance);
+        }
+
+        private void MenuReport_AllBuying_Click(object sender, EventArgs e)
+        {
+            ShowForm(Report_AllBuying.Instance);
+        }
+
         // My Method
         private void Load_Normal_Menu()
         {
