@@ -43,6 +43,9 @@ namespace Lottory
 
         private void AddNumberSetting_Load(object sender, EventArgs e)
         {
+            // focus
+            customerID.Focus();
+
             // Read Money Limit Data from Database
             ReadMoneyLimitFromDB();
             // Read CustomerID from Database

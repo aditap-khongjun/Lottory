@@ -1063,7 +1063,7 @@ namespace Lottory
                     {
                         string _type = dgvCusBuyList.Rows[i].Cells[1].Value.ToString();
                         int _numlen = NumLen;
-                        tbType.Text = returnType(_type, _numlen);
+                        //tbType.Text = returnType(_type, _numlen);
 
                         // get Money
                         string _money1 = dgvCusBuyList.Rows[i].Cells[2].Value.ToString();
@@ -1079,8 +1079,51 @@ namespace Lottory
                             _money2 = (0).ToString();
                         }
 
-                        // enable Money and fill money
-                        setEnableMoney(_type, _numlen, _money1, _money2);
+                        if(row > 1 && string.Equals(_type,"ล่าง")) 
+                        {
+                            string Number1 = dgvCusBuyList.Rows[i - 1].Cells[0].Value.ToString();
+                            string Number2 = dgvCusBuyList.Rows[i].Cells[0].Value.ToString();
+
+                            
+                            string _type1 = dgvCusBuyList.Rows[i - 1].Cells[1].Value.ToString();
+                            string _type2 = _type;
+
+                            if(string.Equals(Number1,Number2))
+                            {
+                                switch(_type1)
+                                {
+                                    case "บน":
+                                        _type = "บน/ล่าง";
+                                        _money1 = dgvCusBuyList.Rows[i - 1].Cells[2].Value.ToString();
+                                        _money2 = dgvCusBuyList.Rows[i].Cells[2].Value.ToString();
+
+                                        tbType.Text = returnType(_type, _numlen);
+                                        // enable Money and fill money
+                                        setEnableMoney(_type, _numlen, _money1, _money2, string.Empty);
+                                        break;
+                                    case "บน/โต๊ด":
+                                        _type = "บน/โต๊ด/ล่าง";
+                                        _money1 = dgvCusBuyList.Rows[i - 1].Cells[2].Value.ToString();
+                                        if (dgvCusBuyList.Rows[i - 1].Cells[3].Value != null)
+                                        {
+                                            _money2 = dgvCusBuyList.Rows[i - 1].Cells[3].Value.ToString();
+                                        }
+                                        string _money3 = dgvCusBuyList.Rows[i].Cells[2].Value.ToString();
+
+                                        tbType.Text = returnType(_type, _numlen);
+                                        // enable Money and fill money
+                                        setEnableMoney(_type, _numlen, _money1, _money2, _money3);
+                                        break;
+                                }
+                            }
+                        }
+                        else
+                        {
+                            tbType.Text = returnType(_type, _numlen);
+                            // enable Money and fill money
+                            setEnableMoney(_type, _numlen, _money1, _money2, string.Empty);
+                        }
+                        
                         found = true;
                         break;
                     }
@@ -1091,7 +1134,7 @@ namespace Lottory
                     string _type = defaultType();
                     int _numlen = tbNumber.Text.Length;
                     tbType.Text = returnType(_type, _numlen);
-                    setEnableMoney(_type,_numlen,string.Empty,string.Empty);
+                    setEnableMoney(_type,_numlen,string.Empty,string.Empty,string.Empty);
                 }
             }
             else
@@ -1100,7 +1143,7 @@ namespace Lottory
                 string _type = defaultType();
                 int _numlen = tbNumber.Text.Length;
                 tbType.Text = returnType(_type, _numlen);
-                setEnableMoney(_type, _numlen, string.Empty, string.Empty);
+                setEnableMoney(_type, _numlen, string.Empty, string.Empty,string.Empty);
             } 
         }
         private string defaultType()
@@ -1126,17 +1169,33 @@ namespace Lottory
             }
             return outTypeDefault;
         }
-        private void setEnableMoney(string typeName, int Numlen, string money1, string money2)
+        private void setEnableMoney(string typeName, int Numlen, string money1, string money2, string money3)
         {
             switch(Numlen)
             {
                 case 1:
-                    // Enable Money1 Only
-                    enableMoney1Only(money1);
+                    switch(typeName)
+                    {
+                        case "บน/ล่าง":
+                            enableMoney13(money1, money2);
+                            break;
+                        default:
+                            // Enable Money1 Only
+                            enableMoney1Only(money1);
+                            break;
+                    }
                     break;
                 case 2:
-                    // Enable Money1 Only
-                    enableMoney1Only(money1);
+                    switch(typeName)
+                    {
+                        case "บน/ล่าง":
+                            enableMoney13(money1, money2);
+                            break;
+                        default:
+                            // Enable Money1 Only
+                            enableMoney1Only(money1);
+                            break;
+                    }
                     break;
                 case 3:
                     switch(typeName)
@@ -1151,9 +1210,12 @@ namespace Lottory
                         case "บน":
                         case "ตรงชุด":
                         case "ล่างชุด":
+                            // Enable Money 1,2 Only
+                            enableMoney12(money1, money2);
+                            break;
                         case "บน/โต๊ด/ล่าง":
                             // Enable Money 1,2 Only
-                            enableMoney12(money1,money2);
+                            enableMoney123(money1, money2, money3);
                             break;
                         case "ชุด":
                             // Enable Money2 Only
@@ -1203,6 +1265,18 @@ namespace Lottory
             tbLow.Clear();
             tbLow.Enabled = false;
         }
+        private void enableMoney13(string money1, string money3)
+        {
+            //Enable Money1 
+            tbMoney1.Enabled = true;
+            tbMoney1.Text = money1;
+            //Enable Money2
+            tbMoney2.Clear();
+            tbMoney2.Enabled = false;
+            //Disable Money3
+            tbLow.Enabled = true;
+            tbLow.Text = money3;
+        }
         private void enableMoney13()
         {
             //Money1 Enable
@@ -1224,6 +1298,18 @@ namespace Lottory
             //Disable Money3
             tbLow.Clear();
             tbLow.Enabled = false;
+        }
+        private void enableMoney123(string money1, string money2, string money3)
+        {
+            //Enable Money1 
+            tbMoney1.Enabled = true;
+            tbMoney1.Text = money1;
+            //Enable Money2
+            tbMoney2.Enabled = true;
+            tbMoney2.Text = money2;
+            //Disable Money3
+            tbLow.Enabled = true;
+            tbLow.Text = money3;
         }
         private void enableMoney12()
         {
@@ -3940,20 +4026,20 @@ namespace Lottory
             // Delete Key Down
             if(e.KeyCode == Keys.Delete)
             {
-                DialogResult deleteRes = MessageBox.Show("ต้องการลบข้อมูลหรือไม่", "ยืนยันการลบข้อมูล", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                switch(deleteRes)
-                {
-                    case DialogResult.Yes:
+                //DialogResult deleteRes = MessageBox.Show("ต้องการลบข้อมูลหรือไม่", "ยืนยันการลบข้อมูล", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                //switch(deleteRes)
+                //{
+                   // case DialogResult.Yes:
                         // Delete Seleted Rows
                         foreach (DataGridViewRow item in this.dgvCusBuyList.SelectedRows)
                         {
                             deleteBuyingListItem(item);
                         }
-                        break;
-                    case DialogResult.No:
+                       // break;
+                    //case DialogResult.No:
                         // Do Nothing
-                        break;
-                }
+                    //    break;
+                //}
 
             }
 
@@ -4595,12 +4681,84 @@ namespace Lottory
             {
                 var cell = dgvNumberDetail.Rows[e.RowIndex].Cells[e.ColumnIndex];
                 string customerID = cell.Value.ToString();
-                BuyingSummary buyingSummary = BuyingSummary.Instance;
-                buyingSummary.MdiParent = this.MdiParent;
-                buyingSummary.CustomerList.Text = customerID;
-                buyingSummary.Show();
-                buyingSummary.Activate();
+
+                string[] strInfo =  DetailNumber.Text.Split(' ');
+                string Number = strInfo[1];
+                string uplowstr = strInfo[2];
+                int typeID = 0;
+                switch(Number.Length)
+                {
+                    case 1:
+                        switch(uplowstr)
+                        {
+                            case "บน":
+                                typeID = BaseTypeID.up1;
+                                break;
+                            case "ล่าง":
+                                typeID = BaseTypeID.low1;
+                                break;
+                        }
+                        break;
+                    case 2:
+                        switch (uplowstr)
+                        {
+                            case "บน":
+                                typeID = BaseTypeID.up2;
+                                break;
+                            case "ล่าง":
+                                typeID = BaseTypeID.low2;
+                                break;
+                        }
+                        break;
+                    case 3:
+                        switch (uplowstr)
+                        {
+                            case "บน":
+                                typeID = BaseTypeID.up3;
+                                break;
+                            case "ล่าง":
+                                typeID = BaseTypeID.low3;
+                                break;
+                        }
+                        break;
+                }
+                DetailPage.Text = string.Format("รหัส {0} (หน้า)", customerID);
+                dgvPageDetail.DataSource = getPageDetail(customerID, Number, typeID);
+                //BuyingSummary buyingSummary = BuyingSummary.Instance;
+                //buyingSummary.MdiParent = this.MdiParent;
+                //buyingSummary.CustomerList.Text = customerID;
+                //buyingSummary.Show();
+                //buyingSummary.Activate();
+
             }
+        }
+        private DataTable getPageDetail(string CustomerID, string Number, int TypeID)
+        {
+            DataTable outPageDetail = new DataTable();
+            outPageDetail.Columns.Add("หน้า");
+            outPageDetail.Columns.Add("เงิน");
+
+            SqlConnection connection = new SqlConnection(Database.CnnVal("LottoryDB"));
+
+            // get orderlistID
+            if (connection.State == ConnectionState.Closed)
+            {
+                connection.Open(); // Open Database
+            }
+            string sqlgetPagePrice = string.Format(@"SELECT c.Page, SUM(oe.Price) AS Price
+                                                         FROM (OrderListExpand oe INNER JOIN OrderList o ON oe.OrderListID = o.OrderListID)
+                                                         INNER JOIN CustomerOrder c ON c.OrderID = o.OrderID
+                                                         WHERE c.CustomerID = '{0}' AND oe.Number = '{1}' AND oe.TypeID = {2}
+                                                         GROUP BY c.Page
+                                                         ORDER BY Price DESC", CustomerID, Number, TypeID.ToString());
+            SqlCommand sqlgetPagePriceCom = new SqlCommand(sqlgetPagePrice, connection);
+            SqlDataReader PagePriceInfo = sqlgetPagePriceCom.ExecuteReader();
+            while(PagePriceInfo.Read())
+            {
+                outPageDetail.Rows.Add(PagePriceInfo["Page"].ToString(), Convert.ToDouble(PagePriceInfo["Price"]).ToString("N0"));
+            }
+            connection.Close();
+            return outPageDetail;
         }
     }
 }

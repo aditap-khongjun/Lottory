@@ -54,6 +54,8 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle23 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle24 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle25 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle26 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle27 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dgvCusBuyList = new System.Windows.Forms.DataGridView();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -110,6 +112,8 @@
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.DetailNumber = new System.Windows.Forms.GroupBox();
             this.dgvNumberDetail = new System.Windows.Forms.DataGridView();
+            this.DetailPage = new System.Windows.Forms.GroupBox();
+            this.dgvPageDetail = new System.Windows.Forms.DataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCusBuyList)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -142,6 +146,8 @@
             this.groupBox17.SuspendLayout();
             this.DetailNumber.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvNumberDetail)).BeginInit();
+            this.DetailPage.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvPageDetail)).BeginInit();
             this.SuspendLayout();
             // 
             // dgvCusBuyList
@@ -966,7 +972,7 @@
             this.DetailNumber.Margin = new System.Windows.Forms.Padding(2);
             this.DetailNumber.Name = "DetailNumber";
             this.DetailNumber.Padding = new System.Windows.Forms.Padding(2);
-            this.DetailNumber.Size = new System.Drawing.Size(213, 695);
+            this.DetailNumber.Size = new System.Drawing.Size(213, 483);
             this.DetailNumber.TabIndex = 13;
             this.DetailNumber.TabStop = false;
             this.DetailNumber.Text = "รายละเอียด";
@@ -1003,10 +1009,58 @@
             this.dgvNumberDetail.RowHeadersVisible = false;
             this.dgvNumberDetail.RowHeadersWidth = 62;
             this.dgvNumberDetail.RowTemplate.Height = 28;
-            this.dgvNumberDetail.Size = new System.Drawing.Size(209, 669);
+            this.dgvNumberDetail.Size = new System.Drawing.Size(209, 457);
             this.dgvNumberDetail.TabIndex = 0;
             this.dgvNumberDetail.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dataGridView_CellFormatting);
             this.dgvNumberDetail.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvNumberDetail_CellMouseClick);
+            // 
+            // DetailPage
+            // 
+            this.DetailPage.Controls.Add(this.dgvPageDetail);
+            this.DetailPage.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.DetailPage.Location = new System.Drawing.Point(1684, 518);
+            this.DetailPage.Margin = new System.Windows.Forms.Padding(2);
+            this.DetailPage.Name = "DetailPage";
+            this.DetailPage.Padding = new System.Windows.Forms.Padding(2);
+            this.DetailPage.Size = new System.Drawing.Size(213, 435);
+            this.DetailPage.TabIndex = 14;
+            this.DetailPage.TabStop = false;
+            this.DetailPage.Text = "รายละเอียด (หน้า)";
+            // 
+            // dgvPageDetail
+            // 
+            this.dgvPageDetail.AllowUserToAddRows = false;
+            this.dgvPageDetail.AllowUserToDeleteRows = false;
+            this.dgvPageDetail.BackgroundColor = System.Drawing.SystemColors.Control;
+            this.dgvPageDetail.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            dataGridViewCellStyle26.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle26.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle26.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            dataGridViewCellStyle26.ForeColor = System.Drawing.Color.Blue;
+            dataGridViewCellStyle26.SelectionBackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle26.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle26.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvPageDetail.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle26;
+            this.dgvPageDetail.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle27.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle27.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle27.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            dataGridViewCellStyle27.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle27.SelectionBackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle27.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle27.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvPageDetail.DefaultCellStyle = dataGridViewCellStyle27;
+            this.dgvPageDetail.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvPageDetail.GridColor = System.Drawing.SystemColors.Control;
+            this.dgvPageDetail.Location = new System.Drawing.Point(2, 24);
+            this.dgvPageDetail.Margin = new System.Windows.Forms.Padding(2);
+            this.dgvPageDetail.Name = "dgvPageDetail";
+            this.dgvPageDetail.ReadOnly = true;
+            this.dgvPageDetail.RowHeadersVisible = false;
+            this.dgvPageDetail.RowHeadersWidth = 62;
+            this.dgvPageDetail.RowTemplate.Height = 28;
+            this.dgvPageDetail.Size = new System.Drawing.Size(209, 409);
+            this.dgvPageDetail.TabIndex = 0;
             // 
             // AddNumberDetail
             // 
@@ -1014,6 +1068,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(1913, 1041);
+            this.Controls.Add(this.DetailPage);
             this.Controls.Add(this.DetailNumber);
             this.Controls.Add(this.groupBox17);
             this.Controls.Add(this.groupBox14);
@@ -1073,6 +1128,8 @@
             this.groupBox17.ResumeLayout(false);
             this.DetailNumber.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvNumberDetail)).EndInit();
+            this.DetailPage.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvPageDetail)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1136,5 +1193,7 @@
         private System.Windows.Forms.TextBox tbLow;
         private System.Windows.Forms.GroupBox DetailNumber;
         private System.Windows.Forms.DataGridView dgvNumberDetail;
+        private System.Windows.Forms.GroupBox DetailPage;
+        private System.Windows.Forms.DataGridView dgvPageDetail;
     }
 }
