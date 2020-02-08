@@ -28,9 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.btAddNumber = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
             this.customerID = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.btBackToMain = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -50,31 +49,9 @@
             this.MoneyLimit1 = new System.Windows.Forms.TextBox();
             this.lbLimit1 = new System.Windows.Forms.Label();
             this.pageNumber = new System.Windows.Forms.ComboBox();
+            this.btAddNumber = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // btAddNumber
-            // 
-            this.btAddNumber.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.btAddNumber.Location = new System.Drawing.Point(17, 173);
-            this.btAddNumber.Margin = new System.Windows.Forms.Padding(2);
-            this.btAddNumber.Name = "btAddNumber";
-            this.btAddNumber.Size = new System.Drawing.Size(189, 47);
-            this.btAddNumber.TabIndex = 0;
-            this.btAddNumber.Text = "ป้อนตัวเลข";
-            this.btAddNumber.UseVisualStyleBackColor = true;
-            this.btAddNumber.Click += new System.EventHandler(this.btAddNumber_Click);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.label1.Location = new System.Drawing.Point(13, 12);
-            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(77, 24);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "รหัสลูกค้า";
             // 
             // customerID
             // 
@@ -90,6 +67,17 @@
             this.customerID.TabIndex = 2;
             this.customerID.SelectedValueChanged += new System.EventHandler(this.customerID_SelectedValueChanged);
             this.customerID.KeyDown += new System.Windows.Forms.KeyEventHandler(this.customerID_KeyDown);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.label1.Location = new System.Drawing.Point(13, 12);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(77, 24);
+            this.label1.TabIndex = 1;
+            this.label1.Text = "รหัสลูกค้า";
             // 
             // label2
             // 
@@ -306,18 +294,29 @@
             this.pageNumber.TextChanged += new System.EventHandler(this.pageNumber_TextChanged);
             this.pageNumber.KeyDown += new System.Windows.Forms.KeyEventHandler(this.pageNumber_KeyDown);
             // 
+            // btAddNumber
+            // 
+            this.btAddNumber.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.btAddNumber.Location = new System.Drawing.Point(17, 171);
+            this.btAddNumber.Name = "btAddNumber";
+            this.btAddNumber.Size = new System.Drawing.Size(189, 49);
+            this.btAddNumber.TabIndex = 8;
+            this.btAddNumber.Text = "ป้อนตัวเลข";
+            this.btAddNumber.UseVisualStyleBackColor = true;
+            this.btAddNumber.Click += new System.EventHandler(this.btAddNumber_Click);
+            // 
             // AddNumberSetting
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(684, 513);
+            this.Controls.Add(this.btAddNumber);
             this.Controls.Add(this.pageNumber);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btBackToMain);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.customerID);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.btAddNumber);
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "AddNumberSetting";
             this.Text = "ตั้งค่าการป้อนตัวเลข";
@@ -331,10 +330,8 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.Button btAddNumber;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox customerID;
+        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button btBackToMain;
         private System.Windows.Forms.GroupBox groupBox1;
@@ -354,5 +351,6 @@
         private System.Windows.Forms.Button editMLim1;
         private System.Windows.Forms.TextBox MoneyLimit1;
         private System.Windows.Forms.ComboBox pageNumber;
+        private System.Windows.Forms.Button btAddNumber;
     }
 }

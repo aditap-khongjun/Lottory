@@ -969,6 +969,10 @@ namespace Lottory
                     tbNumber.Clear();
                     tbNumber.Focus();
                     break;
+                case Keys.PageDown:
+                    // Buy
+                    ShortBuying();
+                    break;
                 default:
                     break;
             }
@@ -1697,7 +1701,11 @@ namespace Lottory
             double x;
             if(!double.TryParse(tbMoney1.Text, out x) && !string.IsNullOrEmpty(tbMoney1.Text))
             {
-                MessageBox.Show("กรุณาใส่จำนวนเงินเป็นตัวเลขให้ถูกต้อง");
+                if(!string.Equals(tbMoney1.Text,"-"))
+                {
+                    MessageBox.Show("กรุณาใส่จำนวนเงินเป็นตัวเลขให้ถูกต้อง");
+                }
+                
             }
         }
 
@@ -1707,7 +1715,10 @@ namespace Lottory
             double x;
             if (!double.TryParse(tbMoney2.Text, out x) && !string.IsNullOrEmpty(tbMoney2.Text))
             {
-                MessageBox.Show("กรุณาใส่จำนวนเงินเป็นตัวเลขให้ถูกต้อง");
+                if(!string.Equals(tbMoney2.Text,"-"))
+                {
+                    MessageBox.Show("กรุณาใส่จำนวนเงินเป็นตัวเลขให้ถูกต้อง");
+                }
             }
         }
         private void AddBuyingListTable(string Number, string Type, string Money, string Group)
@@ -4630,7 +4641,11 @@ namespace Lottory
             double x;
             if (!double.TryParse(tbLow.Text, out x) && !string.IsNullOrEmpty(tbLow.Text))
             {
-                MessageBox.Show("กรุณาใส่จำนวนเงินเป็นตัวเลขให้ถูกต้อง");
+                if(!string.Equals(tbLow.Text,"-"))
+                {
+                    MessageBox.Show("กรุณาใส่จำนวนเงินเป็นตัวเลขให้ถูกต้อง");
+                }
+                
             }
         }
 

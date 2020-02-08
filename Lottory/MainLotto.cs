@@ -101,6 +101,12 @@ namespace Lottory
             // Report
             MenuReport_AllBuying.Click += new EventHandler(MenuReport_AllBuying_Click);
             MenuReport_PageBuying.Click += new EventHandler(MenuReport_PageBuying_Click);
+            MenuReport_LimitNumber.Click += new EventHandler(MenuReport_LimitNumber_Click);
+        }
+
+        private void MenuReport_LimitNumber_Click(object sender, EventArgs e)
+        {
+            ShowForm(Report_OverMoney.Instance);
         }
 
         private void MenuReport_PageBuying_Click(object sender, EventArgs e)

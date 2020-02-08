@@ -107,6 +107,36 @@ namespace Lottory
             NumberLimitSetting numlimitForm = NumberLimitSetting.Instance;
             numlimitForm.MdiParent = this.MdiParent;
             numlimitForm.Show();
+            numlimitForm.Activate();
+
+        }
+
+        private void btMoneyLimitAnalyz_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btMoneyLimitDefine_Click(object sender, EventArgs e)
+        {
+
+            MoneyTackingOff tackingOffForm = MoneyTackingOff.Instance;
+            tackingOffForm.MdiParent = this.MdiParent;
+            tackingOffForm.Show();
+            tackingOffForm.Activate();
+        }
+
+        private void btClearSystemInfo_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btCustomerAccount_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btWinNumber_Click(object sender, EventArgs e)
+        {
 
         }
     }

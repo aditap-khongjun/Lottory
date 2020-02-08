@@ -24,8 +24,8 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <ApplicationRevision>10</ApplicationRevision>
-    <ApplicationVersion>0.2.0.%2a</ApplicationVersion>
+    <ApplicationRevision>3</ApplicationRevision>
+    <ApplicationVersion>0.3.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
     <BootstrapperEnabled>true</BootstrapperEnabled>
@@ -171,6 +171,12 @@
     </Compile>
     <Compile Include="Report_AllBuying.Designer.cs">
       <DependentUpon>Report_AllBuying.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Report_OverMoney.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Report_OverMoney.Designer.cs">
+      <DependentUpon>Report_OverMoney.cs</DependentUpon>
     </Compile>
     <Compile Include="Report_PageBuying.cs">
       <SubType>Form</SubType>
@@ -347,6 +353,9 @@
     <EmbeddedResource Include="Report_AllBuying.rdlc" />
     <EmbeddedResource Include="Report_AllBuying.resx">
       <DependentUpon>Report_AllBuying.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report_OverMoney.resx">
+      <DependentUpon>Report_OverMoney.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Report_pageBuying.rdlc" />
     <EmbeddedResource Include="Report_PageBuying.resx">

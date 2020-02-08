@@ -56,8 +56,8 @@ namespace Lottory
                 connection.Open();
             }
             string sqlTakeOff = string.Format(@"UPDATE {2}
-                                                SET OutPrice = Price - {0}
-                                                WHERE Price - {0} - OutPrice > {1}", TakeOffMoney, Offset,getNumberXXXDBName(TypeName));
+                                                SET OutPrice = OwnPrice - {0}
+                                                WHERE OwnPrice - {0} - OutPrice > {1}", TakeOffMoney, Offset,getNumberXXXDBName(TypeName));
             SqlCommand sqlTakeOffCom = new SqlCommand(sqlTakeOff, connection);
             sqlTakeOffCom.ExecuteNonQuery();
             connection.Close();
@@ -84,7 +84,7 @@ namespace Lottory
         private void tbTakeOffMoney_TextChanged(object sender, EventArgs e)
         {
             int x;
-            if(!Int32.TryParse(tbTakeOffMoney.Text,out x))
+            if(!Int32.TryParse(tbTakeOffMoney.Text,out x) && !string.IsNullOrEmpty(tbTakeOffMoney.Text))
             {
                 MessageBox.Show("กรุณาใส่วงเงินที่ตีออกเป็นตัวเลข", "วงเงินไม่ถูกต้อง", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
@@ -93,7 +93,7 @@ namespace Lottory
         private void tbMoneyOfset_TextChanged(object sender, EventArgs e)
         {
             int x;
-            if(!Int32.TryParse(tbMoneyOfset.Text,out x))
+            if(!Int32.TryParse(tbMoneyOfset.Text,out x) && !string.IsNullOrEmpty(tbMoneyOfset.Text))
             {
                 MessageBox.Show("กรุณาใส่ช่วงการตีออกเป็นตัวเลข", "ผิดพลาด", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
@@ -155,13 +155,13 @@ namespace Lottory
             switch (TypeID)
             {
                 case BaseTypeID.up3:
-                    sqlgetNumberxxxInfo = "SELECT Number, (OwnPrice-OutPrice) AS Price FROM Number_3up WHERE Price > 0";
+                    sqlgetNumberxxxInfo = "SELECT Number, (OwnPrice-OutPrice) AS Price FROM Number_3up WHERE Price > 0 ORDER BY Price DESC";
                     break;
                 case BaseTypeID.up2:
-                    sqlgetNumberxxxInfo = "SELECT Number, (OwnPrice-OutPrice) AS Price FROM Number_2up WHERE Price > 0";
+                    sqlgetNumberxxxInfo = "SELECT Number, (OwnPrice-OutPrice) AS Price FROM Number_2up WHERE Price > 0 ORDER BY Price DESC";
                     break;
                 case BaseTypeID.low2:
-                    sqlgetNumberxxxInfo = "SELECT Number, (OwnPrice-OutPrice) AS Price FROM Number_2low WHERE Price > 0";
+                    sqlgetNumberxxxInfo = "SELECT Number, (OwnPrice-OutPrice) AS Price FROM Number_2low WHERE Price > 0 ORDER BY Price DESC";
                     break;
                 default:
                     sqlgetNumberxxxInfo = string.Format(@"SELECT Number, SUM(OwnPrice) AS Price
@@ -267,7 +267,71 @@ namespace Lottory
         private void btShowTakeOff_Click(object sender, EventArgs e)
         {
             //
-            MessageBox.Show("Implement to Document");
+            showTackOffNumber();
+        }
+        private void showTackOffNumber()
+        {
+            // Update Number 3up
+            dgvNumber3up.DataSource = getTackOffNumberXXXFromDB(BaseTypeID.up3);
+            dgvNumber3up.ClearSelection();
+
+            // Update Number 2up
+            dgvNumber2up.DataSource = getTackOffNumberXXXFromDB(BaseTypeID.up2);
+            dgvNumber2up.ClearSelection();
+
+            // Update Number 2low
+            dgvNumber2low.DataSource = getTackOffNumberXXXFromDB(BaseTypeID.low2);
+            dgvNumber2low.ClearSelection();
+
+            dgvNumber3low.DataSource = null;
+
+            // udpate Number 1up
+            dgvNumber1up.DataSource = null;
+
+            // update Number 1low
+            dgvNumber1low.DataSource = null;
+        }
+
+        private DataTable getTackOffNumberXXXFromDB(int TypeID)
+        {
+            DataTable outNumber = new DataTable();
+            outNumber.Columns.Add("ตัวเลข");
+            outNumber.Columns.Add("จำนวนเงิน");
+            //outNumber.Columns["จำนวนเงิน"].DataType = typeof(Double);
+
+            string dbName = string.Empty;
+            switch (TypeID)
+            {
+                case BaseTypeID.up3:
+                    dbName = "Number_3up";
+                    break;
+                case BaseTypeID.up2:
+                    dbName = "Number_2up";
+                    break;
+                case BaseTypeID.low2:
+                    dbName = "Number_2low";
+                    break;
+            }
+
+
+            SqlConnection connection = new SqlConnection(Database.CnnVal("LottoryDB"));
+
+            // get orderlistID
+            if (connection.State == ConnectionState.Closed)
+            {
+                connection.Open(); // Open Database
+            }
+            string sqlgetOverNumber = string.Format(@"SELECT Number, OutPrice FROM {0}
+                                                      WHERE OutPrice > 0
+                                                      ORDER BY OutPrice DESC", dbName);
+            SqlCommand sqlgetOverNumberCom = new SqlCommand(sqlgetOverNumber, connection);
+            SqlDataReader OverNumberInfo = sqlgetOverNumberCom.ExecuteReader();
+            while (OverNumberInfo.Read())
+            {
+                outNumber.Rows.Add(OverNumberInfo["Number"].ToString(), Convert.ToDouble(OverNumberInfo["OutPrice"]).ToString("N0"));
+            }
+            connection.Close();
+            return outNumber;
         }
     }
 }
