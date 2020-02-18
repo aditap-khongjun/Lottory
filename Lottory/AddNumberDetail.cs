@@ -1823,7 +1823,7 @@ namespace Lottory
             dt = dv.ToTable();
 
             dgv.Columns.Clear();
-            int col = 4;
+            int col = 3;
             dgv.ColumnCount = col;
             dgv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
 

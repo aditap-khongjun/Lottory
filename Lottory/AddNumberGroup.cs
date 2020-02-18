@@ -197,7 +197,7 @@ namespace Lottory
                 case Keys.PageDown:
                     btOK.PerformClick();
                     break;
-                case Keys.PageUp:
+                case Keys.Up:
                     switch (tbName)
                     {
                         case "tbNumber1":
