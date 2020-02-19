@@ -223,7 +223,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>% ส่วนลด</Value>
+                              <Value>ยอดหัก %</Value>
                               <Style>
                                 <FontSize>12pt</FontSize>
                               </Style>
@@ -370,8 +370,8 @@
         </TablixRowHierarchy>
         <DataSetName>buyinginfo</DataSetName>
         <Top>4.07141cm</Top>
-        <Height>1.35875cm</Height>
-        <Width>16.51cm</Width>
+        <Height>1.35876cm</Height>
+        <Width>16.50999cm</Width>
         <ZIndex>4</ZIndex>
         <Style>
           <Border>
@@ -432,7 +432,6 @@
         </Paragraphs>
         <rd:DefaultName>Textbox11</rd:DefaultName>
         <Top>6.77016cm</Top>
-        <Left>0cm</Left>
         <Height>0.82903cm</Height>
         <Width>4.03458cm</Width>
         <ZIndex>6</ZIndex>
@@ -579,9 +578,8 @@
         </TablixRowHierarchy>
         <DataSetName>buyingsum</DataSetName>
         <Top>5.50071cm</Top>
-        <Left>0cm</Left>
         <Height>0.73229cm</Height>
-        <Width>16.51cm</Width>
+        <Width>16.50999cm</Width>
         <ZIndex>7</ZIndex>
         <Style>
           <Border>
@@ -826,9 +824,8 @@
         </TablixRowHierarchy>
         <DataSetName>payinginfo</DataSetName>
         <Top>7.77558cm</Top>
-        <Left>0cm</Left>
-        <Height>1.41167cm</Height>
-        <Width>16.51cm</Width>
+        <Height>1.41166cm</Height>
+        <Width>16.50999cm</Width>
         <ZIndex>8</ZIndex>
         <Style>
           <Border>
@@ -969,9 +966,8 @@
         </TablixRowHierarchy>
         <DataSetName>payingsum</DataSetName>
         <Top>9.2578cm</Top>
-        <Left>0cm</Left>
         <Height>0.73229cm</Height>
-        <Width>16.51cm</Width>
+        <Width>16.50999cm</Width>
         <ZIndex>9</ZIndex>
         <Style>
           <Border>

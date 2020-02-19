@@ -127,12 +127,12 @@ namespace Lottory
             if(string.Equals(PageID,"ทั้งหมด"))
             {
                 _price3up = getPriceFromDB(CustomerID, BaseTypeID.up3,string.Empty);
-                _disc3up = getDiscountFromDB(CustomerID, BaseTypeID.up3, string.Empty);
+                _disc3up = _price3up - getDiscountFromDB(CustomerID, BaseTypeID.up3, string.Empty);
             }
             else
             {
                 _price3up = getPriceFromDB(CustomerID, BaseTypeID.up3, PageID);
-                _disc3up = getDiscountFromDB(CustomerID, BaseTypeID.up3, PageID);
+                _disc3up = _price3up - getDiscountFromDB(CustomerID, BaseTypeID.up3, PageID);
             }
             if(_price3up > 0)
             {
@@ -144,12 +144,12 @@ namespace Lottory
             if(string.Equals(PageID, "ทั้งหมด"))
             {
                 _price3low = getPriceFromDB(CustomerID, BaseTypeID.low3, string.Empty);
-                _disc3low = getDiscountFromDB(CustomerID, BaseTypeID.low3, string.Empty);
+                _disc3low = _price3low - getDiscountFromDB(CustomerID, BaseTypeID.low3, string.Empty);
             }
             else
             {
                 _price3low = getPriceFromDB(CustomerID, BaseTypeID.low3, PageID);
-                _disc3low = getDiscountFromDB(CustomerID, BaseTypeID.low3, PageID);
+                _disc3low = _price3low - getDiscountFromDB(CustomerID, BaseTypeID.low3, PageID);
             }
             if (_price3low > 0)
             {
@@ -161,12 +161,12 @@ namespace Lottory
             if (string.Equals(PageID, "ทั้งหมด"))
             {
                 _price2up = getPriceFromDB(CustomerID, BaseTypeID.up2, string.Empty);
-                _disc2up = getDiscountFromDB(CustomerID, BaseTypeID.up2, string.Empty);
+                _disc2up = _price2up - getDiscountFromDB(CustomerID, BaseTypeID.up2, string.Empty);
             }
             else
             {
                 _price2up = getPriceFromDB(CustomerID, BaseTypeID.up2, PageID);
-                _disc2up = getDiscountFromDB(CustomerID, BaseTypeID.up2, PageID);
+                _disc2up = _price2up - getDiscountFromDB(CustomerID, BaseTypeID.up2, PageID);
             }
             if (_price2up > 0)
             {
@@ -178,12 +178,12 @@ namespace Lottory
             if (string.Equals(PageID, "ทั้งหมด"))
             {
                 _price2low = getPriceFromDB(CustomerID, BaseTypeID.low2, string.Empty);
-                _disc2low = getDiscountFromDB(CustomerID, BaseTypeID.low2, string.Empty);
+                _disc2low = _price2low - getDiscountFromDB(CustomerID, BaseTypeID.low2, string.Empty);
             }
             else
             {
                 _price2low = getPriceFromDB(CustomerID, BaseTypeID.low2, PageID);
-                _disc2low = getDiscountFromDB(CustomerID, BaseTypeID.low2, PageID);
+                _disc2low = _price2low - getDiscountFromDB(CustomerID, BaseTypeID.low2, PageID);
             }
             if (_price2low > 0)
             {
@@ -195,12 +195,12 @@ namespace Lottory
             if (string.Equals(PageID, "ทั้งหมด"))
             {
                 _price2ht = getPriceFromDB(CustomerID, BaseTypeID.ht2, string.Empty);
-                _disc2ht = getDiscountFromDB(CustomerID, BaseTypeID.ht2, string.Empty);
+                _disc2ht = _price2ht - getDiscountFromDB(CustomerID, BaseTypeID.ht2, string.Empty);
             }
             else
             {
                 _price2ht = getPriceFromDB(CustomerID, BaseTypeID.ht2, PageID);
-                _disc2ht = getDiscountFromDB(CustomerID, BaseTypeID.ht2, PageID);
+                _disc2ht = _price2ht - getDiscountFromDB(CustomerID, BaseTypeID.ht2, PageID);
             }
             if (_price2ht > 0)
             {
@@ -212,12 +212,12 @@ namespace Lottory
             if (string.Equals(PageID, "ทั้งหมด"))
             {
                 _price2hu = getPriceFromDB(CustomerID, BaseTypeID.hu2, string.Empty);
-                _disc2hu = getDiscountFromDB(CustomerID, BaseTypeID.hu2, string.Empty);
+                _disc2hu = _price2hu - getDiscountFromDB(CustomerID, BaseTypeID.hu2, string.Empty);
             }
             else
             {
                 _price2hu = getPriceFromDB(CustomerID, BaseTypeID.hu2, PageID);
-                _disc2hu = getDiscountFromDB(CustomerID, BaseTypeID.hu2, PageID);
+                _disc2hu = _price2hu - getDiscountFromDB(CustomerID, BaseTypeID.hu2, PageID);
             }
             if (_price2hu > 0)
             {
@@ -229,12 +229,12 @@ namespace Lottory
             if (string.Equals(PageID, "ทั้งหมด"))
             {
                 _price1up = getPriceFromDB(CustomerID, BaseTypeID.up1, string.Empty);
-                _disc1up = getDiscountFromDB(CustomerID, BaseTypeID.up1, string.Empty);
+                _disc1up = _price1up - getDiscountFromDB(CustomerID, BaseTypeID.up1, string.Empty);
             }
             else
             {
                 _price1up = getPriceFromDB(CustomerID, BaseTypeID.up1, PageID);
-                _disc1up = getDiscountFromDB(CustomerID, BaseTypeID.up1, PageID);
+                _disc1up = _price1up - getDiscountFromDB(CustomerID, BaseTypeID.up1, PageID);
             }
             if (_price1up > 0)
             {
@@ -246,12 +246,12 @@ namespace Lottory
             if (string.Equals(PageID, "ทั้งหมด"))
             {
                 _price1low = getPriceFromDB(CustomerID, BaseTypeID.low1, string.Empty);
-                _disc1low = getDiscountFromDB(CustomerID, BaseTypeID.low1, string.Empty);
+                _disc1low = _price1low - getDiscountFromDB(CustomerID, BaseTypeID.low1, string.Empty);
             }
             else
             {
                 _price1low = getPriceFromDB(CustomerID, BaseTypeID.low1, PageID);
-                _disc1low = getDiscountFromDB(CustomerID, BaseTypeID.low1, PageID);
+                _disc1low = _price1low - getDiscountFromDB(CustomerID, BaseTypeID.low1, PageID);
             }
             if (_price1low > 0)
             {
@@ -263,12 +263,12 @@ namespace Lottory
             if (string.Equals(PageID, "ทั้งหมด"))
             {
                 _price1front = getPriceFromDB(CustomerID, BaseTypeID.upfront1, string.Empty);
-                _disc1front = getDiscountFromDB(CustomerID, BaseTypeID.upfront1, string.Empty);
+                _disc1front = _price1front - getDiscountFromDB(CustomerID, BaseTypeID.upfront1, string.Empty);
             }
             else
             {
                 _price1front = getPriceFromDB(CustomerID, BaseTypeID.upfront1, PageID);
-                _disc1front = getDiscountFromDB(CustomerID, BaseTypeID.upfront1, PageID);
+                _disc1front = _price1front - getDiscountFromDB(CustomerID, BaseTypeID.upfront1, PageID);
             }
             if (_price1front > 0)
             {
@@ -280,12 +280,12 @@ namespace Lottory
             if (string.Equals(PageID, "ทั้งหมด"))
             {
                 _price1center = getPriceFromDB(CustomerID, BaseTypeID.upcenter1, string.Empty);
-                _disc1center = getDiscountFromDB(CustomerID, BaseTypeID.upcenter1, string.Empty);
+                _disc1center = _price1center - getDiscountFromDB(CustomerID, BaseTypeID.upcenter1, string.Empty);
             }
             else
             {
                 _price1center = getPriceFromDB(CustomerID, BaseTypeID.upcenter1, PageID);
-                _disc1center = getDiscountFromDB(CustomerID, BaseTypeID.upcenter1, PageID);
+                _disc1center = _price1center - getDiscountFromDB(CustomerID, BaseTypeID.upcenter1, PageID);
             }
             if (_price1center > 0)
             {
@@ -297,12 +297,12 @@ namespace Lottory
             if (string.Equals(PageID, "ทั้งหมด"))
             {
                 _price1back = getPriceFromDB(CustomerID, BaseTypeID.upback1, string.Empty);
-                _disc1back = getDiscountFromDB(CustomerID, BaseTypeID.upback1, string.Empty);
+                _disc1back = _price1back - getDiscountFromDB(CustomerID, BaseTypeID.upback1, string.Empty);
             }
             else
             {
                 _price1back = getPriceFromDB(CustomerID, BaseTypeID.upback1, PageID);
-                _disc1back = getDiscountFromDB(CustomerID, BaseTypeID.upback1, PageID);
+                _disc1back = _price1back - getDiscountFromDB(CustomerID, BaseTypeID.upback1, PageID);
             }
             if (_price1back > 0)
             {
@@ -314,12 +314,12 @@ namespace Lottory
             if (string.Equals(PageID, "ทั้งหมด"))
             {
                 _price1lowfront = getPriceFromDB(CustomerID, BaseTypeID.lowfront1, string.Empty);
-                _disc1lowfront = getDiscountFromDB(CustomerID, BaseTypeID.lowfront1, string.Empty);
+                _disc1lowfront = _price1lowfront - getDiscountFromDB(CustomerID, BaseTypeID.lowfront1, string.Empty);
             }
             else
             {
                 _price1lowfront = getPriceFromDB(CustomerID, BaseTypeID.lowfront1, PageID);
-                _disc1lowfront = getDiscountFromDB(CustomerID, BaseTypeID.lowfront1, PageID);
+                _disc1lowfront = _price1lowfront - getDiscountFromDB(CustomerID, BaseTypeID.lowfront1, PageID);
             }
             if (_price1lowfront > 0)
             {
@@ -331,12 +331,12 @@ namespace Lottory
             if (string.Equals(PageID, "ทั้งหมด"))
             {
                 _price1lowback = getPriceFromDB(CustomerID, BaseTypeID.lowback1, string.Empty);
-                _disc1lowback = getDiscountFromDB(CustomerID, BaseTypeID.lowback1, string.Empty);
+                _disc1lowback = _price1lowback - getDiscountFromDB(CustomerID, BaseTypeID.lowback1, string.Empty);
             }
             else
             {
                 _price1lowback = getPriceFromDB(CustomerID, BaseTypeID.lowback1, PageID);
-                _disc1lowback = getDiscountFromDB(CustomerID, BaseTypeID.lowback1, PageID);
+                _disc1lowback = _price1lowback - getDiscountFromDB(CustomerID, BaseTypeID.lowback1, PageID);
             }
             if (_price1lowback > 0)
             {

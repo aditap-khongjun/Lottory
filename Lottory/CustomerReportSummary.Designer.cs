@@ -28,19 +28,38 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
+            Microsoft.Reporting.WinForms.ReportDataSource reportDataSource1 = new Microsoft.Reporting.WinForms.ReportDataSource();
+            Microsoft.Reporting.WinForms.ReportDataSource reportDataSource2 = new Microsoft.Reporting.WinForms.ReportDataSource();
+            Microsoft.Reporting.WinForms.ReportDataSource reportDataSource3 = new Microsoft.Reporting.WinForms.ReportDataSource();
+            Microsoft.Reporting.WinForms.ReportDataSource reportDataSource4 = new Microsoft.Reporting.WinForms.ReportDataSource();
+            Microsoft.Reporting.WinForms.ReportDataSource reportDataSource5 = new Microsoft.Reporting.WinForms.ReportDataSource();
             this.ReportAll = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.ReportCustomerPage = new System.Windows.Forms.Button();
             this.ReportCustomer_pay = new System.Windows.Forms.Button();
             this.ReportCustomer = new System.Windows.Forms.Button();
+            this.ReportCustomerPage = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.CustomerIDList = new System.Windows.Forms.ComboBox();
-            this.PageIDList = new System.Windows.Forms.ComboBox();
-            this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.PageIDList = new System.Windows.Forms.ComboBox();
+            this.CustomerIDList = new System.Windows.Forms.ComboBox();
+            this.reportViewer1 = new Microsoft.Reporting.WinForms.ReportViewer();
+            this.page_Report = new Lottory.page_Report();
+            this.BuyingTableBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.BuyingSummaryBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.PayingTableBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.PayingSummaryBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.cusotmerInfo_page_reportBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.page_Report)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.BuyingTableBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.BuyingSummaryBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PayingTableBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PayingSummaryBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cusotmerInfo_page_reportBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // ReportAll
@@ -66,16 +85,6 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "รายงานบัญชีลูกค้า";
             // 
-            // ReportCustomerPage
-            // 
-            this.ReportCustomerPage.Location = new System.Drawing.Point(20, 153);
-            this.ReportCustomerPage.Name = "ReportCustomerPage";
-            this.ReportCustomerPage.Size = new System.Drawing.Size(250, 50);
-            this.ReportCustomerPage.TabIndex = 0;
-            this.ReportCustomerPage.Text = "รายงานแสดงแต่ละหน้าลูกค้า";
-            this.ReportCustomerPage.UseVisualStyleBackColor = true;
-            this.ReportCustomerPage.Click += new System.EventHandler(this.ReportCustomerPage_Click);
-            // 
             // ReportCustomer_pay
             // 
             this.ReportCustomer_pay.Location = new System.Drawing.Point(28, 153);
@@ -96,6 +105,16 @@
             this.ReportCustomer.UseVisualStyleBackColor = true;
             this.ReportCustomer.Click += new System.EventHandler(this.ReportCustomer_Click);
             // 
+            // ReportCustomerPage
+            // 
+            this.ReportCustomerPage.Location = new System.Drawing.Point(20, 153);
+            this.ReportCustomerPage.Name = "ReportCustomerPage";
+            this.ReportCustomerPage.Size = new System.Drawing.Size(250, 50);
+            this.ReportCustomerPage.TabIndex = 0;
+            this.ReportCustomerPage.Text = "รายงานแสดงแต่ละหน้าลูกค้า";
+            this.ReportCustomerPage.UseVisualStyleBackColor = true;
+            this.ReportCustomerPage.Click += new System.EventHandler(this.ReportCustomerPage_Click);
+            // 
             // button5
             // 
             this.button5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
@@ -110,6 +129,7 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.reportViewer1);
             this.groupBox2.Controls.Add(this.label2);
             this.groupBox2.Controls.Add(this.label1);
             this.groupBox2.Controls.Add(this.PageIDList);
@@ -118,40 +138,9 @@
             this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
             this.groupBox2.Location = new System.Drawing.Point(488, 12);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(297, 223);
+            this.groupBox2.Size = new System.Drawing.Size(1146, 942);
             this.groupBox2.TabIndex = 2;
             this.groupBox2.TabStop = false;
-            // 
-            // CustomerIDList
-            // 
-            this.CustomerIDList.BackColor = System.Drawing.SystemColors.Window;
-            this.CustomerIDList.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.CustomerIDList.FormattingEnabled = true;
-            this.CustomerIDList.Location = new System.Drawing.Point(109, 41);
-            this.CustomerIDList.Name = "CustomerIDList";
-            this.CustomerIDList.Size = new System.Drawing.Size(161, 32);
-            this.CustomerIDList.TabIndex = 1;
-            this.CustomerIDList.SelectedIndexChanged += new System.EventHandler(this.CustomerIDList_SelectedIndexChanged);
-            this.CustomerIDList.SelectedValueChanged += new System.EventHandler(this.comboBox1_SelectedValueChanged);
-            // 
-            // PageIDList
-            // 
-            this.PageIDList.BackColor = System.Drawing.SystemColors.Window;
-            this.PageIDList.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.PageIDList.FormattingEnabled = true;
-            this.PageIDList.Location = new System.Drawing.Point(109, 97);
-            this.PageIDList.Name = "PageIDList";
-            this.PageIDList.Size = new System.Drawing.Size(161, 32);
-            this.PageIDList.TabIndex = 1;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(16, 49);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(77, 24);
-            this.label1.TabIndex = 2;
-            this.label1.Text = "รหัสลูกค้า";
             // 
             // label2
             // 
@@ -162,11 +151,99 @@
             this.label2.TabIndex = 2;
             this.label2.Text = "หน้า";
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(16, 49);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(77, 24);
+            this.label1.TabIndex = 2;
+            this.label1.Text = "รหัสลูกค้า";
+            // 
+            // PageIDList
+            // 
+            this.PageIDList.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.PageIDList.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.PageIDList.BackColor = System.Drawing.SystemColors.Window;
+            this.PageIDList.FormattingEnabled = true;
+            this.PageIDList.Location = new System.Drawing.Point(109, 97);
+            this.PageIDList.Name = "PageIDList";
+            this.PageIDList.Size = new System.Drawing.Size(161, 32);
+            this.PageIDList.TabIndex = 1;
+            this.PageIDList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.PageIDList_KeyDown);
+            // 
+            // CustomerIDList
+            // 
+            this.CustomerIDList.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Append;
+            this.CustomerIDList.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.CustomerIDList.BackColor = System.Drawing.SystemColors.Window;
+            this.CustomerIDList.FormattingEnabled = true;
+            this.CustomerIDList.Location = new System.Drawing.Point(109, 41);
+            this.CustomerIDList.Name = "CustomerIDList";
+            this.CustomerIDList.Size = new System.Drawing.Size(161, 32);
+            this.CustomerIDList.TabIndex = 1;
+            this.CustomerIDList.SelectedIndexChanged += new System.EventHandler(this.CustomerIDList_SelectedIndexChanged);
+            this.CustomerIDList.SelectedValueChanged += new System.EventHandler(this.comboBox1_SelectedValueChanged);
+            this.CustomerIDList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CustomerIDList_KeyDown);
+            // 
+            // reportViewer1
+            // 
+            reportDataSource1.Name = "CustomerInfo";
+            reportDataSource1.Value = this.cusotmerInfo_page_reportBindingSource;
+            reportDataSource2.Name = "buyinginfo";
+            reportDataSource2.Value = this.BuyingTableBindingSource;
+            reportDataSource3.Name = "buyingsum";
+            reportDataSource3.Value = this.BuyingSummaryBindingSource;
+            reportDataSource4.Name = "payinginfo";
+            reportDataSource4.Value = this.PayingTableBindingSource;
+            reportDataSource5.Name = "payingsum";
+            reportDataSource5.Value = this.PayingSummaryBindingSource;
+            this.reportViewer1.LocalReport.DataSources.Add(reportDataSource1);
+            this.reportViewer1.LocalReport.DataSources.Add(reportDataSource2);
+            this.reportViewer1.LocalReport.DataSources.Add(reportDataSource3);
+            this.reportViewer1.LocalReport.DataSources.Add(reportDataSource4);
+            this.reportViewer1.LocalReport.DataSources.Add(reportDataSource5);
+            this.reportViewer1.LocalReport.ReportEmbeddedResource = "Lottory.report_page_customer.rdlc";
+            this.reportViewer1.Location = new System.Drawing.Point(286, 28);
+            this.reportViewer1.Name = "reportViewer1";
+            this.reportViewer1.ServerReport.BearerToken = null;
+            this.reportViewer1.Size = new System.Drawing.Size(844, 905);
+            this.reportViewer1.TabIndex = 3;
+            // 
+            // page_Report
+            // 
+            this.page_Report.DataSetName = "page_Report";
+            this.page_Report.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // BuyingTableBindingSource
+            // 
+            this.BuyingTableBindingSource.DataMember = "BuyingTable";
+            this.BuyingTableBindingSource.DataSource = this.page_Report;
+            // 
+            // BuyingSummaryBindingSource
+            // 
+            this.BuyingSummaryBindingSource.DataMember = "BuyingSummary";
+            this.BuyingSummaryBindingSource.DataSource = this.page_Report;
+            // 
+            // PayingTableBindingSource
+            // 
+            this.PayingTableBindingSource.DataMember = "PayingTable";
+            this.PayingTableBindingSource.DataSource = this.page_Report;
+            // 
+            // PayingSummaryBindingSource
+            // 
+            this.PayingSummaryBindingSource.DataMember = "PayingSummary";
+            this.PayingSummaryBindingSource.DataSource = this.page_Report;
+            // 
+            // cusotmerInfo_page_reportBindingSource
+            // 
+            this.cusotmerInfo_page_reportBindingSource.DataSource = typeof(Lottory.cusotmerInfo_page_report);
+            // 
             // CustomerReportSummary
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1005, 398);
+            this.ClientSize = new System.Drawing.Size(1646, 999);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.button5);
             this.Controls.Add(this.groupBox1);
@@ -177,6 +254,12 @@
             this.groupBox1.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.page_Report)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.BuyingTableBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.BuyingSummaryBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PayingTableBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PayingSummaryBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cusotmerInfo_page_reportBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -194,5 +277,12 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox PageIDList;
         private System.Windows.Forms.ComboBox CustomerIDList;
+        private Microsoft.Reporting.WinForms.ReportViewer reportViewer1;
+        private System.Windows.Forms.BindingSource cusotmerInfo_page_reportBindingSource;
+        private System.Windows.Forms.BindingSource BuyingTableBindingSource;
+        private page_Report page_Report;
+        private System.Windows.Forms.BindingSource BuyingSummaryBindingSource;
+        private System.Windows.Forms.BindingSource PayingTableBindingSource;
+        private System.Windows.Forms.BindingSource PayingSummaryBindingSource;
     }
 }

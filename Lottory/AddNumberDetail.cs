@@ -1825,6 +1825,7 @@ namespace Lottory
             dgv.Columns.Clear();
             int col = 3;
             dgv.ColumnCount = col;
+
             dgv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
 
             int i = 0;
