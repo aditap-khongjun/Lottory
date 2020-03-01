@@ -139,6 +139,9 @@ namespace Lottory
         public const string upfront1 = "winRate_1front";
         public const string upcenter1 = "winRate_1center";
         public const string upback1 = "winRate_1back";
+        public const string tod2 = "winRate_2freeup";
+        public const string tod3 = "winRate_3freeup";
+        public const string tod5 = "winRate_5free";
     }
 
 }

@@ -275,6 +275,30 @@ namespace Lottory
         {
             _instance = null;
             timer1.Stop();
+
+            // check Order List
+            if(dgvCusBuyList.Rows.Count == 0)
+            {
+                // delete Order
+                DeleteOrder(this.CustomerID, this.Page);
+            }
+
+        }
+        private void DeleteOrder(string customerID, string pageNumber)
+        {
+            SqlConnection connection = new SqlConnection(Database.CnnVal("LottoryDB"));
+
+            if (connection.State == ConnectionState.Closed)
+            {
+                connection.Open(); // Open Database
+            }
+            // Insert Order
+            string sqlInsertOrder = string.Format(@"DELETE FROM CustomerOrder
+                                                    WHERE CustomerID = {0} AND Page = {1}",customerID, pageNumber);
+            SqlCommand sqlInsertCom = new SqlCommand(sqlInsertOrder, connection);
+            sqlInsertCom.ExecuteNonQuery();
+
+            connection.Close();
         }
 
         private void AddNumberDetail_Load(object sender, EventArgs e)
@@ -1118,8 +1142,31 @@ namespace Lottory
                                         // enable Money and fill money
                                         setEnableMoney(_type, _numlen, _money1, _money2, _money3);
                                         break;
+                                    default:
+                                        tbType.Text = returnType(_type, _numlen);
+                                        // enable Money and fill money
+                                        setEnableMoney(_type, _numlen, _money1, _money2, string.Empty);
+                                        break;
+
                                 }
                             }
+                            else
+                            {
+                                tbType.Text = returnType(_type, _numlen);
+                                // enable Money and fill money
+                                setEnableMoney(_type, _numlen, _money1, _money2, string.Empty);
+                            }
+                        }
+                        else if(row > 1 && string.Equals(_type, "ตรงชุด"))
+                        {
+                            int _Money1 = Convert.ToInt32(dgvCusBuyList.Rows[i].Cells[2].Value);
+                            int _Money2 = Convert.ToInt32(dgvCusBuyList.Rows[i].Cells[3].Value);
+                            _money1 = (_Money1 - _Money2).ToString();
+                            _money2 = _Money2.ToString();
+                            tbType.Text = returnType(_type, _numlen);
+                            // enable Money and fill money
+                            setEnableMoney(_type, _numlen, _money1, _money2, string.Empty);
+
                         }
                         else
                         {
@@ -1192,6 +1239,9 @@ namespace Lottory
                 case 2:
                     switch(typeName)
                     {
+                        case "บน/โต๊ด":
+                            enableMoney12(money1, money2);
+                            break;
                         case "บน/ล่าง":
                             enableMoney13(money1, money2);
                             break;
@@ -1204,7 +1254,6 @@ namespace Lottory
                 case 3:
                     switch(typeName)
                     {
-                        case "ล่าง":
                         case "โต๊ด":
                         case "54 ประตู":
                             // Enable Money1 Only
@@ -1212,6 +1261,7 @@ namespace Lottory
                             break;
                         case "บน/โต๊ด":
                         case "บน":
+                        case "ล่าง":
                         case "ตรงชุด":
                         case "ล่างชุด":
                             // Enable Money 1,2 Only
@@ -1415,6 +1465,9 @@ namespace Lottory
                             break;
                         case "ล่าง":
                             sign = "-";
+                            break;
+                        case "บน/โต๊ด":
+                            sign = "1";
                             break;
                         case "ร้อยสิบ":
                             sign = "7";
@@ -1713,12 +1766,20 @@ namespace Lottory
         {
             // Check Money2 is correct or not?
             double x;
-            if (!double.TryParse(tbMoney2.Text, out x) && !string.IsNullOrEmpty(tbMoney2.Text))
+            if (!string.IsNullOrEmpty(tbMoney2.Text))
             {
-                if(!string.Equals(tbMoney2.Text,"-"))
+                if(!string.Equals(tbMoney2.Text,"-") && !double.TryParse(tbMoney2.Text, out x))
                 {
                     MessageBox.Show("กรุณาใส่จำนวนเงินเป็นตัวเลขให้ถูกต้อง");
                 }
+            }
+            else
+            {
+                if(!string.Equals(tbType.Text,"+บน") && !string.Equals(tbType.Text,"-ล่าง") && (tbNumber.Text.Length == 3) && !string.Equals(tbType.Text, "โต๊ด"))
+                {
+                    MessageBox.Show("กรุณาใส่จำนวนเงินเป็นตัวเลขให้ถูกต้อง");
+                }
+
             }
         }
         private void AddBuyingListTable(string Number, string Type, string Money, string Group)
@@ -1746,7 +1807,16 @@ namespace Lottory
                 {
                     // update OrderList in DB &
                     // update OrderListExpand in DB
-                    updateOrderToDB(tbNumber.Text, tbType.Text.Substring(1, tbType.Text.Length - 1), tbMoney1.Text, tbMoney1.Text, string.Empty);
+                    string _type = tbType.Text.Substring(1, tbType.Text.Length - 1);
+                    if(string.Equals(_type,"บน") || string.Equals(_type,"ล่าง"))
+                    {
+                        updateOrderToDB(tbNumber.Text, _type, tbMoney1.Text, "0", string.Empty);
+                    }
+                    else
+                    {
+                        updateOrderToDB(tbNumber.Text, _type, tbMoney1.Text, tbMoney1.Text, string.Empty);
+                    }
+
                 }
                 else
                 {
@@ -1824,7 +1894,15 @@ namespace Lottory
 
             dgv.Columns.Clear();
             int col = 3;
-            dgv.ColumnCount = col;
+            if(dt.Rows.Count < col)
+            {
+                dgv.ColumnCount = dt.Rows.Count;
+            }
+            else
+            {
+                dgv.ColumnCount = col;
+            }
+            
 
             dgv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
 
@@ -1843,7 +1921,7 @@ namespace Lottory
                     dgv.Rows.Add(data);
                     data = new string[col];
                 }
-                if (idx == dt.Rows.Count - 1)
+                if (idx == dt.Rows.Count - 1 && (dt.Rows.Count % col != 0))
                 {
                     dgv.Rows.Add(data);
                 }
@@ -2473,7 +2551,7 @@ namespace Lottory
                             OrderListID = getOrderListIDDB();
 
                             // get customer discount(%)
-                            discount = getCustomerDiscount(BaseTypeID.up2);
+                            discount = getCustomerDiscount(BaseTypeID.tod2);
 
                             // update OrderList Expand
                             updateOrderListExpandDB(OrderListID.ToString(), BaseTypeID.up2.ToString(), Number, Money, Money, discount);
@@ -3595,7 +3673,7 @@ namespace Lottory
                 case BaseTypeID.low3:
                     discount = this.dc_3low;
                     break;
-                case BaseTypeID.uptod3:
+                case BaseTypeID.tod3:
                     discount = this.dc_3freeup;
                     break;
                 case BaseTypeID.up2:
@@ -3808,6 +3886,7 @@ namespace Lottory
             switch(e.KeyCode)
             {
                 case Keys.Enter:
+                case Keys.PageDown:
                     // stop sound when enter
                     e.Handled = true;
                     e.SuppressKeyPress = true;
@@ -3816,10 +3895,19 @@ namespace Lottory
                     if ((tbMoney1.Enabled == true) && (tbMoney2.Enabled == true) && (tbLow.Enabled == false))
                     {
                         // Money1->Enable, Money2->Enable, Money3->Disable
-                        if (!string.IsNullOrEmpty(tbMoney1.Text) && !string.IsNullOrEmpty(tbMoney2.Text))
+                        if (!string.IsNullOrEmpty(tbMoney1.Text))
                         {
                             int _money1 = Convert.ToInt32(tbMoney1.Text);
-                            int _money2 = Convert.ToInt32(tbMoney2.Text);
+                            int _money2;
+                            if (string.IsNullOrEmpty(tbMoney2.Text))
+                            {
+                                _money2 = 0;
+                            }
+                            else
+                            {
+                                _money2 = Convert.ToInt32(tbMoney2.Text);
+                            }
+                            
                             if (buyingLimitChecking(_money1) || buyingLimitChecking(_money2))
                             {// over buying
                                 MessageBox.Show(string.Format("คำสั่งซื้อเกินวงเงินที่กำหนด", "จำกัดวงเงิน"));
@@ -4332,6 +4420,7 @@ namespace Lottory
             string upfront1 = "1 หน้า";
             string upcenter1 = "1 กลาง";
             string upback1 = "1 หลัง";
+            string summary = "รวมทั้งหมด";
 
             // Create Header Column 
             summaryTb.Columns.Add(type);
@@ -4349,39 +4438,74 @@ namespace Lottory
             summaryTb.Rows.Add(upfront1, 0, 0, 0);
             summaryTb.Rows.Add(upcenter1, 0, 0, 0);
             summaryTb.Rows.Add(upback1, 0, 0, 0);
+            summaryTb.Rows.Add(summary, 0, 0, 0);
 
             // get Sum Price from DB
-            summaryTb.Rows[0][sumPrice] = getSumPriceFromDB(BaseTypeID.up3).ToString("N0");
-            summaryTb.Rows[1][sumPrice] = getSumPriceFromDB(BaseTypeID.up2).ToString("N0");
-            summaryTb.Rows[2][sumPrice] = getSumPriceFromDB(BaseTypeID.low2).ToString("N0");
-            summaryTb.Rows[3][sumPrice] = getSumPriceFromDB(BaseTypeID.low3).ToString("N0");
-            summaryTb.Rows[4][sumPrice] = getSumPriceFromDB(BaseTypeID.up1).ToString("N0");
-            summaryTb.Rows[5][sumPrice] = getSumPriceFromDB(BaseTypeID.low1).ToString("N0");
-            summaryTb.Rows[6][sumPrice] = getSumPriceFromDB(BaseTypeID.upfront1).ToString("N0");
-            summaryTb.Rows[7][sumPrice] = getSumPriceFromDB(BaseTypeID.upcenter1).ToString("N0");
-            summaryTb.Rows[8][sumPrice] = getSumPriceFromDB(BaseTypeID.upback1).ToString("N0");
+            double _price3up = getSumPriceFromDB(BaseTypeID.up3);
+            double _price2up = getSumPriceFromDB(BaseTypeID.up2);
+            double _price2low = getSumPriceFromDB(BaseTypeID.low2);
+            double _price3low = getSumPriceFromDB(BaseTypeID.low3);
+            double _price1up = getSumPriceFromDB(BaseTypeID.up1);
+            double _price1low = getSumPriceFromDB(BaseTypeID.low1);
+            double _price1upfront = getSumPriceFromDB(BaseTypeID.upfront1);
+            double _price1upcenter = getSumPriceFromDB(BaseTypeID.upcenter1);
+            double _price1upback = getSumPriceFromDB(BaseTypeID.upback1);
+            summaryTb.Rows[0][sumPrice] = _price3up.ToString("N0");
+            summaryTb.Rows[1][sumPrice] = _price2up.ToString("N0");
+            summaryTb.Rows[2][sumPrice] = _price2low.ToString("N0");
+            summaryTb.Rows[3][sumPrice] = _price3low.ToString("N0");
+            summaryTb.Rows[4][sumPrice] = _price1up.ToString("N0");
+            summaryTb.Rows[5][sumPrice] = _price1low.ToString("N0");
+            summaryTb.Rows[6][sumPrice] = _price1upfront.ToString("N0");
+            summaryTb.Rows[7][sumPrice] = _price1upcenter.ToString("N0");
+            summaryTb.Rows[8][sumPrice] = _price1upback.ToString("N0");
+            summaryTb.Rows[9][sumPrice] = (_price3up + _price2up + _price2low + _price3low + _price1up +
+            _price1low + _price1upfront + _price1upcenter + _price1upback).ToString("N0");
 
             // get Discount Price from DB
-            summaryTb.Rows[0][discount] = getDiscountPriceFromDB(BaseTypeID.up3).ToString("N0");
-            summaryTb.Rows[1][discount] = getDiscountPriceFromDB(BaseTypeID.up2).ToString("N0");
-            summaryTb.Rows[2][discount] = getDiscountPriceFromDB(BaseTypeID.low2).ToString("N0");
-            summaryTb.Rows[3][discount] = getDiscountPriceFromDB(BaseTypeID.low3).ToString("N0");
-            summaryTb.Rows[4][discount] = getDiscountPriceFromDB(BaseTypeID.up1).ToString("N0");
-            summaryTb.Rows[5][discount] = getDiscountPriceFromDB(BaseTypeID.low1).ToString("N0");
-            summaryTb.Rows[6][discount] = getDiscountPriceFromDB(BaseTypeID.upfront1).ToString("N0");
-            summaryTb.Rows[7][discount] = getDiscountPriceFromDB(BaseTypeID.upcenter1).ToString("N0");
-            summaryTb.Rows[8][discount] = getDiscountPriceFromDB(BaseTypeID.upback1).ToString("N0");
+            double _dis3up = getDiscountPriceFromDB(BaseTypeID.up3);
+            double _dis2up = getDiscountPriceFromDB(BaseTypeID.up2);
+            double _dis2low = getDiscountPriceFromDB(BaseTypeID.low2);
+            double _dis3low = getDiscountPriceFromDB(BaseTypeID.low3);
+            double _dis1up = getDiscountPriceFromDB(BaseTypeID.up1);
+            double _dis1low = getDiscountPriceFromDB(BaseTypeID.low1);
+            double _dis1upfront = getDiscountPriceFromDB(BaseTypeID.upfront1);
+            double _dis1upcenter = getDiscountPriceFromDB(BaseTypeID.upcenter1);
+            double _dis1upback = getDiscountPriceFromDB(BaseTypeID.upback1);
+            summaryTb.Rows[0][discount] = _dis3up.ToString("N0");
+            summaryTb.Rows[1][discount] = _dis2up.ToString("N0");
+            summaryTb.Rows[2][discount] = _dis2low.ToString("N0");
+            summaryTb.Rows[3][discount] = _dis3low.ToString("N0");
+            summaryTb.Rows[4][discount] = _dis1up.ToString("N0");
+            summaryTb.Rows[5][discount] = _dis1low.ToString("N0");
+            summaryTb.Rows[6][discount] = _dis1upfront.ToString("N0");
+            summaryTb.Rows[7][discount] = _dis1upcenter.ToString("N0");
+            summaryTb.Rows[8][discount] = _dis1upback.ToString("N0");
+            summaryTb.Rows[9][discount] = (_dis3up + _dis2up + _dis2low + _dis3low + _dis1up
+                + _dis1low + _dis1upfront + _dis1upcenter + _dis1upback).ToString("N0");
 
             // get net price
-            summaryTb.Rows[0][net] = Convert.ToDouble(getSumPriceFromDB(BaseTypeID.up3) - getDiscountPriceFromDB(BaseTypeID.up3)).ToString("N0");
-            summaryTb.Rows[1][net] = Convert.ToDouble(getSumPriceFromDB(BaseTypeID.up2) - getDiscountPriceFromDB(BaseTypeID.up2)).ToString("N0");
-            summaryTb.Rows[2][net] = Convert.ToDouble(getSumPriceFromDB(BaseTypeID.low2) - getDiscountPriceFromDB(BaseTypeID.low2)).ToString("N0");
-            summaryTb.Rows[3][net] = Convert.ToDouble(getSumPriceFromDB(BaseTypeID.low3) - getDiscountPriceFromDB(BaseTypeID.low3)).ToString("N0");
-            summaryTb.Rows[4][net] = Convert.ToDouble(getSumPriceFromDB(BaseTypeID.up1) - getDiscountPriceFromDB(BaseTypeID.up1)).ToString("N0");
-            summaryTb.Rows[5][net] = Convert.ToDouble(getSumPriceFromDB(BaseTypeID.low1) - getDiscountPriceFromDB(BaseTypeID.low1)).ToString("N0");
-            summaryTb.Rows[6][net] = Convert.ToDouble(getSumPriceFromDB(BaseTypeID.upfront1) - getDiscountPriceFromDB(BaseTypeID.upfront1)).ToString("N0");
-            summaryTb.Rows[7][net] = Convert.ToDouble(getSumPriceFromDB(BaseTypeID.upcenter1) - getDiscountPriceFromDB(BaseTypeID.upcenter1)).ToString("N0");
-            summaryTb.Rows[8][net] = Convert.ToDouble(getSumPriceFromDB(BaseTypeID.upback1) - getDiscountPriceFromDB(BaseTypeID.upback1)).ToString("N0");
+            double _net3up = _price3up - _dis3up;
+            double _net2up = _price2up - _dis2up;
+            double _net2low = _price2low - _dis2low;
+            double _net3low = _price3low - _dis3low;
+            double _net1up = _price1up - _dis1up;
+            double _net1low = _price1low - _dis1low;
+            double _net1upfront = _price1upfront - _dis1upfront;
+            double _net1upcenter = _price1upcenter - _dis1upcenter;
+            double _net1upback = _price1upback - _dis1upback;
+            double _netNet = (_net3up + _net2up + _net2low + _net3low + _net1up + _net1low
+                + _net1upfront + _net1upcenter + _net1upback);
+            summaryTb.Rows[0][net] = _net3up.ToString("N0");
+            summaryTb.Rows[1][net] = _net2up.ToString("N0");
+            summaryTb.Rows[2][net] = _net2low.ToString("N0");
+            summaryTb.Rows[3][net] = _net3low.ToString("N0");
+            summaryTb.Rows[4][net] = _net1up.ToString("N0");
+            summaryTb.Rows[5][net] = _net1low.ToString("N0");
+            summaryTb.Rows[6][net] = _net1upfront.ToString("N0");
+            summaryTb.Rows[7][net] = _net1upcenter.ToString("N0");
+            summaryTb.Rows[8][net] = _net1upback.ToString("N0");
+            summaryTb.Rows[9][net] = _netNet.ToString("N0");
 
             return summaryTb;
         }

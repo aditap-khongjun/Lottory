@@ -187,7 +187,218 @@ namespace Lottory
             this.DialogResult = DialogResult.Cancel;
             this.Close();
         }
-
+        private void stepBackword(string tbName)
+        {
+            switch (tbName)
+            {
+                case "tbNumber1":
+                    tbNumber25.Focus();
+                    tbNumber25.SelectAll();
+                    break;
+                case "tbNumber2":
+                    tbNumber1.Focus();
+                    tbNumber1.SelectAll();
+                    break;
+                case "tbNumber3":
+                    tbNumber2.Focus();
+                    tbNumber2.SelectAll();
+                    break;
+                case "tbNumber4":
+                    tbNumber3.Focus();
+                    tbNumber3.SelectAll();
+                    break;
+                case "tbNumber5":
+                    tbNumber4.Focus();
+                    tbNumber4.SelectAll();
+                    break;
+                case "tbNumber6":
+                    tbNumber5.Focus();
+                    tbNumber5.SelectAll();
+                    break;
+                case "tbNumber7":
+                    tbNumber6.Focus();
+                    tbNumber6.SelectAll();
+                    break;
+                case "tbNumber8":
+                    tbNumber7.Focus();
+                    tbNumber7.SelectAll();
+                    break;
+                case "tbNumber9":
+                    tbNumber8.Focus();
+                    tbNumber8.SelectAll();
+                    break;
+                case "tbNumber10":
+                    tbNumber9.Focus();
+                    tbNumber9.SelectAll();
+                    break;
+                case "tbNumber11":
+                    tbNumber10.Focus();
+                    tbNumber10.SelectAll();
+                    break;
+                case "tbNumber12":
+                    tbNumber11.Focus();
+                    tbNumber11.SelectAll();
+                    break;
+                case "tbNumber13":
+                    tbNumber12.Focus();
+                    tbNumber12.SelectAll();
+                    break;
+                case "tbNumber14":
+                    tbNumber13.Focus();
+                    tbNumber13.SelectAll();
+                    break;
+                case "tbNumber15":
+                    tbNumber14.Focus();
+                    tbNumber14.SelectAll();
+                    break;
+                case "tbNumber16":
+                    tbNumber15.Focus();
+                    tbNumber15.SelectAll();
+                    break;
+                case "tbNumber17":
+                    tbNumber16.Focus();
+                    tbNumber16.SelectAll();
+                    break;
+                case "tbNumber18":
+                    tbNumber17.Focus();
+                    tbNumber17.SelectAll();
+                    break;
+                case "tbNumber19":
+                    tbNumber18.Focus();
+                    tbNumber18.SelectAll();
+                    break;
+                case "tbNumber20":
+                    tbNumber19.Focus();
+                    tbNumber19.SelectAll();
+                    break;
+                case "tbNumber21":
+                    tbNumber20.Focus();
+                    tbNumber20.SelectAll();
+                    break;
+                case "tbNumber22":
+                    tbNumber21.Focus();
+                    tbNumber21.SelectAll();
+                    break;
+                case "tbNumber23":
+                    tbNumber22.Focus();
+                    tbNumber22.SelectAll();
+                    break;
+                case "tbNumber24":
+                    tbNumber23.Focus();
+                    tbNumber23.SelectAll();
+                    break;
+                case "tbNumber25":
+                    tbNumber24.Focus();
+                    tbNumber24.SelectAll();
+                    break;
+            }
+        }
+        private void stepForword(string tbName)
+        {
+            switch (tbName)
+            {
+                case "tbNumber1":
+                    tbNumber2.Focus();
+                    tbNumber2.SelectAll();
+                    break;
+                case "tbNumber2":
+                    tbNumber3.Focus();
+                    tbNumber3.SelectAll();
+                    break;
+                case "tbNumber3":
+                    tbNumber4.Focus();
+                    tbNumber4.SelectAll();
+                    break;
+                case "tbNumber4":
+                    tbNumber5.Focus();
+                    tbNumber5.SelectAll();
+                    break;
+                case "tbNumber5":
+                    tbNumber6.Focus();
+                    tbNumber6.SelectAll();
+                    break;
+                case "tbNumber6":
+                    tbNumber7.Focus();
+                    tbNumber7.SelectAll();
+                    break;
+                case "tbNumber7":
+                    tbNumber8.Focus();
+                    tbNumber8.SelectAll();
+                    break;
+                case "tbNumber8":
+                    tbNumber9.Focus();
+                    tbNumber9.SelectAll();
+                    break;
+                case "tbNumber9":
+                    tbNumber10.Focus();
+                    tbNumber10.SelectAll();
+                    break;
+                case "tbNumber10":
+                    tbNumber11.Focus();
+                    tbNumber11.SelectAll();
+                    break;
+                case "tbNumber11":
+                    tbNumber12.Focus();
+                    tbNumber12.SelectAll();
+                    break;
+                case "tbNumber12":
+                    tbNumber13.Focus();
+                    tbNumber13.SelectAll();
+                    break;
+                case "tbNumber13":
+                    tbNumber14.Focus();
+                    tbNumber14.SelectAll();
+                    break;
+                case "tbNumber14":
+                    tbNumber15.Focus();
+                    tbNumber15.SelectAll();
+                    break;
+                case "tbNumber15":
+                    tbNumber16.Focus();
+                    tbNumber16.SelectAll();
+                    break;
+                case "tbNumber16":
+                    tbNumber17.Focus();
+                    tbNumber17.SelectAll();
+                    break;
+                case "tbNumber17":
+                    tbNumber18.Focus();
+                    tbNumber18.SelectAll();
+                    break;
+                case "tbNumber18":
+                    tbNumber19.Focus();
+                    tbNumber19.SelectAll();
+                    break;
+                case "tbNumber19":
+                    tbNumber20.Focus();
+                    tbNumber20.SelectAll();
+                    break;
+                case "tbNumber20":
+                    tbNumber21.Focus();
+                    tbNumber21.SelectAll();
+                    break;
+                case "tbNumber21":
+                    tbNumber22.Focus();
+                    tbNumber22.SelectAll();
+                    break;
+                case "tbNumber22":
+                    tbNumber23.Focus();
+                    tbNumber23.SelectAll();
+                    break;
+                case "tbNumber23":
+                    tbNumber24.Focus();
+                    tbNumber24.SelectAll();
+                    break;
+                case "tbNumber24":
+                    tbNumber25.Focus();
+                    tbNumber25.SelectAll();
+                    break;
+                case "tbNumber25":
+                    tbNumber1.Focus();
+                    tbNumber1.SelectAll();
+                    break;
+            }
+        }
         private void tbNumber_KeyDown(object sender, KeyEventArgs e)
         {
             TextBox tbNumber = (TextBox)sender;
@@ -198,109 +409,10 @@ namespace Lottory
                     btOK.PerformClick();
                     break;
                 case Keys.Up:
-                    switch (tbName)
-                    {
-                        case "tbNumber1":
-                            tbNumber25.Focus();
-                            tbNumber25.SelectAll();
-                            break;
-                        case "tbNumber2":
-                            tbNumber1.Focus();
-                            tbNumber1.SelectAll();
-                            break;
-                        case "tbNumber3":
-                            tbNumber2.Focus();
-                            tbNumber2.SelectAll();
-                            break;
-                        case "tbNumber4":
-                            tbNumber3.Focus();
-                            tbNumber3.SelectAll();
-                            break;
-                        case "tbNumber5":
-                            tbNumber4.Focus();
-                            tbNumber4.SelectAll();
-                            break;
-                        case "tbNumber6":
-                            tbNumber5.Focus();
-                            tbNumber5.SelectAll();
-                            break;
-                        case "tbNumber7":
-                            tbNumber6.Focus();
-                            tbNumber6.SelectAll();
-                            break;
-                        case "tbNumber8":
-                            tbNumber7.Focus();
-                            tbNumber7.SelectAll();
-                            break;
-                        case "tbNumber9":
-                            tbNumber8.Focus();
-                            tbNumber8.SelectAll();
-                            break;
-                        case "tbNumber10":
-                            tbNumber9.Focus();
-                            tbNumber9.SelectAll();
-                            break;
-                        case "tbNumber11":
-                            tbNumber10.Focus();
-                            tbNumber10.SelectAll();
-                            break;
-                        case "tbNumber12":
-                            tbNumber11.Focus();
-                            tbNumber11.SelectAll();
-                            break;
-                        case "tbNumber13":
-                            tbNumber12.Focus();
-                            tbNumber12.SelectAll();
-                            break;
-                        case "tbNumber14":
-                            tbNumber13.Focus();
-                            tbNumber13.SelectAll();
-                            break;
-                        case "tbNumber15":
-                            tbNumber14.Focus();
-                            tbNumber14.SelectAll();
-                            break;
-                        case "tbNumber16":
-                            tbNumber15.Focus();
-                            tbNumber15.SelectAll();
-                            break;
-                        case "tbNumber17":
-                            tbNumber16.Focus();
-                            tbNumber16.SelectAll();
-                            break;
-                        case "tbNumber18":
-                            tbNumber17.Focus();
-                            tbNumber17.SelectAll();
-                            break;
-                        case "tbNumber19":
-                            tbNumber18.Focus();
-                            tbNumber18.SelectAll();
-                            break;
-                        case "tbNumber20":
-                            tbNumber19.Focus();
-                            tbNumber19.SelectAll();
-                            break;
-                        case "tbNumber21":
-                            tbNumber20.Focus();
-                            tbNumber20.SelectAll();
-                            break;
-                        case "tbNumber22":
-                            tbNumber21.Focus();
-                            tbNumber21.SelectAll();
-                            break;
-                        case "tbNumber23":
-                            tbNumber22.Focus();
-                            tbNumber22.SelectAll();
-                            break;
-                        case "tbNumber24":
-                            tbNumber23.Focus();
-                            tbNumber23.SelectAll();
-                            break;
-                        case "tbNumber25":
-                            tbNumber24.Focus();
-                            tbNumber24.SelectAll();
-                            break;
-                    }
+                    stepBackword(tbName);
+                    break;
+                case Keys.Down:
+                    stepForword(tbName);
                     break;
             }
         }

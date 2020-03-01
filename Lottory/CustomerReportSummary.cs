@@ -121,226 +121,324 @@ namespace Lottory
             outBuyingInfo.Columns.Add("Type");
             outBuyingInfo.Columns.Add("Price");
             outBuyingInfo.Columns.Add("Discount");
-            // for 3up
-            int _price3up;
-            int _disc3up;
+            // for 3(up,low)
+            int _p3uptod;
+            int _p3up;
+            int _p3low;
+            int _p3door54;
+            int _p3group;
+            int _ptGroup;
+            int _pGroupLow;
+            int _price3 = 0;
+
+            int _d3uptod;
+            int _d3up;
+            int _d3low;
+            int _d3door54;
+            int _d3group;
+            int _dtGroup;
+            int _dGroupLow;
+            int _disc3 = 0;
             if (string.Equals(PageID, "ทั้งหมด"))
             {
-                _price3up = getPriceFromDB(CustomerID, BaseTypeID.up3, string.Empty);
-                _disc3up = _price3up - getDiscountFromDB(CustomerID, BaseTypeID.up3, string.Empty);
+                // get Price From DB
+                _p3uptod = getPriceFromDB(CustomerID, BaseTypeID.uptod3, string.Empty);
+                _p3up = getPriceFromDB(CustomerID, BaseTypeID.up3, string.Empty);
+                _p3low = getPriceFromDB(CustomerID, BaseTypeID.low3, string.Empty);
+                _p3door54 = getPriceFromDB(CustomerID, BaseTypeID.door543, string.Empty);
+                _p3group = getPriceFromDB(CustomerID, BaseTypeID.group3, string.Empty);
+                _ptGroup = getPriceFromDB(CustomerID, BaseTypeID.tgroup3, string.Empty);
+                _pGroupLow = getPriceFromDB(CustomerID, BaseTypeID.lowgroup3, string.Empty);
+
+                _price3 = _p3uptod + _p3up + _p3low + _p3door54 + _p3group + _ptGroup + _pGroupLow;
+
+                // get Discount From DB
+                _d3uptod = getDiscountFromDB(CustomerID, BaseTypeID.uptod3, string.Empty);
+                _d3up = getDiscountFromDB(CustomerID, BaseTypeID.up3, string.Empty);
+                _d3low = getDiscountFromDB(CustomerID, BaseTypeID.low3, string.Empty);
+                _d3door54 = getDiscountFromDB(CustomerID, BaseTypeID.door543, string.Empty);
+                _d3group = getDiscountFromDB(CustomerID, BaseTypeID.group3, string.Empty);
+                _dtGroup = getDiscountFromDB(CustomerID, BaseTypeID.tgroup3, string.Empty);
+                _dGroupLow = getDiscountFromDB(CustomerID, BaseTypeID.lowgroup3, string.Empty);
+
+                _disc3 = _price3 - (_d3uptod + _d3up + _d3low + _d3door54 + _d3group + _dtGroup + _dGroupLow);
             }
             else
             {
-                _price3up = getPriceFromDB(CustomerID, BaseTypeID.up3, PageID);
-                _disc3up = _price3up - getDiscountFromDB(CustomerID, BaseTypeID.up3, PageID);
+                // get Price From DB
+                _p3uptod = getPriceFromDB(CustomerID, BaseTypeID.uptod3, PageID);
+                _p3up = getPriceFromDB(CustomerID, BaseTypeID.up3, PageID);
+                _p3low = getPriceFromDB(CustomerID, BaseTypeID.low3, PageID);
+                _p3door54 = getPriceFromDB(CustomerID, BaseTypeID.door543, PageID);
+                _p3group = getPriceFromDB(CustomerID, BaseTypeID.group3, PageID);
+                _ptGroup = getPriceFromDB(CustomerID, BaseTypeID.tgroup3, PageID);
+                _pGroupLow = getPriceFromDB(CustomerID, BaseTypeID.lowgroup3, PageID);
+
+                _price3 = _p3uptod + _p3up + _p3low + _p3door54 + _p3group + _ptGroup + _pGroupLow;
+                //_price3up = getPriceFromDB(CustomerID, BaseTypeID.up3, PageID);
+                //_disc3up = _price3up - getDiscountFromDB(CustomerID, BaseTypeID.up3, PageID);
+
+
+                // get Discount From DB
+                _d3uptod = getDiscountFromDB(CustomerID, BaseTypeID.uptod3, PageID);
+                _d3up = getDiscountFromDB(CustomerID, BaseTypeID.up3, PageID);
+                _d3low = getDiscountFromDB(CustomerID, BaseTypeID.low3, PageID);
+                _d3door54 = getDiscountFromDB(CustomerID, BaseTypeID.door543, PageID);
+                _d3group = getDiscountFromDB(CustomerID, BaseTypeID.group3, PageID);
+                _dtGroup = getDiscountFromDB(CustomerID, BaseTypeID.tgroup3, PageID);
+                _dGroupLow = getDiscountFromDB(CustomerID, BaseTypeID.lowgroup3, PageID);
+
+                _disc3 = _price3 - (_d3uptod + _d3up + _d3low + _d3door54 + _d3group + _dtGroup + _dGroupLow);
             }
-            if (_price3up > 0)
+
+            if (_price3 > 0)
             {
-                outBuyingInfo.Rows.Add("3 บน", _price3up, _disc3up);
+                outBuyingInfo.Rows.Add("3", _price3, _disc3);
             }
-            // for 3low
-            int _price3low;
-            int _disc3low;
-            if (string.Equals(PageID, "ทั้งหมด"))
-            {
-                _price3low = getPriceFromDB(CustomerID, BaseTypeID.low3, string.Empty);
-                _disc3low = _price3low - getDiscountFromDB(CustomerID, BaseTypeID.low3, string.Empty);
-            }
-            else
-            {
-                _price3low = getPriceFromDB(CustomerID, BaseTypeID.low3, PageID);
-                _disc3low = _price3low - getDiscountFromDB(CustomerID, BaseTypeID.low3, PageID);
-            }
-            if (_price3low > 0)
-            {
-                outBuyingInfo.Rows.Add("3 ล่าง", _price3low, _disc3low);
-            }
+            
             // for 2up
-            int _price2up;
-            int _disc2up;
+            int _p2up;
+            int _p2low;
+            int _p2uptod;
+            int _p2door6;
+            int _p2updoor19;
+            int _p2lowdoor19;
+            int _p2ht;
+            int _p2hu;
+            int _price2 = 0;
+
+            int _d2up;
+            int _d2low;
+            int _d2uptod;
+            int _d2door6;
+            int _d2updoor19;
+            int _d2lowdoor19;
+            int _d2ht;
+            int _d2hu;
+            int _disc2 = 0;
             if (string.Equals(PageID, "ทั้งหมด"))
             {
-                _price2up = getPriceFromDB(CustomerID, BaseTypeID.up2, string.Empty);
-                _disc2up = _price2up - getDiscountFromDB(CustomerID, BaseTypeID.up2, string.Empty);
+                // get Price From DB
+                _p2up = getPriceFromDB(CustomerID, BaseTypeID.up2, string.Empty);
+                _p2low = getPriceFromDB(CustomerID, BaseTypeID.low2, string.Empty);
+                _p2uptod = getPriceFromDB(CustomerID, BaseTypeID.uptod2, string.Empty);
+                _p2door6 = getPriceFromDB(CustomerID, BaseTypeID.door62, string.Empty);
+                _p2updoor19 = getPriceFromDB(CustomerID, BaseTypeID.door19up2, string.Empty);
+                _p2lowdoor19 = getPriceFromDB(CustomerID, BaseTypeID.door19low2, string.Empty);
+                _p2ht = getPriceFromDB(CustomerID, BaseTypeID.ht2, string.Empty);
+                _p2hu = getPriceFromDB(CustomerID, BaseTypeID.hu2, string.Empty);
+
+                _price2 = _p2up + _p2low + _p2uptod + _p2door6 + _p2updoor19 + _p2lowdoor19 + _p2ht + _p2hu;
+
+                // get Discount From DB
+                _d2up = getDiscountFromDB(CustomerID, BaseTypeID.up2, string.Empty);
+                _d2low = getDiscountFromDB(CustomerID, BaseTypeID.low2, string.Empty);
+                _d2uptod = getDiscountFromDB(CustomerID, BaseTypeID.uptod2, string.Empty);
+                _d2door6 = getDiscountFromDB(CustomerID, BaseTypeID.door62, string.Empty);
+                _d2updoor19 = getDiscountFromDB(CustomerID, BaseTypeID.door19up2, string.Empty);
+                _d2lowdoor19 = getDiscountFromDB(CustomerID, BaseTypeID.door19low2, string.Empty);
+                _d2ht = getDiscountFromDB(CustomerID, BaseTypeID.ht2, string.Empty);
+                _d2hu = getDiscountFromDB(CustomerID, BaseTypeID.hu2, string.Empty);
+
+                _disc2 = _price2 - (_d2up + _d2low + _d2uptod + _d2door6 + _d2updoor19 + _d2lowdoor19 + _d2ht + _d2hu);
+                //_disc2up = _price2up - getDiscountFromDB(CustomerID, BaseTypeID.up2, string.Empty);
             }
             else
             {
-                _price2up = getPriceFromDB(CustomerID, BaseTypeID.up2, PageID);
-                _disc2up = _price2up - getDiscountFromDB(CustomerID, BaseTypeID.up2, PageID);
+                // get Price From DB
+                _p2up = getPriceFromDB(CustomerID, BaseTypeID.up2, PageID);
+                _p2low = getPriceFromDB(CustomerID, BaseTypeID.low2, PageID);
+                _p2uptod = getPriceFromDB(CustomerID, BaseTypeID.uptod2, PageID);
+                _p2door6 = getPriceFromDB(CustomerID, BaseTypeID.door62, PageID);
+                _p2updoor19 = getPriceFromDB(CustomerID, BaseTypeID.door19up2, PageID);
+                _p2lowdoor19 = getPriceFromDB(CustomerID, BaseTypeID.door19low2, PageID);
+                _p2ht = getPriceFromDB(CustomerID, BaseTypeID.ht2, PageID);
+                _p2hu = getPriceFromDB(CustomerID, BaseTypeID.hu2, PageID);
+
+                _price2 = _p2up + _p2low + _p2uptod + _p2door6 + _p2updoor19 + _p2lowdoor19 + _p2ht + _p2hu;
+
+                // get Discount From DB
+                _d2up = getDiscountFromDB(CustomerID, BaseTypeID.up2, PageID);
+                _d2low = getDiscountFromDB(CustomerID, BaseTypeID.low2, PageID);
+                _d2uptod = getDiscountFromDB(CustomerID, BaseTypeID.uptod2, PageID);
+                _d2door6 = getDiscountFromDB(CustomerID, BaseTypeID.door62, PageID);
+                _d2updoor19 = getDiscountFromDB(CustomerID, BaseTypeID.door19up2, PageID);
+                _d2lowdoor19 = getDiscountFromDB(CustomerID, BaseTypeID.door19low2, PageID);
+                _d2ht = getDiscountFromDB(CustomerID, BaseTypeID.ht2, PageID);
+                _d2hu = getDiscountFromDB(CustomerID, BaseTypeID.hu2, PageID);
+
+                _disc2 = _price2 - (_d2up + _d2low + _d2uptod + _d2door6 + _d2updoor19 + _d2lowdoor19 + _d2ht + _d2hu);
             }
-            if (_price2up > 0)
+            if (_price2 > 0)
             {
-                outBuyingInfo.Rows.Add("2 บน", _price2up, _disc2up);
+                outBuyingInfo.Rows.Add("2", _price2, _disc2);
             }
-            // for 2low
-            int _price2low;
-            int _disc2low;
+
+            // for 2,3 tod up,low
+            int _p3tod;
+            int _p2tod;
+            int _ptod;
+
+            int _d3tod;
+            int _d2tod;
+            int _dtod;
             if (string.Equals(PageID, "ทั้งหมด"))
             {
-                _price2low = getPriceFromDB(CustomerID, BaseTypeID.low2, string.Empty);
-                _disc2low = _price2low - getDiscountFromDB(CustomerID, BaseTypeID.low2, string.Empty);
+                // get Group tod from DB
+                _p3uptod = getGroupFromDB(CustomerID, BaseTypeID.uptod3, string.Empty);
+                _p2uptod = getGroupFromDB(CustomerID, BaseTypeID.uptod2, string.Empty);
+                _p3tod = getGroupFromDB(CustomerID, BaseTypeID.tod3, string.Empty);
+                _p2tod = getGroupFromDB(CustomerID, BaseTypeID.tod2, string.Empty);
+
+                _ptod = _p3uptod + _p2uptod + _p3tod + _p2tod;
+
+                // get Group tod Discount From DB
+                _d3uptod = getGDiscountFromDB(CustomerID, BaseTypeID.uptod3, string.Empty);
+                _d2uptod = getGDiscountFromDB(CustomerID, BaseTypeID.uptod2, string.Empty);
+                _d3tod = getGDiscountFromDB(CustomerID, BaseTypeID.tod3, string.Empty);
+                _d2tod = getGDiscountFromDB(CustomerID, BaseTypeID.tod2, string.Empty);
+
+                _dtod = _ptod - (_d3uptod + _d2uptod + _d3tod + _d2tod);
             }
             else
             {
-                _price2low = getPriceFromDB(CustomerID, BaseTypeID.low2, PageID);
-                _disc2low = _price2low - getDiscountFromDB(CustomerID, BaseTypeID.low2, PageID);
+                // get Group tod from DB
+                _p3uptod = getGroupFromDB(CustomerID, BaseTypeID.uptod3, PageID);
+                _p2uptod = getGroupFromDB(CustomerID, BaseTypeID.uptod2, PageID);
+                _p3tod = getGroupFromDB(CustomerID, BaseTypeID.tod3, PageID);
+                _p2tod = getGroupFromDB(CustomerID, BaseTypeID.tod2, PageID);
+
+                _ptod = _p3uptod + _p2uptod + _p3tod + _p2tod;
+
+                // get Group tod Discount From DB
+                _d3uptod = getGDiscountFromDB(CustomerID, BaseTypeID.uptod3, PageID);
+                _d2uptod = getGDiscountFromDB(CustomerID, BaseTypeID.uptod2, PageID);
+                _d3tod = getGDiscountFromDB(CustomerID, BaseTypeID.tod3, PageID);
+                _d2tod = getGDiscountFromDB(CustomerID, BaseTypeID.tod2, PageID);
+
+                _dtod = _ptod - (_d3uptod + _d2uptod + _d3tod + _d2tod);
             }
-            if (_price2low > 0)
+            if (_ptod > 0)
             {
-                outBuyingInfo.Rows.Add("2 ล่าง", _price2low, _disc2low);
+                outBuyingInfo.Rows.Add("T", _ptod, _dtod);
             }
-            // for 2ht
-            int _price2ht;
-            int _disc2ht;
+            
+            // for 5 digit
+            int _p5group;
+            int _p5tod;
+            int _price5;
+            int _d5group;
+            int _d5tod;
+            int _disc5;
             if (string.Equals(PageID, "ทั้งหมด"))
             {
-                _price2ht = getPriceFromDB(CustomerID, BaseTypeID.ht2, string.Empty);
-                _disc2ht = _price2ht - getDiscountFromDB(CustomerID, BaseTypeID.ht2, string.Empty);
+                // get Price From DB
+                _p5group = getPriceFromDB(CustomerID, BaseTypeID.group5, string.Empty);
+                _p5tod = getPriceFromDB(CustomerID, BaseTypeID.tod5, string.Empty);
+
+                _price5 = _p5group + _p5tod;
+
+                // get Discount From DB
+                _d5group = getDiscountFromDB(CustomerID, BaseTypeID.group5, string.Empty);
+                _d5tod = getDiscountFromDB(CustomerID, BaseTypeID.tod5, string.Empty);
+                _disc5 = _price5 - (_d5group + _d5tod);
             }
             else
             {
-                _price2ht = getPriceFromDB(CustomerID, BaseTypeID.ht2, PageID);
-                _disc2ht = _price2ht - getDiscountFromDB(CustomerID, BaseTypeID.ht2, PageID);
+                // get Price From DB
+                _p5group = getPriceFromDB(CustomerID, BaseTypeID.group5, PageID);
+                _p5tod = getPriceFromDB(CustomerID, BaseTypeID.tod5, PageID);
+
+                _price5 = _p5group + _p5tod;
+
+                // get Discount From DB
+                _d5group = getDiscountFromDB(CustomerID, BaseTypeID.group5, PageID);
+                _d5tod = getDiscountFromDB(CustomerID, BaseTypeID.tod5, PageID);
+                _disc5 = _price5 - (_d5group + _d5tod);
             }
-            if (_price2ht > 0)
+            if (_price5 > 0)
             {
-                outBuyingInfo.Rows.Add("ร้อยสิบ", _price2ht, _disc2ht);
+                outBuyingInfo.Rows.Add("5", _price5, _disc5);
             }
-            // for 2hu
-            int _price2hu;
-            int _disc2hu;
+            
+            // for 1 up,low
+            int _p1up;
+            int _p1low;
+            int _p1upfront;
+            int _p1upcenter;
+            int _p1upback;
+            int _p1lowfront;
+            int _p1lowback;
+            int _price1;
+
+            int _d1up;
+            int _d1low;
+            int _d1upfront;
+            int _d1upcenter;
+            int _d1upback;
+            int _d1lowfront;
+            int _d1lowback;
+            int _disc1;
+
             if (string.Equals(PageID, "ทั้งหมด"))
             {
-                _price2hu = getPriceFromDB(CustomerID, BaseTypeID.hu2, string.Empty);
-                _disc2hu = _price2hu - getDiscountFromDB(CustomerID, BaseTypeID.hu2, string.Empty);
+                // get Price From DB
+                _p1up = getPriceFromDB(CustomerID, BaseTypeID.up1, string.Empty);
+                _p1low = getPriceFromDB(CustomerID, BaseTypeID.low1, string.Empty);
+                _p1upfront = getPriceFromDB(CustomerID, BaseTypeID.upfront1, string.Empty);
+                _p1upcenter = getPriceFromDB(CustomerID, BaseTypeID.upcenter1, string.Empty);
+                _p1upback = getPriceFromDB(CustomerID, BaseTypeID.upback1, string.Empty);
+                _p1lowfront = getPriceFromDB(CustomerID, BaseTypeID.lowfront1, string.Empty);
+                _p1lowback = getPriceFromDB(CustomerID, BaseTypeID.lowback1, string.Empty);
+
+                _price1 = (_p1up + _p1low + _p1upfront + _p1upcenter + _p1upback + _p1lowfront + _p1lowback);
+
+
+                // get Discount From DB
+                _d1up = getDiscountFromDB(CustomerID, BaseTypeID.up1, string.Empty);
+                _d1low = getDiscountFromDB(CustomerID, BaseTypeID.low1, string.Empty);
+                _d1upfront = getDiscountFromDB(CustomerID, BaseTypeID.upfront1, string.Empty);
+                _d1upcenter = getDiscountFromDB(CustomerID, BaseTypeID.upcenter1, string.Empty);
+                _d1upback = getDiscountFromDB(CustomerID, BaseTypeID.upback1, string.Empty);
+                _d1lowfront = getDiscountFromDB(CustomerID, BaseTypeID.lowfront1, string.Empty);
+                _d1lowback = getDiscountFromDB(CustomerID, BaseTypeID.lowback1, string.Empty);
+
+                _disc1 = _price1 - (_d1up + _d1low + _d1upfront + _d1upcenter + _d1upback + _d1lowfront + _d1lowback);
+
+
+                //_disc2hu = _price2hu - getDiscountFromDB(CustomerID, BaseTypeID.hu2, string.Empty);
             }
             else
             {
-                _price2hu = getPriceFromDB(CustomerID, BaseTypeID.hu2, PageID);
-                _disc2hu = _price2hu - getDiscountFromDB(CustomerID, BaseTypeID.hu2, PageID);
+                // get Price From DB
+                _p1up = getPriceFromDB(CustomerID, BaseTypeID.up1, PageID);
+                _p1low = getPriceFromDB(CustomerID, BaseTypeID.low1, PageID);
+                _p1upfront = getPriceFromDB(CustomerID, BaseTypeID.upfront1, PageID);
+                _p1upcenter = getPriceFromDB(CustomerID, BaseTypeID.upcenter1, PageID);
+                _p1upback = getPriceFromDB(CustomerID, BaseTypeID.upback1, PageID);
+                _p1lowfront = getPriceFromDB(CustomerID, BaseTypeID.lowfront1, PageID);
+                _p1lowback = getPriceFromDB(CustomerID, BaseTypeID.lowback1, PageID);
+
+                _price1 = (_p1up + _p1low + _p1upfront + _p1upcenter + _p1upback + _p1lowfront + _p1lowback);
+
+
+                // get Discount From DB
+                _d1up = getDiscountFromDB(CustomerID, BaseTypeID.up1, PageID);
+                _d1low = getDiscountFromDB(CustomerID, BaseTypeID.low1, PageID);
+                _d1upfront = getDiscountFromDB(CustomerID, BaseTypeID.upfront1, PageID);
+                _d1upcenter = getDiscountFromDB(CustomerID, BaseTypeID.upcenter1, PageID);
+                _d1upback = getDiscountFromDB(CustomerID, BaseTypeID.upback1, PageID);
+                _d1lowfront = getDiscountFromDB(CustomerID, BaseTypeID.lowfront1, PageID);
+                _d1lowback = getDiscountFromDB(CustomerID, BaseTypeID.lowback1, PageID);
+
+                _disc1 = _price1 - (_d1up + _d1low + _d1upfront + _d1upcenter + _d1upback + _d1lowfront + _d1lowback);
+
+                //_price2hu = getPriceFromDB(CustomerID, BaseTypeID.hu2, PageID);
+                //_disc2hu = _price2hu - getDiscountFromDB(CustomerID, BaseTypeID.hu2, PageID);
             }
-            if (_price2hu > 0)
+            if (_price1 > 0)
             {
-                outBuyingInfo.Rows.Add("ร้อยหน่วย", _price2hu, _disc2hu);
-            }
-            // for 1up
-            int _price1up;
-            int _disc1up;
-            if (string.Equals(PageID, "ทั้งหมด"))
-            {
-                _price1up = getPriceFromDB(CustomerID, BaseTypeID.up1, string.Empty);
-                _disc1up = _price1up - getDiscountFromDB(CustomerID, BaseTypeID.up1, string.Empty);
-            }
-            else
-            {
-                _price1up = getPriceFromDB(CustomerID, BaseTypeID.up1, PageID);
-                _disc1up = _price1up - getDiscountFromDB(CustomerID, BaseTypeID.up1, PageID);
-            }
-            if (_price1up > 0)
-            {
-                outBuyingInfo.Rows.Add("1 บน", _price1up, _disc1up);
-            }
-            // for 1low
-            int _price1low;
-            int _disc1low;
-            if (string.Equals(PageID, "ทั้งหมด"))
-            {
-                _price1low = getPriceFromDB(CustomerID, BaseTypeID.low1, string.Empty);
-                _disc1low = _price1low - getDiscountFromDB(CustomerID, BaseTypeID.low1, string.Empty);
-            }
-            else
-            {
-                _price1low = getPriceFromDB(CustomerID, BaseTypeID.low1, PageID);
-                _disc1low = _price1low - getDiscountFromDB(CustomerID, BaseTypeID.low1, PageID);
-            }
-            if (_price1low > 0)
-            {
-                outBuyingInfo.Rows.Add("1 ล่าง", _price1low, _disc1low);
-            }
-            // for 1front
-            int _price1front;
-            int _disc1front;
-            if (string.Equals(PageID, "ทั้งหมด"))
-            {
-                _price1front = getPriceFromDB(CustomerID, BaseTypeID.upfront1, string.Empty);
-                _disc1front = _price1front - getDiscountFromDB(CustomerID, BaseTypeID.upfront1, string.Empty);
-            }
-            else
-            {
-                _price1front = getPriceFromDB(CustomerID, BaseTypeID.upfront1, PageID);
-                _disc1front = _price1front - getDiscountFromDB(CustomerID, BaseTypeID.upfront1, PageID);
-            }
-            if (_price1front > 0)
-            {
-                outBuyingInfo.Rows.Add("1 หน้า", _price1front, _disc1front);
-            }
-            // for 1center
-            int _price1center;
-            int _disc1center;
-            if (string.Equals(PageID, "ทั้งหมด"))
-            {
-                _price1center = getPriceFromDB(CustomerID, BaseTypeID.upcenter1, string.Empty);
-                _disc1center = _price1center - getDiscountFromDB(CustomerID, BaseTypeID.upcenter1, string.Empty);
-            }
-            else
-            {
-                _price1center = getPriceFromDB(CustomerID, BaseTypeID.upcenter1, PageID);
-                _disc1center = _price1center - getDiscountFromDB(CustomerID, BaseTypeID.upcenter1, PageID);
-            }
-            if (_price1center > 0)
-            {
-                outBuyingInfo.Rows.Add("1 กลาง", _price1center, _disc1center);
-            }
-            // for 1back
-            int _price1back;
-            int _disc1back;
-            if (string.Equals(PageID, "ทั้งหมด"))
-            {
-                _price1back = getPriceFromDB(CustomerID, BaseTypeID.upback1, string.Empty);
-                _disc1back = _price1back - getDiscountFromDB(CustomerID, BaseTypeID.upback1, string.Empty);
-            }
-            else
-            {
-                _price1back = getPriceFromDB(CustomerID, BaseTypeID.upback1, PageID);
-                _disc1back = _price1back - getDiscountFromDB(CustomerID, BaseTypeID.upback1, PageID);
-            }
-            if (_price1back > 0)
-            {
-                outBuyingInfo.Rows.Add("1 หลัง", _price1back, _disc1back);
-            }
-            // for 1lowfront
-            int _price1lowfront;
-            int _disc1lowfront;
-            if (string.Equals(PageID, "ทั้งหมด"))
-            {
-                _price1lowfront = getPriceFromDB(CustomerID, BaseTypeID.lowfront1, string.Empty);
-                _disc1lowfront = _price1lowfront - getDiscountFromDB(CustomerID, BaseTypeID.lowfront1, string.Empty);
-            }
-            else
-            {
-                _price1lowfront = getPriceFromDB(CustomerID, BaseTypeID.lowfront1, PageID);
-                _disc1lowfront = _price1lowfront - getDiscountFromDB(CustomerID, BaseTypeID.lowfront1, PageID);
-            }
-            if (_price1lowfront > 0)
-            {
-                outBuyingInfo.Rows.Add("1 ล่างหน้า", _price1lowfront, _disc1lowfront);
-            }
-            // for 1lowback
-            int _price1lowback;
-            int _disc1lowback;
-            if (string.Equals(PageID, "ทั้งหมด"))
-            {
-                _price1lowback = getPriceFromDB(CustomerID, BaseTypeID.lowback1, string.Empty);
-                _disc1lowback = _price1lowback - getDiscountFromDB(CustomerID, BaseTypeID.lowback1, string.Empty);
-            }
-            else
-            {
-                _price1lowback = getPriceFromDB(CustomerID, BaseTypeID.lowback1, PageID);
-                _disc1lowback = _price1lowback - getDiscountFromDB(CustomerID, BaseTypeID.lowback1, PageID);
-            }
-            if (_price1lowback > 0)
-            {
-                outBuyingInfo.Rows.Add("1 ล่างหลัง", _price1lowback, _disc1lowback);
+                outBuyingInfo.Rows.Add("1", _price1, _disc1);
             }
 
             return outBuyingInfo;
@@ -394,101 +492,201 @@ namespace Lottory
             // get winnumber
             List<string> winNumber3up = getWinNumber(WinNumberType.up3);
             // get winprice
-            getwinPriceFromDB(CustomerID, BaseTypeID.up3, winNumber3up, PageID, out double _winPrice3up, out double _winRate3up);
+            getwinPriceFromDB(CustomerID, BaseTypeID.uptod3, winNumber3up, PageID, out double _winP3uptod, out double _winR3uptod);
+            getwinPriceFromDB(CustomerID, BaseTypeID.up3, winNumber3up, PageID, out double _winP3up, out double _winR3up);
+            getwinPriceFromDB(CustomerID, BaseTypeID.group3, winNumber3up, PageID, out double _winP3group, out double _winR3group);
+            getwinPriceFromDB(CustomerID, BaseTypeID.door543, winNumber3up, PageID, out double _winP3door54, out double _winR3door54);
+            getwinPriceFromDB(CustomerID, BaseTypeID.tgroup3, winNumber3up, PageID, out double _winP3tgroup, out double _winR3tgroup);
             // get payprice
-            double _payPrice3up = _winPrice3up * _winRate3up;
+            double _payP3uptod = _winP3uptod * _winR3uptod;
+            double _payP3up = _winP3up * _winR3up;
+            double _payP3group = _winP3group * _winR3group;
+            double _payP3door54 = _winP3door54 * _winR3door54;
+            double _payP3tgroup = _winP3tgroup * _winR3tgroup;
+            // summary
+            double _payPrice3up = _payP3uptod + _payP3up + _payP3group + _payP3door54 + _payP3tgroup;
+            double _winPrice3up = _winP3uptod + _winP3up + _winP3group + _winP3door54 + _winP3tgroup;
             if (_winPrice3up > 0)
             {
                 outPayingInfo.Rows.Add("3 บน", _winPrice3up.ToString("N0"), _payPrice3up.ToString("N0"));
             }
-            // for 3low
-            // get winnumber
-            List<string> winNumber3low = getWinNumber(WinNumberType.low3);
-            // get winprice
-            getwinPriceFromDB(CustomerID, BaseTypeID.low3, winNumber3low, PageID, out double _winPrice3low, out double _winRate3low);
-            // get payprice
-            double _payPrice3low = _winPrice3low * _winRate3low;
-            if (_winPrice3low > 0)
-            {
-                outPayingInfo.Rows.Add("3 ล่าง", _winPrice3low.ToString("N0"), _payPrice3low.ToString("N0"));
-            }
+            
             // for 2up
-            // get winnumber
+            // get winnumber for 2up
             List<string> winNumber2up = getWinNumber(WinNumberType.up2);
+            // get winnumber for 2ht
+            List<string> winNumber2ht = getWinNumber(WinNumberType.ht2);
+            // get winnumber for 2hu
+            List<string> winNumber2hu = getWinNumber(WinNumberType.hu2);
+
             // get winprice
-            getwinPriceFromDB(CustomerID, BaseTypeID.up2, winNumber2up, PageID, out double _winPrice2up, out double _winRate2up);
+            getwinPriceFromDB(CustomerID, BaseTypeID.uptod2, winNumber2up, PageID, out double _winP2uptod, out double _winR2uptod);
+            getwinPriceFromDB(CustomerID, BaseTypeID.up2, winNumber2up, PageID, out double _winP2up, out double _winR2up);
+            getwinPriceFromDB(CustomerID, BaseTypeID.ht2, winNumber2ht, PageID, out double _winP2ht, out double _winR2ht);
+            getwinPriceFromDB(CustomerID, BaseTypeID.hu2, winNumber2hu, PageID, out double _winP2hu, out double _winR2hu);
+            getwinPriceFromDB(CustomerID, BaseTypeID.door19up2, winNumber2up, PageID, out double _winP2updoor19, out double _winR2updoor19);
+            // for door6 
+            getwinPriceFromDB(CustomerID, BaseTypeID.door62,"up", winNumber2up, PageID, out double _winP2updoor6, out double _winR2updoor6);
+            getwinPriceFromDB(CustomerID, BaseTypeID.door62,"ht", winNumber2ht, PageID, out double _winP2htdoor6, out double _winR2htdoor6);
+            getwinPriceFromDB(CustomerID, BaseTypeID.door62,"hu", winNumber2hu, PageID, out double _winP2hudoor6, out double _winR2hudoor6);
             // get payprice
-            double _payPrice2up = _winPrice2up * _winRate2up;
+            double _payP2uptod = _winP2uptod * _winR2uptod;
+            double _payP2up = _winP2up * _winR2up;
+            double _payP2ht = _winP2ht * _winR2ht;
+            double _payP2hu = _winP2hu * _winR2hu;
+            double _payP2updoor19 = _winP2updoor19 * _winR2updoor19;
+            double _payP2updoor6 = _winP2updoor6 * _winR2updoor6;
+            double _payP2htdoor6 = _winP2htdoor6 * _winR2htdoor6;
+            double _payP2hudoor6 = _winP2hudoor6 * _winR2hudoor6;
+            double _winPrice2up = _winP2uptod + _winP2up + _winP2ht + _winP2hu + _winP2updoor19 +
+                _winP2updoor6 + _winP2htdoor6 + _winP2hudoor6;
+            double _payPrice2up = _payP2uptod + _payP2up + _payP2ht + _payP2hu + _payP2updoor19 +
+                _payP2updoor6 + _payP2htdoor6 + _payP2hudoor6;
             if (_winPrice2up > 0)
             {
                 outPayingInfo.Rows.Add("2 บน", _winPrice2up.ToString("N0"), _payPrice2up.ToString("N0"));
             }
+
+
             // for 2low
             // get winnumber
             List<string> winNumber2low = getWinNumber(WinNumberType.low2);
             // get winprice
-            getwinPriceFromDB(CustomerID, BaseTypeID.low2, winNumber2low, PageID, out double _winPrice2low, out double _winRate2low);
+            getwinPriceFromDB(CustomerID, BaseTypeID.low2, winNumber2low, PageID, out double _winP2low, out double _winR2low);
+            getwinPriceFromDB(CustomerID, BaseTypeID.door19low2, winNumber2low, PageID, out double _winP2lowdoor19, out double _winR2lowdoor19);
             // get payprice
-            double _payPrice2low = _winPrice2low * _winRate2low;
+            double _payP2low = _winP2low * _winR2low;
+            double _payP2lowdoor19 = _winP2lowdoor19 * _winR2lowdoor19;
+
+            double _winPrice2low = _winP2low + _winP2lowdoor19;
+            double _payPrice2low = _payP2low + _payP2lowdoor19;
             if (_winPrice2low > 0)
             {
                 outPayingInfo.Rows.Add("2 ล่าง", _winPrice2low.ToString("N0"), _payPrice2low.ToString("N0"));
             }
-            // for 2ht
-            // get winnumber
-            List<string> winNumber2ht = getWinNumber(WinNumberType.ht2);
+            // for 3tod
             // get winprice
-            getwinPriceFromDB(CustomerID, BaseTypeID.ht2, winNumber2ht, PageID, out double _winPrice2ht, out double _winRate2ht);
+            getwinGPriceFromDB(CustomerID, BaseTypeID.uptod3, winNumber3up, PageID, out _winP3uptod, out _winR3uptod);
+            getwinGPriceFromDB(CustomerID, BaseTypeID.tod3, winNumber3up, PageID, out double _winP3tod, out double _winR3tod);
             // get payprice
-            double _payPrice2ht = _winPrice2ht * _winRate2ht;
-            if (_winPrice2ht > 0)
+            _payP3uptod = _winP3uptod * _winR3uptod;
+            double _payP3tod = _winP3tod * _winR3tod;
+
+            double _winPrice3tod = _winP3uptod + _winP3tod;
+
+            double _payPrice3tod = _payP3uptod + _payP3tod;
+            if (_winPrice3tod > 0)
             {
-                outPayingInfo.Rows.Add("ร้อยสิบ", _winPrice2ht.ToString("N0"), _payPrice2ht.ToString("N0"));
+                outPayingInfo.Rows.Add("3T", _winPrice3tod.ToString("N0"), _payPrice3tod.ToString("N0"));
             }
-            // for 2hu
-            // get winnumber
-            List<string> winNumber2hu = getWinNumber(WinNumberType.hu2);
+
+
+            // for 2tod
             // get winprice
-            getwinPriceFromDB(CustomerID, BaseTypeID.hu2, winNumber2hu, PageID, out double _winPrice2hu, out double _winRate2hu);
+            getwinGPriceFromDB(CustomerID, BaseTypeID.uptod2,"up", winNumber2up, PageID, out double _winP2uptodUP, out double _winR2uptodUP);
+            getwinGPriceFromDB(CustomerID, BaseTypeID.uptod2, "ht", winNumber2ht, PageID, out double _winP2uptodHT, out double _winR2uptodHT);
+            getwinGPriceFromDB(CustomerID, BaseTypeID.uptod2, "hu", winNumber2hu, PageID, out double _winP2uptodHU, out double _winR2uptodHU);
+
+            getwinGPriceFromDB(CustomerID, BaseTypeID.tod2,"up", winNumber2up, PageID, out double _winP2todUP, out double _winR2todUP);
+            getwinGPriceFromDB(CustomerID, BaseTypeID.tod2, "ht", winNumber2ht, PageID, out double _winP2todHT, out double _winR2todHT);
+            getwinGPriceFromDB(CustomerID, BaseTypeID.tod2, "hu", winNumber2hu, PageID, out double _winP2todHU, out double _winR2todHU);
             // get payprice
-            double _payPrice2hu = _winPrice2hu * _winRate2hu;
-            if (_winPrice2hu > 0)
+            double _payP2uptodUP = _winP2uptodUP * _winR2uptodUP;
+            double _payP2uptodHT = _winP2uptodHT * _winR2uptodHT;
+            double _payP2uptodHU = _winP2uptodHU * _winR2uptodHU;
+
+
+            double _payP2todUP = _winP2todUP * _winR2todUP;
+            double _payP2todHT = _winP2todHT * _winR2todHT;
+            double _payP2todHU = _winP2todHU * _winR2todHU;
+
+            double _winPrice2tod = _winP2uptodUP + _winP2uptodHT + _winP2uptodHU
+                + _winP2todUP + _winP2todHT + _winP2todHU;
+
+            double _payPrice2tod = _payP2uptodUP + _payP2uptodHT + _payP2uptodHU
+                + _payP2todUP + _payP2todHT + _payP2todHU;
+            if (_winPrice2tod > 0)
             {
-                outPayingInfo.Rows.Add("ร้อยหน่วย", _winPrice2hu.ToString("N0"), _payPrice2hu.ToString("N0"));
+                outPayingInfo.Rows.Add("2T", _winPrice2tod.ToString("N0"), _payPrice2tod.ToString("N0"));
             }
-            // for 1up
+            
+            // for 5up
+            // get winnumber
+            // get winprice
+            getwinPriceFromDB(CustomerID, BaseTypeID.group5, winNumber3up, PageID, out double _winP5group, out double _winR5group);
+            getwinPriceFromDB(CustomerID, BaseTypeID.tod5, winNumber3up, PageID, out double _winP5tod, out double _winR5tod);
+            // get payprice
+            double _payP5group = _winP5group * _winR5group;
+            double _payP5tod = _winP5tod * _winR5tod;
+
+            double _winPrice5 = _winP5group + _winP5tod;
+            double _payPrice5 = _payP5group + _payP5tod;
+            if (_winPrice5 > 0)
+            {
+                outPayingInfo.Rows.Add("5", _winPrice5.ToString("N0"), _payPrice5.ToString("N0"));
+            }
+            
+            // for lfreeup
             // get winnumber
             List<string> winNumber1up = getWinNumber(WinNumberType.up1);
             // get winprice
-            getwinPriceFromDB(CustomerID, BaseTypeID.up1, winNumber1up, PageID, out double _winPrice1up, out double _winRate1up);
+            getwinPriceFromDB(CustomerID, BaseTypeID.up1, winNumber1up, PageID, out double _winP1up, out double _winR1up);
+
             // get payprice
-            double _payPrice1up = _winPrice1up * _winRate1up;
+            double _payP1up = _winP1up * _winR1up;
+            double _winPrice1up = _winP1up;
+            double _payPrice1up = _payP1up;
             if (_winPrice1up > 0)
             {
-                outPayingInfo.Rows.Add("1 บน", _winPrice1up.ToString("N0"), _payPrice1up.ToString("N0"));
+                outPayingInfo.Rows.Add("L", _winPrice1up.ToString("N0"), _payPrice1up.ToString("N0"));
             }
-            // for llow
+
             // get winnumber
             List<string> winNumber1low = getWinNumber(WinNumberType.low1);
             // get winprice
-            getwinPriceFromDB(CustomerID, BaseTypeID.low1, winNumber1low, PageID, out double _winPrice1low, out double _winRate1low);
+            getwinPriceFromDB(CustomerID, BaseTypeID.low1, winNumber1low, PageID, out double _winP1low, out double _winR1low);
+
             // get payprice
-            double _payPrice1low = _winPrice1low * _winRate1low;
+            double _payP1low = _winP1low * _winR1low;
+            double _winPrice1low = _winP1low;
+            double _payPrice1low = _payP1low;
             if (_winPrice1low > 0)
             {
-                outPayingInfo.Rows.Add("1 ล่าง", _winPrice1low.ToString("N0"), _payPrice1low.ToString("N0"));
+                outPayingInfo.Rows.Add("LL", _winPrice1low.ToString("N0"), _payPrice1low.ToString("N0"));
+            }
+            
+            // for 3low
+            // get winnumber
+            List<string> winNumber3low = getWinNumber(WinNumberType.low3);
+            // get winprice
+            getwinPriceFromDB(CustomerID, BaseTypeID.low3, winNumber3low, PageID, out double _winP3low, out double _winR3low);
+            getwinPriceFromDB(CustomerID, BaseTypeID.lowgroup3, winNumber3low, PageID, out double _winP3lowgroup, out double _winR3lowgroup);
+            // get payprice
+            double _payP3low = _winP3low * _winR3low;
+            double _payP3lowgroup = _winP3lowgroup * _winR3lowgroup;
+
+            double _winPrice3low = _winP3low + _winP3lowgroup;
+            double _payPrice3low = _payP3low + _payP3lowgroup;
+            
+            if (_winPrice3low > 0)
+            {
+                outPayingInfo.Rows.Add("3 ล่าง", _winPrice3low.ToString("N0"), _payPrice3low.ToString("N0"));
             }
             // for 1front
             // get winnumber
             List<string> winNumber1front = getWinNumber(WinNumberType.upfront1);
             // get winprice
-            getwinPriceFromDB(CustomerID, BaseTypeID.upfront1, winNumber1front, PageID, out double _winPrice1front, out double _winRate1front);
+            getwinPriceFromDB(CustomerID, BaseTypeID.upfront1, winNumber1front, PageID, out double _winP1front, out double _winR1front);
             // get payprice
-            double _payPrice1front = _winPrice1front * _winRate1front;
+            double _payP1front = _winP1front * _winR1front;
+
+            double _winPrice1front = _winP1front;
+            double _payPrice1front = _payP1front;
             if (_winPrice1front > 0)
             {
                 outPayingInfo.Rows.Add("1 หน้า", _winPrice1front.ToString("N0"), _payPrice1front.ToString("N0"));
             }
+            
             // for 1center
             // get winnumber
             List<string> winNumber1center = getWinNumber(WinNumberType.upcenter1);
@@ -500,6 +698,7 @@ namespace Lottory
             {
                 outPayingInfo.Rows.Add("1 กลาง", _winPrice1center.ToString("N0"), _payPrice1center.ToString("N0"));
             }
+            
             // for 1back
             // get winnumber
             List<string> winNumber1back = getWinNumber(WinNumberType.upback1);
@@ -533,8 +732,316 @@ namespace Lottory
             {
                 outPayingInfo.Rows.Add("1 ล่างหลัง", _winPrice1lowback.ToString("N0"), _payPrice1lowback.ToString("N0"));
             }
-
+            
             return outPayingInfo;
+        }
+        private void getwinPriceFromDB(string customerID, int TypeID, string state, List<string> WinNumber, string PageID, out double winPrice, out double winRate)
+        {
+            winPrice = 0;
+            winRate = 0;
+            string sqlgetWinPrice = string.Empty;
+            double _price;
+            double _winRate = 0;
+            foreach (string winNumber in WinNumber)
+            {
+                SqlConnection connection = new SqlConnection(Database.CnnVal("LottoryDB"));
+                if (connection.State == ConnectionState.Closed)
+                {
+                    connection.Open();
+                }
+                switch (TypeID)
+                {
+                    case BaseTypeID.door62:
+                        if (string.Equals(PageID, "ทั้งหมด"))
+                        {
+                            int _typeID = 0;
+                            switch (state)
+                            {
+                                case "up":
+                                    _typeID = BaseTypeID.up2;
+                                    break;
+                                case "ht":
+                                    _typeID = BaseTypeID.ht2;
+                                    break;
+                                case "hu":
+                                    _typeID = BaseTypeID.hu2;
+                                    break;
+                            }
+                            sqlgetWinPrice = string.Format(@"SELECT oe.Number, oe.Price, ci.{2} AS winRate
+                                            FROM (((OrderListExpand oe INNER JOIN OrderList o ON oe.OrderListID = o.OrderListID)
+                                            INNER JOIN CustomerOrder c ON c.OrderID = o.OrderID)
+                                            INNER JOIN CustomerInfo ci ON ci.CustomerID = c.CustomerID)
+                                            WHERE oe.Number = '{0}' AND o.TypeID = {1} AND oe.TypeID = {4} AND c.CustomerID = '{3}'", winNumber, TypeID.ToString(),  DBWinRate.up2, customerID, _typeID.ToString());
+                        }
+                        else
+                        {
+                            int _typeID = 0;
+                            switch (state)
+                            {
+                                case "up":
+                                    _typeID = BaseTypeID.up2;
+                                    break;
+                                case "ht":
+                                    _typeID = BaseTypeID.ht2;
+                                    break;
+                                case "hu":
+                                    _typeID = BaseTypeID.hu2;
+                                    break;
+                            }
+                            sqlgetWinPrice = string.Format(@"SELECT oe.Number, oe.Price, ci.{2} AS winRate
+                                            FROM (((OrderListExpand oe INNER JOIN OrderList o ON oe.OrderListID = o.OrderListID)
+                                            INNER JOIN CustomerOrder c ON c.OrderID = o.OrderID)
+                                            INNER JOIN CustomerInfo ci ON ci.CustomerID = c.CustomerID)
+                                            WHERE oe.Number = '{0}' AND o.TypeID = {1} AND AND oe.TypeID = {5} AND c.CustomerID = '{3}' AND c.Page = {4}", winNumber, TypeID.ToString(), DBWinRate.up2, customerID, PageID, _typeID.ToString());
+                        }
+                        break;
+
+                }
+                SqlCommand sqlgetWinPriceCom = new SqlCommand(sqlgetWinPrice, connection);
+                SqlDataReader winPriceInfo = sqlgetWinPriceCom.ExecuteReader();
+                while (winPriceInfo.Read())
+                {
+                    _price = Convert.ToDouble(winPriceInfo["Price"]);
+                    _winRate = Convert.ToDouble(winPriceInfo["winRate"]);
+                    winPrice += _price;
+                }
+                connection.Close();
+                //winPrice = outWinNumber;
+                winRate = _winRate;
+            }
+        }
+        private void getwinGPriceFromDB(string customerID, int TypeID, List<string> WinNumber, string PageID, out double winPrice, out double winRate)
+        {
+            winPrice = 0;
+            winRate = 0;
+            string sqlgetWinPrice = string.Empty;
+            double _price;
+            double _winRate = 0;
+            foreach (string winNumber in WinNumber)
+            {
+                SqlConnection connection = new SqlConnection(Database.CnnVal("LottoryDB"));
+                if (connection.State == ConnectionState.Closed)
+                {
+                    connection.Open();
+                }
+                switch (TypeID)
+                {
+                    case BaseTypeID.uptod3:
+                        if (string.Equals(PageID, "ทั้งหมด"))
+                        {
+                            sqlgetWinPrice = string.Format(@"SELECT DISTINCT o.Number, o.GroupPrice, ci.{2} AS winRate
+                                            FROM (((OrderListExpand oe INNER JOIN OrderList o ON oe.OrderListID = o.OrderListID)
+                                            INNER JOIN CustomerOrder c ON c.OrderID = o.OrderID)
+                                            INNER JOIN CustomerInfo ci ON ci.CustomerID = c.CustomerID)
+                                            WHERE oe.Number = '{0}' AND o.TypeID = {1} AND c.CustomerID = '{3}'", winNumber, TypeID.ToString(), DBWinRate.tod3, customerID);
+                        }
+                        else
+                        {
+                            sqlgetWinPrice = string.Format(@"SELECT DISTINCT o.Number, o.GroupPrice, ci.{2} AS winRate
+                                            FROM (((OrderListExpand oe INNER JOIN OrderList o ON oe.OrderListID = o.OrderListID)
+                                            INNER JOIN CustomerOrder c ON c.OrderID = o.OrderID)
+                                            INNER JOIN CustomerInfo ci ON ci.CustomerID = c.CustomerID)
+                                            WHERE oe.Number = '{0}' AND o.TypeID = {1} AND c.CustomerID = '{3}' AND c.Page = {4}", winNumber, TypeID.ToString(), DBWinRate.tod3, customerID, PageID);
+                        }
+                        break;
+                    case BaseTypeID.tod3:
+                        if (string.Equals(PageID, "ทั้งหมด"))
+                        {
+                            sqlgetWinPrice = string.Format(@"SELECT o.Number, o.Price AS GroupPrice, ci.{2} AS winRate
+                                            FROM (((OrderListExpand oe INNER JOIN OrderList o ON oe.OrderListID = o.OrderListID)
+                                            INNER JOIN CustomerOrder c ON c.OrderID = o.OrderID)
+                                            INNER JOIN CustomerInfo ci ON ci.CustomerID = c.CustomerID)
+                                            WHERE oe.Number = '{0}' AND o.TypeID = {1} AND c.CustomerID = '{3}'", winNumber, TypeID.ToString(), DBWinRate.tod3, customerID);
+                        }
+                        else
+                        {
+                            sqlgetWinPrice = string.Format(@"SELECT o.Number, o.Price AS GroupPrice, ci.{2} AS winRate
+                                            FROM (((OrderListExpand oe INNER JOIN OrderList o ON oe.OrderListID = o.OrderListID)
+                                            INNER JOIN CustomerOrder c ON c.OrderID = o.OrderID)
+                                            INNER JOIN CustomerInfo ci ON ci.CustomerID = c.CustomerID)
+                                            WHERE oe.Number = '{0}' AND o.TypeID = {1} AND c.CustomerID = '{3}' AND c.Page = {4}", winNumber, TypeID.ToString(), DBWinRate.tod3, customerID, PageID);
+                        }
+                        break;
+                    case BaseTypeID.uptod2:
+                        if (string.Equals(PageID, "ทั้งหมด"))
+                        {
+                            sqlgetWinPrice = string.Format(@"SELECT o.Number, o.GroupPrice, ci.{2} AS winRate
+                                            FROM (((OrderListExpand oe INNER JOIN OrderList o ON oe.OrderListID = o.OrderListID)
+                                            INNER JOIN CustomerOrder c ON c.OrderID = o.OrderID)
+                                            INNER JOIN CustomerInfo ci ON ci.CustomerID = c.CustomerID)
+                                            WHERE oe.Number = '{0}' AND o.TypeID = {1} AND c.CustomerID = '{3}'", winNumber, TypeID.ToString(), DBWinRate.tod2, customerID);
+                        }
+                        else
+                        {
+                            sqlgetWinPrice = string.Format(@"SELECT o.Number, o.GroupPrice, ci.{2} AS winRate
+                                            FROM (((OrderListExpand oe INNER JOIN OrderList o ON oe.OrderListID = o.OrderListID)
+                                            INNER JOIN CustomerOrder c ON c.OrderID = o.OrderID)
+                                            INNER JOIN CustomerInfo ci ON ci.CustomerID = c.CustomerID)
+                                            WHERE oe.Number = '{0}' AND o.TypeID = {1} AND c.CustomerID = '{3}' AND c.Page = {4}", winNumber, TypeID.ToString(), DBWinRate.tod2, customerID, PageID);
+                        }
+                        break;
+                    case BaseTypeID.tod2:
+                        if (string.Equals(PageID, "ทั้งหมด"))
+                        {
+                            sqlgetWinPrice = string.Format(@"SELECT o.Number, o.Price AS GroupPrice, ci.{2} AS winRate
+                                            FROM (((OrderListExpand oe INNER JOIN OrderList o ON oe.OrderListID = o.OrderListID)
+                                            INNER JOIN CustomerOrder c ON c.OrderID = o.OrderID)
+                                            INNER JOIN CustomerInfo ci ON ci.CustomerID = c.CustomerID)
+                                            WHERE oe.Number = '{0}' AND o.TypeID = {1} AND c.CustomerID = '{3}'", winNumber, TypeID.ToString(), DBWinRate.tod2, customerID);
+                        }
+                        else
+                        {
+                            sqlgetWinPrice = string.Format(@"SELECT o.Number, o.Price AS GroupPrice, ci.{2} AS winRate
+                                            FROM (((OrderListExpand oe INNER JOIN OrderList o ON oe.OrderListID = o.OrderListID)
+                                            INNER JOIN CustomerOrder c ON c.OrderID = o.OrderID)
+                                            INNER JOIN CustomerInfo ci ON ci.CustomerID = c.CustomerID)
+                                            WHERE oe.Number = '{0}' AND o.TypeID = {1} AND c.CustomerID = '{3}' AND c.Page = {4}", winNumber, TypeID.ToString(), DBWinRate.tod2, customerID, PageID);
+                        }
+                        break;
+
+                }
+                SqlCommand sqlgetWinPriceCom = new SqlCommand(sqlgetWinPrice, connection);
+                SqlDataReader winPriceInfo = sqlgetWinPriceCom.ExecuteReader();
+                while (winPriceInfo.Read())
+                {
+                    _price = Convert.ToDouble(winPriceInfo["GroupPrice"]);
+                    _winRate = Convert.ToDouble(winPriceInfo["winRate"]);
+                    winPrice += _price;
+                }
+                connection.Close();
+                //winPrice = outWinNumber;
+                winRate = _winRate;
+            }
+        }
+        private void getwinGPriceFromDB(string customerID, int TypeID, string state, List<string> WinNumber, string PageID, out double winPrice, out double winRate)
+        {
+            winPrice = 0;
+            winRate = 0;
+            string sqlgetWinPrice = string.Empty;
+            double _price;
+            double _winRate = 0;
+            int _typeID = 0;
+            foreach (string winNumber in WinNumber)
+            {
+                SqlConnection connection = new SqlConnection(Database.CnnVal("LottoryDB"));
+                if (connection.State == ConnectionState.Closed)
+                {
+                    connection.Open();
+                }
+                switch (TypeID)
+                {
+                    case BaseTypeID.uptod3:
+                        if (string.Equals(PageID, "ทั้งหมด"))
+                        {
+                            sqlgetWinPrice = string.Format(@"SELECT o.Number, o.GroupPrice, ci.{2} AS winRate
+                                            FROM (((OrderListExpand oe INNER JOIN OrderList o ON oe.OrderListID = o.OrderListID)
+                                            INNER JOIN CustomerOrder c ON c.OrderID = o.OrderID)
+                                            INNER JOIN CustomerInfo ci ON ci.CustomerID = c.CustomerID)
+                                            WHERE oe.Number = '{0}' AND o.TypeID = {1} AND c.CustomerID = '{3}'", winNumber, TypeID.ToString(), DBWinRate.tod3, customerID);
+                        }
+                        else
+                        {
+                            sqlgetWinPrice = string.Format(@"SELECT o.Number, o.GroupPrice, ci.{2} AS winRate
+                                            FROM (((OrderListExpand oe INNER JOIN OrderList o ON oe.OrderListID = o.OrderListID)
+                                            INNER JOIN CustomerOrder c ON c.OrderID = o.OrderID)
+                                            INNER JOIN CustomerInfo ci ON ci.CustomerID = c.CustomerID)
+                                            WHERE oe.Number = '{0}' AND o.TypeID = {1} AND c.CustomerID = '{3}' AND c.Page = {4}", winNumber, TypeID.ToString(), DBWinRate.tod3, customerID, PageID);
+                        }
+                        break;
+                    case BaseTypeID.tod3:
+                        if (string.Equals(PageID, "ทั้งหมด"))
+                        {
+                            sqlgetWinPrice = string.Format(@"SELECT o.Number, o.Price AS GroupPrice, ci.{2} AS winRate
+                                            FROM (((OrderListExpand oe INNER JOIN OrderList o ON oe.OrderListID = o.OrderListID)
+                                            INNER JOIN CustomerOrder c ON c.OrderID = o.OrderID)
+                                            INNER JOIN CustomerInfo ci ON ci.CustomerID = c.CustomerID)
+                                            WHERE oe.Number = '{0}' AND o.TypeID = {1} AND c.CustomerID = '{3}'", winNumber, TypeID.ToString(), DBWinRate.tod3, customerID);
+                        }
+                        else
+                        {
+                            sqlgetWinPrice = string.Format(@"SELECT o.Number, o.Price AS GroupPrice, ci.{2} AS winRate
+                                            FROM (((OrderListExpand oe INNER JOIN OrderList o ON oe.OrderListID = o.OrderListID)
+                                            INNER JOIN CustomerOrder c ON c.OrderID = o.OrderID)
+                                            INNER JOIN CustomerInfo ci ON ci.CustomerID = c.CustomerID)
+                                            WHERE oe.Number = '{0}' AND o.TypeID = {1} AND c.CustomerID = '{3}' AND c.Page = {4}", winNumber, TypeID.ToString(), DBWinRate.tod3, customerID, PageID);
+                        }
+                        break;
+                    case BaseTypeID.uptod2:
+                        
+                        switch (state)
+                        {
+                            case "up":
+                                _typeID = BaseTypeID.up2;
+                                break;
+                            case "ht":
+                                _typeID = BaseTypeID.ht2;
+                                break;
+                            case "hu":
+                                _typeID = BaseTypeID.hu2;
+                                break;
+                        }
+                        if (string.Equals(PageID, "ทั้งหมด"))
+                        {
+
+                            sqlgetWinPrice = string.Format(@"SELECT DISTINCT o.Number, o.GroupPrice, ci.{2} AS winRate
+                                            FROM (((OrderListExpand oe INNER JOIN OrderList o ON oe.OrderListID = o.OrderListID)
+                                            INNER JOIN CustomerOrder c ON c.OrderID = o.OrderID)
+                                            INNER JOIN CustomerInfo ci ON ci.CustomerID = c.CustomerID)
+                                            WHERE oe.Number = '{0}' AND o.TypeID = {1} AND oe.TypeID = {4} AND c.CustomerID = '{3}'", winNumber, TypeID.ToString(), DBWinRate.tod2, customerID, _typeID.ToString());
+                        }
+                        else
+                        {
+                            sqlgetWinPrice = string.Format(@"SELECT DISTINCT o.Number, o.GroupPrice, ci.{2} AS winRate
+                                            FROM (((OrderListExpand oe INNER JOIN OrderList o ON oe.OrderListID = o.OrderListID)
+                                            INNER JOIN CustomerOrder c ON c.OrderID = o.OrderID)
+                                            INNER JOIN CustomerInfo ci ON ci.CustomerID = c.CustomerID)
+                                            WHERE oe.Number = '{0}' AND o.TypeID = {1} AND oe.TypeID = {5} AND c.CustomerID = '{3}' AND c.Page = {4}", winNumber, TypeID.ToString(), DBWinRate.tod2, customerID, PageID, _typeID.ToString());
+                        }
+                        break;
+                    case BaseTypeID.tod2:
+                        switch (state)
+                        {
+                            case "up":
+                                _typeID = BaseTypeID.up2;
+                                break;
+                            case "ht":
+                                _typeID = BaseTypeID.ht2;
+                                break;
+                            case "hu":
+                                _typeID = BaseTypeID.hu2;
+                                break;
+                        }
+                        if (string.Equals(PageID, "ทั้งหมด"))
+                        {
+                            sqlgetWinPrice = string.Format(@"SELECT o.Number, o.Price AS GroupPrice, ci.{2} AS winRate
+                                            FROM (((OrderListExpand oe INNER JOIN OrderList o ON oe.OrderListID = o.OrderListID)
+                                            INNER JOIN CustomerOrder c ON c.OrderID = o.OrderID)
+                                            INNER JOIN CustomerInfo ci ON ci.CustomerID = c.CustomerID)
+                                            WHERE oe.Number = '{0}' AND o.TypeID = {1} AND oe.TypeID = {4} AND c.CustomerID = '{3}'", winNumber, TypeID.ToString(), DBWinRate.tod2, customerID, _typeID.ToString());
+                        }
+                        else
+                        {
+                            sqlgetWinPrice = string.Format(@"SELECT o.Number, o.Price AS GroupPrice, ci.{2} AS winRate
+                                            FROM (((OrderListExpand oe INNER JOIN OrderList o ON oe.OrderListID = o.OrderListID)
+                                            INNER JOIN CustomerOrder c ON c.OrderID = o.OrderID)
+                                            INNER JOIN CustomerInfo ci ON ci.CustomerID = c.CustomerID)
+                                            WHERE oe.Number = '{0}' AND o.TypeID = {1} AND oe.TypeID = {5} AND c.CustomerID = '{3}' AND c.Page = {4}", winNumber, TypeID.ToString(), DBWinRate.tod2, customerID, PageID, _typeID.ToString());
+                        }
+                        break;
+
+                }
+                SqlCommand sqlgetWinPriceCom = new SqlCommand(sqlgetWinPrice, connection);
+                SqlDataReader winPriceInfo = sqlgetWinPriceCom.ExecuteReader();
+                while (winPriceInfo.Read())
+                {
+                    _price = Convert.ToDouble(winPriceInfo["GroupPrice"]);
+                    _winRate = Convert.ToDouble(winPriceInfo["winRate"]);
+                    winPrice += _price;
+                }
+                connection.Close();
+                //winPrice = outWinNumber;
+                winRate = _winRate;
+            }
         }
         private void getwinPriceFromDB(string customerID, int TypeID, List<string> WinNumber, string PageID, out double winPrice, out double winRate)
         {
@@ -552,14 +1059,36 @@ namespace Lottory
                 }
                 switch (TypeID)
                 {
+                    case BaseTypeID.uptod3:
+
+                        if (string.Equals(PageID, "ทั้งหมด"))
+                        {
+                            sqlgetWinPrice = string.Format(@"SELECT o.Number, o.Price, ci.{2} AS winRate
+                                            FROM ((OrderList o
+                                            INNER JOIN CustomerOrder c ON c.OrderID = o.OrderID)
+                                            INNER JOIN CustomerInfo ci ON ci.CustomerID = c.CustomerID)
+                                            WHERE o.Number = '{0}' AND o.TypeID = {1} AND c.CustomerID = '{3}'", winNumber, TypeID.ToString(), DBWinRate.up3, customerID);
+                        }
+                        else
+                        {
+                            sqlgetWinPrice = string.Format(@"SELECT o.Number, o.Price, ci.{2} AS winRate
+                                            FROM ((OrderList o
+                                            INNER JOIN CustomerOrder c ON c.OrderID = o.OrderID)
+                                            INNER JOIN CustomerInfo ci ON ci.CustomerID = c.CustomerID)
+                                            WHERE o.Number = '{0}' AND o.TypeID = {1} AND c.CustomerID = '{3}' AND c.Page = {4}", winNumber, TypeID.ToString(), DBWinRate.up3, customerID, PageID);
+                        }
+                        break;
                     case BaseTypeID.up3:
+                    case BaseTypeID.group3:
+                    case BaseTypeID.door543:
+                    case BaseTypeID.tgroup3:
                         if (string.Equals(PageID, "ทั้งหมด"))
                         {
                             sqlgetWinPrice = string.Format(@"SELECT oe.Number, oe.Price, ci.{2} AS winRate
                                             FROM (((OrderListExpand oe INNER JOIN OrderList o ON oe.OrderListID = o.OrderListID)
                                             INNER JOIN CustomerOrder c ON c.OrderID = o.OrderID)
                                             INNER JOIN CustomerInfo ci ON ci.CustomerID = c.CustomerID)
-                                            WHERE oe.Number = '{0}' AND oe.TypeID = {1} AND c.CustomerID = '{3}'", winNumber, TypeID.ToString(), DBWinRate.up3, customerID);
+                                            WHERE oe.Number = '{0}' AND o.TypeID = {1} AND c.CustomerID = '{3}'", winNumber, TypeID.ToString(), DBWinRate.up3, customerID);
                         }
                         else
                         {
@@ -567,9 +1096,158 @@ namespace Lottory
                                             FROM (((OrderListExpand oe INNER JOIN OrderList o ON oe.OrderListID = o.OrderListID)
                                             INNER JOIN CustomerOrder c ON c.OrderID = o.OrderID)
                                             INNER JOIN CustomerInfo ci ON ci.CustomerID = c.CustomerID)
-                                            WHERE oe.Number = '{0}' AND oe.TypeID = {1} AND c.CustomerID = '{3}' AND c.Page = {4}", winNumber, TypeID.ToString(), DBWinRate.up3, customerID, PageID);
+                                            WHERE oe.Number = '{0}' AND o.TypeID = {1} AND c.CustomerID = '{3}' AND c.Page = {4}", winNumber, TypeID.ToString(), DBWinRate.up3, customerID, PageID);
                         }
                         break;
+                    case BaseTypeID.uptod2:
+                    case BaseTypeID.up2:
+                    case BaseTypeID.ht2:
+                    case BaseTypeID.hu2:
+                        if (string.Equals(PageID, "ทั้งหมด"))
+                        {
+                            sqlgetWinPrice = string.Format(@"SELECT o.Number, o.Price, ci.{2} AS winRate
+                                            FROM ((OrderList o
+                                            INNER JOIN CustomerOrder c ON c.OrderID = o.OrderID)
+                                            INNER JOIN CustomerInfo ci ON ci.CustomerID = c.CustomerID)
+                                            WHERE o.Number = '{0}' AND o.TypeID = {1} AND c.CustomerID = '{3}'", winNumber, TypeID.ToString(), DBWinRate.up2, customerID);
+                        }
+                        else
+                        {
+                            sqlgetWinPrice = string.Format(@"SELECT o.Number, o.Price, ci.{2} AS winRate
+                                            FROM ((OrderList o
+                                            INNER JOIN CustomerOrder c ON c.OrderID = o.OrderID)
+                                            INNER JOIN CustomerInfo ci ON ci.CustomerID = c.CustomerID)
+                                            WHERE o.Number = '{0}' AND o.TypeID = {1} AND c.CustomerID = '{3}' AND c.Page = {4}", winNumber, TypeID.ToString(), DBWinRate.up2, customerID, PageID);
+                        }
+                        break;
+                    case BaseTypeID.door19up2:
+                    case BaseTypeID.door62:
+                        if (string.Equals(PageID, "ทั้งหมด"))
+                        {
+                            sqlgetWinPrice = string.Format(@"SELECT oe.Number, oe.Price, ci.{2} AS winRate
+                                            FROM (((OrderListExpand oe INNER JOIN OrderList o ON oe.OrderListID = o.OrderListID)
+                                            INNER JOIN CustomerOrder c ON c.OrderID = o.OrderID)
+                                            INNER JOIN CustomerInfo ci ON ci.CustomerID = c.CustomerID)
+                                            WHERE oe.Number = '{0}' AND o.TypeID = {1} AND c.CustomerID = '{3}'", winNumber, TypeID.ToString(), DBWinRate.up2, customerID);
+                        }
+                        else
+                        {
+                            sqlgetWinPrice = string.Format(@"SELECT oe.Number, oe.Price, ci.{2} AS winRate
+                                            FROM (((OrderListExpand oe INNER JOIN OrderList o ON oe.OrderListID = o.OrderListID)
+                                            INNER JOIN CustomerOrder c ON c.OrderID = o.OrderID)
+                                            INNER JOIN CustomerInfo ci ON ci.CustomerID = c.CustomerID)
+                                            WHERE oe.Number = '{0}' AND o.TypeID = {1} AND c.CustomerID = '{3}' AND c.Page = {4}", winNumber, TypeID.ToString(), DBWinRate.up2, customerID, PageID);
+                        }
+                        break;
+                    case BaseTypeID.low2:
+                        if (string.Equals(PageID, "ทั้งหมด"))
+                        {
+                            sqlgetWinPrice = string.Format(@"SELECT o.Number, o.Price, ci.{2} AS winRate
+                                            FROM ((OrderList o
+                                            INNER JOIN CustomerOrder c ON c.OrderID = o.OrderID)
+                                            INNER JOIN CustomerInfo ci ON ci.CustomerID = c.CustomerID)
+                                            WHERE o.Number = '{0}' AND o.TypeID = {1} AND c.CustomerID = '{3}'", winNumber, TypeID.ToString(), DBWinRate.low2, customerID);
+                        }
+                        else
+                        {
+                            sqlgetWinPrice = string.Format(@"SELECT o.Number, o.Price, ci.{2} AS winRate
+                                            FROM ((OrderList o
+                                            INNER JOIN CustomerOrder c ON c.OrderID = o.OrderID)
+                                            INNER JOIN CustomerInfo ci ON ci.CustomerID = c.CustomerID)
+                                            WHERE o.Number = '{0}' AND o.TypeID = {1} AND c.CustomerID = '{3}' AND c.Page = {4}", winNumber, TypeID.ToString(), DBWinRate.low2, customerID, PageID);
+                        }
+                        break;
+                    case BaseTypeID.door19low2:
+                        if (string.Equals(PageID, "ทั้งหมด"))
+                        {
+                            sqlgetWinPrice = string.Format(@"SELECT oe.Number, oe.Price, ci.{2} AS winRate
+                                            FROM (((OrderListExpand oe INNER JOIN OrderList o ON oe.OrderListID = o.OrderListID)
+                                            INNER JOIN CustomerOrder c ON c.OrderID = o.OrderID)
+                                            INNER JOIN CustomerInfo ci ON ci.CustomerID = c.CustomerID)
+                                            WHERE oe.Number = '{0}' AND o.TypeID = {1} AND c.CustomerID = '{3}'", winNumber, TypeID.ToString(), DBWinRate.low2, customerID);
+                        }
+                        else
+                        {
+                            sqlgetWinPrice = string.Format(@"SELECT oe.Number, oe.Price, ci.{2} AS winRate
+                                            FROM (((OrderListExpand oe INNER JOIN OrderList o ON oe.OrderListID = o.OrderListID)
+                                            INNER JOIN CustomerOrder c ON c.OrderID = o.OrderID)
+                                            INNER JOIN CustomerInfo ci ON ci.CustomerID = c.CustomerID)
+                                            WHERE oe.Number = '{0}' AND o.TypeID = {1} AND c.CustomerID = '{3}' AND c.Page = {4}", winNumber, TypeID.ToString(), DBWinRate.low2, customerID, PageID);
+                        }
+                        break;
+                    case BaseTypeID.group5:
+                        if (string.Equals(PageID, "ทั้งหมด"))
+                        {
+                            sqlgetWinPrice = string.Format(@"SELECT oe.Number, oe.Price, ci.{2} AS winRate
+                                            FROM (((OrderListExpand oe INNER JOIN OrderList o ON oe.OrderListID = o.OrderListID)
+                                            INNER JOIN CustomerOrder c ON c.OrderID = o.OrderID)
+                                            INNER JOIN CustomerInfo ci ON ci.CustomerID = c.CustomerID)
+                                            WHERE oe.Number = '{0}' AND o.TypeID = {1} AND c.CustomerID = '{3}'", winNumber, TypeID.ToString(), DBWinRate.up3, customerID);
+                        }
+                        else
+                        {
+                            sqlgetWinPrice = string.Format(@"SELECT oe.Number, oe.Price, ci.{2} AS winRate
+                                            FROM (((OrderListExpand oe INNER JOIN OrderList o ON oe.OrderListID = o.OrderListID)
+                                            INNER JOIN CustomerOrder c ON c.OrderID = o.OrderID)
+                                            INNER JOIN CustomerInfo ci ON ci.CustomerID = c.CustomerID)
+                                            WHERE oe.Number = '{0}' AND o.TypeID = {1} AND c.CustomerID = '{3}' AND c.Page = {4}", winNumber, TypeID.ToString(), DBWinRate.up3, customerID, PageID);
+                        }
+                        break;
+                    case BaseTypeID.tod5:
+                        if (string.Equals(PageID, "ทั้งหมด"))
+                        {
+                            sqlgetWinPrice = string.Format(@"SELECT o.Number, o.Price, ci.{2} AS winRate
+                                            FROM (((OrderListExpand oe INNER JOIN OrderList o ON oe.OrderListID = o.OrderListID)
+                                            INNER JOIN CustomerOrder c ON c.OrderID = o.OrderID)
+                                            INNER JOIN CustomerInfo ci ON ci.CustomerID = c.CustomerID)
+                                            WHERE oe.Number = '{0}' AND o.TypeID = {1} AND c.CustomerID = '{3}'", winNumber, TypeID.ToString(), DBWinRate.tod5, customerID);
+                        }
+                        else
+                        {
+                            sqlgetWinPrice = string.Format(@"SELECT o.Number, o.Price, ci.{2} AS winRate
+                                            FROM (((OrderListExpand oe INNER JOIN OrderList o ON oe.OrderListID = o.OrderListID)
+                                            INNER JOIN CustomerOrder c ON c.OrderID = o.OrderID)
+                                            INNER JOIN CustomerInfo ci ON ci.CustomerID = c.CustomerID)
+                                            WHERE oe.Number = '{0}' AND o.TypeID = {1} AND c.CustomerID = '{3}' AND c.Page = {4}", winNumber, TypeID.ToString(), DBWinRate.tod5, customerID, PageID);
+                        }
+                        break;
+                    case BaseTypeID.up1:
+                        if (string.Equals(PageID, "ทั้งหมด"))
+                        {
+                            sqlgetWinPrice = string.Format(@"SELECT o.Number, o.Price, ci.{2} AS winRate
+                                            FROM ((OrderList o
+                                            INNER JOIN CustomerOrder c ON c.OrderID = o.OrderID)
+                                            INNER JOIN CustomerInfo ci ON ci.CustomerID = c.CustomerID)
+                                            WHERE o.Number = '{0}' AND o.TypeID = {1} AND c.CustomerID = '{3}'", winNumber, TypeID.ToString(), DBWinRate.up1, customerID);
+                        }
+                        else
+                        {
+                            sqlgetWinPrice = string.Format(@"SELECT o.Number, o.Price, ci.{2} AS winRate
+                                            FROM ((OrderList o
+                                            INNER JOIN CustomerOrder c ON c.OrderID = o.OrderID)
+                                            INNER JOIN CustomerInfo ci ON ci.CustomerID = c.CustomerID)
+                                            WHERE o.Number = '{0}' AND o.TypeID = {1} AND c.CustomerID = '{3}' AND c.Page = {4}", winNumber, TypeID.ToString(), DBWinRate.up1, customerID, PageID);
+                        }
+                        break;
+                    case BaseTypeID.low1:
+                        if (string.Equals(PageID, "ทั้งหมด"))
+                        {
+                            sqlgetWinPrice = string.Format(@"SELECT o.Number, o.Price, ci.{2} AS winRate
+                                            FROM ((OrderList o
+                                            INNER JOIN CustomerOrder c ON c.OrderID = o.OrderID)
+                                            INNER JOIN CustomerInfo ci ON ci.CustomerID = c.CustomerID)
+                                            WHERE o.Number = '{0}' AND o.TypeID = {1} AND c.CustomerID = '{3}'", winNumber, TypeID.ToString(), DBWinRate.low1, customerID);
+                        }
+                        else
+                        {
+                            sqlgetWinPrice = string.Format(@"SELECT o.Number, o.Price, ci.{2} AS winRate
+                                            FROM ((OrderList o
+                                            INNER JOIN CustomerOrder c ON c.OrderID = o.OrderID)
+                                            INNER JOIN CustomerInfo ci ON ci.CustomerID = c.CustomerID)
+                                            WHERE o.Number = '{0}' AND o.TypeID = {1} AND c.CustomerID = '{3}' AND c.Page = {4}", winNumber, TypeID.ToString(), DBWinRate.low1, customerID, PageID);
+                        }
+                        break;
+                    case BaseTypeID.lowgroup3:
                     case BaseTypeID.low3:
                         if (string.Equals(PageID, "ทั้งหมด"))
                         {
@@ -577,7 +1255,7 @@ namespace Lottory
                                             FROM (((OrderListExpand oe INNER JOIN OrderList o ON oe.OrderListID = o.OrderListID)
                                             INNER JOIN CustomerOrder c ON c.OrderID = o.OrderID)
                                             INNER JOIN CustomerInfo ci ON ci.CustomerID = c.CustomerID)
-                                            WHERE oe.Number = '{0}' AND oe.TypeID = {1} AND c.CustomerID = '{3}'", winNumber, TypeID.ToString(), DBWinRate.low3, customerID);
+                                            WHERE oe.Number = '{0}' AND o.TypeID = {1} AND c.CustomerID = '{3}'", winNumber, TypeID.ToString(), DBWinRate.low3, customerID);
                         }
                         else
                         {
@@ -585,10 +1263,104 @@ namespace Lottory
                                             FROM (((OrderListExpand oe INNER JOIN OrderList o ON oe.OrderListID = o.OrderListID)
                                             INNER JOIN CustomerOrder c ON c.OrderID = o.OrderID)
                                             INNER JOIN CustomerInfo ci ON ci.CustomerID = c.CustomerID)
-                                            WHERE oe.Number = '{0}' AND oe.TypeID = {1} AND c.CustomerID = '{3}' AND c.Page = {4}", winNumber, TypeID.ToString(), DBWinRate.low3, customerID, PageID);
+                                            WHERE oe.Number = '{0}' AND o.TypeID = {1} AND c.CustomerID = '{3}' AND c.Page = {4}", winNumber, TypeID.ToString(), DBWinRate.low3, customerID, PageID);
                         }
                         break;
-                    case BaseTypeID.up2:
+                    case BaseTypeID.upfront1:
+                        if (string.Equals(PageID, "ทั้งหมด"))
+                        {
+                            sqlgetWinPrice = string.Format(@"SELECT oe.Number, oe.Price, ci.{2} AS winRate
+                                                FROM (((OrderListExpand oe INNER JOIN OrderList o ON oe.OrderListID = o.OrderListID)
+                                                INNER JOIN CustomerOrder c ON c.OrderID = o.OrderID)
+                                                INNER JOIN CustomerInfo ci ON ci.CustomerID = c.CustomerID)
+                                                WHERE oe.Number = '{0}' AND oe.TypeID = {1} AND c.CustomerID = '{3}'", winNumber, TypeID.ToString(), DBWinRate.upfront1, customerID);
+                        }
+                        else
+                        {
+                            sqlgetWinPrice = string.Format(@"SELECT oe.Number, oe.Price, ci.{2} AS winRate
+                                                FROM (((OrderListExpand oe INNER JOIN OrderList o ON oe.OrderListID = o.OrderListID)
+                                                INNER JOIN CustomerOrder c ON c.OrderID = o.OrderID)
+                                                INNER JOIN CustomerInfo ci ON ci.CustomerID = c.CustomerID)
+                                                WHERE oe.Number = '{0}' AND oe.TypeID = {1} AND c.CustomerID = '{3}' AND c.Page = {4}", winNumber, TypeID.ToString(), DBWinRate.upfront1, customerID, PageID);
+                        }
+
+                        break;
+                    case BaseTypeID.upback1:
+                        if (string.Equals(PageID, "ทั้งหมด"))
+                        {
+                            sqlgetWinPrice = string.Format(@"SELECT oe.Number, oe.Price, ci.{2} AS winRate
+                                                FROM (((OrderListExpand oe INNER JOIN OrderList o ON oe.OrderListID = o.OrderListID)
+                                                INNER JOIN CustomerOrder c ON c.OrderID = o.OrderID)
+                                                INNER JOIN CustomerInfo ci ON ci.CustomerID = c.CustomerID)
+                                                WHERE oe.Number = '{0}' AND oe.TypeID = {1} AND c.CustomerID = '{3}'", winNumber, TypeID.ToString(), DBWinRate.upback1, customerID);
+                        }
+                        else
+                        {
+                            sqlgetWinPrice = string.Format(@"SELECT oe.Number, oe.Price, ci.{2} AS winRate
+                                                FROM (((OrderListExpand oe INNER JOIN OrderList o ON oe.OrderListID = o.OrderListID)
+                                                INNER JOIN CustomerOrder c ON c.OrderID = o.OrderID)
+                                                INNER JOIN CustomerInfo ci ON ci.CustomerID = c.CustomerID)
+                                                WHERE oe.Number = '{0}' AND oe.TypeID = {1} AND c.CustomerID = '{3}' AND c.Page = {4}", winNumber, TypeID.ToString(), DBWinRate.upback1, customerID, PageID);
+                        }
+
+                        break;
+                    case BaseTypeID.upcenter1:
+                        if (string.Equals(PageID, "ทั้งหมด"))
+                        {
+                            sqlgetWinPrice = string.Format(@"SELECT oe.Number, oe.Price, ci.{2} AS winRate
+                                                FROM (((OrderListExpand oe INNER JOIN OrderList o ON oe.OrderListID = o.OrderListID)
+                                                INNER JOIN CustomerOrder c ON c.OrderID = o.OrderID)
+                                                INNER JOIN CustomerInfo ci ON ci.CustomerID = c.CustomerID)
+                                                WHERE oe.Number = '{0}' AND oe.TypeID = {1} AND c.CustomerID = '{3}'", winNumber, TypeID.ToString(), DBWinRate.upcenter1, customerID);
+                        }
+                        else
+                        {
+                            sqlgetWinPrice = string.Format(@"SELECT oe.Number, oe.Price, ci.{2} AS winRate
+                                                FROM (((OrderListExpand oe INNER JOIN OrderList o ON oe.OrderListID = o.OrderListID)
+                                                INNER JOIN CustomerOrder c ON c.OrderID = o.OrderID)
+                                                INNER JOIN CustomerInfo ci ON ci.CustomerID = c.CustomerID)
+                                                WHERE oe.Number = '{0}' AND oe.TypeID = {1} AND c.CustomerID = '{3}' AND c.Page = {4}", winNumber, TypeID.ToString(), DBWinRate.upcenter1, customerID, PageID);
+                        }
+
+                        break;
+                    case BaseTypeID.lowfront1:
+                        if (string.Equals(PageID, "ทั้งหมด"))
+                        {
+                            sqlgetWinPrice = string.Format(@"SELECT oe.Number, oe.Price, ci.{2} AS winRate
+                                                FROM (((OrderListExpand oe INNER JOIN OrderList o ON oe.OrderListID = o.OrderListID)
+                                                INNER JOIN CustomerOrder c ON c.OrderID = o.OrderID)
+                                                INNER JOIN CustomerInfo ci ON ci.CustomerID = c.CustomerID)
+                                                WHERE oe.Number = '{0}' AND oe.TypeID = {1} AND c.CustomerID = '{3}'", winNumber, TypeID.ToString(), DBWinRate.upfront1, customerID);
+                        }
+                        else
+                        {
+                            sqlgetWinPrice = string.Format(@"SELECT oe.Number, oe.Price, ci.{2} AS winRate
+                                                FROM (((OrderListExpand oe INNER JOIN OrderList o ON oe.OrderListID = o.OrderListID)
+                                                INNER JOIN CustomerOrder c ON c.OrderID = o.OrderID)
+                                                INNER JOIN CustomerInfo ci ON ci.CustomerID = c.CustomerID)
+                                                WHERE oe.Number = '{0}' AND oe.TypeID = {1} AND c.CustomerID = '{3}' AND c.Page = {4}", winNumber, TypeID.ToString(), DBWinRate.upfront1, customerID, PageID);
+                        }
+
+                        break;
+                    case BaseTypeID.lowback1:
+                        if (string.Equals(PageID, "ทั้งหมด"))
+                        {
+                            sqlgetWinPrice = string.Format(@"SELECT oe.Number, oe.Price, ci.{2} AS winRate
+                                                FROM (((OrderListExpand oe INNER JOIN OrderList o ON oe.OrderListID = o.OrderListID)
+                                                INNER JOIN CustomerOrder c ON c.OrderID = o.OrderID)
+                                                INNER JOIN CustomerInfo ci ON ci.CustomerID = c.CustomerID)
+                                                WHERE oe.Number = '{0}' AND oe.TypeID = {1} AND c.CustomerID = '{3}'", winNumber, TypeID.ToString(), DBWinRate.upback1, customerID);
+                        }
+                        else
+                        {
+                            sqlgetWinPrice = string.Format(@"SELECT oe.Number, oe.Price, ci.{2} AS winRate
+                                                FROM (((OrderListExpand oe INNER JOIN OrderList o ON oe.OrderListID = o.OrderListID)
+                                                INNER JOIN CustomerOrder c ON c.OrderID = o.OrderID)
+                                                INNER JOIN CustomerInfo ci ON ci.CustomerID = c.CustomerID)
+                                                WHERE oe.Number = '{0}' AND oe.TypeID = {1} AND c.CustomerID = '{3}' AND c.Page = {4}", winNumber, TypeID.ToString(), DBWinRate.upback1, customerID, PageID);
+                        }
+                        break;
+                        /*
                     case BaseTypeID.ht2:
                     case BaseTypeID.hu2:
                         if (string.Equals(PageID, "ทั้งหมด"))
@@ -609,156 +1381,48 @@ namespace Lottory
                         }
 
                         break;
-                    case BaseTypeID.low2:
-                        if (string.Equals(PageID, "ทั้งหมด"))
-                        {
-                            sqlgetWinPrice = string.Format(@"SELECT oe.Number, oe.Price, ci.{2} AS winRate
-                                            FROM (((OrderListExpand oe INNER JOIN OrderList o ON oe.OrderListID = o.OrderListID)
-                                            INNER JOIN CustomerOrder c ON c.OrderID = o.OrderID)
-                                            INNER JOIN CustomerInfo ci ON ci.CustomerID = c.CustomerID)
-                                            WHERE oe.Number = '{0}' AND oe.TypeID = {1} AND c.CustomerID = '{3}'", winNumber, TypeID.ToString(), DBWinRate.low2, customerID);
-                        }
-                        else
-                        {
-                            sqlgetWinPrice = string.Format(@"SELECT oe.Number, oe.Price, ci.{2} AS winRate
-                                            FROM (((OrderListExpand oe INNER JOIN OrderList o ON oe.OrderListID = o.OrderListID)
-                                            INNER JOIN CustomerOrder c ON c.OrderID = o.OrderID)
-                                            INNER JOIN CustomerInfo ci ON ci.CustomerID = c.CustomerID)
-                                            WHERE oe.Number = '{0}' AND oe.TypeID = {1} AND c.CustomerID = '{3}' AND c.Page = {4}", winNumber, TypeID.ToString(), DBWinRate.low2, customerID, PageID);
-                        }
-                        break;
-                    case BaseTypeID.up1:
-                        if (string.Equals(PageID, "ทั้งหมด"))
-                        {
-                            sqlgetWinPrice = string.Format(@"SELECT oe.Number, oe.Price, ci.{2} AS winRate
-                                            FROM (((OrderListExpand oe INNER JOIN OrderList o ON oe.OrderListID = o.OrderListID)
-                                            INNER JOIN CustomerOrder c ON c.OrderID = o.OrderID)
-                                            INNER JOIN CustomerInfo ci ON ci.CustomerID = c.CustomerID)
-                                            WHERE oe.Number = '{0}' AND oe.TypeID = {1} AND c.CustomerID = '{3}'", winNumber, TypeID.ToString(), DBWinRate.up1, customerID);
-                        }
-                        else
-                        {
-                            sqlgetWinPrice = string.Format(@"SELECT oe.Number, oe.Price, ci.{2} AS winRate
-                                            FROM (((OrderListExpand oe INNER JOIN OrderList o ON oe.OrderListID = o.OrderListID)
-                                            INNER JOIN CustomerOrder c ON c.OrderID = o.OrderID)
-                                            INNER JOIN CustomerInfo ci ON ci.CustomerID = c.CustomerID)
-                                            WHERE oe.Number = '{0}' AND oe.TypeID = {1} AND c.CustomerID = '{3}' AND c.Page = {4}", winNumber, TypeID.ToString(), DBWinRate.up1, customerID, PageID);
-                        }
+                        */
+                        /*
+                        case BaseTypeID.low2:
+                            if (string.Equals(PageID, "ทั้งหมด"))
+                            {
+                                sqlgetWinPrice = string.Format(@"SELECT oe.Number, oe.Price, ci.{2} AS winRate
+                                                FROM (((OrderListExpand oe INNER JOIN OrderList o ON oe.OrderListID = o.OrderListID)
+                                                INNER JOIN CustomerOrder c ON c.OrderID = o.OrderID)
+                                                INNER JOIN CustomerInfo ci ON ci.CustomerID = c.CustomerID)
+                                                WHERE oe.Number = '{0}' AND oe.TypeID = {1} AND c.CustomerID = '{3}'", winNumber, TypeID.ToString(), DBWinRate.low2, customerID);
+                            }
+                            else
+                            {
+                                sqlgetWinPrice = string.Format(@"SELECT oe.Number, oe.Price, ci.{2} AS winRate
+                                                FROM (((OrderListExpand oe INNER JOIN OrderList o ON oe.OrderListID = o.OrderListID)
+                                                INNER JOIN CustomerOrder c ON c.OrderID = o.OrderID)
+                                                INNER JOIN CustomerInfo ci ON ci.CustomerID = c.CustomerID)
+                                                WHERE oe.Number = '{0}' AND oe.TypeID = {1} AND c.CustomerID = '{3}' AND c.Page = {4}", winNumber, TypeID.ToString(), DBWinRate.low2, customerID, PageID);
+                            }
+                            break;
 
-                        break;
-                    case BaseTypeID.low1:
-                        if (string.Equals(PageID, "ทั้งหมด"))
-                        {
-                            sqlgetWinPrice = string.Format(@"SELECT oe.Number, oe.Price, ci.{2} AS winRate
-                                            FROM (((OrderListExpand oe INNER JOIN OrderList o ON oe.OrderListID = o.OrderListID)
-                                            INNER JOIN CustomerOrder c ON c.OrderID = o.OrderID)
-                                            INNER JOIN CustomerInfo ci ON ci.CustomerID = c.CustomerID)
-                                            WHERE oe.Number = '{0}' AND oe.TypeID = {1} AND c.CustomerID = '{3}'", winNumber, TypeID.ToString(), DBWinRate.low1, customerID);
-                        }
-                        else
-                        {
-                            sqlgetWinPrice = string.Format(@"SELECT oe.Number, oe.Price, ci.{2} AS winRate
-                                            FROM (((OrderListExpand oe INNER JOIN OrderList o ON oe.OrderListID = o.OrderListID)
-                                            INNER JOIN CustomerOrder c ON c.OrderID = o.OrderID)
-                                            INNER JOIN CustomerInfo ci ON ci.CustomerID = c.CustomerID)
-                                            WHERE oe.Number = '{0}' AND oe.TypeID = {1} AND c.CustomerID = '{3}' AND c.Page = {4}", winNumber, TypeID.ToString(), DBWinRate.low1, customerID, PageID);
-                        }
+                        case BaseTypeID.low1:
+                            if (string.Equals(PageID, "ทั้งหมด"))
+                            {
+                                sqlgetWinPrice = string.Format(@"SELECT oe.Number, oe.Price, ci.{2} AS winRate
+                                                FROM (((OrderListExpand oe INNER JOIN OrderList o ON oe.OrderListID = o.OrderListID)
+                                                INNER JOIN CustomerOrder c ON c.OrderID = o.OrderID)
+                                                INNER JOIN CustomerInfo ci ON ci.CustomerID = c.CustomerID)
+                                                WHERE oe.Number = '{0}' AND oe.TypeID = {1} AND c.CustomerID = '{3}'", winNumber, TypeID.ToString(), DBWinRate.low1, customerID);
+                            }
+                            else
+                            {
+                                sqlgetWinPrice = string.Format(@"SELECT oe.Number, oe.Price, ci.{2} AS winRate
+                                                FROM (((OrderListExpand oe INNER JOIN OrderList o ON oe.OrderListID = o.OrderListID)
+                                                INNER JOIN CustomerOrder c ON c.OrderID = o.OrderID)
+                                                INNER JOIN CustomerInfo ci ON ci.CustomerID = c.CustomerID)
+                                                WHERE oe.Number = '{0}' AND oe.TypeID = {1} AND c.CustomerID = '{3}' AND c.Page = {4}", winNumber, TypeID.ToString(), DBWinRate.low1, customerID, PageID);
+                            }
 
-                        break;
-                    case BaseTypeID.upfront1:
-                        if (string.Equals(PageID, "ทั้งหมด"))
-                        {
-                            sqlgetWinPrice = string.Format(@"SELECT oe.Number, oe.Price, ci.{2} AS winRate
-                                            FROM (((OrderListExpand oe INNER JOIN OrderList o ON oe.OrderListID = o.OrderListID)
-                                            INNER JOIN CustomerOrder c ON c.OrderID = o.OrderID)
-                                            INNER JOIN CustomerInfo ci ON ci.CustomerID = c.CustomerID)
-                                            WHERE oe.Number = '{0}' AND oe.TypeID = {1} AND c.CustomerID = '{3}'", winNumber, TypeID.ToString(), DBWinRate.upfront1, customerID);
-                        }
-                        else
-                        {
-                            sqlgetWinPrice = string.Format(@"SELECT oe.Number, oe.Price, ci.{2} AS winRate
-                                            FROM (((OrderListExpand oe INNER JOIN OrderList o ON oe.OrderListID = o.OrderListID)
-                                            INNER JOIN CustomerOrder c ON c.OrderID = o.OrderID)
-                                            INNER JOIN CustomerInfo ci ON ci.CustomerID = c.CustomerID)
-                                            WHERE oe.Number = '{0}' AND oe.TypeID = {1} AND c.CustomerID = '{3}' AND c.Page = {4}", winNumber, TypeID.ToString(), DBWinRate.upfront1, customerID, PageID);
-                        }
-
-                        break;
-                    case BaseTypeID.upback1:
-                        if (string.Equals(PageID, "ทั้งหมด"))
-                        {
-                            sqlgetWinPrice = string.Format(@"SELECT oe.Number, oe.Price, ci.{2} AS winRate
-                                            FROM (((OrderListExpand oe INNER JOIN OrderList o ON oe.OrderListID = o.OrderListID)
-                                            INNER JOIN CustomerOrder c ON c.OrderID = o.OrderID)
-                                            INNER JOIN CustomerInfo ci ON ci.CustomerID = c.CustomerID)
-                                            WHERE oe.Number = '{0}' AND oe.TypeID = {1} AND c.CustomerID = '{3}'", winNumber, TypeID.ToString(), DBWinRate.upback1, customerID);
-                        }
-                        else
-                        {
-                            sqlgetWinPrice = string.Format(@"SELECT oe.Number, oe.Price, ci.{2} AS winRate
-                                            FROM (((OrderListExpand oe INNER JOIN OrderList o ON oe.OrderListID = o.OrderListID)
-                                            INNER JOIN CustomerOrder c ON c.OrderID = o.OrderID)
-                                            INNER JOIN CustomerInfo ci ON ci.CustomerID = c.CustomerID)
-                                            WHERE oe.Number = '{0}' AND oe.TypeID = {1} AND c.CustomerID = '{3}' AND c.Page = {4}", winNumber, TypeID.ToString(), DBWinRate.upback1, customerID, PageID);
-                        }
-
-                        break;
-                    case BaseTypeID.upcenter1:
-                        if (string.Equals(PageID, "ทั้งหมด"))
-                        {
-                            sqlgetWinPrice = string.Format(@"SELECT oe.Number, oe.Price, ci.{2} AS winRate
-                                            FROM (((OrderListExpand oe INNER JOIN OrderList o ON oe.OrderListID = o.OrderListID)
-                                            INNER JOIN CustomerOrder c ON c.OrderID = o.OrderID)
-                                            INNER JOIN CustomerInfo ci ON ci.CustomerID = c.CustomerID)
-                                            WHERE oe.Number = '{0}' AND oe.TypeID = {1} AND c.CustomerID = '{3}'", winNumber, TypeID.ToString(), DBWinRate.upcenter1, customerID);
-                        }
-                        else
-                        {
-                            sqlgetWinPrice = string.Format(@"SELECT oe.Number, oe.Price, ci.{2} AS winRate
-                                            FROM (((OrderListExpand oe INNER JOIN OrderList o ON oe.OrderListID = o.OrderListID)
-                                            INNER JOIN CustomerOrder c ON c.OrderID = o.OrderID)
-                                            INNER JOIN CustomerInfo ci ON ci.CustomerID = c.CustomerID)
-                                            WHERE oe.Number = '{0}' AND oe.TypeID = {1} AND c.CustomerID = '{3}' AND c.Page = {4}", winNumber, TypeID.ToString(), DBWinRate.upcenter1, customerID, PageID);
-                        }
-
-                        break;
-                    case BaseTypeID.lowfront1:
-                        if (string.Equals(PageID, "ทั้งหมด"))
-                        {
-                            sqlgetWinPrice = string.Format(@"SELECT oe.Number, oe.Price, ci.{2} AS winRate
-                                            FROM (((OrderListExpand oe INNER JOIN OrderList o ON oe.OrderListID = o.OrderListID)
-                                            INNER JOIN CustomerOrder c ON c.OrderID = o.OrderID)
-                                            INNER JOIN CustomerInfo ci ON ci.CustomerID = c.CustomerID)
-                                            WHERE oe.Number = '{0}' AND oe.TypeID = {1} AND c.CustomerID = '{3}'", winNumber, TypeID.ToString(), DBWinRate.upfront1, customerID);
-                        }
-                        else
-                        {
-                            sqlgetWinPrice = string.Format(@"SELECT oe.Number, oe.Price, ci.{2} AS winRate
-                                            FROM (((OrderListExpand oe INNER JOIN OrderList o ON oe.OrderListID = o.OrderListID)
-                                            INNER JOIN CustomerOrder c ON c.OrderID = o.OrderID)
-                                            INNER JOIN CustomerInfo ci ON ci.CustomerID = c.CustomerID)
-                                            WHERE oe.Number = '{0}' AND oe.TypeID = {1} AND c.CustomerID = '{3}' AND c.Page = {4}", winNumber, TypeID.ToString(), DBWinRate.upfront1, customerID, PageID);
-                        }
-
-                        break;
-                    case BaseTypeID.lowback1:
-                        if (string.Equals(PageID, "ทั้งหมด"))
-                        {
-                            sqlgetWinPrice = string.Format(@"SELECT oe.Number, oe.Price, ci.{2} AS winRate
-                                            FROM (((OrderListExpand oe INNER JOIN OrderList o ON oe.OrderListID = o.OrderListID)
-                                            INNER JOIN CustomerOrder c ON c.OrderID = o.OrderID)
-                                            INNER JOIN CustomerInfo ci ON ci.CustomerID = c.CustomerID)
-                                            WHERE oe.Number = '{0}' AND oe.TypeID = {1} AND c.CustomerID = '{3}'", winNumber, TypeID.ToString(), DBWinRate.upback1, customerID);
-                        }
-                        else
-                        {
-                            sqlgetWinPrice = string.Format(@"SELECT oe.Number, oe.Price, ci.{2} AS winRate
-                                            FROM (((OrderListExpand oe INNER JOIN OrderList o ON oe.OrderListID = o.OrderListID)
-                                            INNER JOIN CustomerOrder c ON c.OrderID = o.OrderID)
-                                            INNER JOIN CustomerInfo ci ON ci.CustomerID = c.CustomerID)
-                                            WHERE oe.Number = '{0}' AND oe.TypeID = {1} AND c.CustomerID = '{3}' AND c.Page = {4}", winNumber, TypeID.ToString(), DBWinRate.upback1, customerID, PageID);
-                        }
-                        break;
+                            break;
+                        
+                            */
 
                 }
                 SqlCommand sqlgetWinPriceCom = new SqlCommand(sqlgetWinPrice, connection);
@@ -783,27 +1447,204 @@ namespace Lottory
             {
                 connection.Open();
             }
-            string sqlgetPrice;
+            string sqlgetDiscount = string.Empty;
             if (string.IsNullOrEmpty(PageID))
             {
-                sqlgetPrice = string.Format(@"SELECT ISNULL(SUM(DiscPrice),0) AS Price
-                                              FROM (CustomerOrder c INNER JOIN OrderList o ON c.OrderID = o.OrderID)
-                                              INNER JOIN OrderListExpand oe ON o.OrderListID = oe.OrderListID
-                                              WHERE oe.TypeID = {0} AND c.CustomerID = '{1}'", TypeID.ToString(), CustomerID);
+                switch (TypeID)
+                {
+                    case BaseTypeID.uptod3:
+                    case BaseTypeID.uptod2:
+                        sqlgetDiscount = string.Format(@"SELECT ISNULL(SUM(oe.DiscPrice),0) AS DiscPrice
+                                                         FROM (CustomerOrder c INNER JOIN OrderList o ON c.OrderID = o.OrderID)
+                                                         INNER JOIN OrderListExpand oe ON o.OrderListID = oe.OrderListID
+                                                         WHERE o.TypeID = {0} AND c.CustomerID = '{1}' AND (o.Number = oe.Number) AND (o.Price = oe.Price)", TypeID.ToString(), CustomerID);
+                        //sqlgetPrice = string.Format(@"SELECT ISNULL(SUM(Price),0) AS Price
+                        //                      FROM (CustomerOrder c INNER JOIN OrderList o ON c.OrderID = o.OrderID)
+                        //                      WHERE o.TypeID = {0} AND c.CustomerID = '{1}'", TypeID.ToString(), CustomerID);
+                        break;
+                    case BaseTypeID.up3:
+                    case BaseTypeID.low3:
+                    case BaseTypeID.group3:
+                    case BaseTypeID.door543:
+                    case BaseTypeID.tgroup3:
+                    case BaseTypeID.lowgroup3:
+
+                    case BaseTypeID.up2:
+                    case BaseTypeID.low2:
+                    case BaseTypeID.door62:
+                    case BaseTypeID.door19up2:
+                    case BaseTypeID.door19low2:
+                    case BaseTypeID.hu2:
+                    case BaseTypeID.ht2:
+                    case BaseTypeID.group5:
+                    case BaseTypeID.tod5:
+
+                    case BaseTypeID.up1:
+                    case BaseTypeID.low1:
+                    case BaseTypeID.upfront1:
+                    case BaseTypeID.upcenter1:
+                    case BaseTypeID.upback1:
+                    case BaseTypeID.lowfront1:
+                    case BaseTypeID.lowback1:
+                        sqlgetDiscount = string.Format(@"SELECT ISNULL(SUM(oe.DiscPrice),0) AS DiscPrice
+                                                         FROM (CustomerOrder c INNER JOIN OrderList o ON c.OrderID = o.OrderID)
+                                                         INNER JOIN OrderListExpand oe ON o.OrderListID = oe.OrderListID
+                                                         WHERE o.TypeID = {0} AND c.CustomerID = '{1}' ", TypeID.ToString(), CustomerID);
+                        //sqlgetPrice = string.Format(@"SELECT ISNULL(SUM(OwnPrice),0) AS Price
+                        //                      FROM (CustomerOrder c INNER JOIN OrderList o ON c.OrderID = o.OrderID)
+                        //                      INNER JOIN OrderListExpand oe ON o.OrderListID = oe.OrderListID
+                        //                      WHERE o.TypeID = {0} AND c.CustomerID = '{1}'", TypeID.ToString(), CustomerID);
+                        break;
+
+                }
+                //sqlgetDiscount = string.Format(@"SELECT ISNULL(SUM(DiscPrice),0) AS Price
+                //                              FROM (CustomerOrder c INNER JOIN OrderList o ON c.OrderID = o.OrderID)
+                //                              INNER JOIN OrderListExpand oe ON o.OrderListID = oe.OrderListID
+                //                              WHERE oe.TypeID = {0} AND c.CustomerID = '{1}'", TypeID.ToString(), CustomerID);
             }
             else
             {
-                sqlgetPrice = string.Format(@"SELECT ISNULL(SUM(DiscPrice),0) AS Price
-                                              FROM (CustomerOrder c INNER JOIN OrderList o ON c.OrderID = o.OrderID)
-                                              INNER JOIN OrderListExpand oe ON o.OrderListID = oe.OrderListID
-                                              WHERE oe.TypeID = {0} AND c.CustomerID = '{1}' AND c.Page = {2}", TypeID.ToString(), CustomerID, PageID);
+                switch (TypeID)
+                {
+                    case BaseTypeID.uptod3:
+                    case BaseTypeID.uptod2:
+                        sqlgetDiscount = string.Format(@"SELECT ISNULL(SUM(oe.DiscPrice),0) AS DiscPrice
+                                                         FROM (CustomerOrder c INNER JOIN OrderList o ON c.OrderID = o.OrderID)
+                                                         INNER JOIN OrderListExpand oe ON o.OrderListID = oe.OrderListID
+                                                         WHERE o.TypeID = {0} AND c.CustomerID = '{1}' AND (o.Number = oe.Number) AND (o.Price = oe.Price) AND c.Page = {2}", TypeID.ToString(), CustomerID, PageID);
+                        //sqlgetPrice = string.Format(@"SELECT ISNULL(SUM(Price),0) AS Price
+                        //                      FROM (CustomerOrder c INNER JOIN OrderList o ON c.OrderID = o.OrderID)
+                        //                      WHERE o.TypeID = {0} AND c.CustomerID = '{1}'", TypeID.ToString(), CustomerID);
+                        break;
+                    case BaseTypeID.up3:
+                    case BaseTypeID.low3:
+                    case BaseTypeID.group3:
+                    case BaseTypeID.door543:
+                    case BaseTypeID.tgroup3:
+                    case BaseTypeID.lowgroup3:
+
+                    case BaseTypeID.up2:
+                    case BaseTypeID.low2:
+                    case BaseTypeID.door62:
+                    case BaseTypeID.door19up2:
+                    case BaseTypeID.door19low2:
+                    case BaseTypeID.hu2:
+                    case BaseTypeID.ht2:
+                    case BaseTypeID.group5:
+                    case BaseTypeID.tod5:
+
+                    case BaseTypeID.up1:
+                    case BaseTypeID.low1:
+                    case BaseTypeID.upfront1:
+                    case BaseTypeID.upcenter1:
+                    case BaseTypeID.upback1:
+                    case BaseTypeID.lowfront1:
+                    case BaseTypeID.lowback1:
+                        sqlgetDiscount = string.Format(@"SELECT ISNULL(SUM(oe.DiscPrice),0) AS DiscPrice
+                                                         FROM (CustomerOrder c INNER JOIN OrderList o ON c.OrderID = o.OrderID)
+                                                         INNER JOIN OrderListExpand oe ON o.OrderListID = oe.OrderListID
+                                                         WHERE o.TypeID = {0} AND c.CustomerID = '{1}' AND c.Page = {2}", TypeID.ToString(), CustomerID, PageID);
+                        //sqlgetPrice = string.Format(@"SELECT ISNULL(SUM(OwnPrice),0) AS Price
+                        //                      FROM (CustomerOrder c INNER JOIN OrderList o ON c.OrderID = o.OrderID)
+                        //                      INNER JOIN OrderListExpand oe ON o.OrderListID = oe.OrderListID
+                        //                      WHERE o.TypeID = {0} AND c.CustomerID = '{1}'", TypeID.ToString(), CustomerID);
+                        break;
+
+                }
+                //sqlgetDiscount = string.Format(@"SELECT ISNULL(SUM(DiscPrice),0) AS Price
+                //                              FROM (CustomerOrder c INNER JOIN OrderList o ON c.OrderID = o.OrderID)
+                //                              INNER JOIN OrderListExpand oe ON o.OrderListID = oe.OrderListID
+                //                              WHERE oe.TypeID = {0} AND c.CustomerID = '{1}' AND c.Page = {2}", TypeID.ToString(), CustomerID, PageID);
             }
 
-            SqlCommand sqlgetPriceCom = new SqlCommand(sqlgetPrice, connection);
+            SqlCommand sqlgetPriceCom = new SqlCommand(sqlgetDiscount, connection);
             SqlDataReader PriceInfo = sqlgetPriceCom.ExecuteReader();
             while (PriceInfo.Read())
             {
-                outDisc = Convert.ToInt32(PriceInfo["Price"]);
+                outDisc = Convert.ToInt32(PriceInfo["DiscPrice"]);
+            }
+            connection.Close();
+            return outDisc;
+        }
+        private int getGDiscountFromDB(string CustomerID, int TypeID, string PageID)
+        {
+            int outDisc = 0;
+            SqlConnection connection = new SqlConnection(Database.CnnVal("LottoryDB"));
+            if (connection.State == ConnectionState.Closed)
+            {
+                connection.Open();
+            }
+            string sqlgetDiscount = string.Empty;
+            if (string.IsNullOrEmpty(PageID))
+            {
+                switch (TypeID)
+                {
+                    case BaseTypeID.uptod3:
+                    case BaseTypeID.uptod2:
+                        sqlgetDiscount = string.Format(@"SELECT ISNULL(SUM(oe.DiscPrice),0) AS DiscPrice
+                                                         FROM (CustomerOrder c INNER JOIN OrderList o ON c.OrderID = o.OrderID)
+                                                         INNER JOIN OrderListExpand oe ON o.OrderListID = oe.OrderListID
+                                                         WHERE o.TypeID = {0} AND c.CustomerID = '{1}' AND (o.Price <> oe.Price)", TypeID.ToString(), CustomerID);
+                        //sqlgetPrice = string.Format(@"SELECT ISNULL(SUM(Price),0) AS Price
+                        //                      FROM (CustomerOrder c INNER JOIN OrderList o ON c.OrderID = o.OrderID)
+                        //                      WHERE o.TypeID = {0} AND c.CustomerID = '{1}'", TypeID.ToString(), CustomerID);
+                        break;
+                    case BaseTypeID.tod3:
+                    case BaseTypeID.tod2:
+                        sqlgetDiscount = string.Format(@"SELECT ISNULL(SUM(oe.DiscPrice),0) AS DiscPrice
+                                                         FROM (CustomerOrder c INNER JOIN OrderList o ON c.OrderID = o.OrderID)
+                                                         INNER JOIN OrderListExpand oe ON o.OrderListID = oe.OrderListID
+                                                         WHERE o.TypeID = {0} AND c.CustomerID = '{1}' ", TypeID.ToString(), CustomerID);
+                        //sqlgetPrice = string.Format(@"SELECT ISNULL(SUM(OwnPrice),0) AS Price
+                        //                      FROM (CustomerOrder c INNER JOIN OrderList o ON c.OrderID = o.OrderID)
+                        //                      INNER JOIN OrderListExpand oe ON o.OrderListID = oe.OrderListID
+                        //                      WHERE o.TypeID = {0} AND c.CustomerID = '{1}'", TypeID.ToString(), CustomerID);
+                        break;
+
+                }
+                //sqlgetDiscount = string.Format(@"SELECT ISNULL(SUM(DiscPrice),0) AS Price
+                //                              FROM (CustomerOrder c INNER JOIN OrderList o ON c.OrderID = o.OrderID)
+                //                              INNER JOIN OrderListExpand oe ON o.OrderListID = oe.OrderListID
+                //                              WHERE oe.TypeID = {0} AND c.CustomerID = '{1}'", TypeID.ToString(), CustomerID);
+            }
+            else
+            {
+                switch (TypeID)
+                {
+                    case BaseTypeID.uptod3:
+                    case BaseTypeID.uptod2:
+                        sqlgetDiscount = string.Format(@"SELECT ISNULL(SUM(oe.DiscPrice),0) AS DiscPrice
+                                                         FROM (CustomerOrder c INNER JOIN OrderList o ON c.OrderID = o.OrderID)
+                                                         INNER JOIN OrderListExpand oe ON o.OrderListID = oe.OrderListID
+                                                         WHERE o.TypeID = {0} AND c.CustomerID = '{1}' AND (o.Price <> oe.Price) AND c.Page = {2}", TypeID.ToString(), CustomerID, PageID);
+                        //sqlgetPrice = string.Format(@"SELECT ISNULL(SUM(Price),0) AS Price
+                        //                      FROM (CustomerOrder c INNER JOIN OrderList o ON c.OrderID = o.OrderID)
+                        //                      WHERE o.TypeID = {0} AND c.CustomerID = '{1}'", TypeID.ToString(), CustomerID);
+                        break;
+                    case BaseTypeID.tod3:
+                    case BaseTypeID.tod2:
+                        sqlgetDiscount = string.Format(@"SELECT ISNULL(SUM(oe.DiscPrice),0) AS DiscPrice
+                                                         FROM (CustomerOrder c INNER JOIN OrderList o ON c.OrderID = o.OrderID)
+                                                         INNER JOIN OrderListExpand oe ON o.OrderListID = oe.OrderListID
+                                                         WHERE o.TypeID = {0} AND c.CustomerID = '{1}' AND c.Page = {2}", TypeID.ToString(), CustomerID, PageID);
+                        //sqlgetPrice = string.Format(@"SELECT ISNULL(SUM(OwnPrice),0) AS Price
+                        //                      FROM (CustomerOrder c INNER JOIN OrderList o ON c.OrderID = o.OrderID)
+                        //                      INNER JOIN OrderListExpand oe ON o.OrderListID = oe.OrderListID
+                        //                      WHERE o.TypeID = {0} AND c.CustomerID = '{1}'", TypeID.ToString(), CustomerID);
+                        break;
+
+                }
+                //sqlgetDiscount = string.Format(@"SELECT ISNULL(SUM(DiscPrice),0) AS Price
+                //                              FROM (CustomerOrder c INNER JOIN OrderList o ON c.OrderID = o.OrderID)
+                //                              INNER JOIN OrderListExpand oe ON o.OrderListID = oe.OrderListID
+                //                              WHERE oe.TypeID = {0} AND c.CustomerID = '{1}' AND c.Page = {2}", TypeID.ToString(), CustomerID, PageID);
+            }
+
+            SqlCommand sqlgetPriceCom = new SqlCommand(sqlgetDiscount, connection);
+            SqlDataReader PriceInfo = sqlgetPriceCom.ExecuteReader();
+            while (PriceInfo.Read())
+            {
+                outDisc = Convert.ToInt32(PriceInfo["DiscPrice"]);
             }
             connection.Close();
             return outDisc;
@@ -836,20 +1677,96 @@ namespace Lottory
             {
                 connection.Open();
             }
-            string sqlgetPrice;
+            string sqlgetPrice = string.Empty;
             if (string.IsNullOrEmpty(PageID))
             {
-                sqlgetPrice = string.Format(@"SELECT ISNULL(SUM(OwnPrice),0) AS Price
+                switch(TypeID)
+                {
+                    case BaseTypeID.uptod3:
+                    case BaseTypeID.uptod2:
+                        sqlgetPrice = string.Format(@"SELECT ISNULL(SUM(Price),0) AS Price
+                                              FROM (CustomerOrder c INNER JOIN OrderList o ON c.OrderID = o.OrderID)
+                                              WHERE o.TypeID = {0} AND c.CustomerID = '{1}'", TypeID.ToString(), CustomerID);
+                        break;
+                    case BaseTypeID.up3:
+                    case BaseTypeID.low3:
+                    case BaseTypeID.group3:
+                    case BaseTypeID.door543:
+                    case BaseTypeID.tgroup3:
+                    case BaseTypeID.lowgroup3:
+
+                    case BaseTypeID.up2:
+                    case BaseTypeID.low2:
+                    case BaseTypeID.door62:
+                    case BaseTypeID.door19up2:
+                    case BaseTypeID.door19low2:
+                    case BaseTypeID.hu2:
+                    case BaseTypeID.ht2:
+
+                    case BaseTypeID.group5:
+                    case BaseTypeID.tod5:
+
+                    case BaseTypeID.up1:
+                    case BaseTypeID.low1:
+                    case BaseTypeID.upfront1:
+                    case BaseTypeID.upcenter1:
+                    case BaseTypeID.upback1:
+                    case BaseTypeID.lowfront1:
+                    case BaseTypeID.lowback1:
+                        sqlgetPrice = string.Format(@"SELECT ISNULL(SUM(OwnPrice),0) AS Price
                                               FROM (CustomerOrder c INNER JOIN OrderList o ON c.OrderID = o.OrderID)
                                               INNER JOIN OrderListExpand oe ON o.OrderListID = oe.OrderListID
-                                              WHERE oe.TypeID = {0} AND c.CustomerID = '{1}'", TypeID.ToString(), CustomerID);
+                                              WHERE o.TypeID = {0} AND c.CustomerID = '{1}'", TypeID.ToString(), CustomerID);
+                        break;
+
+                }
+
             }
             else
             {
-                sqlgetPrice = string.Format(@"SELECT ISNULL(SUM(OwnPrice),0) AS Price
+                switch (TypeID)
+                {
+                    case BaseTypeID.uptod3:
+                    case BaseTypeID.uptod2:
+                        sqlgetPrice = string.Format(@"SELECT ISNULL(SUM(Price),0) AS Price
+                                              FROM (CustomerOrder c INNER JOIN OrderList o ON c.OrderID = o.OrderID)
+                                              WHERE o.TypeID = {0} AND c.CustomerID = '{1}' AND c.Page = {2}", TypeID.ToString(), CustomerID, PageID);
+                        break;
+                    case BaseTypeID.up3:
+                    case BaseTypeID.low3:
+                    case BaseTypeID.group3:
+                    case BaseTypeID.door543:
+                    case BaseTypeID.tgroup3:
+                    case BaseTypeID.lowgroup3:
+
+                    case BaseTypeID.up2:
+                    case BaseTypeID.low2:
+                    case BaseTypeID.door62:
+                    case BaseTypeID.door19up2:
+                    case BaseTypeID.door19low2:
+                    case BaseTypeID.hu2:
+                    case BaseTypeID.ht2:
+                    case BaseTypeID.group5:
+                    case BaseTypeID.tod5:
+
+                    case BaseTypeID.up1:
+                    case BaseTypeID.low1:
+                    case BaseTypeID.upfront1:
+                    case BaseTypeID.upcenter1:
+                    case BaseTypeID.upback1:
+                    case BaseTypeID.lowfront1:
+                    case BaseTypeID.lowback1:
+                        sqlgetPrice = string.Format(@"SELECT ISNULL(SUM(OwnPrice),0) AS Price
                                               FROM (CustomerOrder c INNER JOIN OrderList o ON c.OrderID = o.OrderID)
                                               INNER JOIN OrderListExpand oe ON o.OrderListID = oe.OrderListID
-                                              WHERE oe.TypeID = {0} AND c.CustomerID = '{1}' AND c.Page = {2}", TypeID.ToString(), CustomerID, PageID);
+                                              WHERE o.TypeID = {0} AND c.CustomerID = '{1}' AND c.Page = {2}", TypeID.ToString(), CustomerID, PageID);
+                        break;
+
+                }
+                //sqlgetPrice = string.Format(@"SELECT ISNULL(SUM(OwnPrice),0) AS Price
+                //                              FROM (CustomerOrder c INNER JOIN OrderList o ON c.OrderID = o.OrderID)
+                //                              INNER JOIN OrderListExpand oe ON o.OrderListID = oe.OrderListID
+                //                              WHERE oe.TypeID = {0} AND c.CustomerID = '{1}' AND c.Page = {2}", TypeID.ToString(), CustomerID, PageID);
             }
 
             SqlCommand sqlgetPriceCom = new SqlCommand(sqlgetPrice, connection);
@@ -861,6 +1778,71 @@ namespace Lottory
             connection.Close();
             return outPrice;
         }
+        private int getGroupFromDB(string CustomerID, int TypeID, string PageID)
+        {
+            int outPrice = 0;
+            SqlConnection connection = new SqlConnection(Database.CnnVal("LottoryDB"));
+            if (connection.State == ConnectionState.Closed)
+            {
+                connection.Open();
+            }
+            string sqlgetGPrice = string.Empty;
+            if (string.IsNullOrEmpty(PageID))
+            {
+                switch (TypeID)
+                {
+                    case BaseTypeID.uptod3:
+                    case BaseTypeID.uptod2:
+                        sqlgetGPrice = string.Format(@"SELECT ISNULL(SUM(GroupPrice),0) AS Price
+                                              FROM (CustomerOrder c INNER JOIN OrderList o ON c.OrderID = o.OrderID)
+                                              WHERE o.TypeID = {0} AND c.CustomerID = '{1}'", TypeID.ToString(), CustomerID);
+                        break;
+                    case BaseTypeID.tod3:
+                    case BaseTypeID.tod2:
+                        sqlgetGPrice = string.Format(@"SELECT ISNULL(SUM(OwnPrice),0) AS Price
+                                              FROM (CustomerOrder c INNER JOIN OrderList o ON c.OrderID = o.OrderID)
+                                              INNER JOIN OrderListExpand oe ON o.OrderListID = oe.OrderListID
+                                              WHERE o.TypeID = {0} AND c.CustomerID = '{1}'", TypeID.ToString(), CustomerID);
+                        break;
+
+                }
+
+            }
+            else
+            {
+                switch (TypeID)
+                {
+                    case BaseTypeID.uptod3:
+                    case BaseTypeID.uptod2:
+                        sqlgetGPrice = string.Format(@"SELECT ISNULL(SUM(Price),0) AS Price
+                                              FROM (CustomerOrder c INNER JOIN OrderList o ON c.OrderID = o.OrderID)
+                                              WHERE o.TypeID = {0} AND c.CustomerID = '{1}' AND c.Page = {2}", TypeID.ToString(), CustomerID, PageID);
+                        break;
+                    case BaseTypeID.tod3:
+                    case BaseTypeID.tod2:
+                        sqlgetGPrice = string.Format(@"SELECT ISNULL(SUM(OwnPrice),0) AS Price
+                                              FROM (CustomerOrder c INNER JOIN OrderList o ON c.OrderID = o.OrderID)
+                                              INNER JOIN OrderListExpand oe ON o.OrderListID = oe.OrderListID
+                                              WHERE o.TypeID = {0} AND c.CustomerID = '{1}' AND c.Page = {2}", TypeID.ToString(), CustomerID, PageID);
+                        break;
+
+                }
+                //sqlgetPrice = string.Format(@"SELECT ISNULL(SUM(OwnPrice),0) AS Price
+                //                              FROM (CustomerOrder c INNER JOIN OrderList o ON c.OrderID = o.OrderID)
+                //                              INNER JOIN OrderListExpand oe ON o.OrderListID = oe.OrderListID
+                //                              WHERE oe.TypeID = {0} AND c.CustomerID = '{1}' AND c.Page = {2}", TypeID.ToString(), CustomerID, PageID);
+            }
+
+            SqlCommand sqlgetPriceCom = new SqlCommand(sqlgetGPrice, connection);
+            SqlDataReader PriceInfo = sqlgetPriceCom.ExecuteReader();
+            while (PriceInfo.Read())
+            {
+                outPrice = Convert.ToInt32(PriceInfo["Price"]);
+            }
+            connection.Close();
+            return outPrice;
+        }
+
         public string CustomerID;
         public string PageID;
 
