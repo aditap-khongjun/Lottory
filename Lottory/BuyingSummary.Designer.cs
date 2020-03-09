@@ -624,9 +624,10 @@
             // 
             this.Detail3up.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.Detail3up.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.Detail3up.Location = new System.Drawing.Point(658, 67);
+            this.Detail3up.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.Detail3up.Location = new System.Drawing.Point(658, 58);
             this.Detail3up.Name = "Detail3up";
-            this.Detail3up.Size = new System.Drawing.Size(115, 23);
+            this.Detail3up.Size = new System.Drawing.Size(115, 37);
             this.Detail3up.TabIndex = 46;
             this.Detail3up.Text = "รายละเอียด";
             this.Detail3up.UseVisualStyleBackColor = false;
@@ -636,9 +637,10 @@
             // 
             this.Detail3low.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.Detail3low.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.Detail3low.Location = new System.Drawing.Point(658, 110);
+            this.Detail3low.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.Detail3low.Location = new System.Drawing.Point(658, 101);
             this.Detail3low.Name = "Detail3low";
-            this.Detail3low.Size = new System.Drawing.Size(115, 23);
+            this.Detail3low.Size = new System.Drawing.Size(115, 37);
             this.Detail3low.TabIndex = 47;
             this.Detail3low.Text = "รายละเอียด";
             this.Detail3low.UseVisualStyleBackColor = false;
@@ -648,9 +650,10 @@
             // 
             this.Detail2up.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.Detail2up.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.Detail2up.Location = new System.Drawing.Point(658, 153);
+            this.Detail2up.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.Detail2up.Location = new System.Drawing.Point(658, 144);
             this.Detail2up.Name = "Detail2up";
-            this.Detail2up.Size = new System.Drawing.Size(115, 23);
+            this.Detail2up.Size = new System.Drawing.Size(115, 37);
             this.Detail2up.TabIndex = 47;
             this.Detail2up.Text = "รายละเอียด";
             this.Detail2up.UseVisualStyleBackColor = false;
@@ -660,9 +663,10 @@
             // 
             this.Detail2low.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.Detail2low.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.Detail2low.Location = new System.Drawing.Point(658, 196);
+            this.Detail2low.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.Detail2low.Location = new System.Drawing.Point(658, 187);
             this.Detail2low.Name = "Detail2low";
-            this.Detail2low.Size = new System.Drawing.Size(115, 23);
+            this.Detail2low.Size = new System.Drawing.Size(115, 37);
             this.Detail2low.TabIndex = 47;
             this.Detail2low.Text = "รายละเอียด";
             this.Detail2low.UseVisualStyleBackColor = false;
@@ -672,9 +676,10 @@
             // 
             this.Detail1up.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.Detail1up.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.Detail1up.Location = new System.Drawing.Point(658, 239);
+            this.Detail1up.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.Detail1up.Location = new System.Drawing.Point(658, 230);
             this.Detail1up.Name = "Detail1up";
-            this.Detail1up.Size = new System.Drawing.Size(115, 23);
+            this.Detail1up.Size = new System.Drawing.Size(115, 37);
             this.Detail1up.TabIndex = 47;
             this.Detail1up.Text = "รายละเอียด";
             this.Detail1up.UseVisualStyleBackColor = false;
@@ -684,9 +689,10 @@
             // 
             this.Detail1front.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.Detail1front.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.Detail1front.Location = new System.Drawing.Point(658, 282);
+            this.Detail1front.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.Detail1front.Location = new System.Drawing.Point(658, 273);
             this.Detail1front.Name = "Detail1front";
-            this.Detail1front.Size = new System.Drawing.Size(115, 23);
+            this.Detail1front.Size = new System.Drawing.Size(115, 37);
             this.Detail1front.TabIndex = 47;
             this.Detail1front.Text = "รายละเอียด";
             this.Detail1front.UseVisualStyleBackColor = false;
@@ -696,9 +702,10 @@
             // 
             this.Detail1back.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.Detail1back.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.Detail1back.Location = new System.Drawing.Point(658, 368);
+            this.Detail1back.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.Detail1back.Location = new System.Drawing.Point(658, 359);
             this.Detail1back.Name = "Detail1back";
-            this.Detail1back.Size = new System.Drawing.Size(115, 23);
+            this.Detail1back.Size = new System.Drawing.Size(115, 37);
             this.Detail1back.TabIndex = 47;
             this.Detail1back.Text = "รายละเอียด";
             this.Detail1back.UseVisualStyleBackColor = false;
@@ -708,9 +715,10 @@
             // 
             this.Detail1center.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.Detail1center.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.Detail1center.Location = new System.Drawing.Point(658, 325);
+            this.Detail1center.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.Detail1center.Location = new System.Drawing.Point(658, 316);
             this.Detail1center.Name = "Detail1center";
-            this.Detail1center.Size = new System.Drawing.Size(115, 23);
+            this.Detail1center.Size = new System.Drawing.Size(115, 37);
             this.Detail1center.TabIndex = 47;
             this.Detail1center.Text = "รายละเอียด";
             this.Detail1center.UseVisualStyleBackColor = false;
@@ -720,9 +728,10 @@
             // 
             this.Detail1low.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.Detail1low.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.Detail1low.Location = new System.Drawing.Point(658, 411);
+            this.Detail1low.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.Detail1low.Location = new System.Drawing.Point(658, 402);
             this.Detail1low.Name = "Detail1low";
-            this.Detail1low.Size = new System.Drawing.Size(115, 23);
+            this.Detail1low.Size = new System.Drawing.Size(115, 37);
             this.Detail1low.TabIndex = 47;
             this.Detail1low.Text = "รายละเอียด";
             this.Detail1low.UseVisualStyleBackColor = false;
@@ -756,9 +765,10 @@
             // 
             this.DetailAll.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.DetailAll.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.DetailAll.Location = new System.Drawing.Point(658, 453);
+            this.DetailAll.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.DetailAll.Location = new System.Drawing.Point(658, 445);
             this.DetailAll.Name = "DetailAll";
-            this.DetailAll.Size = new System.Drawing.Size(115, 23);
+            this.DetailAll.Size = new System.Drawing.Size(115, 37);
             this.DetailAll.TabIndex = 47;
             this.DetailAll.Text = "รายละเอียด";
             this.DetailAll.UseVisualStyleBackColor = false;
@@ -823,7 +833,7 @@
             // 
             this.BackToMain.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
             this.BackToMain.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BackToMain.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.BackToMain.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
             this.BackToMain.Location = new System.Drawing.Point(814, 492);
             this.BackToMain.Name = "BackToMain";
             this.BackToMain.Size = new System.Drawing.Size(200, 51);
@@ -834,9 +844,9 @@
             // 
             // ShowForCustomer
             // 
-            this.ShowForCustomer.Location = new System.Drawing.Point(19, 155);
+            this.ShowForCustomer.Location = new System.Drawing.Point(19, 177);
             this.ShowForCustomer.Name = "ShowForCustomer";
-            this.ShowForCustomer.Size = new System.Drawing.Size(163, 33);
+            this.ShowForCustomer.Size = new System.Drawing.Size(163, 47);
             this.ShowForCustomer.TabIndex = 52;
             this.ShowForCustomer.Text = "แสดงรายคน";
             this.ShowForCustomer.UseVisualStyleBackColor = true;
@@ -849,10 +859,10 @@
             this.groupBox1.Controls.Add(this.label55);
             this.groupBox1.Controls.Add(this.CustomerList);
             this.groupBox1.Controls.Add(this.ShowForCustomer);
-            this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
             this.groupBox1.Location = new System.Drawing.Point(814, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(200, 205);
+            this.groupBox1.Size = new System.Drawing.Size(200, 272);
             this.groupBox1.TabIndex = 53;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "แสดงเลขรายคน";
@@ -860,18 +870,18 @@
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(19, 79);
+            this.label11.Location = new System.Drawing.Point(19, 103);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(31, 16);
+            this.label11.Size = new System.Drawing.Size(46, 24);
             this.label11.TabIndex = 56;
             this.label11.Text = "หน้า";
             // 
             // PageList
             // 
             this.PageList.FormattingEnabled = true;
-            this.PageList.Location = new System.Drawing.Point(19, 98);
+            this.PageList.Location = new System.Drawing.Point(19, 130);
             this.PageList.Name = "PageList";
-            this.PageList.Size = new System.Drawing.Size(163, 24);
+            this.PageList.Size = new System.Drawing.Size(163, 32);
             this.PageList.TabIndex = 55;
             // 
             // label55
@@ -879,16 +889,16 @@
             this.label55.AutoSize = true;
             this.label55.Location = new System.Drawing.Point(19, 33);
             this.label55.Name = "label55";
-            this.label55.Size = new System.Drawing.Size(60, 16);
+            this.label55.Size = new System.Drawing.Size(84, 24);
             this.label55.TabIndex = 54;
             this.label55.Text = "รหัสลูกค้า";
             // 
             // CustomerList
             // 
             this.CustomerList.FormattingEnabled = true;
-            this.CustomerList.Location = new System.Drawing.Point(19, 52);
+            this.CustomerList.Location = new System.Drawing.Point(19, 60);
             this.CustomerList.Name = "CustomerList";
-            this.CustomerList.Size = new System.Drawing.Size(163, 24);
+            this.CustomerList.Size = new System.Drawing.Size(163, 32);
             this.CustomerList.TabIndex = 53;
             this.CustomerList.SelectedIndexChanged += new System.EventHandler(this.CustomerList_SelectedIndexChanged);
             this.CustomerList.TextChanged += new System.EventHandler(this.CustomerList_TextChanged);

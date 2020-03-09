@@ -104,6 +104,7 @@
             this.groupBox1.Controls.Add(this.customerID);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.label1);
+            this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(234, 110);
@@ -113,25 +114,25 @@
             // 
             // customerName
             // 
-            this.customerName.Location = new System.Drawing.Point(82, 61);
+            this.customerName.Location = new System.Drawing.Point(107, 67);
             this.customerName.Name = "customerName";
-            this.customerName.Size = new System.Drawing.Size(100, 20);
+            this.customerName.Size = new System.Drawing.Size(75, 29);
             this.customerName.TabIndex = 3;
             // 
             // customerID
             // 
-            this.customerID.Location = new System.Drawing.Point(82, 32);
+            this.customerID.Location = new System.Drawing.Point(107, 32);
             this.customerID.Name = "customerID";
-            this.customerID.Size = new System.Drawing.Size(100, 20);
+            this.customerID.Size = new System.Drawing.Size(75, 29);
             this.customerID.TabIndex = 2;
             this.customerID.TextChanged += new System.EventHandler(this.customerID_Change);
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(24, 64);
+            this.label2.Location = new System.Drawing.Point(24, 70);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(45, 13);
+            this.label2.Size = new System.Drawing.Size(68, 24);
             this.label2.TabIndex = 1;
             this.label2.Text = "ชื่อลูกค้า";
             // 
@@ -140,7 +141,7 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(24, 35);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(51, 13);
+            this.label1.Size = new System.Drawing.Size(77, 24);
             this.label1.TabIndex = 0;
             this.label1.Text = "รหัสลูกค้า";
             // 
@@ -160,18 +161,19 @@
             this.groupBox2.Controls.Add(this.label5);
             this.groupBox2.Controls.Add(this.label4);
             this.groupBox2.Controls.Add(this.label3);
+            this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
             this.groupBox2.Location = new System.Drawing.Point(12, 128);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(234, 228);
+            this.groupBox2.Size = new System.Drawing.Size(234, 332);
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "จำกัดการเล่น";
             // 
             // limit_1low
             // 
-            this.limit_1low.Location = new System.Drawing.Point(82, 188);
+            this.limit_1low.Location = new System.Drawing.Point(109, 272);
             this.limit_1low.Name = "limit_1low";
-            this.limit_1low.Size = new System.Drawing.Size(100, 20);
+            this.limit_1low.Size = new System.Drawing.Size(73, 29);
             this.limit_1low.TabIndex = 12;
             this.limit_1low.Text = "0";
             this.limit_1low.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -180,9 +182,9 @@
             // 
             // limit_1up
             // 
-            this.limit_1up.Location = new System.Drawing.Point(82, 162);
+            this.limit_1up.Location = new System.Drawing.Point(109, 232);
             this.limit_1up.Name = "limit_1up";
-            this.limit_1up.Size = new System.Drawing.Size(100, 20);
+            this.limit_1up.Size = new System.Drawing.Size(73, 29);
             this.limit_1up.TabIndex = 11;
             this.limit_1up.Text = "0";
             this.limit_1up.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -191,9 +193,9 @@
             // 
             // limit_2low
             // 
-            this.limit_2low.Location = new System.Drawing.Point(82, 136);
+            this.limit_2low.Location = new System.Drawing.Point(109, 192);
             this.limit_2low.Name = "limit_2low";
-            this.limit_2low.Size = new System.Drawing.Size(100, 20);
+            this.limit_2low.Size = new System.Drawing.Size(73, 29);
             this.limit_2low.TabIndex = 10;
             this.limit_2low.Text = "0";
             this.limit_2low.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -202,9 +204,9 @@
             // 
             // limit_2up
             // 
-            this.limit_2up.Location = new System.Drawing.Point(82, 110);
+            this.limit_2up.Location = new System.Drawing.Point(109, 152);
             this.limit_2up.Name = "limit_2up";
-            this.limit_2up.Size = new System.Drawing.Size(100, 20);
+            this.limit_2up.Size = new System.Drawing.Size(73, 29);
             this.limit_2up.TabIndex = 9;
             this.limit_2up.Text = "0";
             this.limit_2up.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -213,9 +215,9 @@
             // 
             // limit_3low
             // 
-            this.limit_3low.Location = new System.Drawing.Point(82, 84);
+            this.limit_3low.Location = new System.Drawing.Point(109, 112);
             this.limit_3low.Name = "limit_3low";
-            this.limit_3low.Size = new System.Drawing.Size(100, 20);
+            this.limit_3low.Size = new System.Drawing.Size(73, 29);
             this.limit_3low.TabIndex = 8;
             this.limit_3low.Text = "0";
             this.limit_3low.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -224,9 +226,9 @@
             // 
             // limit_3up
             // 
-            this.limit_3up.Location = new System.Drawing.Point(82, 58);
+            this.limit_3up.Location = new System.Drawing.Point(109, 72);
             this.limit_3up.Name = "limit_3up";
-            this.limit_3up.Size = new System.Drawing.Size(100, 20);
+            this.limit_3up.Size = new System.Drawing.Size(73, 29);
             this.limit_3up.TabIndex = 7;
             this.limit_3up.Text = "0";
             this.limit_3up.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -235,9 +237,9 @@
             // 
             // limit_3uptod
             // 
-            this.limit_3uptod.Location = new System.Drawing.Point(82, 32);
+            this.limit_3uptod.Location = new System.Drawing.Point(109, 32);
             this.limit_3uptod.Name = "limit_3uptod";
-            this.limit_3uptod.Size = new System.Drawing.Size(100, 20);
+            this.limit_3uptod.Size = new System.Drawing.Size(73, 29);
             this.limit_3uptod.TabIndex = 4;
             this.limit_3uptod.Text = "0";
             this.limit_3uptod.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -247,54 +249,54 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(20, 191);
+            this.label9.Location = new System.Drawing.Point(20, 275);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(32, 13);
+            this.label9.Size = new System.Drawing.Size(49, 24);
             this.label9.TabIndex = 6;
             this.label9.Text = "1 ล่าง";
             // 
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(20, 165);
+            this.label8.Location = new System.Drawing.Point(20, 235);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(31, 13);
+            this.label8.Size = new System.Drawing.Size(49, 24);
             this.label8.TabIndex = 5;
             this.label8.Text = "1 บน";
             // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(20, 139);
+            this.label7.Location = new System.Drawing.Point(20, 195);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(32, 13);
+            this.label7.Size = new System.Drawing.Size(49, 24);
             this.label7.TabIndex = 4;
             this.label7.Text = "2 ล่าง";
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(20, 113);
+            this.label6.Location = new System.Drawing.Point(20, 155);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(31, 13);
+            this.label6.Size = new System.Drawing.Size(49, 24);
             this.label6.TabIndex = 3;
             this.label6.Text = "2 บน";
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(20, 87);
+            this.label5.Location = new System.Drawing.Point(20, 115);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(32, 13);
+            this.label5.Size = new System.Drawing.Size(49, 24);
             this.label5.TabIndex = 2;
             this.label5.Text = "3 ล่าง";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(20, 61);
+            this.label4.Location = new System.Drawing.Point(20, 75);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(31, 13);
+            this.label4.Size = new System.Drawing.Size(49, 24);
             this.label4.TabIndex = 1;
             this.label4.Text = "3 บน";
             // 
@@ -303,7 +305,7 @@
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(20, 35);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(55, 13);
+            this.label3.Size = new System.Drawing.Size(83, 24);
             this.label3.TabIndex = 0;
             this.label3.Text = "3 บน/โต๊ด";
             // 
@@ -347,9 +349,10 @@
             this.groupBox3.Controls.Add(this.label11);
             this.groupBox3.Controls.Add(this.payRate_1up);
             this.groupBox3.Controls.Add(this.label10);
-            this.groupBox3.Location = new System.Drawing.Point(252, 12);
+            this.groupBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.groupBox3.Location = new System.Drawing.Point(264, 12);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(271, 380);
+            this.groupBox3.Size = new System.Drawing.Size(313, 508);
             this.groupBox3.TabIndex = 2;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "อัตราจ่าย และส่วนลด";
@@ -357,26 +360,26 @@
             // label23
             // 
             this.label23.AutoSize = true;
-            this.label23.Location = new System.Drawing.Point(172, 22);
+            this.label23.Location = new System.Drawing.Point(194, 25);
             this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(57, 13);
+            this.label23.Size = new System.Drawing.Size(92, 24);
             this.label23.TabIndex = 49;
             this.label23.Text = "ส่วนลด (%)";
             // 
             // label22
             // 
             this.label22.AutoSize = true;
-            this.label22.Location = new System.Drawing.Point(127, 22);
+            this.label22.Location = new System.Drawing.Point(151, 25);
             this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(25, 13);
+            this.label22.Size = new System.Drawing.Size(37, 24);
             this.label22.TabIndex = 48;
             this.label22.Text = "จ่าย";
             // 
             // discount_1low
             // 
-            this.discount_1low.Location = new System.Drawing.Point(174, 328);
+            this.discount_1low.Location = new System.Drawing.Point(208, 424);
             this.discount_1low.Name = "discount_1low";
-            this.discount_1low.Size = new System.Drawing.Size(55, 20);
+            this.discount_1low.Size = new System.Drawing.Size(78, 29);
             this.discount_1low.TabIndex = 47;
             this.discount_1low.Text = "0";
             this.discount_1low.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -385,9 +388,9 @@
             // 
             // discount_5tod
             // 
-            this.discount_5tod.Location = new System.Drawing.Point(174, 302);
+            this.discount_5tod.Location = new System.Drawing.Point(208, 391);
             this.discount_5tod.Name = "discount_5tod";
-            this.discount_5tod.Size = new System.Drawing.Size(55, 20);
+            this.discount_5tod.Size = new System.Drawing.Size(78, 29);
             this.discount_5tod.TabIndex = 46;
             this.discount_5tod.Text = "0";
             this.discount_5tod.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -396,9 +399,9 @@
             // 
             // discount_3tod
             // 
-            this.discount_3tod.Location = new System.Drawing.Point(174, 276);
+            this.discount_3tod.Location = new System.Drawing.Point(208, 358);
             this.discount_3tod.Name = "discount_3tod";
-            this.discount_3tod.Size = new System.Drawing.Size(55, 20);
+            this.discount_3tod.Size = new System.Drawing.Size(78, 29);
             this.discount_3tod.TabIndex = 45;
             this.discount_3tod.Text = "0";
             this.discount_3tod.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -407,9 +410,9 @@
             // 
             // discount_3low
             // 
-            this.discount_3low.Location = new System.Drawing.Point(174, 251);
+            this.discount_3low.Location = new System.Drawing.Point(208, 325);
             this.discount_3low.Name = "discount_3low";
-            this.discount_3low.Size = new System.Drawing.Size(55, 20);
+            this.discount_3low.Size = new System.Drawing.Size(78, 29);
             this.discount_3low.TabIndex = 44;
             this.discount_3low.Text = "0";
             this.discount_3low.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -418,9 +421,9 @@
             // 
             // discount_3up
             // 
-            this.discount_3up.Location = new System.Drawing.Point(174, 225);
+            this.discount_3up.Location = new System.Drawing.Point(208, 292);
             this.discount_3up.Name = "discount_3up";
-            this.discount_3up.Size = new System.Drawing.Size(55, 20);
+            this.discount_3up.Size = new System.Drawing.Size(78, 29);
             this.discount_3up.TabIndex = 43;
             this.discount_3up.Text = "0";
             this.discount_3up.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -429,9 +432,9 @@
             // 
             // discount_2uptod
             // 
-            this.discount_2uptod.Location = new System.Drawing.Point(174, 199);
+            this.discount_2uptod.Location = new System.Drawing.Point(208, 259);
             this.discount_2uptod.Name = "discount_2uptod";
-            this.discount_2uptod.Size = new System.Drawing.Size(55, 20);
+            this.discount_2uptod.Size = new System.Drawing.Size(78, 29);
             this.discount_2uptod.TabIndex = 42;
             this.discount_2uptod.Text = "0";
             this.discount_2uptod.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -440,9 +443,9 @@
             // 
             // discount_2low
             // 
-            this.discount_2low.Location = new System.Drawing.Point(174, 173);
+            this.discount_2low.Location = new System.Drawing.Point(208, 226);
             this.discount_2low.Name = "discount_2low";
-            this.discount_2low.Size = new System.Drawing.Size(55, 20);
+            this.discount_2low.Size = new System.Drawing.Size(78, 29);
             this.discount_2low.TabIndex = 41;
             this.discount_2low.Text = "0";
             this.discount_2low.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -451,9 +454,9 @@
             // 
             // discount_2up
             // 
-            this.discount_2up.Location = new System.Drawing.Point(174, 148);
+            this.discount_2up.Location = new System.Drawing.Point(208, 193);
             this.discount_2up.Name = "discount_2up";
-            this.discount_2up.Size = new System.Drawing.Size(55, 20);
+            this.discount_2up.Size = new System.Drawing.Size(78, 29);
             this.discount_2up.TabIndex = 40;
             this.discount_2up.Text = "0";
             this.discount_2up.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -462,9 +465,9 @@
             // 
             // discount_1back
             // 
-            this.discount_1back.Location = new System.Drawing.Point(174, 122);
+            this.discount_1back.Location = new System.Drawing.Point(208, 160);
             this.discount_1back.Name = "discount_1back";
-            this.discount_1back.Size = new System.Drawing.Size(55, 20);
+            this.discount_1back.Size = new System.Drawing.Size(78, 29);
             this.discount_1back.TabIndex = 39;
             this.discount_1back.Text = "0";
             this.discount_1back.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -473,9 +476,9 @@
             // 
             // discount_1center
             // 
-            this.discount_1center.Location = new System.Drawing.Point(174, 96);
+            this.discount_1center.Location = new System.Drawing.Point(208, 127);
             this.discount_1center.Name = "discount_1center";
-            this.discount_1center.Size = new System.Drawing.Size(55, 20);
+            this.discount_1center.Size = new System.Drawing.Size(78, 29);
             this.discount_1center.TabIndex = 38;
             this.discount_1center.Text = "0";
             this.discount_1center.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -484,9 +487,9 @@
             // 
             // discount_1front
             // 
-            this.discount_1front.Location = new System.Drawing.Point(174, 70);
+            this.discount_1front.Location = new System.Drawing.Point(208, 94);
             this.discount_1front.Name = "discount_1front";
-            this.discount_1front.Size = new System.Drawing.Size(55, 20);
+            this.discount_1front.Size = new System.Drawing.Size(78, 29);
             this.discount_1front.TabIndex = 37;
             this.discount_1front.Text = "0";
             this.discount_1front.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -495,9 +498,9 @@
             // 
             // discount_1up
             // 
-            this.discount_1up.Location = new System.Drawing.Point(174, 45);
+            this.discount_1up.Location = new System.Drawing.Point(208, 61);
             this.discount_1up.Name = "discount_1up";
-            this.discount_1up.Size = new System.Drawing.Size(55, 20);
+            this.discount_1up.Size = new System.Drawing.Size(78, 29);
             this.discount_1up.TabIndex = 36;
             this.discount_1up.Text = "0";
             this.discount_1up.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -507,80 +510,80 @@
             // label21
             // 
             this.label21.AutoSize = true;
-            this.label21.Location = new System.Drawing.Point(39, 331);
+            this.label21.Location = new System.Drawing.Point(25, 424);
             this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(32, 13);
+            this.label21.Size = new System.Drawing.Size(49, 24);
             this.label21.TabIndex = 35;
             this.label21.Text = "1 ล่าง";
             // 
             // label20
             // 
             this.label20.AutoSize = true;
-            this.label20.Location = new System.Drawing.Point(39, 305);
+            this.label20.Location = new System.Drawing.Point(25, 391);
             this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(35, 13);
+            this.label20.Size = new System.Drawing.Size(54, 24);
             this.label20.TabIndex = 34;
             this.label20.Text = "5 โต๊ด";
             // 
             // label19
             // 
             this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(39, 279);
+            this.label19.Location = new System.Drawing.Point(25, 358);
             this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(35, 13);
+            this.label19.Size = new System.Drawing.Size(54, 24);
             this.label19.TabIndex = 33;
             this.label19.Text = "3 โต๊ด";
             // 
             // label18
             // 
             this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(39, 254);
+            this.label18.Location = new System.Drawing.Point(25, 325);
             this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(32, 13);
+            this.label18.Size = new System.Drawing.Size(49, 24);
             this.label18.TabIndex = 32;
             this.label18.Text = "3 ล่าง";
             // 
             // label17
             // 
             this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(39, 228);
+            this.label17.Location = new System.Drawing.Point(25, 292);
             this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(31, 13);
+            this.label17.Size = new System.Drawing.Size(49, 24);
             this.label17.TabIndex = 31;
             this.label17.Text = "3 บน";
             // 
             // label16
             // 
             this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(39, 202);
+            this.label16.Location = new System.Drawing.Point(25, 259);
             this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(50, 13);
+            this.label16.Size = new System.Drawing.Size(78, 24);
             this.label16.TabIndex = 30;
             this.label16.Text = "2 โต๊ดบน";
             // 
             // label15
             // 
             this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(39, 176);
+            this.label15.Location = new System.Drawing.Point(25, 226);
             this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(32, 13);
+            this.label15.Size = new System.Drawing.Size(49, 24);
             this.label15.TabIndex = 29;
             this.label15.Text = "2 ล่าง";
             // 
             // label14
             // 
             this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(39, 151);
+            this.label14.Location = new System.Drawing.Point(25, 193);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(31, 13);
+            this.label14.Size = new System.Drawing.Size(49, 24);
             this.label14.TabIndex = 28;
             this.label14.Text = "2 บน";
             // 
             // payRate_1low
             // 
-            this.payRate_1low.Location = new System.Drawing.Point(97, 328);
+            this.payRate_1low.Location = new System.Drawing.Point(116, 424);
             this.payRate_1low.Name = "payRate_1low";
-            this.payRate_1low.Size = new System.Drawing.Size(55, 20);
+            this.payRate_1low.Size = new System.Drawing.Size(72, 29);
             this.payRate_1low.TabIndex = 27;
             this.payRate_1low.Text = "0";
             this.payRate_1low.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -589,9 +592,9 @@
             // 
             // payRate_5tod
             // 
-            this.payRate_5tod.Location = new System.Drawing.Point(97, 302);
+            this.payRate_5tod.Location = new System.Drawing.Point(116, 391);
             this.payRate_5tod.Name = "payRate_5tod";
-            this.payRate_5tod.Size = new System.Drawing.Size(55, 20);
+            this.payRate_5tod.Size = new System.Drawing.Size(72, 29);
             this.payRate_5tod.TabIndex = 26;
             this.payRate_5tod.Text = "0";
             this.payRate_5tod.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -600,9 +603,9 @@
             // 
             // payRate_3tod
             // 
-            this.payRate_3tod.Location = new System.Drawing.Point(97, 276);
+            this.payRate_3tod.Location = new System.Drawing.Point(116, 358);
             this.payRate_3tod.Name = "payRate_3tod";
-            this.payRate_3tod.Size = new System.Drawing.Size(55, 20);
+            this.payRate_3tod.Size = new System.Drawing.Size(72, 29);
             this.payRate_3tod.TabIndex = 25;
             this.payRate_3tod.Text = "0";
             this.payRate_3tod.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -611,9 +614,9 @@
             // 
             // payRate_3low
             // 
-            this.payRate_3low.Location = new System.Drawing.Point(97, 251);
+            this.payRate_3low.Location = new System.Drawing.Point(116, 325);
             this.payRate_3low.Name = "payRate_3low";
-            this.payRate_3low.Size = new System.Drawing.Size(55, 20);
+            this.payRate_3low.Size = new System.Drawing.Size(72, 29);
             this.payRate_3low.TabIndex = 24;
             this.payRate_3low.Text = "0";
             this.payRate_3low.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -622,9 +625,9 @@
             // 
             // payRate_3up
             // 
-            this.payRate_3up.Location = new System.Drawing.Point(97, 225);
+            this.payRate_3up.Location = new System.Drawing.Point(116, 292);
             this.payRate_3up.Name = "payRate_3up";
-            this.payRate_3up.Size = new System.Drawing.Size(55, 20);
+            this.payRate_3up.Size = new System.Drawing.Size(72, 29);
             this.payRate_3up.TabIndex = 23;
             this.payRate_3up.Text = "0";
             this.payRate_3up.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -633,9 +636,9 @@
             // 
             // payRate_2uptod
             // 
-            this.payRate_2uptod.Location = new System.Drawing.Point(97, 199);
+            this.payRate_2uptod.Location = new System.Drawing.Point(116, 259);
             this.payRate_2uptod.Name = "payRate_2uptod";
-            this.payRate_2uptod.Size = new System.Drawing.Size(55, 20);
+            this.payRate_2uptod.Size = new System.Drawing.Size(72, 29);
             this.payRate_2uptod.TabIndex = 22;
             this.payRate_2uptod.Text = "0";
             this.payRate_2uptod.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -644,9 +647,9 @@
             // 
             // payRate_2low
             // 
-            this.payRate_2low.Location = new System.Drawing.Point(97, 173);
+            this.payRate_2low.Location = new System.Drawing.Point(116, 226);
             this.payRate_2low.Name = "payRate_2low";
-            this.payRate_2low.Size = new System.Drawing.Size(55, 20);
+            this.payRate_2low.Size = new System.Drawing.Size(72, 29);
             this.payRate_2low.TabIndex = 21;
             this.payRate_2low.Text = "0";
             this.payRate_2low.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -655,9 +658,9 @@
             // 
             // payRate_2up
             // 
-            this.payRate_2up.Location = new System.Drawing.Point(97, 148);
+            this.payRate_2up.Location = new System.Drawing.Point(116, 193);
             this.payRate_2up.Name = "payRate_2up";
-            this.payRate_2up.Size = new System.Drawing.Size(55, 20);
+            this.payRate_2up.Size = new System.Drawing.Size(72, 29);
             this.payRate_2up.TabIndex = 20;
             this.payRate_2up.Text = "0";
             this.payRate_2up.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -666,9 +669,9 @@
             // 
             // payRate_1back
             // 
-            this.payRate_1back.Location = new System.Drawing.Point(97, 122);
+            this.payRate_1back.Location = new System.Drawing.Point(116, 160);
             this.payRate_1back.Name = "payRate_1back";
-            this.payRate_1back.Size = new System.Drawing.Size(55, 20);
+            this.payRate_1back.Size = new System.Drawing.Size(72, 29);
             this.payRate_1back.TabIndex = 18;
             this.payRate_1back.Text = "0";
             this.payRate_1back.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -678,17 +681,17 @@
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(39, 125);
+            this.label13.Location = new System.Drawing.Point(25, 160);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(34, 13);
+            this.label13.Size = new System.Drawing.Size(53, 24);
             this.label13.TabIndex = 19;
             this.label13.Text = "1 หลัง";
             // 
             // payRate_1center
             // 
-            this.payRate_1center.Location = new System.Drawing.Point(97, 96);
+            this.payRate_1center.Location = new System.Drawing.Point(116, 127);
             this.payRate_1center.Name = "payRate_1center";
-            this.payRate_1center.Size = new System.Drawing.Size(55, 20);
+            this.payRate_1center.Size = new System.Drawing.Size(72, 29);
             this.payRate_1center.TabIndex = 16;
             this.payRate_1center.Text = "0";
             this.payRate_1center.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -698,17 +701,17 @@
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(39, 99);
+            this.label12.Location = new System.Drawing.Point(25, 127);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(39, 13);
+            this.label12.Size = new System.Drawing.Size(59, 24);
             this.label12.TabIndex = 17;
             this.label12.Text = "1 กลาง";
             // 
             // payRate_1front
             // 
-            this.payRate_1front.Location = new System.Drawing.Point(97, 70);
+            this.payRate_1front.Location = new System.Drawing.Point(116, 94);
             this.payRate_1front.Name = "payRate_1front";
-            this.payRate_1front.Size = new System.Drawing.Size(55, 20);
+            this.payRate_1front.Size = new System.Drawing.Size(72, 29);
             this.payRate_1front.TabIndex = 14;
             this.payRate_1front.Text = "0";
             this.payRate_1front.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -718,17 +721,17 @@
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(39, 73);
+            this.label11.Location = new System.Drawing.Point(25, 94);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(36, 13);
+            this.label11.Size = new System.Drawing.Size(58, 24);
             this.label11.TabIndex = 15;
             this.label11.Text = "1 หน้า";
             // 
             // payRate_1up
             // 
-            this.payRate_1up.Location = new System.Drawing.Point(97, 45);
+            this.payRate_1up.Location = new System.Drawing.Point(116, 61);
             this.payRate_1up.Name = "payRate_1up";
-            this.payRate_1up.Size = new System.Drawing.Size(55, 20);
+            this.payRate_1up.Size = new System.Drawing.Size(72, 29);
             this.payRate_1up.TabIndex = 4;
             this.payRate_1up.Text = "0";
             this.payRate_1up.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -738,15 +741,16 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(39, 48);
+            this.label10.Location = new System.Drawing.Point(25, 61);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(31, 13);
+            this.label10.Size = new System.Drawing.Size(49, 24);
             this.label10.TabIndex = 13;
             this.label10.Text = "1 บน";
             // 
             // Save
             // 
-            this.Save.Location = new System.Drawing.Point(12, 398);
+            this.Save.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.Save.Location = new System.Drawing.Point(7, 554);
             this.Save.Name = "Save";
             this.Save.Size = new System.Drawing.Size(97, 43);
             this.Save.TabIndex = 3;
@@ -756,7 +760,8 @@
             // 
             // Add
             // 
-            this.Add.Location = new System.Drawing.Point(115, 398);
+            this.Add.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.Add.Location = new System.Drawing.Point(110, 554);
             this.Add.Name = "Add";
             this.Add.Size = new System.Drawing.Size(97, 43);
             this.Add.TabIndex = 4;
@@ -767,7 +772,8 @@
             // Delete
             // 
             this.Delete.Enabled = false;
-            this.Delete.Location = new System.Drawing.Point(220, 398);
+            this.Delete.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.Delete.Location = new System.Drawing.Point(213, 554);
             this.Delete.Name = "Delete";
             this.Delete.Size = new System.Drawing.Size(97, 43);
             this.Delete.TabIndex = 5;
@@ -777,9 +783,10 @@
             // 
             // Change
             // 
-            this.Change.Location = new System.Drawing.Point(323, 398);
+            this.Change.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.Change.Location = new System.Drawing.Point(316, 554);
             this.Change.Name = "Change";
-            this.Change.Size = new System.Drawing.Size(97, 43);
+            this.Change.Size = new System.Drawing.Size(118, 43);
             this.Change.TabIndex = 6;
             this.Change.Text = "เปลี่ยนลูกค้า";
             this.Change.UseVisualStyleBackColor = true;
@@ -787,9 +794,10 @@
             // 
             // toMain
             // 
-            this.toMain.Location = new System.Drawing.Point(426, 398);
+            this.toMain.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.toMain.Location = new System.Drawing.Point(440, 554);
             this.toMain.Name = "toMain";
-            this.toMain.Size = new System.Drawing.Size(97, 43);
+            this.toMain.Size = new System.Drawing.Size(137, 43);
             this.toMain.TabIndex = 7;
             this.toMain.Text = "กลับสู่หน้าหลัก";
             this.toMain.UseVisualStyleBackColor = true;
@@ -798,9 +806,10 @@
             // initial_value
             // 
             this.initial_value.BackColor = System.Drawing.SystemColors.Control;
-            this.initial_value.Location = new System.Drawing.Point(12, 362);
+            this.initial_value.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.initial_value.Location = new System.Drawing.Point(12, 472);
             this.initial_value.Name = "initial_value";
-            this.initial_value.Size = new System.Drawing.Size(234, 30);
+            this.initial_value.Size = new System.Drawing.Size(234, 48);
             this.initial_value.TabIndex = 50;
             this.initial_value.Text = "ค่าเริ่มต้น";
             this.initial_value.UseVisualStyleBackColor = false;
@@ -810,7 +819,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(540, 465);
+            this.ClientSize = new System.Drawing.Size(611, 637);
             this.Controls.Add(this.initial_value);
             this.Controls.Add(this.toMain);
             this.Controls.Add(this.Change);

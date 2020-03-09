@@ -86,6 +86,7 @@
             this.GroupContent.Controls.Add(this.tbNumber23);
             this.GroupContent.Controls.Add(this.tbNumber24);
             this.GroupContent.Controls.Add(this.tbNumber25);
+            this.GroupContent.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
             this.GroupContent.Location = new System.Drawing.Point(12, 12);
             this.GroupContent.Name = "GroupContent";
             this.GroupContent.Size = new System.Drawing.Size(418, 223);
