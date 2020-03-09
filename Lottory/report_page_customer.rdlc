@@ -137,13 +137,13 @@
         <TablixBody>
           <TablixColumns>
             <TablixColumn>
-              <Width>5.50333cm</Width>
+              <Width>3.00334cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>5.50333cm</Width>
+              <Width>4.10104cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>5.50333cm</Width>
+              <Width>5.06236cm</Width>
             </TablixColumn>
           </TablixColumns>
           <TablixRows>
@@ -371,7 +371,7 @@
         <DataSetName>buyinginfo</DataSetName>
         <Top>4.07141cm</Top>
         <Height>1.35876cm</Height>
-        <Width>16.50999cm</Width>
+        <Width>12.16674cm</Width>
         <ZIndex>4</ZIndex>
         <Style>
           <Border>
@@ -449,13 +449,13 @@
         <TablixBody>
           <TablixColumns>
             <TablixColumn>
-              <Width>5.50333cm</Width>
+              <Width>3.00334cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>5.50333cm</Width>
+              <Width>4.10104cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>5.50333cm</Width>
+              <Width>5.06236cm</Width>
             </TablixColumn>
           </TablixColumns>
           <TablixRows>
@@ -579,7 +579,7 @@
         <DataSetName>buyingsum</DataSetName>
         <Top>5.50071cm</Top>
         <Height>0.73229cm</Height>
-        <Width>16.50999cm</Width>
+        <Width>12.16674cm</Width>
         <ZIndex>7</ZIndex>
         <Style>
           <Border>
@@ -591,13 +591,16 @@
         <TablixBody>
           <TablixColumns>
             <TablixColumn>
-              <Width>5.50333cm</Width>
+              <Width>3.00334cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>5.50333cm</Width>
+              <Width>4.10104cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>5.50333cm</Width>
+              <Width>5.06236cm</Width>
+            </TablixColumn>
+            <TablixColumn>
+              <Width>4.34326cm</Width>
             </TablixColumn>
           </TablixColumns>
           <TablixRows>
@@ -687,6 +690,38 @@
                         </Paragraph>
                       </Paragraphs>
                       <rd:DefaultName>Textbox23</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Color>LightGrey</Color>
+                          <Style>Solid</Style>
+                        </Border>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="Textbox8">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>หน้า</Value>
+                              <Style>
+                                <FontSize>12pt</FontSize>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style />
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>Textbox8</rd:DefaultName>
                       <Style>
                         <Border>
                           <Color>LightGrey</Color>
@@ -801,12 +836,45 @@
                     </Textbox>
                   </CellContents>
                 </TablixCell>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="PageNumber">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>=Fields!PageNumber.Value</Value>
+                              <Style>
+                                <FontSize>12pt</FontSize>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style />
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>PageNumber</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Color>LightGrey</Color>
+                          <Style>Solid</Style>
+                        </Border>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
               </TablixCells>
             </TablixRow>
           </TablixRows>
         </TablixBody>
         <TablixColumnHierarchy>
           <TablixMembers>
+            <TablixMember />
             <TablixMember />
             <TablixMember />
             <TablixMember />
@@ -825,7 +893,7 @@
         <DataSetName>payinginfo</DataSetName>
         <Top>7.77558cm</Top>
         <Height>1.41166cm</Height>
-        <Width>16.50999cm</Width>
+        <Width>16.51cm</Width>
         <ZIndex>8</ZIndex>
         <Style>
           <Border>
@@ -837,13 +905,13 @@
         <TablixBody>
           <TablixColumns>
             <TablixColumn>
-              <Width>5.50333cm</Width>
+              <Width>3.00334cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>5.50333cm</Width>
+              <Width>4.10104cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>5.50333cm</Width>
+              <Width>5.06236cm</Width>
             </TablixColumn>
           </TablixColumns>
           <TablixRows>
@@ -967,7 +1035,7 @@
         <DataSetName>payingsum</DataSetName>
         <Top>9.2578cm</Top>
         <Height>0.73229cm</Height>
-        <Width>16.50999cm</Width>
+        <Width>12.16674cm</Width>
         <ZIndex>9</ZIndex>
         <Style>
           <Border>
@@ -1139,7 +1207,7 @@
     <Height>4.42708in</Height>
     <Style />
   </Body>
-  <Width>7.13542in</Width>
+  <Width>7.48425in</Width>
   <Page>
     <PageHeight>29.7cm</PageHeight>
     <PageWidth>21cm</PageWidth>
@@ -1249,34 +1317,6 @@
         <rd:TableAdapterName />
       </rd:DataSetInfo>
     </DataSet>
-    <DataSet Name="payinginfo">
-      <Query>
-        <DataSourceName>page_Report</DataSourceName>
-        <CommandText>/* Local Query */</CommandText>
-      </Query>
-      <Fields>
-        <Field Name="Type">
-          <DataField>Type</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="WinPrice">
-          <DataField>WinPrice</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="PayPrice">
-          <DataField>PayPrice</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-      </Fields>
-      <rd:DataSetInfo>
-        <rd:DataSetName>page_Report</rd:DataSetName>
-        <rd:SchemaPath>D:\project\C#\Lottory\Lottory\Lottory\page_Report.xsd</rd:SchemaPath>
-        <rd:TableName>PayingTable</rd:TableName>
-        <rd:TableAdapterFillMethod />
-        <rd:TableAdapterGetDataMethod />
-        <rd:TableAdapterName />
-      </rd:DataSetInfo>
-    </DataSet>
     <DataSet Name="payingsum">
       <Query>
         <DataSourceName>page_Report</DataSourceName>
@@ -1296,6 +1336,38 @@
         <rd:DataSetName>page_Report</rd:DataSetName>
         <rd:SchemaPath>D:\project\C#\Lottory\Lottory\Lottory\page_Report.xsd</rd:SchemaPath>
         <rd:TableName>PayingSummary</rd:TableName>
+        <rd:TableAdapterFillMethod />
+        <rd:TableAdapterGetDataMethod />
+        <rd:TableAdapterName />
+      </rd:DataSetInfo>
+    </DataSet>
+    <DataSet Name="payinginfo">
+      <Query>
+        <DataSourceName>page_Report</DataSourceName>
+        <CommandText>/* Local Query */</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="Type">
+          <DataField>Type</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="WinPrice">
+          <DataField>WinPrice</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="PayPrice">
+          <DataField>PayPrice</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="PageNumber">
+          <DataField>PageNumber</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+      </Fields>
+      <rd:DataSetInfo>
+        <rd:DataSetName>page_Report</rd:DataSetName>
+        <rd:SchemaPath>D:\project\C#\Lottory\Lottory\Lottory\page_Report.xsd</rd:SchemaPath>
+        <rd:TableName>PayingTable</rd:TableName>
         <rd:TableAdapterFillMethod />
         <rd:TableAdapterGetDataMethod />
         <rd:TableAdapterName />

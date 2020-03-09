@@ -996,6 +996,8 @@ namespace Lottory {
             
             private global::System.Data.DataColumn columnPayPrice;
             
+            private global::System.Data.DataColumn columnPageNumber;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public PayingTableDataTable() {
@@ -1055,6 +1057,14 @@ namespace Lottory {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn PageNumberColumn {
+                get {
+                    return this.columnPageNumber;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -1090,12 +1100,13 @@ namespace Lottory {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public PayingTableRow AddPayingTableRow(string Type, string WinPrice, string PayPrice) {
+            public PayingTableRow AddPayingTableRow(string Type, string WinPrice, string PayPrice, string PageNumber) {
                 PayingTableRow rowPayingTableRow = ((PayingTableRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         Type,
                         WinPrice,
-                        PayPrice};
+                        PayPrice,
+                        PageNumber};
                 rowPayingTableRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowPayingTableRow);
                 return rowPayingTableRow;
@@ -1121,6 +1132,7 @@ namespace Lottory {
                 this.columnType = base.Columns["Type"];
                 this.columnWinPrice = base.Columns["WinPrice"];
                 this.columnPayPrice = base.Columns["PayPrice"];
+                this.columnPageNumber = base.Columns["PageNumber"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1132,6 +1144,8 @@ namespace Lottory {
                 base.Columns.Add(this.columnWinPrice);
                 this.columnPayPrice = new global::System.Data.DataColumn("PayPrice", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnPayPrice);
+                this.columnPageNumber = new global::System.Data.DataColumn("PageNumber", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnPageNumber);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -2359,6 +2373,22 @@ namespace Lottory {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public string PageNumber {
+                get {
+                    try {
+                        return ((string)(this[this.tablePayingTable.PageNumberColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'PageNumber\' in table \'PayingTable\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablePayingTable.PageNumberColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public bool IsTypeNull() {
                 return this.IsNull(this.tablePayingTable.TypeColumn);
             }
@@ -2391,6 +2421,18 @@ namespace Lottory {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public void SetPayPriceNull() {
                 this[this.tablePayingTable.PayPriceColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public bool IsPageNumberNull() {
+                return this.IsNull(this.tablePayingTable.PageNumberColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void SetPageNumberNull() {
+                this[this.tablePayingTable.PageNumberColumn] = global::System.Convert.DBNull;
             }
         }
         
