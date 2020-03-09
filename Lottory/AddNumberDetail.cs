@@ -1057,7 +1057,7 @@ namespace Lottory
                 if (string.IsNullOrEmpty(Group))
                 {
                     // update OrderList & OrderListExpand in DB
-                    updateOrderToDB(Number, Type, Money, Group, string.Empty);
+                    updateOrderToDB(Number, Type, Money, Money, string.Empty);
                 }
                 else
                 {
@@ -1077,13 +1077,29 @@ namespace Lottory
                 // Money1->Enable, Money2->Disable, Moeny3->Enable
 
                 // update OrderList & OrderListExpand in DB
-                updateOrderToDB(Number, Type, Money, string.Empty, Low);
+                if(string.IsNullOrEmpty(Low))
+                {
+                    updateOrderToDB(Number, Type, Money, string.Empty, Money);
+                }
+                else
+                {
+                    updateOrderToDB(Number, Type, Money, string.Empty, Low);
+                }
+                
             }
             else if((tbMoney1.Enabled == true) && (tbMoney2.Enabled == true) && (tbLow.Enabled == true))
             {
                 // Money1->Enable, Money2->Enable, Money3->Enable
 
                 // update OrderList & OrderListExpand in DB
+                if(string.IsNullOrEmpty(Group))
+                {
+                    Group = Money;
+                }
+                if(string.IsNullOrEmpty(Low))
+                {
+                    Low = Money;
+                }
                 updateOrderToDB(Number, Type, Money, Group, Low);
             }
         }
@@ -1803,7 +1819,6 @@ namespace Lottory
         private void AddNumberToTable()
         {
             // Add Number to Table
-
             if ((tbMoney1.Enabled == true) && (tbMoney2.Enabled == false) && (tbLow.Enabled == false))
             {
                 //Money1 => Enable, Money2 => Disable, Money3->Disable
@@ -1867,14 +1882,26 @@ namespace Lottory
                 // Money1->Enable, Money2->Enable, Mone3->Enable
 
                 // update OrderList in DB & update OrderListExpand in DB
-                if (string.IsNullOrEmpty(tbMoney2.Text) && string.IsNullOrEmpty(tbLow.Text))
+                string Money2;
+                string MoneyLow;
+                if(string.IsNullOrEmpty(tbMoney2.Text))
                 {
-                    updateOrderToDB(tbNumber.Text, tbType.Text.Substring(1, tbType.Text.Length - 1), tbMoney1.Text, tbMoney1.Text, tbMoney1.Text);
+                    Money2 = tbMoney1.Text;
                 }
                 else
                 {
-                    updateOrderToDB(tbNumber.Text, tbType.Text.Substring(1, tbType.Text.Length - 1), tbMoney1.Text, tbMoney2.Text, tbLow.Text);
+                    Money2 = tbMoney2.Text;
                 }
+                if(string.IsNullOrEmpty(tbLow.Text))
+                {
+                    MoneyLow = tbMoney1.Text;
+                }
+                else
+                {
+                    MoneyLow = tbLow.Text;
+                }
+
+                updateOrderToDB(tbNumber.Text, tbType.Text.Substring(1, tbType.Text.Length - 1), tbMoney1.Text, Money2, MoneyLow);
                     
             }
               
@@ -3981,10 +4008,19 @@ namespace Lottory
                     }
                     else if((tbMoney1.Enabled == true) && (tbMoney2.Enabled == true) && (tbLow.Enabled == true))
                     {
-                        if (!string.IsNullOrEmpty(tbMoney1.Text) && !string.IsNullOrEmpty(tbMoney2.Text))
+                        if (!string.IsNullOrEmpty(tbMoney1.Text))
                         {
                             int _money1 = Convert.ToInt32(tbMoney1.Text);
-                            int _money2 = Convert.ToInt32(tbMoney2.Text);
+                            int _money2;
+                            if (string.IsNullOrEmpty(tbMoney2.Text))
+                            {
+                                _money2 = _money1;
+                            }
+                            else
+                            {
+                                _money2 = Convert.ToInt32(tbMoney2.Text);
+                            }
+                             
                             if (buyingLimitChecking(_money1) || buyingLimitChecking(_money2))
                             {// over buying
                                 MessageBox.Show(string.Format("คำสั่งซื้อเกินวงเงินที่กำหนด", "จำกัดวงเงิน"));
@@ -4724,11 +4760,28 @@ namespace Lottory
 
                     if ((tbMoney1.Enabled == true) && (tbMoney2.Enabled == true))
                     {
-                        if (!string.IsNullOrEmpty(tbMoney1.Text) && !string.IsNullOrEmpty(tbMoney2.Text) && !string.IsNullOrEmpty(tbLow.Text))
+                        if (!string.IsNullOrEmpty(tbMoney1.Text))
                         {
                             int _money1 = Convert.ToInt32(tbMoney1.Text);
-                            int _money2 = Convert.ToInt32(tbMoney2.Text);
-                            int _moneyLow = Convert.ToInt32(tbLow.Text);
+                            int _money2;
+                            if (!string.IsNullOrEmpty(tbMoney2.Text))
+                            {
+                               _money2 = Convert.ToInt32(tbMoney2.Text);
+                            }
+                            else
+                            {
+                                _money2 = _money1;
+                            }
+                            int _moneyLow;
+                            if (!string.IsNullOrEmpty(tbLow.Text))
+                            {
+                                _moneyLow = Convert.ToInt32(tbLow.Text);
+                            }
+                            else
+                            {
+                                _moneyLow = _money1;
+                            }
+          
                             if (buyingLimitChecking(_money1) || buyingLimitChecking(_money2) || buyingLimitChecking(_moneyLow))
                             {// over buying
                                 MessageBox.Show(string.Format("คำสั่งซื้อเกินวงเงินที่กำหนด", "จำกัดวงเงิน"));
@@ -4749,10 +4802,18 @@ namespace Lottory
                     }
                     else if ((tbMoney1.Enabled == true) && (tbMoney2.Enabled == false))
                     {
-                        if (!string.IsNullOrEmpty(tbMoney1.Text) && !string.IsNullOrEmpty(tbLow.Text))
+                        if (!string.IsNullOrEmpty(tbMoney1.Text))
                         {
                             int _money1 = Convert.ToInt32(tbMoney1.Text);
-                            int _moneyLow = Convert.ToInt32(tbLow.Text);
+                            int _moneyLow;
+                            if (!string.IsNullOrEmpty(tbLow.Text))
+                            {
+                                _moneyLow = Convert.ToInt32(tbLow.Text);
+                            }
+                            else
+                            {
+                                _moneyLow = _money1;
+                            }
                             if (buyingLimitChecking(_money1) || buyingLimitChecking(_moneyLow))
                             {// over buying
                                 MessageBox.Show(string.Format("คำสั่งซื้อเกินวงเงินที่กำหนด", "จำกัดวงเงิน"));
