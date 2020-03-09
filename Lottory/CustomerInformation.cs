@@ -540,7 +540,7 @@ namespace Lottory
             //
             // payRate
             payRate_3up.Text = Convert.ToString(550);
-            payRate_3low.Text = Convert.ToString(550);
+            payRate_3low.Text = Convert.ToString(100);
             payRate_3tod.Text = Convert.ToString(100);
             payRate_2up.Text = Convert.ToString(70);
             payRate_2low.Text = Convert.ToString(70);

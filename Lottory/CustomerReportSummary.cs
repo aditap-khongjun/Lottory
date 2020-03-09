@@ -974,7 +974,7 @@ namespace Lottory
                                             FROM (((OrderListExpand oe INNER JOIN OrderList o ON oe.OrderListID = o.OrderListID)
                                             INNER JOIN CustomerOrder c ON c.OrderID = o.OrderID)
                                             INNER JOIN CustomerInfo ci ON ci.CustomerID = c.CustomerID)
-                                            WHERE oe.Number = '{0}' AND o.TypeID = {1} AND AND oe.TypeID = {5} AND c.CustomerID = '{3}' AND c.Page = {4}", winNumber, TypeID.ToString(), DBWinRate.up2, customerID, PageID, _typeID.ToString());
+                                            WHERE oe.Number = '{0}' AND o.TypeID = {1} AND oe.TypeID = {5} AND c.CustomerID = '{3}' AND c.Page = {4}", winNumber, TypeID.ToString(), DBWinRate.up2, customerID, PageID, _typeID.ToString());
                         }
                         break;
 
@@ -2021,7 +2021,7 @@ namespace Lottory
                 {
                     case BaseTypeID.uptod3:
                     case BaseTypeID.uptod2:
-                        sqlgetGPrice = string.Format(@"SELECT ISNULL(SUM(Price),0) AS Price
+                        sqlgetGPrice = string.Format(@"SELECT ISNULL(SUM(GroupPrice),0) AS Price
                                               FROM (CustomerOrder c INNER JOIN OrderList o ON c.OrderID = o.OrderID)
                                               WHERE o.TypeID = {0} AND c.CustomerID = '{1}' AND c.Page = {2}", TypeID.ToString(), CustomerID, PageID);
                         break;
@@ -2091,6 +2091,9 @@ namespace Lottory
         private void comboBox1_SelectedValueChanged(object sender, EventArgs e)
         {
             // get Page ID
+            List<string> PageList = getPageList(CustomerIDList.Text);
+            PageList.Add("ทั้งหมด");
+            PageIDList.DataSource = PageList;
         }
 
         private void CustomerReportSummary_Load(object sender, EventArgs e)
@@ -2124,7 +2127,7 @@ namespace Lottory
         private void CustomerIDList_SelectedIndexChanged(object sender, EventArgs e)
         {
             List<string> PageList = getPageList(CustomerIDList.Text);
-            PageList.Insert(0, "ทั้งหมด");
+            PageList.Add("ทั้งหมด");
             PageIDList.DataSource = PageList;
         }
 

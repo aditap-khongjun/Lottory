@@ -774,7 +774,7 @@ namespace Lottory
                             // Next state is 1 [Money1 => enable, Group => disable]
                             //controlTypeList(BaseType.low3, 1);
                             //enableMoney1Only();
-                            enableMoney12();
+                            enableMoney1Only();
                             MoveToMoney1();
                             break;
                         case Keys.Divide:
@@ -923,7 +923,7 @@ namespace Lottory
                     t_MaxLength += 1;
                     if (t_MaxLength > 5)
                     {
-                        tbNumber.MaxLength = 1;
+                        tbNumber.MaxLength = 5;
                     }
                     else
                     {
@@ -938,7 +938,7 @@ namespace Lottory
                     t_MaxLength -= 1;
                     if (t_MaxLength < 1)
                     {
-                        tbNumber.MaxLength = 5;
+                        tbNumber.MaxLength = 1;
                     }
                     else
                     {
@@ -1002,6 +1002,16 @@ namespace Lottory
             }
             // Show Text in Short Key
             showShortKey(tbNumber.MaxLength);
+
+            if(e.Control && e.KeyCode == Keys.P)
+            {
+                // Show Number Setting
+                AddNumberSetting numbersettingInstance = AddNumberSetting.Instance;
+                numbersettingInstance.Show();
+
+                // close Windows
+                this.Close();
+            }
         }
         private bool checkGroupBuying()
         {
@@ -1775,10 +1785,12 @@ namespace Lottory
             }
             else
             {
-                if(!string.Equals(tbType.Text,"+บน") && !string.Equals(tbType.Text,"-ล่าง") && (tbNumber.Text.Length == 3) && !string.Equals(tbType.Text, "โต๊ด"))
+                /*
+                if((string.Equals(tbType.Text,"บน")) && (tbNumber.Text.Length == 3) )
                 {
                     MessageBox.Show("กรุณาใส่จำนวนเงินเป็นตัวเลขให้ถูกต้อง");
                 }
+                */
 
             }
         }
@@ -1839,7 +1851,15 @@ namespace Lottory
                 // Money1->Enable, Money2->Disable, Money3->Enable
 
                 // update OrderList in DB & update OrderListExapand in DB
-                updateOrderToDB(tbNumber.Text, tbType.Text.Substring(1, tbType.Text.Length - 1), tbMoney1.Text, string.Empty, tbLow.Text);
+                if (string.IsNullOrEmpty(tbLow.Text))
+                {
+                    updateOrderToDB(tbNumber.Text, tbType.Text.Substring(1, tbType.Text.Length - 1), tbMoney1.Text, string.Empty, tbMoney1.Text);
+                }
+                else
+                {
+                    updateOrderToDB(tbNumber.Text, tbType.Text.Substring(1, tbType.Text.Length - 1), tbMoney1.Text, string.Empty, tbLow.Text);
+                }
+
 
             }
             else if((tbMoney1.Enabled == true) && (tbMoney2.Enabled == true) && (tbLow.Enabled == true))
@@ -1847,7 +1867,15 @@ namespace Lottory
                 // Money1->Enable, Money2->Enable, Mone3->Enable
 
                 // update OrderList in DB & update OrderListExpand in DB
-                updateOrderToDB(tbNumber.Text, tbType.Text.Substring(1, tbType.Text.Length - 1), tbMoney1.Text, tbMoney2.Text, tbLow.Text);
+                if (string.IsNullOrEmpty(tbMoney2.Text) && string.IsNullOrEmpty(tbLow.Text))
+                {
+                    updateOrderToDB(tbNumber.Text, tbType.Text.Substring(1, tbType.Text.Length - 1), tbMoney1.Text, tbMoney1.Text, tbMoney1.Text);
+                }
+                else
+                {
+                    updateOrderToDB(tbNumber.Text, tbType.Text.Substring(1, tbType.Text.Length - 1), tbMoney1.Text, tbMoney2.Text, tbLow.Text);
+                }
+                    
             }
               
         }
@@ -4135,12 +4163,13 @@ namespace Lottory
                         {
                             deleteBuyingListItem(item);
                         }
-                       // break;
-                    //case DialogResult.No:
-                        // Do Nothing
-                    //    break;
+                // break;
+                //case DialogResult.No:
+                // Do Nothing
+                //    break;
                 //}
-
+                tbNumber.Focus();
+                tbNumber.SelectAll();
             }
 
         }
