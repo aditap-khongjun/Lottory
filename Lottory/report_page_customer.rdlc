@@ -600,7 +600,7 @@
               <Width>5.06236cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>6.84325cm</Width>
+              <Width>4.34326cm</Width>
             </TablixColumn>
           </TablixColumns>
           <TablixRows>
@@ -893,7 +893,7 @@
         <DataSetName>payinginfo</DataSetName>
         <Top>7.77558cm</Top>
         <Height>1.41166cm</Height>
-        <Width>19.01cm</Width>
+        <Width>16.51cm</Width>
         <ZIndex>8</ZIndex>
         <Style>
           <Border>
