@@ -1,9 +1,4 @@
-﻿
-SELECT r1.Page,SUM(r1.Price) AS Price FROM (
-	SELECT co.CustomerID, co.Page, oe.Price
-	FROM (OrderListExpand oe INNER JOIN OrderList o ON oe.OrderListID = o.OrderListID)
-	INNER JOIN CustomerOrder co ON o.OrderID = co.OrderID
-	WHERE oe.TypeID = 19 AND oe.Number = '123'
-) r1 
-WHERE r1.CustomerID = '111'
-GROUP BY r1.Page
+﻿SELECT SUM(OwnPrice) AS numPrice
+                                                     FROM ((CustomerOrder c INNER JOIN OrderList o ON c.OrderID = o.OrderID)
+                                                     INNER JOIN OrderListExpand oe ON o.OrderListID = oe.OrderListID) 
+                                                     WHERE (c.CustomerID = 111) AND (oe.Number = '456') AND (oe.TypeID = 25)

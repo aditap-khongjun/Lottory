@@ -3016,7 +3016,7 @@ namespace Lottory
                                         if(!string.Equals(itemNumber,Number))
                                         {
                                             // get customer discount (%)
-                                            discount = getCustomerDiscount(BaseTypeID.tod3);
+                                            discount = getCustomerDiscount(BaseTypeID.up3);
                                             //update OrderListExpand
                                             updateOrderListExpandDB(OrderListID.ToString(), BaseTypeID.up3.ToString(), itemNumber, Group, Group, discount);
                                             NumberList.Add(itemNumber);
@@ -3278,7 +3278,7 @@ namespace Lottory
                             updateOrderListExpandDB(OrderListID.ToString(), BaseTypeID.low3.ToString(), Number, Money, Money, discount);
                             NumberList.Add(Number);
                             TypeIDList.Add(BaseTypeID.low3);
-
+                            /*
                             // for group
                             if (!string.IsNullOrEmpty(Group))
                             {
@@ -3303,6 +3303,7 @@ namespace Lottory
                                 }
 
                             }
+                            */
                             // update Customer Buying Summary
                             updateCustomerBuyingToForm(NumberList, TypeIDList);
                             // update Buying Summary

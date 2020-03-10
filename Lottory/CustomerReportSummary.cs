@@ -494,11 +494,11 @@ namespace Lottory
             // get winnumber
             List<string> winNumber3up = getWinNumber(WinNumberType.up3);
             // get winprice
-            string Pageuptod3 = getwinPriceFromDB(CustomerID, BaseTypeID.uptod3, winNumber3up, PageID, out double _winP3uptod, out double _winR3uptod);
-            string Pageup3 = getwinPriceFromDB(CustomerID, BaseTypeID.up3, winNumber3up, PageID, out double _winP3up, out double _winR3up);
-            string Pagegroup3 = getwinPriceFromDB(CustomerID, BaseTypeID.group3, winNumber3up, PageID, out double _winP3group, out double _winR3group);
-            string Pagedoor543 = getwinPriceFromDB(CustomerID, BaseTypeID.door543, winNumber3up, PageID, out double _winP3door54, out double _winR3door54);
-            string Pagetgroup3 = getwinPriceFromDB(CustomerID, BaseTypeID.tgroup3, winNumber3up, PageID, out double _winP3tgroup, out double _winR3tgroup);
+            List<int> Pageuptod3 = getwinPriceFromDB(CustomerID, BaseTypeID.uptod3, winNumber3up, PageID, out double _winP3uptod, out double _winR3uptod);
+            List<int> Pageup3 = getwinPriceFromDB(CustomerID, BaseTypeID.up3, winNumber3up, PageID, out double _winP3up, out double _winR3up);
+            List<int> Pagegroup3 = getwinPriceFromDB(CustomerID, BaseTypeID.group3, winNumber3up, PageID, out double _winP3group, out double _winR3group);
+            List<int> Pagedoor543 = getwinPriceFromDB(CustomerID, BaseTypeID.door543, winNumber3up, PageID, out double _winP3door54, out double _winR3door54);
+            List<int> Pagetgroup3 = getwinPriceFromDB(CustomerID, BaseTypeID.tgroup3, winNumber3up, PageID, out double _winP3tgroup, out double _winR3tgroup);
             
       
             // get payprice
@@ -513,25 +513,25 @@ namespace Lottory
             if (_winPrice3up > 0)
             {
                 List<int> _Page3up = new List<int>();
-                if(!string.IsNullOrEmpty(Pageuptod3))
+                if(Pageuptod3.Any())
                 {
-                    _Page3up.Add(Convert.ToInt32(Pageuptod3));
+                    _Page3up.AddRange(Pageuptod3);
                 }
-                if(!string.IsNullOrEmpty(Pageup3))
+                if(Pageup3.Any())
                 {
-                    _Page3up.Add(Convert.ToInt32(Pageup3));
+                    _Page3up.AddRange(Pageup3);
                 }
-                if (!string.IsNullOrEmpty(Pagegroup3))
+                if(Pagegroup3.Any())
                 {
-                    _Page3up.Add(Convert.ToInt32(Pagegroup3));
+                    _Page3up.AddRange(Pagegroup3);
                 }
-                if (!string.IsNullOrEmpty(Pagedoor543))
+                if(Pagedoor543.Any())
                 {
-                    _Page3up.Add(Convert.ToInt32(Pagedoor543));
+                    _Page3up.AddRange(Pagedoor543);
                 }
-                if (!string.IsNullOrEmpty(Pagetgroup3))
+                if(Pagetgroup3.Any())
                 {
-                    _Page3up.Add(Convert.ToInt32(Pagetgroup3));
+                    _Page3up.AddRange(Pagetgroup3);
                 }
                 List<int> uniqPage3up = _Page3up.Distinct().ToList();
                 string strPage3up = string.Join(",", uniqPage3up);
@@ -547,15 +547,15 @@ namespace Lottory
             List<string> winNumber2hu = getWinNumber(WinNumberType.hu2);
 
             // get winprice
-            string Pageuptod2 = getwinPriceFromDB(CustomerID, BaseTypeID.uptod2, winNumber2up, PageID, out double _winP2uptod, out double _winR2uptod);
-            string Pageup2 = getwinPriceFromDB(CustomerID, BaseTypeID.up2, winNumber2up, PageID, out double _winP2up, out double _winR2up);
-            string Pageht2 = getwinPriceFromDB(CustomerID, BaseTypeID.ht2, winNumber2ht, PageID, out double _winP2ht, out double _winR2ht);
-            string Pagehu2 = getwinPriceFromDB(CustomerID, BaseTypeID.hu2, winNumber2hu, PageID, out double _winP2hu, out double _winR2hu);
-            string Pagedoor19up2 = getwinPriceFromDB(CustomerID, BaseTypeID.door19up2, winNumber2up, PageID, out double _winP2updoor19, out double _winR2updoor19);
+            List<int> Pageuptod2 = getwinPriceFromDB(CustomerID, BaseTypeID.uptod2, winNumber2up, PageID, out double _winP2uptod, out double _winR2uptod);
+            List<int> Pageup2 = getwinPriceFromDB(CustomerID, BaseTypeID.up2, winNumber2up, PageID, out double _winP2up, out double _winR2up);
+            List<int> Pageht2 = getwinPriceFromDB(CustomerID, BaseTypeID.ht2, winNumber2ht, PageID, out double _winP2ht, out double _winR2ht);
+            List<int> Pagehu2 = getwinPriceFromDB(CustomerID, BaseTypeID.hu2, winNumber2hu, PageID, out double _winP2hu, out double _winR2hu);
+            List<int> Pagedoor19up2 = getwinPriceFromDB(CustomerID, BaseTypeID.door19up2, winNumber2up, PageID, out double _winP2updoor19, out double _winR2updoor19);
             // for door6 
-            string Pagedoor62up = getwinPriceFromDB(CustomerID, BaseTypeID.door62,"up", winNumber2up, PageID, out double _winP2updoor6, out double _winR2updoor6);
-            string Pagedoor62ht = getwinPriceFromDB(CustomerID, BaseTypeID.door62,"ht", winNumber2ht, PageID, out double _winP2htdoor6, out double _winR2htdoor6);
-            string Pagedoor62hu = getwinPriceFromDB(CustomerID, BaseTypeID.door62,"hu", winNumber2hu, PageID, out double _winP2hudoor6, out double _winR2hudoor6);
+            List<int> Pagedoor62up = getwinPriceFromDB(CustomerID, BaseTypeID.door62,"up", winNumber2up, PageID, out double _winP2updoor6, out double _winR2updoor6);
+            List<int> Pagedoor62ht = getwinPriceFromDB(CustomerID, BaseTypeID.door62,"ht", winNumber2ht, PageID, out double _winP2htdoor6, out double _winR2htdoor6);
+            List<int> Pagedoor62hu = getwinPriceFromDB(CustomerID, BaseTypeID.door62,"hu", winNumber2hu, PageID, out double _winP2hudoor6, out double _winR2hudoor6);
             // get payprice
             double _payP2uptod = _winP2uptod * _winR2uptod;
             double _payP2up = _winP2up * _winR2up;
@@ -572,37 +572,37 @@ namespace Lottory
             if (_winPrice2up > 0)
             {
                 List<int> _Page2up = new List<int>();
-                if (!string.IsNullOrEmpty(Pageuptod2))
+                if (Pageuptod2.Any())
                 {
-                    _Page2up.Add(Convert.ToInt32(Pageuptod2));
+                    _Page2up.AddRange(Pageuptod2);
                 }
-                if (!string.IsNullOrEmpty(Pageup2))
+                if (Pageup2.Any())
                 {
-                    _Page2up.Add(Convert.ToInt32(Pageup2));
+                    _Page2up.AddRange(Pageup2);
                 }
-                if (!string.IsNullOrEmpty(Pageht2))
+                if (Pageht2.Any())
                 {
-                    _Page2up.Add(Convert.ToInt32(Pageht2));
+                    _Page2up.AddRange(Pageht2);
                 }
-                if (!string.IsNullOrEmpty(Pagehu2))
+                if (Pagehu2.Any())
                 {
-                    _Page2up.Add(Convert.ToInt32(Pagehu2));
+                    _Page2up.AddRange(Pagehu2);
                 }
-                if (!string.IsNullOrEmpty(Pagedoor19up2))
+                if (Pagedoor19up2.Any())
                 {
-                    _Page2up.Add(Convert.ToInt32(Pagedoor19up2));
+                    _Page2up.AddRange(Pagedoor19up2);
                 }
-                if (!string.IsNullOrEmpty(Pagedoor62up))
+                if (Pagedoor62up.Any())
                 {
-                    _Page2up.Add(Convert.ToInt32(Pagedoor62up));
+                    _Page2up.AddRange(Pagedoor62up);
                 }
-                if (!string.IsNullOrEmpty(Pagedoor62ht))
+                if (Pagedoor62ht.Any())
                 {
-                    _Page2up.Add(Convert.ToInt32(Pagedoor62ht));
+                    _Page2up.AddRange(Pagedoor62ht);
                 }
-                if (!string.IsNullOrEmpty(Pagedoor62hu))
+                if (Pagedoor62hu.Any())
                 {
-                    _Page2up.Add(Convert.ToInt32(Pagedoor62hu));
+                    _Page2up.AddRange(Pagedoor62hu);
                 }
                 List<int> uniqPage2up = _Page2up.Distinct().ToList();
                 string strPage2up = string.Join(",", uniqPage2up);
@@ -614,8 +614,8 @@ namespace Lottory
             // get winnumber
             List<string> winNumber2low = getWinNumber(WinNumberType.low2);
             // get winprice
-            string Pagelow2 = getwinPriceFromDB(CustomerID, BaseTypeID.low2, winNumber2low, PageID, out double _winP2low, out double _winR2low);
-            string Pagedoor19low2 = getwinPriceFromDB(CustomerID, BaseTypeID.door19low2, winNumber2low, PageID, out double _winP2lowdoor19, out double _winR2lowdoor19);
+            List<int> Pagelow2 = getwinPriceFromDB(CustomerID, BaseTypeID.low2, winNumber2low, PageID, out double _winP2low, out double _winR2low);
+            List<int> Pagedoor19low2 = getwinPriceFromDB(CustomerID, BaseTypeID.door19low2, winNumber2low, PageID, out double _winP2lowdoor19, out double _winR2lowdoor19);
             // get payprice
             double _payP2low = _winP2low * _winR2low;
             double _payP2lowdoor19 = _winP2lowdoor19 * _winR2lowdoor19;
@@ -625,13 +625,13 @@ namespace Lottory
             if (_winPrice2low > 0)
             {
                 List<int> _Page2low = new List<int>();
-                if (!string.IsNullOrEmpty(Pagelow2))
+                if (Pagelow2.Any())
                 {
-                    _Page2low.Add(Convert.ToInt32(Pagelow2));
+                    _Page2low.AddRange(Pagelow2);
                 }
-                if (!string.IsNullOrEmpty(Pagedoor19low2))
+                if (Pagedoor19low2.Any())
                 {
-                    _Page2low.Add(Convert.ToInt32(Pagedoor19low2));
+                    _Page2low.AddRange(Pagedoor19low2);
                 }
                 List<int> uniqPage2low = _Page2low.Distinct().ToList();
                 string strPage2low = string.Join(",", uniqPage2low);
@@ -640,7 +640,7 @@ namespace Lottory
             // for 3tod
             // get winprice
             Pageuptod3 = getwinGPriceFromDB(CustomerID, BaseTypeID.uptod3, winNumber3up, PageID, out _winP3uptod, out _winR3uptod);
-            string Pagetod3 = getwinGPriceFromDB(CustomerID, BaseTypeID.tod3, winNumber3up, PageID, out double _winP3tod, out double _winR3tod);
+            List<int> Pagetod3 = getwinGPriceFromDB(CustomerID, BaseTypeID.tod3, winNumber3up, PageID, out double _winP3tod, out double _winR3tod);
             // get payprice
             _payP3uptod = _winP3uptod * _winR3uptod;
             double _payP3tod = _winP3tod * _winR3tod;
@@ -651,13 +651,13 @@ namespace Lottory
             if (_winPrice3tod > 0)
             {
                 List<int> _Page3tod = new List<int>();
-                if (!string.IsNullOrEmpty(Pageuptod3))
+                if (Pageuptod3.Any())
                 {
-                    _Page3tod.Add(Convert.ToInt32(Pageuptod3));
+                    _Page3tod.AddRange(Pageuptod3);
                 }
-                if (!string.IsNullOrEmpty(Pagetod3))
+                if (Pagetod3.Any())
                 {
-                    _Page3tod.Add(Convert.ToInt32(Pagetod3));
+                    _Page3tod.AddRange(Pagetod3);
                 }
                 List<int> uniqPage3tod = _Page3tod.Distinct().ToList();
                 string strPage3tod = string.Join(",", uniqPage3tod);
@@ -667,13 +667,13 @@ namespace Lottory
 
             // for 2tod
             // get winprice
-            string Pageuptod2up = getwinGPriceFromDB(CustomerID, BaseTypeID.uptod2,"up", winNumber2up, PageID, out double _winP2uptodUP, out double _winR2uptodUP);
-            string Pageuptod2ht = getwinGPriceFromDB(CustomerID, BaseTypeID.uptod2, "ht", winNumber2ht, PageID, out double _winP2uptodHT, out double _winR2uptodHT);
-            string Pageuptod2hu = getwinGPriceFromDB(CustomerID, BaseTypeID.uptod2, "hu", winNumber2hu, PageID, out double _winP2uptodHU, out double _winR2uptodHU);
+            List<int> Pageuptod2up = getwinGPriceFromDB(CustomerID, BaseTypeID.uptod2,"up", winNumber2up, PageID, out double _winP2uptodUP, out double _winR2uptodUP);
+            List<int> Pageuptod2ht = getwinGPriceFromDB(CustomerID, BaseTypeID.uptod2, "ht", winNumber2ht, PageID, out double _winP2uptodHT, out double _winR2uptodHT);
+            List<int> Pageuptod2hu = getwinGPriceFromDB(CustomerID, BaseTypeID.uptod2, "hu", winNumber2hu, PageID, out double _winP2uptodHU, out double _winR2uptodHU);
 
-            string Pagetod2up = getwinGPriceFromDB(CustomerID, BaseTypeID.tod2,"up", winNumber2up, PageID, out double _winP2todUP, out double _winR2todUP);
-            string Pagetod2ht = getwinGPriceFromDB(CustomerID, BaseTypeID.tod2, "ht", winNumber2ht, PageID, out double _winP2todHT, out double _winR2todHT);
-            string Pagetod2hu = getwinGPriceFromDB(CustomerID, BaseTypeID.tod2, "hu", winNumber2hu, PageID, out double _winP2todHU, out double _winR2todHU);
+            List<int> Pagetod2up = getwinGPriceFromDB(CustomerID, BaseTypeID.tod2,"up", winNumber2up, PageID, out double _winP2todUP, out double _winR2todUP);
+            List<int> Pagetod2ht = getwinGPriceFromDB(CustomerID, BaseTypeID.tod2, "ht", winNumber2ht, PageID, out double _winP2todHT, out double _winR2todHT);
+            List<int> Pagetod2hu = getwinGPriceFromDB(CustomerID, BaseTypeID.tod2, "hu", winNumber2hu, PageID, out double _winP2todHU, out double _winR2todHU);
             // get payprice
             double _payP2uptodUP = _winP2uptodUP * _winR2uptodUP;
             double _payP2uptodHT = _winP2uptodHT * _winR2uptodHT;
@@ -692,29 +692,29 @@ namespace Lottory
             if (_winPrice2tod > 0)
             {
                 List<int> _Page2tod = new List<int>();
-                if (!string.IsNullOrEmpty(Pageuptod2up))
+                if (Pageuptod2up.Any())
                 {
-                    _Page2tod.Add(Convert.ToInt32(Pageuptod2up));
+                    _Page2tod.AddRange(Pageuptod2up);
                 }
-                if (!string.IsNullOrEmpty(Pageuptod2ht))
+                if (Pageuptod2ht.Any())
                 {
-                    _Page2tod.Add(Convert.ToInt32(Pageuptod2ht));
+                    _Page2tod.AddRange(Pageuptod2ht);
                 }
-                if (!string.IsNullOrEmpty(Pageuptod2hu))
+                if (Pageuptod2hu.Any())
                 {
-                    _Page2tod.Add(Convert.ToInt32(Pageuptod2hu));
+                    _Page2tod.AddRange(Pageuptod2hu);
                 }
-                if (!string.IsNullOrEmpty(Pagetod2up))
+                if (Pagetod2up.Any())
                 {
-                    _Page2tod.Add(Convert.ToInt32(Pagetod2up));
+                    _Page2tod.AddRange(Pagetod2up);
                 }
-                if (!string.IsNullOrEmpty(Pagetod2ht))
+                if (Pagetod2ht.Any())
                 {
-                    _Page2tod.Add(Convert.ToInt32(Pagetod2ht));
+                    _Page2tod.AddRange(Pagetod2ht);
                 }
-                if (!string.IsNullOrEmpty(Pagetod2hu))
+                if (Pagetod2hu.Any())
                 {
-                    _Page2tod.Add(Convert.ToInt32(Pagetod2hu));
+                    _Page2tod.AddRange(Pagetod2hu);
                 }
                 List<int> uniqPage2tod = _Page2tod.Distinct().ToList();
                 string strPage2tod = string.Join(",", uniqPage2tod);
@@ -724,8 +724,8 @@ namespace Lottory
             // for 5up
             // get winnumber
             // get winprice
-            string Pagegroup5 = getwinPriceFromDB(CustomerID, BaseTypeID.group5, winNumber3up, PageID, out double _winP5group, out double _winR5group);
-            string Pagetod5 = getwinPriceFromDB(CustomerID, BaseTypeID.tod5, winNumber3up, PageID, out double _winP5tod, out double _winR5tod);
+            List<int> Pagegroup5 = getwinPriceFromDB(CustomerID, BaseTypeID.group5, winNumber3up, PageID, out double _winP5group, out double _winR5group);
+            List<int> Pagetod5 = getwinPriceFromDB(CustomerID, BaseTypeID.tod5, winNumber3up, PageID, out double _winP5tod, out double _winR5tod);
             // get payprice
             double _payP5group = _winP5group * _winR5group;
             double _payP5tod = _winP5tod * _winR5tod;
@@ -735,13 +735,13 @@ namespace Lottory
             if (_winPrice5 > 0)
             {
                 List<int> _Page5tod = new List<int>();
-                if (!string.IsNullOrEmpty(Pagegroup5))
+                if (Pagegroup5.Any())
                 {
-                    _Page5tod.Add(Convert.ToInt32(Pagegroup5));
+                    _Page5tod.AddRange(Pagegroup5);
                 }
-                if (!string.IsNullOrEmpty(Pagetod5))
+                if (Pagetod5.Any())
                 {
-                    _Page5tod.Add(Convert.ToInt32(Pagetod5));
+                    _Page5tod.AddRange(Pagetod5);
                 }
                 List<int> uniqPage5tod = _Page5tod.Distinct().ToList();
                 string strPage5tod = string.Join(",", uniqPage5tod);
@@ -752,7 +752,7 @@ namespace Lottory
             // get winnumber
             List<string> winNumber1up = getWinNumber(WinNumberType.up1);
             // get winprice
-            string Pageup1 = getwinPriceFromDB(CustomerID, BaseTypeID.up1, winNumber1up, PageID, out double _winP1up, out double _winR1up);
+            List<int> Pageup1 = getwinPriceFromDB(CustomerID, BaseTypeID.up1, winNumber1up, PageID, out double _winP1up, out double _winR1up);
 
             // get payprice
             double _payP1up = _winP1up * _winR1up;
@@ -761,9 +761,9 @@ namespace Lottory
             if (_winPrice1up > 0)
             {
                 List<int> _Page1up = new List<int>();
-                if (!string.IsNullOrEmpty(Pageup1))
+                if (Pageup1.Any())
                 {
-                    _Page1up.Add(Convert.ToInt32(Pageup1));
+                    _Page1up.AddRange(Pageup1);
                 }
                 List<int> uniqPage1up = _Page1up.Distinct().ToList();
                 string strPage1up = string.Join(",", uniqPage1up);
@@ -773,7 +773,7 @@ namespace Lottory
             // get winnumber
             List<string> winNumber1low = getWinNumber(WinNumberType.low1);
             // get winprice
-            string Pagelow1 = getwinPriceFromDB(CustomerID, BaseTypeID.low1, winNumber1low, PageID, out double _winP1low, out double _winR1low);
+            List<int> Pagelow1 = getwinPriceFromDB(CustomerID, BaseTypeID.low1, winNumber1low, PageID, out double _winP1low, out double _winR1low);
 
             // get payprice
             double _payP1low = _winP1low * _winR1low;
@@ -782,9 +782,9 @@ namespace Lottory
             if (_winPrice1low > 0)
             {
                 List<int> _Page1low = new List<int>();
-                if (!string.IsNullOrEmpty(Pagelow1))
+                if (Pagelow1.Any())
                 {
-                    _Page1low.Add(Convert.ToInt32(Pagelow1));
+                    _Page1low.AddRange(Pagelow1);
                 }
                 List<int> uniqPage1low = _Page1low.Distinct().ToList();
                 string strPage1low = string.Join(",", uniqPage1low);
@@ -795,8 +795,8 @@ namespace Lottory
             // get winnumber
             List<string> winNumber3low = getWinNumber(WinNumberType.low3);
             // get winprice
-            string Pagelow3 = getwinPriceFromDB(CustomerID, BaseTypeID.low3, winNumber3low, PageID, out double _winP3low, out double _winR3low);
-            string Pagelowgroup3 = getwinPriceFromDB(CustomerID, BaseTypeID.lowgroup3, winNumber3low, PageID, out double _winP3lowgroup, out double _winR3lowgroup);
+            List<int> Pagelow3 = getwinPriceFromDB(CustomerID, BaseTypeID.low3, winNumber3low, PageID, out double _winP3low, out double _winR3low);
+            List<int> Pagelowgroup3 = getwinPriceFromDB(CustomerID, BaseTypeID.lowgroup3, winNumber3low, PageID, out double _winP3lowgroup, out double _winR3lowgroup);
             // get payprice
             double _payP3low = _winP3low * _winR3low;
             double _payP3lowgroup = _winP3lowgroup * _winR3lowgroup;
@@ -807,13 +807,13 @@ namespace Lottory
             if (_winPrice3low > 0)
             {
                 List<int> _Page3low = new List<int>();
-                if (!string.IsNullOrEmpty(Pagelow3))
+                if (Pagelow3.Any())
                 {
-                    _Page3low.Add(Convert.ToInt32(Pagelow3));
+                    _Page3low.AddRange(Pagelow3);
                 }
-                if (!string.IsNullOrEmpty(Pagelowgroup3))
+                if (Pagelowgroup3.Any())
                 {
-                    _Page3low.Add(Convert.ToInt32(Pagelowgroup3));
+                    _Page3low.AddRange(Pagelowgroup3);
                 }
                 List<int> uniqPage3low = _Page3low.Distinct().ToList();
                 string strPage3low = string.Join(",", uniqPage3low);
@@ -823,7 +823,7 @@ namespace Lottory
             // get winnumber
             List<string> winNumber1front = getWinNumber(WinNumberType.upfront1);
             // get winprice
-            string Pageupfront1 = getwinPriceFromDB(CustomerID, BaseTypeID.upfront1, winNumber1front, PageID, out double _winP1front, out double _winR1front);
+            List<int> Pageupfront1 = getwinPriceFromDB(CustomerID, BaseTypeID.upfront1, winNumber1front, PageID, out double _winP1front, out double _winR1front);
             // get payprice
             double _payP1front = _winP1front * _winR1front;
 
@@ -832,9 +832,9 @@ namespace Lottory
             if (_winPrice1front > 0)
             {
                 List<int> _Page1upfront = new List<int>();
-                if (!string.IsNullOrEmpty(Pageupfront1))
+                if (Pageupfront1.Any())
                 {
-                    _Page1upfront.Add(Convert.ToInt32(Pageupfront1));
+                    _Page1upfront.AddRange(Pageupfront1);
                 }
                 List<int> uniqPage1upfront = _Page1upfront.Distinct().ToList();
                 string strPage1upfront = string.Join(",", uniqPage1upfront);
@@ -845,15 +845,15 @@ namespace Lottory
             // get winnumber
             List<string> winNumber1center = getWinNumber(WinNumberType.upcenter1);
             // get winprice
-            string Pageupcenter1 = getwinPriceFromDB(CustomerID, BaseTypeID.upcenter1, winNumber1center, PageID, out double _winPrice1center, out double _winRate1center);
+            List<int> Pageupcenter1 = getwinPriceFromDB(CustomerID, BaseTypeID.upcenter1, winNumber1center, PageID, out double _winPrice1center, out double _winRate1center);
             // get payprice
             double _payPrice1center = _winPrice1center * _winRate1center;
             if (_winPrice1center > 0)
             {
                 List<int> _Page1upcenter = new List<int>();
-                if (!string.IsNullOrEmpty(Pageupcenter1))
+                if (Pageupcenter1.Any())
                 {
-                    _Page1upcenter.Add(Convert.ToInt32(Pageupcenter1));
+                    _Page1upcenter.AddRange(Pageupcenter1);
                 }
                 List<int> uniqPage1upcenter = _Page1upcenter.Distinct().ToList();
                 string strPage1upcenter = string.Join(",", uniqPage1upcenter);
@@ -864,15 +864,15 @@ namespace Lottory
             // get winnumber
             List<string> winNumber1back = getWinNumber(WinNumberType.upback1);
             // get winprice
-            string Pageupback1 = getwinPriceFromDB(CustomerID, BaseTypeID.upback1, winNumber1back, PageID, out double _winPrice1back, out double _winRate1back);
+            List<int> Pageupback1 = getwinPriceFromDB(CustomerID, BaseTypeID.upback1, winNumber1back, PageID, out double _winPrice1back, out double _winRate1back);
             // get payprice
             double _payPrice1back = _winPrice1back * _winRate1back;
             if (_winPrice1back > 0)
             {
                 List<int> _Page1upback = new List<int>();
-                if (!string.IsNullOrEmpty(Pageupback1))
+                if (Pageupback1.Any())
                 {
-                    _Page1upback.Add(Convert.ToInt32(Pageupback1));
+                    _Page1upback.AddRange(Pageupback1);
                 }
                 List<int> uniqPage1upback = _Page1upback.Distinct().ToList();
                 string strPage1upback = string.Join(",", uniqPage1upback);
@@ -882,15 +882,15 @@ namespace Lottory
             // get winnumber
             List<string> winNumber1lowfront = getWinNumber(WinNumberType.lowfront1);
             // get winprice
-            string Pagelowfront1 = getwinPriceFromDB(CustomerID, BaseTypeID.lowfront1, winNumber1lowfront, PageID, out double _winPrice1lowfront, out double _winRate1lowfront);
+            List<int> Pagelowfront1 = getwinPriceFromDB(CustomerID, BaseTypeID.lowfront1, winNumber1lowfront, PageID, out double _winPrice1lowfront, out double _winRate1lowfront);
             // get payprice
             double _payPrice1lowfront = _winPrice1lowfront * _winRate1lowfront;
             if (_winPrice1lowfront > 0)
             {
                 List<int> _Page1lowfront = new List<int>();
-                if (!string.IsNullOrEmpty(Pagelowfront1))
+                if (Pagelowfront1.Any())
                 {
-                    _Page1lowfront.Add(Convert.ToInt32(Pagelowfront1));
+                    _Page1lowfront.AddRange(Pagelowfront1);
                 }
                 List<int> uniqPage1lowfront = _Page1lowfront.Distinct().ToList();
                 string strPage1lowfront = string.Join(",", uniqPage1lowfront);
@@ -900,15 +900,15 @@ namespace Lottory
             // get winnumber
             List<string> winNumber1lowback = getWinNumber(WinNumberType.lowback1);
             // get winprice
-            string Pagelowback1 = getwinPriceFromDB(CustomerID, BaseTypeID.lowback1, winNumber1lowback, PageID, out double _winPrice1lowback, out double _winRate1lowback);
+            List<int> Pagelowback1 = getwinPriceFromDB(CustomerID, BaseTypeID.lowback1, winNumber1lowback, PageID, out double _winPrice1lowback, out double _winRate1lowback);
             // get payprice
             double _payPrice1lowback = _winPrice1lowback * _winRate1lowback;
             if (_winPrice1lowback > 0)
             {
                 List<int> _Page1lowback = new List<int>();
-                if (!string.IsNullOrEmpty(Pagelowback1))
+                if (Pagelowback1.Any())
                 {
-                    _Page1lowback.Add(Convert.ToInt32(Pagelowback1));
+                    _Page1lowback.AddRange(Pagelowback1);
                 }
                 List<int> uniqPage1lowback = _Page1lowback.Distinct().ToList();
                 string strPage1lowback = string.Join(",", uniqPage1lowback);
@@ -917,9 +917,9 @@ namespace Lottory
             
             return outPayingInfo;
         }
-        private string getwinPriceFromDB(string customerID, int TypeID, string state, List<string> WinNumber, string PageID, out double winPrice, out double winRate)
+        private List<int> getwinPriceFromDB(string customerID, int TypeID, string state, List<string> WinNumber, string PageID, out double winPrice, out double winRate)
         {
-            string PageOut = string.Empty;
+            List<int> PageOut = new List<int>();
             winPrice = 0;
             winRate = 0;
             string sqlgetWinPrice = string.Empty;
@@ -989,7 +989,7 @@ namespace Lottory
                     winPrice += _price;
                     if (string.Equals(PageID, "ทั้งหมด"))
                     {
-                        PageOut = winPriceInfo["Page"].ToString();
+                        PageOut.Add(Convert.ToInt32(winPriceInfo["Page"]));
                     }
                 }
                 connection.Close();
@@ -998,9 +998,9 @@ namespace Lottory
             }
             return PageOut;
         }
-        private string getwinGPriceFromDB(string customerID, int TypeID, List<string> WinNumber, string PageID, out double winPrice, out double winRate)
+        private List<int> getwinGPriceFromDB(string customerID, int TypeID, List<string> WinNumber, string PageID, out double winPrice, out double winRate)
         {
-            string PageOut = string.Empty;
+            List<int> PageOut = new List<int>();
             winPrice = 0;
             winRate = 0;
             string sqlgetWinPrice = string.Empty;
@@ -1018,7 +1018,7 @@ namespace Lottory
                     case BaseTypeID.uptod3:
                         if (string.Equals(PageID, "ทั้งหมด"))
                         {
-                            sqlgetWinPrice = string.Format(@"SELECT DISTINCT o.Number, o.GroupPrice, ci.{2} AS winRate, c.Page
+                            sqlgetWinPrice = string.Format(@"SELECT o.Number, o.GroupPrice, ci.{2} AS winRate, c.Page
                                             FROM (((OrderListExpand oe INNER JOIN OrderList o ON oe.OrderListID = o.OrderListID)
                                             INNER JOIN CustomerOrder c ON c.OrderID = o.OrderID)
                                             INNER JOIN CustomerInfo ci ON ci.CustomerID = c.CustomerID)
@@ -1026,7 +1026,7 @@ namespace Lottory
                         }
                         else
                         {
-                            sqlgetWinPrice = string.Format(@"SELECT DISTINCT o.Number, o.GroupPrice, ci.{2} AS winRate
+                            sqlgetWinPrice = string.Format(@"SELECT o.Number, o.GroupPrice, ci.{2} AS winRate
                                             FROM (((OrderListExpand oe INNER JOIN OrderList o ON oe.OrderListID = o.OrderListID)
                                             INNER JOIN CustomerOrder c ON c.OrderID = o.OrderID)
                                             INNER JOIN CustomerInfo ci ON ci.CustomerID = c.CustomerID)
@@ -1098,7 +1098,7 @@ namespace Lottory
                     winPrice += _price;
                     if (string.Equals(PageID, "ทั้งหมด"))
                     {
-                        PageOut = winPriceInfo["Page"].ToString();
+                        PageOut.Add(Convert.ToInt32(winPriceInfo["Page"]));
                     }
                 }
                 connection.Close();
@@ -1107,9 +1107,9 @@ namespace Lottory
             }
             return PageOut;
         }
-        private string getwinGPriceFromDB(string customerID, int TypeID, string state, List<string> WinNumber, string PageID, out double winPrice, out double winRate)
+        private List<int> getwinGPriceFromDB(string customerID, int TypeID, string state, List<string> WinNumber, string PageID, out double winPrice, out double winRate)
         {
-            string PageOut = string.Empty;
+            List<int> PageOut = new List<int>();
             winPrice = 0;
             winRate = 0;
             string sqlgetWinPrice = string.Empty;
@@ -1178,7 +1178,7 @@ namespace Lottory
                         if (string.Equals(PageID, "ทั้งหมด"))
                         {
 
-                            sqlgetWinPrice = string.Format(@"SELECT DISTINCT o.Number, o.GroupPrice, ci.{2} AS winRate, c.Page
+                            sqlgetWinPrice = string.Format(@"SELECT o.Number, o.GroupPrice, ci.{2} AS winRate, c.Page
                                             FROM (((OrderListExpand oe INNER JOIN OrderList o ON oe.OrderListID = o.OrderListID)
                                             INNER JOIN CustomerOrder c ON c.OrderID = o.OrderID)
                                             INNER JOIN CustomerInfo ci ON ci.CustomerID = c.CustomerID)
@@ -1186,7 +1186,7 @@ namespace Lottory
                         }
                         else
                         {
-                            sqlgetWinPrice = string.Format(@"SELECT DISTINCT o.Number, o.GroupPrice, ci.{2} AS winRate
+                            sqlgetWinPrice = string.Format(@"SELECT o.Number, o.GroupPrice, ci.{2} AS winRate
                                             FROM (((OrderListExpand oe INNER JOIN OrderList o ON oe.OrderListID = o.OrderListID)
                                             INNER JOIN CustomerOrder c ON c.OrderID = o.OrderID)
                                             INNER JOIN CustomerInfo ci ON ci.CustomerID = c.CustomerID)
@@ -1234,7 +1234,7 @@ namespace Lottory
                     winPrice += _price;
                     if (string.Equals(PageID, "ทั้งหมด"))
                     {
-                        PageOut = winPriceInfo["Page"].ToString();
+                        PageOut.Add(Convert.ToInt32(winPriceInfo["Page"]));
                     }
                 }
                 connection.Close();
@@ -1243,9 +1243,9 @@ namespace Lottory
             }
             return PageOut;
         }
-        private string getwinPriceFromDB(string customerID, int TypeID, List<string> WinNumber, string PageID, out double winPrice, out double winRate)
+        private List<int> getwinPriceFromDB(string customerID, int TypeID, List<string> WinNumber, string PageID, out double winPrice, out double winRate)
         {
-            string PageOut = string.Empty;
+            List<int> PageOut = new List<int>();
             winPrice = 0;
             winRate = 0;
             string sqlgetWinPrice = string.Empty;
@@ -1636,7 +1636,7 @@ namespace Lottory
                     winPrice += _price;
                     if (string.Equals(PageID, "ทั้งหมด"))
                     {
-                        PageOut = winPriceInfo["Page"].ToString();
+                        PageOut.Add(Convert.ToInt32(winPriceInfo["Page"]));
 
                     }
                 }

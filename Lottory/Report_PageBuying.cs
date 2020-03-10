@@ -156,7 +156,7 @@ namespace Lottory
             {
                 connection.Open();
             }
-            string sqlgetBuying = string.Format(@"SELECT o.Number,t.TypeName, o.Price, o.GroupPrice
+            string sqlgetBuying = string.Format(@"SELECT DISTINCT o.Number,t.TypeName, o.Price, o.GroupPrice
                                                   FROM ((OrderListExpand oe INNER JOIN OrderList o ON oe.OrderListID = o.OrderListID)
                                                   INNER JOIN CustomerOrder c ON c.OrderID = o.OrderID)
                                                   INNER JOIN TypeNumberInfo t ON o.TypeID = t.TypeID
