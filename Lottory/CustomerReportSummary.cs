@@ -131,13 +131,13 @@ namespace Lottory
             int _pGroupLow;
             int _price3 = 0;
 
-            int _d3uptod;
-            int _d3up;
-            int _d3low;
-            int _d3door54;
-            int _d3group;
-            int _dtGroup;
-            int _dGroupLow;
+            double _d3uptod;
+            double _d3up;
+            double _d3low;
+            double _d3door54;
+            double _d3group;
+            double _dtGroup;
+            double _dGroupLow;
             int _disc3 = 0;
             if (string.Equals(PageID, "ทั้งหมด"))
             {
@@ -161,7 +161,7 @@ namespace Lottory
                 _dtGroup = getDiscountFromDB(CustomerID, BaseTypeID.tgroup3, string.Empty);
                 _dGroupLow = getDiscountFromDB(CustomerID, BaseTypeID.lowgroup3, string.Empty);
 
-                _disc3 = _price3 - (_d3uptod + _d3up + _d3low + _d3door54 + _d3group + _dtGroup + _dGroupLow);
+                _disc3 = _price3 - Convert.ToInt32(_d3uptod + _d3up + _d3low + _d3door54 + _d3group + _dtGroup + _dGroupLow);
             }
             else
             {
@@ -188,7 +188,7 @@ namespace Lottory
                 _dtGroup = getDiscountFromDB(CustomerID, BaseTypeID.tgroup3, PageID);
                 _dGroupLow = getDiscountFromDB(CustomerID, BaseTypeID.lowgroup3, PageID);
 
-                _disc3 = _price3 - (_d3uptod + _d3up + _d3low + _d3door54 + _d3group + _dtGroup + _dGroupLow);
+                _disc3 = _price3 - Convert.ToInt32(_d3uptod + _d3up + _d3low + _d3door54 + _d3group + _dtGroup + _dGroupLow);
             }
 
             if (_price3 > 0)
@@ -207,14 +207,14 @@ namespace Lottory
             int _p2hu;
             int _price2 = 0;
 
-            int _d2up;
-            int _d2low;
-            int _d2uptod;
-            int _d2door6;
-            int _d2updoor19;
-            int _d2lowdoor19;
-            int _d2ht;
-            int _d2hu;
+            double _d2up;
+            double _d2low;
+            double _d2uptod;
+            double _d2door6;
+            double _d2updoor19;
+            double _d2lowdoor19;
+            double _d2ht;
+            double _d2hu;
             int _disc2 = 0;
             if (string.Equals(PageID, "ทั้งหมด"))
             {
@@ -240,7 +240,7 @@ namespace Lottory
                 _d2ht = getDiscountFromDB(CustomerID, BaseTypeID.ht2, string.Empty);
                 _d2hu = getDiscountFromDB(CustomerID, BaseTypeID.hu2, string.Empty);
 
-                _disc2 = _price2 - (_d2up + _d2low + _d2uptod + _d2door6 + _d2updoor19 + _d2lowdoor19 + _d2ht + _d2hu);
+                _disc2 = _price2 - Convert.ToInt32(_d2up + _d2low + _d2uptod + _d2door6 + _d2updoor19 + _d2lowdoor19 + _d2ht + _d2hu);
                 //_disc2up = _price2up - getDiscountFromDB(CustomerID, BaseTypeID.up2, string.Empty);
             }
             else
@@ -267,7 +267,7 @@ namespace Lottory
                 _d2ht = getDiscountFromDB(CustomerID, BaseTypeID.ht2, PageID);
                 _d2hu = getDiscountFromDB(CustomerID, BaseTypeID.hu2, PageID);
 
-                _disc2 = _price2 - (_d2up + _d2low + _d2uptod + _d2door6 + _d2updoor19 + _d2lowdoor19 + _d2ht + _d2hu);
+                _disc2 = _price2 - Convert.ToInt32(_d2up + _d2low + _d2uptod + _d2door6 + _d2updoor19 + _d2lowdoor19 + _d2ht + _d2hu);
             }
             if (_price2 > 0)
             {
@@ -279,8 +279,8 @@ namespace Lottory
             int _p2tod;
             int _ptod;
 
-            int _d3tod;
-            int _d2tod;
+            double _d3tod;
+            double _d2tod;
             int _dtod;
             if (string.Equals(PageID, "ทั้งหมด"))
             {
@@ -298,7 +298,7 @@ namespace Lottory
                 _d3tod = getGDiscountFromDB(CustomerID, BaseTypeID.tod3, string.Empty);
                 _d2tod = getGDiscountFromDB(CustomerID, BaseTypeID.tod2, string.Empty);
 
-                _dtod = _ptod - (_d3uptod + _d2uptod + _d3tod + _d2tod);
+                _dtod = _ptod - Convert.ToInt32(_d3uptod + _d2uptod + _d3tod + _d2tod);
             }
             else
             {
@@ -316,7 +316,7 @@ namespace Lottory
                 _d3tod = getGDiscountFromDB(CustomerID, BaseTypeID.tod3, PageID);
                 _d2tod = getGDiscountFromDB(CustomerID, BaseTypeID.tod2, PageID);
 
-                _dtod = _ptod - (_d3uptod + _d2uptod + _d3tod + _d2tod);
+                _dtod = _ptod - Convert.ToInt32(_d3uptod + _d2uptod + _d3tod + _d2tod);
             }
             if (_ptod > 0)
             {
@@ -327,8 +327,9 @@ namespace Lottory
             int _p5group;
             int _p5tod;
             int _price5;
-            int _d5group;
-            int _d5tod;
+
+            double _d5group;
+            double _d5tod;
             int _disc5;
             if (string.Equals(PageID, "ทั้งหมด"))
             {
@@ -341,7 +342,7 @@ namespace Lottory
                 // get Discount From DB
                 _d5group = getDiscountFromDB(CustomerID, BaseTypeID.group5, string.Empty);
                 _d5tod = getDiscountFromDB(CustomerID, BaseTypeID.tod5, string.Empty);
-                _disc5 = _price5 - (_d5group + _d5tod);
+                _disc5 = _price5 - Convert.ToInt32(_d5group + _d5tod);
             }
             else
             {
@@ -354,7 +355,7 @@ namespace Lottory
                 // get Discount From DB
                 _d5group = getDiscountFromDB(CustomerID, BaseTypeID.group5, PageID);
                 _d5tod = getDiscountFromDB(CustomerID, BaseTypeID.tod5, PageID);
-                _disc5 = _price5 - (_d5group + _d5tod);
+                _disc5 = _price5 - Convert.ToInt32(_d5group + _d5tod);
             }
             if (_price5 > 0)
             {
@@ -371,13 +372,13 @@ namespace Lottory
             int _p1lowback;
             int _price1;
 
-            int _d1up;
-            int _d1low;
-            int _d1upfront;
-            int _d1upcenter;
-            int _d1upback;
-            int _d1lowfront;
-            int _d1lowback;
+            double _d1up;
+            double _d1low;
+            double _d1upfront;
+            double _d1upcenter;
+            double _d1upback;
+            double _d1lowfront;
+            double _d1lowback;
             int _disc1;
 
             if (string.Equals(PageID, "ทั้งหมด"))
@@ -403,7 +404,7 @@ namespace Lottory
                 _d1lowfront = getDiscountFromDB(CustomerID, BaseTypeID.lowfront1, string.Empty);
                 _d1lowback = getDiscountFromDB(CustomerID, BaseTypeID.lowback1, string.Empty);
 
-                _disc1 = _price1 - (_d1up + _d1low + _d1upfront + _d1upcenter + _d1upback + _d1lowfront + _d1lowback);
+                _disc1 = _price1 - Convert.ToInt32(_d1up + _d1low + _d1upfront + _d1upcenter + _d1upback + _d1lowfront + _d1lowback);
 
 
                 //_disc2hu = _price2hu - getDiscountFromDB(CustomerID, BaseTypeID.hu2, string.Empty);
@@ -431,7 +432,7 @@ namespace Lottory
                 _d1lowfront = getDiscountFromDB(CustomerID, BaseTypeID.lowfront1, PageID);
                 _d1lowback = getDiscountFromDB(CustomerID, BaseTypeID.lowback1, PageID);
 
-                _disc1 = _price1 - (_d1up + _d1low + _d1upfront + _d1upcenter + _d1upback + _d1lowfront + _d1lowback);
+                _disc1 = _price1 - Convert.ToInt32(_d1up + _d1low + _d1upfront + _d1upcenter + _d1upback + _d1lowfront + _d1lowback);
 
                 //_price2hu = getPriceFromDB(CustomerID, BaseTypeID.hu2, PageID);
                 //_disc2hu = _price2hu - getDiscountFromDB(CustomerID, BaseTypeID.hu2, PageID);
@@ -1646,9 +1647,9 @@ namespace Lottory
             }
             return PageOut;
         }
-        private int getDiscountFromDB(string CustomerID, int TypeID, string PageID)
+        private double getDiscountFromDB(string CustomerID, int TypeID, string PageID)
         {
-            int outDisc = 0;
+            double outDisc = 0;
             SqlConnection connection = new SqlConnection(Database.CnnVal("LottoryDB"));
             if (connection.State == ConnectionState.Closed)
             {
@@ -1768,14 +1769,14 @@ namespace Lottory
             SqlDataReader PriceInfo = sqlgetPriceCom.ExecuteReader();
             while (PriceInfo.Read())
             {
-                outDisc = Convert.ToInt32(PriceInfo["DiscPrice"]);
+                outDisc = Convert.ToDouble(PriceInfo["DiscPrice"]);
             }
             connection.Close();
             return outDisc;
         }
-        private int getGDiscountFromDB(string CustomerID, int TypeID, string PageID)
+        private double getGDiscountFromDB(string CustomerID, int TypeID, string PageID)
         {
-            int outDisc = 0;
+            double outDisc = 0;
             SqlConnection connection = new SqlConnection(Database.CnnVal("LottoryDB"));
             if (connection.State == ConnectionState.Closed)
             {
@@ -1851,7 +1852,7 @@ namespace Lottory
             SqlDataReader PriceInfo = sqlgetPriceCom.ExecuteReader();
             while (PriceInfo.Read())
             {
-                outDisc = Convert.ToInt32(PriceInfo["DiscPrice"]);
+                outDisc = Convert.ToDouble(PriceInfo["DiscPrice"]);
             }
             connection.Close();
             return outDisc;

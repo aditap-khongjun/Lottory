@@ -1281,13 +1281,13 @@ namespace Lottory
                     switch(typeName)
                     {
                         case "โต๊ด":
+                        case "ล่าง":
                         case "54 ประตู":
                             // Enable Money1 Only
                             enableMoney1Only(money1);
                             break;
                         case "บน/โต๊ด":
                         case "บน":
-                        case "ล่าง":
                         case "ตรงชุด":
                         case "ล่างชุด":
                             // Enable Money 1,2 Only
@@ -3252,6 +3252,8 @@ namespace Lottory
                             // one-to-one
                             //
                             // Add to Buying Table Form
+                            AddBuyingListTable(Number, Type, Money, Group);
+                            /*
                             if (!string.IsNullOrEmpty(Group))
                             {
                                 if (Convert.ToInt32(Group) > 0)
@@ -3263,7 +3265,7 @@ namespace Lottory
                                     AddBuyingListTable(Number, Type, Money, string.Empty);
                                 }
                             }
-
+                            */
                             // update OrderList DB
                             updateOrderListDB(Number, Type, Money, Group);
 
