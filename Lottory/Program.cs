@@ -17,9 +17,9 @@ namespace Lottory
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             // Open Main windows
-           Application.Run(new MainLotto());
+            Application.Run(new MainLotto());
             // Test
-         // Application.Run(new Report_OverMoney());
+         // Application.Run(new Setting());
         }
     }
 }

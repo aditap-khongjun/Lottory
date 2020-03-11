@@ -1003,7 +1003,7 @@ namespace Lottory
             // Show Text in Short Key
             showShortKey(tbNumber.MaxLength);
 
-            if(e.Control && e.KeyCode == Keys.P)
+            if(e.KeyCode == Keys.F12)
             {
                 // Show Number Setting
                 AddNumberSetting numbersettingInstance = AddNumberSetting.Instance;

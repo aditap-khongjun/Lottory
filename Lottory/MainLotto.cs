@@ -374,7 +374,7 @@ namespace Lottory
         private void MenuSystemInfo_parameter_Click(object sender, EventArgs e)
         {
             // Parameter Setting
-            MessageBox.Show("Implement");
+            ShowForm(Setting.Instance);
         }
 
         private void MenuSystemInfo_Clear_Click(object sender, EventArgs e)
