@@ -171,6 +171,7 @@ namespace Lottory
             
             // Setting DropDown of MenuAboutNumber
             MenuAboutNumber_AddNumber.Text = "ป้อนตัวเลข";
+            MenuAboutNumber_AddNumber.ShortcutKeys = Keys.F1;
             MenuAboutNumber_ShowNumber.Text = "แสดงตัวเลข (เรียงตามเงิน)";
             
             // Add DropDown of MenuMoneyLimit 
@@ -209,7 +210,8 @@ namespace Lottory
             // Setting DropDown of MenuCustomerAccount
             MenuCustomerAccount_Management.Text = "จัดการข้อมูลลูกค้า";
             MenuCustomerAccount_Report.Text = "รายงานบัญชีลูกค้า";
-            
+            MenuCustomerAccount_Report.ShortcutKeys = Keys.F11;
+
             // Add DropDown of MenuWinNumber 
             MenuWinNumber.DropDownItems.AddRange(new ToolStripItem[] {
                 MenuWinNumber_Define
@@ -281,6 +283,8 @@ namespace Lottory
             // MenuSystem_Exit
             MenuSystem_Exit.Name = "MenuSystem_Exit";
             MenuSystem_Exit.Text = "ออกจากโปรแกรม";
+
+            MenuSystem_Login.PerformClick();
         }
 
         private void MenuSystem_Login_Click(object sender, EventArgs e)

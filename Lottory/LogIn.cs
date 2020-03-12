@@ -12,6 +12,8 @@ namespace Lottory
         {
             InitializeComponent();
             this.DialogResult = DialogResult.Cancel;
+            // start to Login
+            this.ActiveControl = tbUserName;
         }
 
         // Log In
@@ -99,9 +101,10 @@ namespace Lottory
             this.Close();
         }
 
-        private void groupBox1_Enter(object sender, EventArgs e)
+        private void Login_Load(object sender, EventArgs e)
         {
-
+            
+            tbUserName.Focus();
         }
     }
 }

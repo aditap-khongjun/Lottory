@@ -191,8 +191,10 @@
             this.dgvSystemInfo.Location = new System.Drawing.Point(12, 28);
             this.dgvSystemInfo.Name = "dgvSystemInfo";
             this.dgvSystemInfo.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToDisplayedHeaders;
+            this.dgvSystemInfo.RowTemplate.Height = 30;
             this.dgvSystemInfo.Size = new System.Drawing.Size(706, 227);
             this.dgvSystemInfo.TabIndex = 0;
+            this.dgvSystemInfo.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dgvSystemInfo_KeyDown);
             // 
             // colName
             // 

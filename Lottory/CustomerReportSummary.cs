@@ -30,6 +30,8 @@ namespace Lottory
         public CustomerReportSummary()
         {
             InitializeComponent();
+            this.ActiveControl = CustomerIDList;
+            CustomerIDList.Focus();
 
             //init table
             init_table();
@@ -2177,6 +2179,24 @@ namespace Lottory
                 case Keys.Left:
                     CustomerIDList.Focus();
                     CustomerIDList.SelectAll();
+                    break;
+            }
+        }
+
+        private void CustomerReportSummary_KeyDown(object sender, KeyEventArgs e)
+        {
+            switch(e.KeyCode)
+            {
+                case Keys.F10:
+                    // active Number Detail
+                    Form mainLotto = this.MdiParent;
+                    foreach(Form child in mainLotto.MdiChildren)
+                    {
+                       if(string.Equals(child.Name,"AddNumberDetail"))
+                       {
+                            child.Activate();
+                       }
+                    }
                     break;
             }
         }

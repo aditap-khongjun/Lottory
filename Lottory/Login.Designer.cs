@@ -56,7 +56,7 @@
             this.btLogIn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.btLogIn.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btLogIn.Location = new System.Drawing.Point(124, 116);
-            this.btLogIn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btLogIn.Margin = new System.Windows.Forms.Padding(2);
             this.btLogIn.Name = "btLogIn";
             this.btLogIn.Size = new System.Drawing.Size(173, 44);
             this.btLogIn.TabIndex = 2;
@@ -79,21 +79,13 @@
             // 
             this.tbPassWord.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbPassWord.Location = new System.Drawing.Point(124, 72);
-            this.tbPassWord.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tbPassWord.Margin = new System.Windows.Forms.Padding(2);
             this.tbPassWord.Name = "tbPassWord";
             this.tbPassWord.PasswordChar = '*';
             this.tbPassWord.Size = new System.Drawing.Size(173, 29);
             this.tbPassWord.TabIndex = 7;
             // 
-            // tbUserName
-            // 
-            this.tbUserName.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbUserName.Location = new System.Drawing.Point(124, 37);
-            this.tbUserName.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.tbUserName.Name = "tbUserName";
-            this.tbUserName.Size = new System.Drawing.Size(173, 29);
-            this.tbUserName.TabIndex = 5;
-            this.tbUserName.Tag = "username";
+            
             // 
             // groupBox1
             // 
@@ -116,37 +108,47 @@
             this.btCancel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             this.btCancel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btCancel.Location = new System.Drawing.Point(27, 116);
-            this.btCancel.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btCancel.Margin = new System.Windows.Forms.Padding(2);
             this.btCancel.Name = "btCancel";
             this.btCancel.Size = new System.Drawing.Size(93, 44);
             this.btCancel.TabIndex = 8;
             this.btCancel.Text = "ยกเลิก";
             this.btCancel.UseVisualStyleBackColor = false;
             this.btCancel.Click += new System.EventHandler(this.btCancel_Click);
+            // tbUserName
+            // 
+            this.tbUserName.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbUserName.Location = new System.Drawing.Point(124, 37);
+            this.tbUserName.Margin = new System.Windows.Forms.Padding(2);
+            this.tbUserName.Name = "tbUserName";
+            this.tbUserName.Size = new System.Drawing.Size(173, 29);
+            this.tbUserName.TabIndex = 5;
+            this.tbUserName.Tag = "username";
             // 
             // Login
             // 
             this.AcceptButton = this.btLogIn;
+            
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(347, 226);
             this.Controls.Add(this.groupBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Login";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Login";
             this.TopMost = true;
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
-
         }
 
         #endregion
+        private System.Windows.Forms.TextBox tbUserName;
         private System.Windows.Forms.Button btLogIn;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox tbUserName;
         private System.Windows.Forms.TextBox tbPassWord;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Button btCancel;

@@ -234,5 +234,37 @@ namespace Lottory
         {
             _instance = null;
         }
+
+        private void dgvSystemInfo_KeyDown(object sender, KeyEventArgs e)
+        {
+            foreach (DataGridViewRow item in this.dgvSystemInfo.SelectedRows)
+            {
+                deleteUserListItem(item);
+            }
+        }
+        private void deleteUserListItem(DataGridViewRow item)
+        {
+            // Delete Seleted Rows
+            dgvSystemInfo.Rows.Remove(item);
+
+            // Delete Data from DB
+            string username = item.Cells[1].Value.ToString();
+            DeleteUserListFromDB(username);
+        }
+        private void DeleteUserListFromDB(string username)
+        {
+            SqlConnection connection = new SqlConnection(Database.CnnVal("LottoryDB"));
+
+            // get orderlistID
+            if (connection.State == ConnectionState.Closed)
+            {
+                connection.Open(); // Open Database
+            }
+            string deleteList = string.Format(@"DELETE Employee
+                                                WHERE BINARY_CHECKSUM(Username) = BINARY_CHECKSUM('{0}')", username);
+            SqlCommand deleteListCom = new SqlCommand(deleteList, connection);
+            deleteListCom.ExecuteNonQuery();
+            connection.Close();
+        }
     }
 }

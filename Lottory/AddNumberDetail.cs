@@ -192,7 +192,9 @@ namespace Lottory
         public AddNumberDetail()
         {
             InitializeComponent();
+            this.ActiveControl = tbNumber;
             
+
             // start timer
             timer1.Start();
 
@@ -322,6 +324,8 @@ namespace Lottory
 
             // update summary table
             showSummaryToForm();
+
+            tbNumber.Focus();
         }
         private void LoadBuyingOrderToTable()
         {
@@ -4170,22 +4174,26 @@ namespace Lottory
 
         private void Delete_all_Click(object sender, EventArgs e)
         {
+            
             DialogResult deleteRes = MessageBox.Show("ต้องการลบข้อมูลทั้งหมดหรือไม่", "ยืนยันการลบข้อมูล", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             switch (deleteRes)
             {
                 case DialogResult.Yes:
                 // Delete Seleted Rows
+                
                 foreach (DataGridViewRow item in this.dgvCusBuyList.Rows)
                 {
 
                     deleteBuyingListItem(item);
 
                 }
+                
                 break;
                 case DialogResult.No:
                     // Do Nothing
                     break;
             }
+            
         }
 
         private void dgvCusBuyList_KeyDown(object sender, KeyEventArgs e)
@@ -4992,6 +5000,24 @@ namespace Lottory
             }
             connection.Close();
             return outPageDetail;
+        }
+
+        private void AddNumberDetail_KeyDown(object sender, KeyEventArgs e)
+        {
+            switch (e.KeyCode)
+            {
+                case Keys.F11:
+                    // active Number Detail
+                    Form mainLotto = this.MdiParent;
+                    foreach (Form child in mainLotto.MdiChildren)
+                    {
+                        if (string.Equals(child.Name, "CustomerReportSummary"))
+                        {
+                            child.Activate();
+                        }
+                    }
+                    break;
+            }
         }
     }
 }
