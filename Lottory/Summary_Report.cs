@@ -35,7 +35,13 @@ namespace Lottory
 
         private void Summary_Report_Load(object sender, EventArgs e)
         {
-            SummaryInfo summaryInfo = new SummaryInfo();
+            DataTable summaryInfo = new DataTable();
+            summaryInfo.Columns.Add("Type");
+            summaryInfo.Columns.Add("Price");
+            summaryInfo.Columns.Add("Discount");
+            summaryInfo.Columns.Add("WinPrice");
+            summaryInfo.Columns.Add("NetPrice");
+            
             // Price
             int _price3up = getPriceFromDB(BaseTypeID.up3);
             int _price3low = getPriceFromDB(BaseTypeID.low3);
@@ -50,21 +56,7 @@ namespace Lottory
             int _price1back = getPriceFromDB(BaseTypeID.upback1);
             int _price1lowfront = getPriceFromDB(BaseTypeID.lowfront1);
             int _price1lowback = getPriceFromDB(BaseTypeID.lowback1);
-
-            summaryInfo.Priceup3 = _price3up.ToString("N0");
-            summaryInfo.Pricelow3 = _price3low.ToString("N0");
-            summaryInfo.Priceup2 = _price2up.ToString("N0");
-            summaryInfo.Pricelow2 = _price2low.ToString("N0");
-            summaryInfo.Priceht2 = _price2ht.ToString("N0");
-            summaryInfo.Pricehu2 = _price2hu.ToString("N0");
-            summaryInfo.Priceup1 = _price1up.ToString("N0");
-            summaryInfo.Pricelow1 = _price1low.ToString("N0");
-            summaryInfo.Pricefront1 = _price1front.ToString("N0");
-            summaryInfo.Pricecenter1 = _price1center.ToString("N0");
-            summaryInfo.Priceback1 = _price1back.ToString("N0");
-            summaryInfo.Pricelowfront1 = _price1lowfront.ToString("N0");
-            summaryInfo.Pricelowback1 = _price1lowback.ToString("N0");
-
+            // Sum Price
             List<int> PriceList = new List<int>();
             PriceList.Add(_price3up);
             PriceList.Add(_price3low);
@@ -79,7 +71,6 @@ namespace Lottory
             PriceList.Add(_price1back);
             PriceList.Add(_price1lowfront);
             PriceList.Add(_price1lowback);
-            summaryInfo.sumPrice = PriceList.Sum().ToString("N0");
 
             // Discount
             int _Disc3up = getDiscountFromDB(BaseTypeID.up3);
@@ -95,21 +86,7 @@ namespace Lottory
             int _Disc1back = getDiscountFromDB(BaseTypeID.upback1);
             int _Disc1lowfront = getDiscountFromDB(BaseTypeID.lowfront1);
             int _Disc1lowback = getDiscountFromDB(BaseTypeID.lowback1);
-
-            summaryInfo.Discountup3 = _Disc3up.ToString("N0");
-            summaryInfo.Discountlow3 = _Disc3low.ToString("N0");
-            summaryInfo.Discountup2 = _Disc2up.ToString("N0");
-            summaryInfo.Discountlow2 = _Disc2low.ToString("N0");
-            summaryInfo.Discountht2 = _Disc2ht.ToString("N0");
-            summaryInfo.Discounthu2 = _Disc2hu.ToString("N0");
-            summaryInfo.Discountup1 = _Disc1up.ToString("N0");
-            summaryInfo.Discountlow1 = _Disc1low.ToString("N0");
-            summaryInfo.Discountfront1 = _Disc1front.ToString("N0");
-            summaryInfo.Discountcenter1 = _Disc1center.ToString("N0");
-            summaryInfo.Discountback1 = _Disc1back.ToString("N0");
-            summaryInfo.Discountlowfront1 = _Disc1lowfront.ToString("N0");
-            summaryInfo.Discountlowback1 = _Disc1lowback.ToString("N0");
-
+            // sum Discount
             List<int> DiscList = new List<int>();
             DiscList.Add(_Disc3up);
             DiscList.Add(_Disc3low);
@@ -124,9 +101,8 @@ namespace Lottory
             DiscList.Add(_Disc1back);
             DiscList.Add(_Disc1lowfront);
             DiscList.Add(_Disc1lowback);
-            summaryInfo.sumDiscount = DiscList.Sum().ToString("N0");
 
-            // Win
+            // Win Price
             double _win3up = getWinPrice(BaseTypeID.up3);
             double _win3low = getWinPrice(BaseTypeID.low3);
             double _win2up = getWinPrice(BaseTypeID.up2);
@@ -140,20 +116,7 @@ namespace Lottory
             double _win1back = getWinPrice(BaseTypeID.upback1);
             double _win1lowfront = getWinPrice(BaseTypeID.lowfront1);
             double _win1lowback = getWinPrice(BaseTypeID.lowback1);
-            summaryInfo.WinPriceup3 = _win3up.ToString("N0");
-            summaryInfo.WinPricelow3 = _win3low.ToString("N0");
-            summaryInfo.WinPriceup2 = _win2up.ToString("N0");
-            summaryInfo.WinPricelow2 = _win2low.ToString("N0");
-            summaryInfo.WinPriceht2 = _win2ht.ToString("N0");
-            summaryInfo.WinPricehu2 = _win2hu.ToString("N0");
-            summaryInfo.WinPriceup1 = _win1up.ToString("N0");
-            summaryInfo.WinPricelow1 = _win1low.ToString("N0");
-            summaryInfo.WinPricefront1 = _win1front.ToString("N0");
-            summaryInfo.WinPricecenter1 = _win1center.ToString("N0");
-            summaryInfo.WinPriceback1 = _win1back.ToString("N0");
-            summaryInfo.WinPricelowfront1 = _win1lowfront.ToString("N0");
-            summaryInfo.WinPricelowback1 = _win1lowback.ToString("N0");
-
+            // sum WinPrice
             List<double> winList = new List<double>();
             winList.Add(_win3up);
             winList.Add(_win3low);
@@ -168,25 +131,82 @@ namespace Lottory
             winList.Add(_win1back);
             winList.Add(_win1lowfront);
             winList.Add(_win1lowback);
-            summaryInfo.sumWinPrice = winList.Sum().ToString("N0");
 
             //Net
-            summaryInfo.netPriceup3 = (Convert.ToDouble(_price3up) - (Convert.ToDouble(_Disc3up) + _win3up)).ToString("N0");
-            summaryInfo.netPricelow3 = (Convert.ToDouble(_price3low) - (Convert.ToDouble(_Disc3low) + _win3low)).ToString("N0");
-            summaryInfo.netPriceup2 = (Convert.ToDouble(_price2up) - (Convert.ToDouble(_Disc2up) + _win2up)).ToString("N0");
-            summaryInfo.netPricelow2 = (Convert.ToDouble(_price2low) - (Convert.ToDouble(_Disc2low) + _win2low)).ToString("N0");
-            summaryInfo.netPriceht2 = (Convert.ToDouble(_price2ht) - (Convert.ToDouble(_Disc2ht) + _win2ht)).ToString("N0");
-            summaryInfo.netPricehu2 = (Convert.ToDouble(_price2hu) - (Convert.ToDouble(_Disc2hu) + _win2hu)).ToString("N0");
-            summaryInfo.netPriceup1 = (Convert.ToDouble(_price1up) - (Convert.ToDouble(_Disc1up) + _win1up)).ToString("N0");
-            summaryInfo.netPricelow1 = (Convert.ToDouble(_price1low) - (Convert.ToDouble(_Disc1low) + _win1low)).ToString("N0");
-            summaryInfo.netPricefront1 = (Convert.ToDouble(_price1front) - (Convert.ToDouble(_Disc1front) + _win1front)).ToString("N0");
-            summaryInfo.netPricecenter1 = (Convert.ToDouble(_price1center) - (Convert.ToDouble(_Disc1center) + _win1center)).ToString("N0");
-            summaryInfo.netPriceback1 = (Convert.ToDouble(_price1back) - (Convert.ToDouble(_Disc1back) + _win1back)).ToString("N0");
-            summaryInfo.netPricelowfront1 = (Convert.ToDouble(_price1lowfront) - (Convert.ToDouble(_Disc1lowfront) + _win1lowfront)).ToString("N0");
-            summaryInfo.netPricelowback1 = (Convert.ToDouble(_price1lowback) - (Convert.ToDouble(_Disc1lowback) + _win1lowback)).ToString("N0");
-            summaryInfo.sumNetPrice = (Convert.ToDouble(PriceList.Sum()) - (Convert.ToDouble(DiscList.Sum()) + winList.Sum())).ToString("N0");
+            double _netPriceup3 = (Convert.ToDouble(_price3up) - (Convert.ToDouble(_Disc3up) + _win3up));
+            double _netPricelow3 = (Convert.ToDouble(_price3low) - (Convert.ToDouble(_Disc3low) + _win3low));
+            double _netPriceup2 = (Convert.ToDouble(_price2up) - (Convert.ToDouble(_Disc2up) + _win2up));
+            double _netPricelow2 = (Convert.ToDouble(_price2low) - (Convert.ToDouble(_Disc2low) + _win2low));
+            double _netPriceht2 = (Convert.ToDouble(_price2ht) - (Convert.ToDouble(_Disc2ht) + _win2ht));
+            double _netPricehu2 = (Convert.ToDouble(_price2hu) - (Convert.ToDouble(_Disc2hu) + _win2hu));
+            double _netPriceup1 = (Convert.ToDouble(_price1up) - (Convert.ToDouble(_Disc1up) + _win1up));
+            double _netPricelow1 = (Convert.ToDouble(_price1low) - (Convert.ToDouble(_Disc1low) + _win1low));
+            double _netPricefront1 = (Convert.ToDouble(_price1front) - (Convert.ToDouble(_Disc1front) + _win1front));
+            double _netPricecenter1 = (Convert.ToDouble(_price1center) - (Convert.ToDouble(_Disc1center) + _win1center));
+            double _netPriceback1 = (Convert.ToDouble(_price1back) - (Convert.ToDouble(_Disc1back) + _win1back));
+            double _netPricelowfront1 = (Convert.ToDouble(_price1lowfront) - (Convert.ToDouble(_Disc1lowfront) + _win1lowfront));
+            double _netPricelowback1 = (Convert.ToDouble(_price1lowback) - (Convert.ToDouble(_Disc1lowback) + _win1lowback));
+            double _sumNetPrice = (Convert.ToDouble(PriceList.Sum()) - (Convert.ToDouble(DiscList.Sum()) + winList.Sum()));
 
-            SummaryInfoBindingSource.DataSource = summaryInfo;
+            // Summary
+            if(_price3up > 0)
+            {
+                summaryInfo.Rows.Add("3 บน", _price3up.ToString("N0"), _Disc3up.ToString("N0"), _win3up.ToString("N0"), _netPriceup3.ToString("N0"));
+            }
+            if(_price3low > 0)
+            {
+                summaryInfo.Rows.Add("3 ล่าง", _price3low.ToString("N0"), _Disc3low.ToString("N0"), _win3low.ToString("N0"), _netPricelow3.ToString("N0"));
+            }
+            if(_price2up > 0)
+            {
+                summaryInfo.Rows.Add("2 บน", _price2up.ToString("N0"), _Disc2up.ToString("N0"), _win2up.ToString("N0"), _netPriceup2.ToString("N0"));
+            }
+            if(_price2low > 0)
+            {
+                summaryInfo.Rows.Add("2 ล่าง", _price2low.ToString("N0"), _Disc2low.ToString("N0"), _win2low.ToString("N0"), _netPricelow2.ToString("N0"));
+            }
+            if(_price2ht > 0)
+            {
+                summaryInfo.Rows.Add("ร้อยสิบ", _price2ht.ToString("N0"), _Disc2ht.ToString("N0"), _win2ht.ToString("N0"), _netPriceht2.ToString("N0"));
+            }
+            if(_price2hu > 0)
+            {
+                summaryInfo.Rows.Add("ร้อยหน่วย", _price2hu.ToString("N0"), _Disc2hu.ToString("N0"), _win2hu.ToString("N0"), _netPricehu2.ToString("N0"));
+            }
+            if(_price1up > 0)
+            {
+                summaryInfo.Rows.Add("1 บน", _price1up.ToString("N0"), _Disc1up.ToString("N0"), _win1up.ToString("N0"), _netPriceup1.ToString("N0"));
+            }
+            if(_price1low > 0)
+            {
+                summaryInfo.Rows.Add("1 ล่าง", _price1low.ToString("N0"), _Disc1low.ToString("N0"), _win1low.ToString("N0"), _netPricelow1.ToString("N0"));
+            }
+            if(_price1front > 0)
+            {
+                summaryInfo.Rows.Add("1 หน้า", _price1front.ToString("N0"), _Disc1front.ToString("N0"), _win1front.ToString("N0"), _netPricefront1.ToString("N0"));
+            }
+            if(_price1center > 0)
+            {
+                summaryInfo.Rows.Add("1 กลาง", _price1center.ToString("N0"), _Disc1center.ToString("N0"), _win1center.ToString("N0"), _netPricecenter1.ToString("N0"));
+            }
+            if(_price1back > 0)
+            {
+                summaryInfo.Rows.Add("1 หลัง", _price1back.ToString("N0"), _Disc1back.ToString("N0"), _win1back.ToString("N0"), _netPriceback1.ToString("N0"));
+            }
+            if(_price1lowfront > 0)
+            {
+                summaryInfo.Rows.Add("1 ล่างหน้า", _price1lowfront.ToString("N0"), _Disc1lowfront.ToString("N0"), _win1lowfront.ToString("N0"), _netPricelowfront1.ToString("N0"));
+            }
+            if(_price1lowback > 0)
+            {
+                summaryInfo.Rows.Add("1 ล่างหลัง", _price1lowback.ToString("N0"), _Disc1lowback.ToString("N0"), _win1lowback.ToString("N0"), _netPricelowback1.ToString("N0"));
+            }
+
+            summaryInfo.Rows.Add("รวมทั้งหมด", PriceList.Sum().ToString("N0"), DiscList.Sum().ToString("N0"), winList.Sum().ToString("N0"), _sumNetPrice.ToString("N0"));
+
+
+
+            summaryReportTableBindingSource.DataSource = summaryInfo;
             this.reportViewer1.RefreshReport();
         }
         private int getPriceFromDB(int TypeID)

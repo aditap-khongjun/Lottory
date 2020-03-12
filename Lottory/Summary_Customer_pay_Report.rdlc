@@ -11,7 +11,9 @@
               <TextRun>
                 <Value>รายงานสรุปรวมลูกค้าแต่ละราย (ที่ต้องจ่าย)</Value>
                 <Style>
-                  <FontSize>14pt</FontSize>
+                  <FontSize>16pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
+                  <TextDecoration>Underline</TextDecoration>
                 </Style>
               </TextRun>
             </TextRuns>
@@ -59,7 +61,7 @@
           </TablixColumns>
           <TablixRows>
             <TablixRow>
-              <Height>0.6cm</Height>
+              <Height>0.89104cm</Height>
               <TablixCells>
                 <TablixCell>
                   <CellContents>
@@ -71,7 +73,9 @@
                           <TextRuns>
                             <TextRun>
                               <Value>รหัส</Value>
-                              <Style />
+                              <Style>
+                                <FontSize>14pt</FontSize>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style />
@@ -101,7 +105,9 @@
                           <TextRuns>
                             <TextRun>
                               <Value>ชื่อ</Value>
-                              <Style />
+                              <Style>
+                                <FontSize>14pt</FontSize>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style />
@@ -131,7 +137,9 @@
                           <TextRuns>
                             <TextRun>
                               <Value>รวม</Value>
-                              <Style />
+                              <Style>
+                                <FontSize>14pt</FontSize>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style />
@@ -161,7 +169,9 @@
                           <TextRuns>
                             <TextRun>
                               <Value>% ส่วนลด</Value>
-                              <Style />
+                              <Style>
+                                <FontSize>14pt</FontSize>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style />
@@ -191,7 +201,9 @@
                           <TextRuns>
                             <TextRun>
                               <Value>ตัวถูก</Value>
-                              <Style />
+                              <Style>
+                                <FontSize>14pt</FontSize>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style />
@@ -221,7 +233,9 @@
                           <TextRuns>
                             <TextRun>
                               <Value>สุทธิ</Value>
-                              <Style />
+                              <Style>
+                                <FontSize>14pt</FontSize>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style />
@@ -244,7 +258,7 @@
               </TablixCells>
             </TablixRow>
             <TablixRow>
-              <Height>0.6cm</Height>
+              <Height>0.83813cm</Height>
               <TablixCells>
                 <TablixCell>
                   <CellContents>
@@ -256,7 +270,9 @@
                           <TextRuns>
                             <TextRun>
                               <Value>=Fields!CustomerID.Value</Value>
-                              <Style />
+                              <Style>
+                                <FontSize>14pt</FontSize>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style />
@@ -286,7 +302,9 @@
                           <TextRuns>
                             <TextRun>
                               <Value>=Fields!CustomerName.Value</Value>
-                              <Style />
+                              <Style>
+                                <FontSize>14pt</FontSize>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style />
@@ -316,7 +334,9 @@
                           <TextRuns>
                             <TextRun>
                               <Value>=Fields!Price.Value</Value>
-                              <Style />
+                              <Style>
+                                <FontSize>14pt</FontSize>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style />
@@ -346,7 +366,9 @@
                           <TextRuns>
                             <TextRun>
                               <Value>=Fields!Discount.Value</Value>
-                              <Style />
+                              <Style>
+                                <FontSize>14pt</FontSize>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style />
@@ -376,7 +398,9 @@
                           <TextRuns>
                             <TextRun>
                               <Value>=Fields!WinPrice.Value</Value>
-                              <Style />
+                              <Style>
+                                <FontSize>14pt</FontSize>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style />
@@ -406,7 +430,9 @@
                           <TextRuns>
                             <TextRun>
                               <Value>=Fields!netPrice.Value</Value>
-                              <Style />
+                              <Style>
+                                <FontSize>14pt</FontSize>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style />
@@ -452,8 +478,8 @@
         </TablixRowHierarchy>
         <DataSetName>CustomerTable</DataSetName>
         <Top>2.27224cm</Top>
-        <Height>1.2cm</Height>
-        <Width>18.7287cm</Width>
+        <Height>1.72917cm</Height>
+        <Width>18.72869cm</Width>
         <ZIndex>1</ZIndex>
         <Style>
           <Border>
@@ -482,7 +508,7 @@
           </TablixColumns>
           <TablixRows>
             <TablixRow>
-              <Height>0.6cm</Height>
+              <Height>0.75875cm</Height>
               <TablixCells>
                 <TablixCell>
                   <CellContents>
@@ -494,7 +520,9 @@
                           <TextRuns>
                             <TextRun>
                               <Value>&lt;รวมทั้งสิ้น&gt;</Value>
-                              <Style />
+                              <Style>
+                                <FontSize>14pt</FontSize>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style />
@@ -524,7 +552,9 @@
                           <TextRuns>
                             <TextRun>
                               <Value>=Fields!sumPrice.Value</Value>
-                              <Style />
+                              <Style>
+                                <FontSize>14pt</FontSize>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style />
@@ -554,7 +584,9 @@
                           <TextRuns>
                             <TextRun>
                               <Value>=Fields!sumDiscount.Value</Value>
-                              <Style />
+                              <Style>
+                                <FontSize>14pt</FontSize>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style />
@@ -584,7 +616,9 @@
                           <TextRuns>
                             <TextRun>
                               <Value>=Fields!sumWinPrice.Value</Value>
-                              <Style />
+                              <Style>
+                                <FontSize>14pt</FontSize>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style />
@@ -614,7 +648,9 @@
                           <TextRuns>
                             <TextRun>
                               <Value>=Fields!sumNetPrice.Value</Value>
-                              <Style />
+                              <Style>
+                                <FontSize>14pt</FontSize>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style />
@@ -655,10 +691,10 @@
           </TablixMembers>
         </TablixRowHierarchy>
         <DataSetName>CustomerSummary</DataSetName>
-        <Top>3.57808cm</Top>
+        <Top>4.10724cm</Top>
         <Left>2.97625cm</Left>
-        <Height>0.6cm</Height>
-        <Width>15.75245cm</Width>
+        <Height>0.75875cm</Height>
+        <Width>15.75244cm</Width>
         <ZIndex>2</ZIndex>
         <Style>
           <Border>
