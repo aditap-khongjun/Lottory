@@ -330,7 +330,6 @@
         }
 
         #endregion
-        private System.Windows.Forms.ComboBox customerID;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button btBackToMain;
@@ -352,5 +351,6 @@
         private System.Windows.Forms.TextBox MoneyLimit1;
         private System.Windows.Forms.ComboBox pageNumber;
         private System.Windows.Forms.Button btAddNumber;
+        public System.Windows.Forms.ComboBox customerID;
     }
 }

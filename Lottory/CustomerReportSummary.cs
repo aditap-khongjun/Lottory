@@ -131,6 +131,8 @@ namespace Lottory
             int _p3group;
             int _ptGroup;
             int _pGroupLow;
+            int _p4group;
+            int _p5group;
             int _price3 = 0;
 
             double _d3uptod;
@@ -140,7 +142,10 @@ namespace Lottory
             double _d3group;
             double _dtGroup;
             double _dGroupLow;
+            double _d4group;
+            double _d5group;
             int _disc3 = 0;
+
             if (string.Equals(PageID, "ทั้งหมด"))
             {
                 // get Price From DB
@@ -151,8 +156,10 @@ namespace Lottory
                 _p3group = getPriceFromDB(CustomerID, BaseTypeID.group3, string.Empty);
                 _ptGroup = getPriceFromDB(CustomerID, BaseTypeID.tgroup3, string.Empty);
                 _pGroupLow = getPriceFromDB(CustomerID, BaseTypeID.lowgroup3, string.Empty);
+                _p4group = getPriceFromDB(CustomerID, BaseTypeID.group4, string.Empty);
+                _p5group = getPriceFromDB(CustomerID, BaseTypeID.group5, string.Empty);
 
-                _price3 = _p3uptod + _p3up + _p3low + _p3door54 + _p3group + _ptGroup + _pGroupLow;
+                _price3 = _p3uptod + _p3up + _p3low + _p3door54 + _p3group + _ptGroup + _pGroupLow + _p4group + _p5group;
 
                 // get Discount From DB
                 _d3uptod = getDiscountFromDB(CustomerID, BaseTypeID.uptod3, string.Empty);
@@ -162,8 +169,10 @@ namespace Lottory
                 _d3group = getDiscountFromDB(CustomerID, BaseTypeID.group3, string.Empty);
                 _dtGroup = getDiscountFromDB(CustomerID, BaseTypeID.tgroup3, string.Empty);
                 _dGroupLow = getDiscountFromDB(CustomerID, BaseTypeID.lowgroup3, string.Empty);
+                _d4group = getDiscountFromDB(CustomerID, BaseTypeID.group4, string.Empty);
+                _d5group = getDiscountFromDB(CustomerID, BaseTypeID.group5, string.Empty);
 
-                _disc3 = _price3 - Convert.ToInt32(_d3uptod + _d3up + _d3low + _d3door54 + _d3group + _dtGroup + _dGroupLow);
+                _disc3 = _price3 - Convert.ToInt32(_d3uptod + _d3up + _d3low + _d3door54 + _d3group + _dtGroup + _dGroupLow + _d4group + _d5group);
             }
             else
             {
@@ -175,10 +184,10 @@ namespace Lottory
                 _p3group = getPriceFromDB(CustomerID, BaseTypeID.group3, PageID);
                 _ptGroup = getPriceFromDB(CustomerID, BaseTypeID.tgroup3, PageID);
                 _pGroupLow = getPriceFromDB(CustomerID, BaseTypeID.lowgroup3, PageID);
+                _p4group = getPriceFromDB(CustomerID, BaseTypeID.group4, PageID);
+                _p5group = getPriceFromDB(CustomerID, BaseTypeID.group5, PageID);
 
-                _price3 = _p3uptod + _p3up + _p3low + _p3door54 + _p3group + _ptGroup + _pGroupLow;
-                //_price3up = getPriceFromDB(CustomerID, BaseTypeID.up3, PageID);
-                //_disc3up = _price3up - getDiscountFromDB(CustomerID, BaseTypeID.up3, PageID);
+                _price3 = _p3uptod + _p3up + _p3low + _p3door54 + _p3group + _ptGroup + _pGroupLow + _p4group + _p5group;
 
 
                 // get Discount From DB
@@ -189,8 +198,10 @@ namespace Lottory
                 _d3group = getDiscountFromDB(CustomerID, BaseTypeID.group3, PageID);
                 _dtGroup = getDiscountFromDB(CustomerID, BaseTypeID.tgroup3, PageID);
                 _dGroupLow = getDiscountFromDB(CustomerID, BaseTypeID.lowgroup3, PageID);
+                _d4group = getDiscountFromDB(CustomerID, BaseTypeID.group4, PageID);
+                _d5group = getDiscountFromDB(CustomerID, BaseTypeID.group5, PageID);
 
-                _disc3 = _price3 - Convert.ToInt32(_d3uptod + _d3up + _d3low + _d3door54 + _d3group + _dtGroup + _dGroupLow);
+                _disc3 = _price3 - Convert.ToInt32(_d3uptod + _d3up + _d3low + _d3door54 + _d3group + _dtGroup + _dGroupLow + _d4group + _d5group);
             }
 
             if (_price3 > 0)
@@ -326,38 +337,34 @@ namespace Lottory
             }
             
             // for 5 digit
-            int _p5group;
             int _p5tod;
             int _price5;
 
-            double _d5group;
             double _d5tod;
             int _disc5;
             if (string.Equals(PageID, "ทั้งหมด"))
             {
                 // get Price From DB
-                _p5group = getPriceFromDB(CustomerID, BaseTypeID.group5, string.Empty);
+               
                 _p5tod = getPriceFromDB(CustomerID, BaseTypeID.tod5, string.Empty);
 
-                _price5 = _p5group + _p5tod;
+                _price5 = _p5tod;
 
                 // get Discount From DB
-                _d5group = getDiscountFromDB(CustomerID, BaseTypeID.group5, string.Empty);
+                
                 _d5tod = getDiscountFromDB(CustomerID, BaseTypeID.tod5, string.Empty);
-                _disc5 = _price5 - Convert.ToInt32(_d5group + _d5tod);
+                _disc5 = _price5 - Convert.ToInt32(_d5tod);
             }
             else
             {
                 // get Price From DB
-                _p5group = getPriceFromDB(CustomerID, BaseTypeID.group5, PageID);
                 _p5tod = getPriceFromDB(CustomerID, BaseTypeID.tod5, PageID);
 
-                _price5 = _p5group + _p5tod;
+                _price5 = _p5tod;
 
                 // get Discount From DB
-                _d5group = getDiscountFromDB(CustomerID, BaseTypeID.group5, PageID);
                 _d5tod = getDiscountFromDB(CustomerID, BaseTypeID.tod5, PageID);
-                _disc5 = _price5 - Convert.ToInt32(_d5group + _d5tod);
+                _disc5 = _price5 - Convert.ToInt32(_d5tod);
             }
             if (_price5 > 0)
             {
@@ -1672,6 +1679,7 @@ namespace Lottory
                         //                      FROM (CustomerOrder c INNER JOIN OrderList o ON c.OrderID = o.OrderID)
                         //                      WHERE o.TypeID = {0} AND c.CustomerID = '{1}'", TypeID.ToString(), CustomerID);
                         break;
+                    case BaseTypeID.group4:
                     case BaseTypeID.up3:
                     case BaseTypeID.low3:
                     case BaseTypeID.group3:
@@ -1726,6 +1734,7 @@ namespace Lottory
                         //                      FROM (CustomerOrder c INNER JOIN OrderList o ON c.OrderID = o.OrderID)
                         //                      WHERE o.TypeID = {0} AND c.CustomerID = '{1}'", TypeID.ToString(), CustomerID);
                         break;
+                    case BaseTypeID.group4:
                     case BaseTypeID.up3:
                     case BaseTypeID.low3:
                     case BaseTypeID.group3:
@@ -1898,6 +1907,7 @@ namespace Lottory
                                               FROM (CustomerOrder c INNER JOIN OrderList o ON c.OrderID = o.OrderID)
                                               WHERE o.TypeID = {0} AND c.CustomerID = '{1}'", TypeID.ToString(), CustomerID);
                         break;
+                    case BaseTypeID.group4:
                     case BaseTypeID.up3:
                     case BaseTypeID.low3:
                     case BaseTypeID.group3:
@@ -1942,6 +1952,7 @@ namespace Lottory
                                               FROM (CustomerOrder c INNER JOIN OrderList o ON c.OrderID = o.OrderID)
                                               WHERE o.TypeID = {0} AND c.CustomerID = '{1}' AND c.Page = {2}", TypeID.ToString(), CustomerID, PageID);
                         break;
+                    case BaseTypeID.group4:
                     case BaseTypeID.up3:
                     case BaseTypeID.low3:
                     case BaseTypeID.group3:
@@ -2185,20 +2196,30 @@ namespace Lottory
 
         private void CustomerReportSummary_KeyDown(object sender, KeyEventArgs e)
         {
-            switch(e.KeyCode)
+            Form mainLotto = this.MdiParent;
+            foreach (Form child in mainLotto.MdiChildren)
             {
-                case Keys.F10:
-                    // active Number Detail
-                    Form mainLotto = this.MdiParent;
-                    foreach(Form child in mainLotto.MdiChildren)
-                    {
-                       if(string.Equals(child.Name,"AddNumberDetail"))
-                       {
+                switch (e.KeyCode)
+                {
+                    case Keys.F10:
+                        // active Number Detail
+                        if (string.Equals(child.Name, "AddNumberDetail"))
+                        {
                             child.Activate();
-                       }
-                    }
-                    break;
+                            this.Close();
+                        }
+                        break;
+                    case Keys.F1:
+                        if (string.Equals(child.Name, "AddNumberSetting"))
+                        {
+                            child.Activate();
+                            this.Close();
+                        }
+                        break;
+                }
+
             }
+
         }
     }
 }

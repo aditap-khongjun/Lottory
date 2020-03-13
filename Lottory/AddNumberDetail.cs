@@ -1007,7 +1007,7 @@ namespace Lottory
             // Show Text in Short Key
             showShortKey(tbNumber.MaxLength);
 
-            if(e.KeyCode == Keys.F12)
+            if(e.KeyCode == Keys.F1)
             {
                 // Show Number Setting
                 AddNumberSetting numbersettingInstance = AddNumberSetting.Instance;
@@ -5004,20 +5004,30 @@ namespace Lottory
 
         private void AddNumberDetail_KeyDown(object sender, KeyEventArgs e)
         {
-            switch (e.KeyCode)
+            // active Number Detail
+            Form mainLotto = this.MdiParent;
+            foreach (Form child in mainLotto.MdiChildren)
             {
-                case Keys.F11:
-                    // active Number Detail
-                    Form mainLotto = this.MdiParent;
-                    foreach (Form child in mainLotto.MdiChildren)
-                    {
+                switch (e.KeyCode)
+                {
+                    case Keys.F12:
                         if (string.Equals(child.Name, "CustomerReportSummary"))
                         {
                             child.Activate();
                         }
-                    }
-                    break;
+                        break;
+                    case Keys.F1:
+                        if (string.Equals(child.Name, "AddNumberSetting"))
+                        {
+                            child.Activate();
+                            this.Close();
+                        }
+                        break;
+
+                }
+
             }
+
         }
     }
 }

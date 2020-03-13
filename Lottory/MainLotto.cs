@@ -210,7 +210,7 @@ namespace Lottory
             // Setting DropDown of MenuCustomerAccount
             MenuCustomerAccount_Management.Text = "จัดการข้อมูลลูกค้า";
             MenuCustomerAccount_Report.Text = "รายงานบัญชีลูกค้า";
-            MenuCustomerAccount_Report.ShortcutKeys = Keys.F11;
+            MenuCustomerAccount_Report.ShortcutKeys = Keys.F12;
 
             // Add DropDown of MenuWinNumber 
             MenuWinNumber.DropDownItems.AddRange(new ToolStripItem[] {

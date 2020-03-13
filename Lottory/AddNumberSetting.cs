@@ -319,6 +319,7 @@ namespace Lottory
                     string customerName = getCustomerName(customerID.Text);
                     // Open AddNumberDetail
                     OpenAddNumberDetail(orderID, customerID.Text, pageNumber.Text, customerName);
+                    this.Close();
                 }
                 connection.Close();
             }
