@@ -679,8 +679,8 @@ namespace Lottory
                             tbType.Text = BaseType.uplow2;
                             // Next state is 1 [Money1 => enable, Group => disable]
                             //controlTypeList(BaseType.uplow2, 1);
-                            //enableMoney1Only();
-                            enableMoney13();
+                            enableMoney1Only();
+                            //enableMoney13();
                             MoveToMoney1();
                             break;
                         case Keys.Add:
@@ -1272,9 +1272,9 @@ namespace Lottory
                         case "บน/โต๊ด":
                             enableMoney12(money1, money2);
                             break;
-                        case "บน/ล่าง":
-                            enableMoney13(money1, money2);
-                            break;
+                        //case "บน/ล่าง":
+                            //enableMoney13(money1, money2);
+                            //break;
                         default:
                             // Enable Money1 Only
                             enableMoney1Only(money1);
@@ -2803,10 +2803,10 @@ namespace Lottory
 
                             // for low2
                             // Add to Buying Table Form
-                            AddBuyingListTable(Number, BaseType.low2, Low, Group);
+                            AddBuyingListTable(Number, BaseType.low2, Money, Group);
 
                             // update OrderList DB
-                            updateOrderListDB(Number, BaseType.low2, Low, Group);
+                            updateOrderListDB(Number, BaseType.low2, Money, Group);
 
                             // get OrderListID
                             OrderListID = getOrderListIDDB();
@@ -2814,15 +2814,15 @@ namespace Lottory
                             // get customer discount (%)
                             discount = getCustomerDiscount(BaseTypeID.low2);
                             // update OrderListExpand
-                            updateOrderListExpandDB(OrderListID.ToString(), BaseTypeID.low2.ToString(), Number, Low, Low, discount);
+                            updateOrderListExpandDB(OrderListID.ToString(), BaseTypeID.low2.ToString(), Number, Money, Money, discount);
                             NumberList.Add(Number);
                             TypeIDList.Add(BaseTypeID.low2);
 
                             // update to Number_xxx
-                            updateNumberXXXToDB(BaseTypeID.low2, Number, Low, Low);
+                            updateNumberXXXToDB(BaseTypeID.low2, Number, Money, Money);
 
                             // Customer Buying Check
-                            buyingCustomerChecking(Convert.ToInt32(Low), BaseTypeID.low2);
+                            buyingCustomerChecking(Convert.ToInt32(Money), BaseTypeID.low2);
 
                             // update Customer Buyinng Summary
                             updateCustomerBuyingToForm(NumberList, TypeIDList);

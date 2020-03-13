@@ -16,5 +16,21 @@ namespace Lottory
         {
             InitializeComponent();
         }
+
+        private void cbNumber_CheckedChanged(object sender, EventArgs e)
+        {
+            /*
+            CheckBox cbType = (CheckBox)sender;
+            switch(cbType.Name)
+            {
+                case "cb3up":
+                    // Enable Textbox
+
+                    break;
+                case "cb":
+                    break;
+            }
+            */
+        }
     }
 }
