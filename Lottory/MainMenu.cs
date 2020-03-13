@@ -127,17 +127,99 @@ namespace Lottory
 
         private void btClearSystemInfo_Click(object sender, EventArgs e)
         {
-
+            // Clear Imformation
+            DialogResult result = MessageBox.Show("ต้องการลบข้อมูลทั้งหมดหรือไม่", "ลบข้อมูล", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            switch (result)
+            {
+                case DialogResult.Yes:
+                    // delete information
+                    deleteCustomerInformation();
+                    break;
+                case DialogResult.No:
+                    // Nothing to do
+                    break;
+            }
         }
+        private void deleteCustomerInformation()
+        {
+            deleteInfoFromDB("OrderListExpand");
+            deleteInfoFromDB("OrderList");
+            deleteInfoFromDB("CustomerOrder");
 
+            setZeroToDB("Number_1up");
+            setZeroToDB("Number_1upfront");
+            setZeroToDB("Number_1upcenter");
+            setZeroToDB("Number_1upback");
+            setZeroToDB("Number_1low");
+            setZeroToDB("Number_1lowfront");
+            setZeroToDB("Number_1lowback");
+            setZeroToDB("Number_2up");
+            setZeroToDB("Number_2ht");
+            setZeroToDB("Number_2hu");
+            setZeroToDB("Number_2low");
+            setZeroToDB("Number_3up");
+            setZeroToDB("Number_3low");
+
+            setEmptyWinNumber();
+        }
+        private void deleteInfoFromDB(string TableName)
+        {
+            SqlConnection connection = new SqlConnection(Database.CnnVal("LottoryDB"));
+            if (connection.State == ConnectionState.Closed)
+            {
+                connection.Open();
+            }
+            string sqldeleteInfo = string.Format("DELETE FROM {0}", TableName);
+            SqlCommand sqldeleteInfoCom = new SqlCommand(sqldeleteInfo, connection);
+            sqldeleteInfoCom.ExecuteNonQuery();
+            connection.Close();
+        }
+        private void setZeroToDB(string TableName)
+        {
+            SqlConnection connection = new SqlConnection(Database.CnnVal("LottoryDB"));
+            if (connection.State == ConnectionState.Closed)
+            {
+                connection.Open();
+            }
+            string sqldeleteInfo = string.Format("UPDATE {0} SET Price = 0, OutPrice = 0, OwnPrice = 0", TableName);
+            SqlCommand sqldeleteInfoCom = new SqlCommand(sqldeleteInfo, connection);
+            sqldeleteInfoCom.ExecuteNonQuery();
+            connection.Close();
+        }
+        private void setEmptyWinNumber()
+        {
+            SqlConnection connection = new SqlConnection(Database.CnnVal("LottoryDB"));
+            if (connection.State == ConnectionState.Closed)
+            {
+                connection.Open();
+            }
+            string sqldeleteInfo = "UPDATE WinNumber SET Number = NULL";
+            SqlCommand sqldeleteInfoCom = new SqlCommand(sqldeleteInfo, connection);
+            sqldeleteInfoCom.ExecuteNonQuery();
+            connection.Close();
+        }
         private void btCustomerAccount_Click(object sender, EventArgs e)
         {
-
+            CustomerInformation customerInfoForm = CustomerInformation.Instance;
+            customerInfoForm.MdiParent = this.MdiParent;
+            customerInfoForm.Show();
+            customerInfoForm.Activate();
         }
 
         private void btWinNumber_Click(object sender, EventArgs e)
         {
+            WinNumberSetting winnumberSettingForm = WinNumberSetting.Instance;
+            winnumberSettingForm.MdiParent = this.MdiParent;
+            winnumberSettingForm.Show();
+            winnumberSettingForm.Activate();
+        }
 
+        private void btSettingSystem_Click(object sender, EventArgs e)
+        {
+            Setting settingForm = Setting.Instance;
+            settingForm.MdiParent = this.MdiParent;
+            settingForm.Show();
+            settingForm.Activate();
         }
     }
 }

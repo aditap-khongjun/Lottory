@@ -191,6 +191,7 @@
             this.btSettingSystem.Text = "กำหนดค่าต่าง ๆ";
             this.btSettingSystem.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btSettingSystem.UseVisualStyleBackColor = true;
+            this.btSettingSystem.Click += new System.EventHandler(this.btSettingSystem_Click);
             // 
             // btNumberLimitSet
             // 

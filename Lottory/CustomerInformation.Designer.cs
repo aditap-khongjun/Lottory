@@ -107,7 +107,7 @@
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(234, 110);
+            this.groupBox1.Size = new System.Drawing.Size(279, 110);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "ข้อมูลลูกค้า";
@@ -116,14 +116,14 @@
             // 
             this.customerName.Location = new System.Drawing.Point(107, 67);
             this.customerName.Name = "customerName";
-            this.customerName.Size = new System.Drawing.Size(75, 29);
+            this.customerName.Size = new System.Drawing.Size(147, 29);
             this.customerName.TabIndex = 3;
             // 
             // customerID
             // 
             this.customerID.Location = new System.Drawing.Point(107, 32);
             this.customerID.Name = "customerID";
-            this.customerID.Size = new System.Drawing.Size(75, 29);
+            this.customerID.Size = new System.Drawing.Size(147, 29);
             this.customerID.TabIndex = 2;
             this.customerID.TextChanged += new System.EventHandler(this.customerID_Change);
             // 
@@ -164,7 +164,7 @@
             this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
             this.groupBox2.Location = new System.Drawing.Point(12, 128);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(234, 332);
+            this.groupBox2.Size = new System.Drawing.Size(279, 332);
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "จำกัดการเล่น";
@@ -173,7 +173,7 @@
             // 
             this.limit_1low.Location = new System.Drawing.Point(109, 272);
             this.limit_1low.Name = "limit_1low";
-            this.limit_1low.Size = new System.Drawing.Size(73, 29);
+            this.limit_1low.Size = new System.Drawing.Size(145, 29);
             this.limit_1low.TabIndex = 12;
             this.limit_1low.Text = "0";
             this.limit_1low.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -184,7 +184,7 @@
             // 
             this.limit_1up.Location = new System.Drawing.Point(109, 232);
             this.limit_1up.Name = "limit_1up";
-            this.limit_1up.Size = new System.Drawing.Size(73, 29);
+            this.limit_1up.Size = new System.Drawing.Size(145, 29);
             this.limit_1up.TabIndex = 11;
             this.limit_1up.Text = "0";
             this.limit_1up.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -195,7 +195,7 @@
             // 
             this.limit_2low.Location = new System.Drawing.Point(109, 192);
             this.limit_2low.Name = "limit_2low";
-            this.limit_2low.Size = new System.Drawing.Size(73, 29);
+            this.limit_2low.Size = new System.Drawing.Size(145, 29);
             this.limit_2low.TabIndex = 10;
             this.limit_2low.Text = "0";
             this.limit_2low.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -206,7 +206,7 @@
             // 
             this.limit_2up.Location = new System.Drawing.Point(109, 152);
             this.limit_2up.Name = "limit_2up";
-            this.limit_2up.Size = new System.Drawing.Size(73, 29);
+            this.limit_2up.Size = new System.Drawing.Size(145, 29);
             this.limit_2up.TabIndex = 9;
             this.limit_2up.Text = "0";
             this.limit_2up.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -217,7 +217,7 @@
             // 
             this.limit_3low.Location = new System.Drawing.Point(109, 112);
             this.limit_3low.Name = "limit_3low";
-            this.limit_3low.Size = new System.Drawing.Size(73, 29);
+            this.limit_3low.Size = new System.Drawing.Size(145, 29);
             this.limit_3low.TabIndex = 8;
             this.limit_3low.Text = "0";
             this.limit_3low.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -228,7 +228,7 @@
             // 
             this.limit_3up.Location = new System.Drawing.Point(109, 72);
             this.limit_3up.Name = "limit_3up";
-            this.limit_3up.Size = new System.Drawing.Size(73, 29);
+            this.limit_3up.Size = new System.Drawing.Size(145, 29);
             this.limit_3up.TabIndex = 7;
             this.limit_3up.Text = "0";
             this.limit_3up.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -239,7 +239,7 @@
             // 
             this.limit_3uptod.Location = new System.Drawing.Point(109, 32);
             this.limit_3uptod.Name = "limit_3uptod";
-            this.limit_3uptod.Size = new System.Drawing.Size(73, 29);
+            this.limit_3uptod.Size = new System.Drawing.Size(145, 29);
             this.limit_3uptod.TabIndex = 4;
             this.limit_3uptod.Text = "0";
             this.limit_3uptod.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -350,7 +350,7 @@
             this.groupBox3.Controls.Add(this.payRate_1up);
             this.groupBox3.Controls.Add(this.label10);
             this.groupBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.groupBox3.Location = new System.Drawing.Point(264, 12);
+            this.groupBox3.Location = new System.Drawing.Point(306, 12);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(313, 508);
             this.groupBox3.TabIndex = 2;
@@ -763,7 +763,7 @@
             this.Add.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
             this.Add.Location = new System.Drawing.Point(110, 554);
             this.Add.Name = "Add";
-            this.Add.Size = new System.Drawing.Size(97, 43);
+            this.Add.Size = new System.Drawing.Size(123, 43);
             this.Add.TabIndex = 4;
             this.Add.Text = "เพิ่ม";
             this.Add.UseVisualStyleBackColor = true;
@@ -773,9 +773,9 @@
             // 
             this.Delete.Enabled = false;
             this.Delete.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.Delete.Location = new System.Drawing.Point(213, 554);
+            this.Delete.Location = new System.Drawing.Point(239, 554);
             this.Delete.Name = "Delete";
-            this.Delete.Size = new System.Drawing.Size(97, 43);
+            this.Delete.Size = new System.Drawing.Size(113, 43);
             this.Delete.TabIndex = 5;
             this.Delete.Text = "ลบ";
             this.Delete.UseVisualStyleBackColor = true;
@@ -784,7 +784,7 @@
             // Change
             // 
             this.Change.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.Change.Location = new System.Drawing.Point(316, 554);
+            this.Change.Location = new System.Drawing.Point(358, 554);
             this.Change.Name = "Change";
             this.Change.Size = new System.Drawing.Size(118, 43);
             this.Change.TabIndex = 6;
@@ -795,7 +795,7 @@
             // toMain
             // 
             this.toMain.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.toMain.Location = new System.Drawing.Point(440, 554);
+            this.toMain.Location = new System.Drawing.Point(482, 554);
             this.toMain.Name = "toMain";
             this.toMain.Size = new System.Drawing.Size(137, 43);
             this.toMain.TabIndex = 7;
@@ -809,7 +809,7 @@
             this.initial_value.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
             this.initial_value.Location = new System.Drawing.Point(12, 472);
             this.initial_value.Name = "initial_value";
-            this.initial_value.Size = new System.Drawing.Size(234, 48);
+            this.initial_value.Size = new System.Drawing.Size(279, 48);
             this.initial_value.TabIndex = 50;
             this.initial_value.Text = "ค่าเริ่มต้น";
             this.initial_value.UseVisualStyleBackColor = false;
@@ -819,7 +819,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(611, 637);
+            this.ClientSize = new System.Drawing.Size(641, 637);
             this.Controls.Add(this.initial_value);
             this.Controls.Add(this.toMain);
             this.Controls.Add(this.Change);
