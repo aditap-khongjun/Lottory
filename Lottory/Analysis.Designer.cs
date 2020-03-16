@@ -119,6 +119,7 @@
             this.cbSelectAll.TabIndex = 11;
             this.cbSelectAll.Text = "เลือกทั้งหมด";
             this.cbSelectAll.UseVisualStyleBackColor = true;
+            this.cbSelectAll.CheckedChanged += new System.EventHandler(this.cbSelectAll_CheckedChanged);
             // 
             // btAnalyze
             // 
@@ -210,6 +211,7 @@
             // 
             this.tb1low2.Enabled = false;
             this.tb1low2.Location = new System.Drawing.Point(202, 376);
+            this.tb1low2.MaxLength = 1;
             this.tb1low2.Name = "tb1low2";
             this.tb1low2.Size = new System.Drawing.Size(71, 29);
             this.tb1low2.TabIndex = 7;
@@ -218,6 +220,7 @@
             // 
             this.tb1lowback.Enabled = false;
             this.tb1lowback.Location = new System.Drawing.Point(125, 444);
+            this.tb1lowback.MaxLength = 1;
             this.tb1lowback.Name = "tb1lowback";
             this.tb1lowback.Size = new System.Drawing.Size(71, 29);
             this.tb1lowback.TabIndex = 7;
@@ -226,6 +229,7 @@
             // 
             this.tb1lowfront.Enabled = false;
             this.tb1lowfront.Location = new System.Drawing.Point(125, 410);
+            this.tb1lowfront.MaxLength = 1;
             this.tb1lowfront.Name = "tb1lowfront";
             this.tb1lowfront.Size = new System.Drawing.Size(71, 29);
             this.tb1lowfront.TabIndex = 7;
@@ -234,6 +238,7 @@
             // 
             this.tb1low1.Enabled = false;
             this.tb1low1.Location = new System.Drawing.Point(125, 376);
+            this.tb1low1.MaxLength = 1;
             this.tb1low1.Name = "tb1low1";
             this.tb1low1.Size = new System.Drawing.Size(71, 29);
             this.tb1low1.TabIndex = 7;
@@ -253,6 +258,7 @@
             // 
             this.tb1back.Enabled = false;
             this.tb1back.Location = new System.Drawing.Point(125, 342);
+            this.tb1back.MaxLength = 1;
             this.tb1back.Name = "tb1back";
             this.tb1back.Size = new System.Drawing.Size(71, 29);
             this.tb1back.TabIndex = 7;
@@ -261,14 +267,17 @@
             // 
             this.tb1up3.Enabled = false;
             this.tb1up3.Location = new System.Drawing.Point(279, 240);
+            this.tb1up3.MaxLength = 1;
             this.tb1up3.Name = "tb1up3";
             this.tb1up3.Size = new System.Drawing.Size(71, 29);
             this.tb1up3.TabIndex = 7;
+            this.tb1up3.TextChanged += new System.EventHandler(this.tb1up_TextChanged);
             // 
             // tb1center
             // 
             this.tb1center.Enabled = false;
             this.tb1center.Location = new System.Drawing.Point(125, 308);
+            this.tb1center.MaxLength = 1;
             this.tb1center.Name = "tb1center";
             this.tb1center.Size = new System.Drawing.Size(71, 29);
             this.tb1center.TabIndex = 7;
@@ -277,6 +286,7 @@
             // 
             this.tb1front.Enabled = false;
             this.tb1front.Location = new System.Drawing.Point(125, 274);
+            this.tb1front.MaxLength = 1;
             this.tb1front.Name = "tb1front";
             this.tb1front.Size = new System.Drawing.Size(71, 29);
             this.tb1front.TabIndex = 7;
@@ -285,17 +295,21 @@
             // 
             this.tb1up2.Enabled = false;
             this.tb1up2.Location = new System.Drawing.Point(202, 240);
+            this.tb1up2.MaxLength = 1;
             this.tb1up2.Name = "tb1up2";
             this.tb1up2.Size = new System.Drawing.Size(71, 29);
             this.tb1up2.TabIndex = 7;
+            this.tb1up2.TextChanged += new System.EventHandler(this.tb1up_TextChanged);
             // 
             // tb1up1
             // 
             this.tb1up1.Enabled = false;
             this.tb1up1.Location = new System.Drawing.Point(125, 240);
+            this.tb1up1.MaxLength = 1;
             this.tb1up1.Name = "tb1up1";
             this.tb1up1.Size = new System.Drawing.Size(71, 29);
             this.tb1up1.TabIndex = 7;
+            this.tb1up1.TextChanged += new System.EventHandler(this.tb1up_TextChanged);
             // 
             // cb2ht
             // 
@@ -312,6 +326,7 @@
             // 
             this.tb2hu.Enabled = false;
             this.tb2hu.Location = new System.Drawing.Point(125, 206);
+            this.tb2hu.MaxLength = 2;
             this.tb2hu.Name = "tb2hu";
             this.tb2hu.Size = new System.Drawing.Size(71, 29);
             this.tb2hu.TabIndex = 7;
@@ -331,6 +346,7 @@
             // 
             this.tb2ht.Enabled = false;
             this.tb2ht.Location = new System.Drawing.Point(125, 172);
+            this.tb2ht.MaxLength = 2;
             this.tb2ht.Name = "tb2ht";
             this.tb2ht.Size = new System.Drawing.Size(71, 29);
             this.tb2ht.TabIndex = 7;
@@ -339,6 +355,7 @@
             // 
             this.tb2up.Enabled = false;
             this.tb2up.Location = new System.Drawing.Point(125, 138);
+            this.tb2up.MaxLength = 2;
             this.tb2up.Name = "tb2up";
             this.tb2up.Size = new System.Drawing.Size(71, 29);
             this.tb2up.TabIndex = 7;
@@ -347,6 +364,7 @@
             // 
             this.tb2low.Enabled = false;
             this.tb2low.Location = new System.Drawing.Point(125, 104);
+            this.tb2low.MaxLength = 2;
             this.tb2low.Name = "tb2low";
             this.tb2low.Size = new System.Drawing.Size(71, 29);
             this.tb2low.TabIndex = 7;
@@ -366,33 +384,41 @@
             // 
             this.tb3low4.Enabled = false;
             this.tb3low4.Location = new System.Drawing.Point(356, 71);
+            this.tb3low4.MaxLength = 3;
             this.tb3low4.Name = "tb3low4";
             this.tb3low4.Size = new System.Drawing.Size(71, 29);
             this.tb3low4.TabIndex = 5;
+            this.tb3low4.TextChanged += new System.EventHandler(this.tb3low_TextChanged);
             // 
             // tb3low3
             // 
             this.tb3low3.Enabled = false;
             this.tb3low3.Location = new System.Drawing.Point(279, 71);
+            this.tb3low3.MaxLength = 3;
             this.tb3low3.Name = "tb3low3";
             this.tb3low3.Size = new System.Drawing.Size(71, 29);
             this.tb3low3.TabIndex = 4;
+            this.tb3low3.TextChanged += new System.EventHandler(this.tb3low_TextChanged);
             // 
             // tb3low2
             // 
             this.tb3low2.Enabled = false;
             this.tb3low2.Location = new System.Drawing.Point(202, 71);
+            this.tb3low2.MaxLength = 3;
             this.tb3low2.Name = "tb3low2";
             this.tb3low2.Size = new System.Drawing.Size(71, 29);
             this.tb3low2.TabIndex = 4;
+            this.tb3low2.TextChanged += new System.EventHandler(this.tb3low_TextChanged);
             // 
             // tb3low1
             // 
             this.tb3low1.Enabled = false;
             this.tb3low1.Location = new System.Drawing.Point(125, 70);
+            this.tb3low1.MaxLength = 3;
             this.tb3low1.Name = "tb3low1";
             this.tb3low1.Size = new System.Drawing.Size(71, 29);
             this.tb3low1.TabIndex = 3;
+            this.tb3low1.TextChanged += new System.EventHandler(this.tb3low_TextChanged);
             // 
             // cb3low
             // 
@@ -409,9 +435,11 @@
             // 
             this.tb3up.Enabled = false;
             this.tb3up.Location = new System.Drawing.Point(125, 36);
+            this.tb3up.MaxLength = 3;
             this.tb3up.Name = "tb3up";
             this.tb3up.Size = new System.Drawing.Size(71, 29);
             this.tb3up.TabIndex = 1;
+            this.tb3up.TextChanged += new System.EventHandler(this.tb3up_TextChanged);
             // 
             // cb3up
             // 
