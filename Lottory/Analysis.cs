@@ -7,287 +7,235 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Data.SqlClient;
 
 namespace Lottory
 {
     public partial class Analysis : Form
     {
+        private static Analysis _instance;
+        public static Analysis Instance
+        {
+            get
+            {
+                if (_instance == null)
+                    _instance = new Analysis();
+                return _instance;
+            }
+        }
         public Analysis()
         {
             InitializeComponent();
+            this.ActiveControl = tbMoney;
+
+            dgvResult.CellFormatting += new DataGridViewCellFormattingEventHandler(dgvResult_CellFormatting);
         }
 
-        private void cb3up_CheckedChanged(object sender, EventArgs e)
+        private void dgvResult_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
-            // Enable
-            tb3up.Enabled = cb3up.Checked;
-
-            if(!cb3up.Checked)
-            {
-                cbSelectAll.Checked = false;
-            }
-        }
-
-        private void cb3low_CheckedChanged(object sender, EventArgs e)
-        {
-            // Enable
-            tb3low1.Enabled = cb3low.Checked;
-            tb3low2.Enabled = cb3low.Checked;
-            tb3low3.Enabled = cb3low.Checked;
-            tb3low4.Enabled = cb3low.Checked;
-
-            if (!cb3low.Checked)
-            {
-                cbSelectAll.Checked = false;
-            }
-        }
-
-        private void cb2low_CheckedChanged(object sender, EventArgs e)
-        {
-            // Enable
-            tb2low.Enabled = cb2low.Checked;
-
-            if (!cb2low.Checked)
-            {
-                cbSelectAll.Checked = false;
-            }
-        }
-
-        private void cb2up_CheckedChanged(object sender, EventArgs e)
-        {
-            // Enable
-            tb2up.Enabled = cb2up.Checked;
-
-            if (!cb2up.Checked)
-            {
-                cbSelectAll.Checked = false;
-            }
-        }
-
-        private void cb2ht_CheckedChanged(object sender, EventArgs e)
-        {
-            // Enable
-            tb2ht.Enabled = cb2ht.Checked;
-
-            if (!cb2ht.Checked)
-            {
-                cbSelectAll.Checked = false;
-            }
-        }
-
-        private void cb2hu_CheckedChanged(object sender, EventArgs e)
-        {
-            // Enable
-            tb2hu.Enabled = cb2hu.Checked;
-
-            if (!cb2hu.Checked)
-            {
-                cbSelectAll.Checked = false;
-            }
-        }
-
-        private void cb1up_CheckedChanged(object sender, EventArgs e)
-        {
-            tb1up1.Enabled = cb1up.Checked;
-            tb1up2.Enabled = cb1up.Checked;
-            tb1up3.Enabled = cb1up.Checked;
-
-            if (!cb1up.Checked)
-            {
-                cbSelectAll.Checked = false;
-            }
-        }
-
-        private void cb1front_CheckedChanged(object sender, EventArgs e)
-        {
-            tb1front.Enabled = cb1front.Checked;
-
-            if (!cb1front.Checked)
-            {
-                cbSelectAll.Checked = false;
-            }
-        }
-
-        private void cb1center_CheckedChanged(object sender, EventArgs e)
-        {
-            tb1center.Enabled = cb1center.Checked;
-
-            if (!cb1center.Checked)
-            {
-                cbSelectAll.Checked = false;
-            }
-        }
-
-        private void cb1back_CheckedChanged(object sender, EventArgs e)
-        {
-            tb1back.Enabled = cb1back.Checked;
-
-            if (!cb1back.Checked)
-            {
-                cbSelectAll.Checked = false;
-            }
-        }
-
-        private void cb1low_CheckedChanged(object sender, EventArgs e)
-        {
-            tb1low1.Enabled = cb1low.Checked;
-            tb1low2.Enabled = cb1low.Checked;
-
-            if (!cb1low.Checked)
-            {
-                cbSelectAll.Checked = false;
-            }
-        }
-
-        private void cb1lowfront_CheckedChanged(object sender, EventArgs e)
-        {
-            tb1lowfront.Enabled = cb1lowfront.Checked;
-
-            if (!cb1lowfront.Checked)
-            {
-                cbSelectAll.Checked = false;
-            }
-        }
-
-        private void cb1lowback_CheckedChanged(object sender, EventArgs e)
-        {
-            tb1lowback.Enabled = cb1lowback.Checked;
-
-            if (!cb1lowback.Checked)
-            {
-                cbSelectAll.Checked = false;
-            }
-        }
-
-        private void cbSelectAll_CheckedChanged(object sender, EventArgs e)
-        {
-            if (cbSelectAll.Checked)
-            {
-                cb3up.Checked = cbSelectAll.Checked;
-                cb3low.Checked = cbSelectAll.Checked;
-                cb2low.Checked = cbSelectAll.Checked;
-                cb2up.Checked = cbSelectAll.Checked;
-                cb2ht.Checked = cbSelectAll.Checked;
-                cb2hu.Checked = cbSelectAll.Checked;
-                cb1up.Checked = cbSelectAll.Checked;
-                cb1front.Checked = cbSelectAll.Checked;
-                cb1center.Checked = cbSelectAll.Checked;
-                cb1back.Checked = cbSelectAll.Checked;
-                cb1low.Checked = cbSelectAll.Checked;
-                cb1lowfront.Checked = cbSelectAll.Checked;
-                cb1lowback.Checked = cbSelectAll.Checked;
-            }
-
-        }
-
-        private void tb3up_TextChanged(object sender, EventArgs e)
-        {
-            switch(tb3up.Text.Length)
-            {
-                case 3:
-                    setRelativeText3up();
-                    break;
-                case 0:
-                    // clear
-                    clearRelativeText3up();
-                    break;
-
-            }
-        }
-        private void setRelativeText3up()
-        {
-            // for 1
-            tb1front.Text = tb3up.Text.Substring(0, 1);
-            tb1center.Text = tb3up.Text.Substring(1, 1);
-            tb1back.Text = tb3up.Text.Substring(2, 1);
-
-            tb1up1.Text = tb1front.Text;
-            tb1up2.Text = tb1center.Text;
-            tb1up3.Text = tb1back.Text;
-
-            // for 2
-            tb2up.Text = tb3up.Text.Substring(1, 2);
-
-            // for ht
-            tb2ht.Text = tb3up.Text.Substring(0, 2);
-
-            // for hu
-            tb2hu.Text = tb3up.Text.Substring(0, 1) + tb3up.Text.Substring(2, 1);
-        }
-        private void clearRelativeText3up()
-        {
-            // for 1
-            tb1front.Text = string.Empty;
-            tb1center.Text = string.Empty;
-            tb1back.Text = string.Empty;
-
-            tb1up1.Text = string.Empty;
-            tb1up2.Text = string.Empty;
-            tb1up3.Text = string.Empty;
-
-            // for 2
-            tb2up.Text = string.Empty;
-
-            // for ht
-            tb2ht.Text = string.Empty;
-
-            // for hu
-            tb2hu.Text = string.Empty;
-        }
-
-        private void tb3low_TextChanged(object sender, EventArgs e)
-        {
-            TextBox tb3low = (TextBox)sender;
-            switch(tb3low.Text.Length)
-            {
-                case 3:
-                    switch (tb3low.Name)
-                    {
-                        case "tb3low1":
-                            tb3low2.Focus();
-                            tb3low2.SelectAll();
-                            break;
-                        case "tb3low2":
-                            tb3low3.Focus();
-                            tb3low3.SelectAll();
-                            break;
-                        case "tb3low3":
-                            tb3low4.Focus();
-                            tb3low4.SelectAll();
-                            break;
-                        case "tb3low4":
-                            tb3low1.Focus();
-                            tb3low1.SelectAll();
-                            break;
-                    }
-                    break;
-            }
-
-        }
-
-        private void tb1up_TextChanged(object sender, EventArgs e)
-        {
-            TextBox tb1up = (TextBox)sender;
-            switch (tb1up.Text.Length)
+            //DataGridView dgv = (DataGridView)sender;
+            //e.CellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            switch(e.ColumnIndex)
             {
                 case 1:
-                    switch (tb1up.Name)
-                    {
-                        case "tb1up1":
-                            tb1up2.Focus();
-                            tb1up2.SelectAll();
-                            break;
-                        case "tb1up2":
-                            tb1up3.Focus();
-                            tb1up3.SelectAll();
-                            break;
-                        case "tb1up3":
-                            tb1up1.Focus();
-                            tb1up1.SelectAll();
-                            break;
-                    }
+                case 3:
+                case 5:
+                case 7:
+                    e.CellStyle.ForeColor = Color.Red;
                     break;
             }
         }
+
+        private void Analysis_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            _instance = null;
+        }
+
+        private void btAnalyze_Click(object sender, EventArgs e)
+        {
+            //MessageBox.Show("Analysis");
+            Fcn_Analysis();
+        }
+
+        private void Analysis_Load(object sender, EventArgs e)
+        {
+            tbMoney.Focus();
+
+            //dgvResult.DataSource = findNumber();
+        }
+
+        private void tbMoney_KeyDown(object sender, KeyEventArgs e)
+        {
+            switch(e.KeyCode)
+            {
+                case Keys.PageDown:
+                    btAnalyze.Focus();
+                    break;
+                case Keys.Enter:
+                    //MessageBox.Show("Analysis");
+                    Fcn_Analysis();
+                    break;
+            }
+        }
+
+        private void btAnalyze_KeyDown(object sender, KeyEventArgs e)
+        {
+            switch (e.KeyCode)
+            {
+                case Keys.PageUp:
+                    tbMoney.Focus();
+                    break;
+            }
+
+        }
+        private void Fcn_Analysis()
+        {
+            dgvResult.Rows.Clear();
+            dgvResult.Refresh();
+            DataTable resultTb = findNumber();
+            foreach(DataRow row in resultTb.Rows)
+            {
+                string number3up = row["Number3up"].ToString();
+                string pay3up = Convert.ToDouble(row["Pay3up"]).ToString("N0");
+                string number2up = row["Number2up"].ToString();
+                string pay2up = Convert.ToDouble(row["Pay2up"]).ToString("N0");
+                string number1up = row["Number1up"].ToString();
+                string pay1up = Convert.ToDouble(row["Pay1up"]).ToString("N0");
+                string inHand = Convert.ToDouble(row["InHand"]).ToString("N0");
+                string netPay = Convert.ToDouble(row["Net"]).ToString("N0");
+                dgvResult.Rows.Add(number3up, pay3up, number2up, pay2up, number1up, pay1up, inHand, netPay);
+            }
+            // show first Row
+            double lb_pay3up = Convert.ToDouble(resultTb.Rows[0]["Pay3up"]);
+            double lb_pay2up = Convert.ToDouble(resultTb.Rows[0]["Pay2up"]);
+            lbNumber3up.Text = resultTb.Rows[0]["Number3up"].ToString();
+            lbpay3up.Text = lb_pay3up.ToString("N0");
+            lbNumber2up.Text = resultTb.Rows[0]["Number2up"].ToString();
+            lbpay2up.Text = lb_pay2up.ToString("N0");
+            lbNetPay.Text = Convert.ToDouble(resultTb.Rows[0]["Net"]).ToString("N0");
+
+            if(lb_pay3up > lb_pay2up)
+            {
+                lbpay3up.ForeColor = Color.Red;
+            }
+            else if(lb_pay2up > lb_pay3up)
+            {
+                lbpay2up.ForeColor = Color.Red;
+            }
+            
+        }
+        private DataTable findNumber()
+        {
+            DataTable tbOut = new DataTable();
+            tbOut.Columns.Add("Number3up");
+            tbOut.Columns.Add("Pay3up");
+            tbOut.Columns.Add("Number2up");
+            tbOut.Columns.Add("Pay2up");
+            tbOut.Columns.Add("Number1up");
+            tbOut.Columns.Add("Pay1up");
+            tbOut.Columns.Add("InHand");
+            tbOut.Columns.Add("Net");
+            tbOut.Columns["Net"].DataType = typeof(Double);
+
+            // query from DB
+            SqlConnection connection = new SqlConnection(Database.CnnVal("LottoryDB"));
+
+            if (connection.State == ConnectionState.Closed)
+            {
+                connection.Open(); // Open Database
+            }
+            string getNumber3up = string.Format(@"SELECT DISTINCT Number, SUM(Price) AS Price 
+                                                  FROM OrderListExpand
+                                                  WHERE TypeID = {0}
+                                                  GROUP BY Number",BaseTypeID.up3);
+            SqlCommand getNumber3upCom = new SqlCommand(getNumber3up, connection);
+            SqlDataReader number3upInfo = getNumber3upCom.ExecuteReader();
+            while(number3upInfo.Read())
+            {
+                string number3up = number3upInfo["Number"].ToString();
+                double price3up = Convert.ToDouble(number3upInfo["Price"]);
+
+                // query number 2up
+                string number2up = number3up.Substring(1, 2);
+
+                SqlConnection connection2up = new SqlConnection(Database.CnnVal("LottoryDB"));
+                if(connection2up.State == ConnectionState.Closed)
+                {
+                    connection2up.Open();
+                }
+                string getNumber2up = string.Format(@"SELECT DISTINCT SUM(Price) AS Price
+                                                      FROM OrderListExpand
+                                                      WHERE TypeID = {0} AND Number = '{1}'
+                                                      GROUP BY Number", BaseTypeID.up2, number2up);
+                SqlCommand getNumber2upCom = new SqlCommand(getNumber2up, connection2up);
+                SqlDataReader number2upInfo = getNumber2upCom.ExecuteReader();
+                double price2up = 0;
+                while (number2upInfo.Read())
+                {
+                    price2up = Convert.ToDouble(number2upInfo["Price"]);
+                }
+                connection2up.Close();
+
+                // query number 1up
+                string number1up1 = number3up.Substring(0, 1);
+                string number1up2 = number3up.Substring(1, 1);
+                string number1up3 = number3up.Substring(2, 1);
+                SqlConnection connection1up = new SqlConnection(Database.CnnVal("LottoryDB"));
+                if(connection1up.State == ConnectionState.Closed)
+                {
+                    connection1up.Open();
+                }
+                string getNumber1up = string.Format(@"SELECT DISTINCT SUM(Price) AS Price
+                                                      FROM OrderListExpand
+                                                      WHERE TypeID = {0} AND (Number = '{1}' OR Number = '{2}' OR Number = '{3}')
+                                                     ", BaseTypeID.up1, number1up1, number1up2, number1up3);
+                SqlCommand getNumber1upCom = new SqlCommand(getNumber1up, connection1up);
+                SqlDataReader number1upInfo = getNumber1upCom.ExecuteReader();
+                double price1up = 0;
+                while (number1upInfo.Read())
+                {
+                    price1up = Convert.ToDouble(number1upInfo["Price"]);
+                }
+                connection1up.Close();
+                double inHandPrice = getMoneyInHand();
+                double netPrice = (price3up * 550) + (price2up * 70) + (price1up * 3) - inHandPrice;
+
+
+                if(netPrice > Convert.ToDouble(tbMoney.Text))
+                {
+                    // Add to Table
+                    tbOut.Rows.Add(number3up, price3up * 550, number2up, price2up * 70, string.Format("{0},{1},{2}", number1up1, number1up2, number1up3), price1up * 3, inHandPrice, netPrice);
+                }
+            }
+            connection.Close();
+
+            tbOut.DefaultView.Sort = "Net DESC";
+            tbOut = tbOut.DefaultView.ToTable();
+
+            return tbOut; 
+        }
+
+        private double getMoneyInHand()
+        {
+            // query from DB
+            SqlConnection connection = new SqlConnection(Database.CnnVal("LottoryDB"));
+
+            if (connection.State == ConnectionState.Closed)
+            {
+                connection.Open(); // Open Database
+            }
+            string getNetInHand = string.Format("SELECT SUM(OwnPrice - DiscPrice) AS Price FROM OrderListExpand");
+            SqlCommand getNetInHandCom = new SqlCommand(getNetInHand, connection);
+            SqlDataReader netInHandInfo = getNetInHandCom.ExecuteReader();
+            double moneyOut = 0;
+            while(netInHandInfo.Read())
+            {
+                moneyOut = Convert.ToDouble(netInHandInfo["Price"]);
+            }
+            connection.Close();
+
+            return moneyOut;
+        }
+
     }
 }

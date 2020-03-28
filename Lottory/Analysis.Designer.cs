@@ -28,480 +28,329 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.cbSelectAll = new System.Windows.Forms.CheckBox();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.btAnalyze = new System.Windows.Forms.Button();
-            this.cb1lowback = new System.Windows.Forms.CheckBox();
-            this.cb1lowfront = new System.Windows.Forms.CheckBox();
-            this.cb1low = new System.Windows.Forms.CheckBox();
-            this.cb1back = new System.Windows.Forms.CheckBox();
-            this.cb1center = new System.Windows.Forms.CheckBox();
-            this.cb1front = new System.Windows.Forms.CheckBox();
-            this.cb1up = new System.Windows.Forms.CheckBox();
-            this.tb1low2 = new System.Windows.Forms.TextBox();
-            this.tb1lowback = new System.Windows.Forms.TextBox();
-            this.tb1lowfront = new System.Windows.Forms.TextBox();
-            this.tb1low1 = new System.Windows.Forms.TextBox();
-            this.cb2hu = new System.Windows.Forms.CheckBox();
-            this.tb1back = new System.Windows.Forms.TextBox();
-            this.tb1up3 = new System.Windows.Forms.TextBox();
-            this.tb1center = new System.Windows.Forms.TextBox();
-            this.tb1front = new System.Windows.Forms.TextBox();
-            this.tb1up2 = new System.Windows.Forms.TextBox();
-            this.tb1up1 = new System.Windows.Forms.TextBox();
-            this.cb2ht = new System.Windows.Forms.CheckBox();
-            this.tb2hu = new System.Windows.Forms.TextBox();
-            this.cb2up = new System.Windows.Forms.CheckBox();
-            this.tb2ht = new System.Windows.Forms.TextBox();
-            this.tb2up = new System.Windows.Forms.TextBox();
-            this.tb2low = new System.Windows.Forms.TextBox();
-            this.cb2low = new System.Windows.Forms.CheckBox();
-            this.tb3low4 = new System.Windows.Forms.TextBox();
-            this.tb3low3 = new System.Windows.Forms.TextBox();
-            this.tb3low2 = new System.Windows.Forms.TextBox();
-            this.tb3low1 = new System.Windows.Forms.TextBox();
-            this.cb3low = new System.Windows.Forms.CheckBox();
-            this.tb3up = new System.Windows.Forms.TextBox();
-            this.cb3up = new System.Windows.Forms.CheckBox();
+            this.tbMoney = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.dgvResult = new System.Windows.Forms.DataGridView();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.label3 = new System.Windows.Forms.Label();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.lbNumber2up = new System.Windows.Forms.Label();
+            this.lbNetPay = new System.Windows.Forms.Label();
+            this.lbNumber3up = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.lbpay3up = new System.Windows.Forms.Label();
+            this.lbpay2up = new System.Windows.Forms.Label();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvResult)).BeginInit();
             this.groupBox1.SuspendLayout();
+            this.groupBox2.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.cbSelectAll);
-            this.groupBox1.Controls.Add(this.btAnalyze);
-            this.groupBox1.Controls.Add(this.cb1lowback);
-            this.groupBox1.Controls.Add(this.cb1lowfront);
-            this.groupBox1.Controls.Add(this.cb1low);
-            this.groupBox1.Controls.Add(this.cb1back);
-            this.groupBox1.Controls.Add(this.cb1center);
-            this.groupBox1.Controls.Add(this.cb1front);
-            this.groupBox1.Controls.Add(this.cb1up);
-            this.groupBox1.Controls.Add(this.tb1low2);
-            this.groupBox1.Controls.Add(this.tb1lowback);
-            this.groupBox1.Controls.Add(this.tb1lowfront);
-            this.groupBox1.Controls.Add(this.tb1low1);
-            this.groupBox1.Controls.Add(this.cb2hu);
-            this.groupBox1.Controls.Add(this.tb1back);
-            this.groupBox1.Controls.Add(this.tb1up3);
-            this.groupBox1.Controls.Add(this.tb1center);
-            this.groupBox1.Controls.Add(this.tb1front);
-            this.groupBox1.Controls.Add(this.tb1up2);
-            this.groupBox1.Controls.Add(this.tb1up1);
-            this.groupBox1.Controls.Add(this.cb2ht);
-            this.groupBox1.Controls.Add(this.tb2hu);
-            this.groupBox1.Controls.Add(this.cb2up);
-            this.groupBox1.Controls.Add(this.tb2ht);
-            this.groupBox1.Controls.Add(this.tb2up);
-            this.groupBox1.Controls.Add(this.tb2low);
-            this.groupBox1.Controls.Add(this.cb2low);
-            this.groupBox1.Controls.Add(this.tb3low4);
-            this.groupBox1.Controls.Add(this.tb3low3);
-            this.groupBox1.Controls.Add(this.tb3low2);
-            this.groupBox1.Controls.Add(this.tb3low1);
-            this.groupBox1.Controls.Add(this.cb3low);
-            this.groupBox1.Controls.Add(this.tb3up);
-            this.groupBox1.Controls.Add(this.cb3up);
-            this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.groupBox1.Location = new System.Drawing.Point(12, 12);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(459, 563);
-            this.groupBox1.TabIndex = 0;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "วิเคราะห์ความเสี่ยง";
-            // 
-            // cbSelectAll
-            // 
-            this.cbSelectAll.AutoSize = true;
-            this.cbSelectAll.Location = new System.Drawing.Point(125, 504);
-            this.cbSelectAll.Name = "cbSelectAll";
-            this.cbSelectAll.Size = new System.Drawing.Size(115, 28);
-            this.cbSelectAll.TabIndex = 11;
-            this.cbSelectAll.Text = "เลือกทั้งหมด";
-            this.cbSelectAll.UseVisualStyleBackColor = true;
-            this.cbSelectAll.CheckedChanged += new System.EventHandler(this.cbSelectAll_CheckedChanged);
             // 
             // btAnalyze
             // 
-            this.btAnalyze.Location = new System.Drawing.Point(269, 494);
+            this.btAnalyze.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.btAnalyze.Location = new System.Drawing.Point(98, 70);
+            this.btAnalyze.Margin = new System.Windows.Forms.Padding(6);
             this.btAnalyze.Name = "btAnalyze";
-            this.btAnalyze.Size = new System.Drawing.Size(172, 47);
-            this.btAnalyze.TabIndex = 10;
+            this.btAnalyze.Size = new System.Drawing.Size(119, 42);
+            this.btAnalyze.TabIndex = 0;
             this.btAnalyze.Text = "วิเคราะห์";
             this.btAnalyze.UseVisualStyleBackColor = true;
+            this.btAnalyze.Click += new System.EventHandler(this.btAnalyze_Click);
+            this.btAnalyze.KeyDown += new System.Windows.Forms.KeyEventHandler(this.btAnalyze_KeyDown);
+            // 
+            // tbMoney
             // 
-            // cb1lowback
-            // 
-            this.cb1lowback.AutoSize = true;
-            this.cb1lowback.Location = new System.Drawing.Point(15, 446);
-            this.cb1lowback.Name = "cb1lowback";
-            this.cb1lowback.Size = new System.Drawing.Size(96, 28);
-            this.cb1lowback.TabIndex = 9;
-            this.cb1lowback.Text = "1 ล่างหลัง";
-            this.cb1lowback.UseVisualStyleBackColor = true;
-            this.cb1lowback.CheckedChanged += new System.EventHandler(this.cb1lowback_CheckedChanged);
-            // 
-            // cb1lowfront
-            // 
-            this.cb1lowfront.AutoSize = true;
-            this.cb1lowfront.Location = new System.Drawing.Point(15, 412);
-            this.cb1lowfront.Name = "cb1lowfront";
-            this.cb1lowfront.Size = new System.Drawing.Size(101, 28);
-            this.cb1lowfront.TabIndex = 9;
-            this.cb1lowfront.Text = "1 ล่างหน้า";
-            this.cb1lowfront.UseVisualStyleBackColor = true;
-            this.cb1lowfront.CheckedChanged += new System.EventHandler(this.cb1lowfront_CheckedChanged);
-            // 
-            // cb1low
-            // 
-            this.cb1low.AutoSize = true;
-            this.cb1low.Location = new System.Drawing.Point(15, 378);
-            this.cb1low.Name = "cb1low";
-            this.cb1low.Size = new System.Drawing.Size(68, 28);
-            this.cb1low.TabIndex = 9;
-            this.cb1low.Text = "1 ล่าง";
-            this.cb1low.UseVisualStyleBackColor = true;
-            this.cb1low.CheckedChanged += new System.EventHandler(this.cb1low_CheckedChanged);
-            // 
-            // cb1back
-            // 
-            this.cb1back.AutoSize = true;
-            this.cb1back.Location = new System.Drawing.Point(15, 344);
-            this.cb1back.Name = "cb1back";
-            this.cb1back.Size = new System.Drawing.Size(72, 28);
-            this.cb1back.TabIndex = 9;
-            this.cb1back.Text = "1 หลัง";
-            this.cb1back.UseVisualStyleBackColor = true;
-            this.cb1back.CheckedChanged += new System.EventHandler(this.cb1back_CheckedChanged);
-            // 
-            // cb1center
-            // 
-            this.cb1center.AutoSize = true;
-            this.cb1center.Location = new System.Drawing.Point(15, 310);
-            this.cb1center.Name = "cb1center";
-            this.cb1center.Size = new System.Drawing.Size(78, 28);
-            this.cb1center.TabIndex = 9;
-            this.cb1center.Text = "1 กลาง";
-            this.cb1center.UseVisualStyleBackColor = true;
-            this.cb1center.CheckedChanged += new System.EventHandler(this.cb1center_CheckedChanged);
-            // 
-            // cb1front
-            // 
-            this.cb1front.AutoSize = true;
-            this.cb1front.Location = new System.Drawing.Point(15, 276);
-            this.cb1front.Name = "cb1front";
-            this.cb1front.Size = new System.Drawing.Size(77, 28);
-            this.cb1front.TabIndex = 9;
-            this.cb1front.Text = "1 หน้า";
-            this.cb1front.UseVisualStyleBackColor = true;
-            this.cb1front.CheckedChanged += new System.EventHandler(this.cb1front_CheckedChanged);
-            // 
-            // cb1up
-            // 
-            this.cb1up.AutoSize = true;
-            this.cb1up.Location = new System.Drawing.Point(15, 242);
-            this.cb1up.Name = "cb1up";
-            this.cb1up.Size = new System.Drawing.Size(68, 28);
-            this.cb1up.TabIndex = 9;
-            this.cb1up.Text = "1 บน";
-            this.cb1up.UseVisualStyleBackColor = true;
-            this.cb1up.CheckedChanged += new System.EventHandler(this.cb1up_CheckedChanged);
-            // 
-            // tb1low2
-            // 
-            this.tb1low2.Enabled = false;
-            this.tb1low2.Location = new System.Drawing.Point(202, 376);
-            this.tb1low2.MaxLength = 1;
-            this.tb1low2.Name = "tb1low2";
-            this.tb1low2.Size = new System.Drawing.Size(71, 29);
-            this.tb1low2.TabIndex = 7;
-            // 
-            // tb1lowback
-            // 
-            this.tb1lowback.Enabled = false;
-            this.tb1lowback.Location = new System.Drawing.Point(125, 444);
-            this.tb1lowback.MaxLength = 1;
-            this.tb1lowback.Name = "tb1lowback";
-            this.tb1lowback.Size = new System.Drawing.Size(71, 29);
-            this.tb1lowback.TabIndex = 7;
-            // 
-            // tb1lowfront
-            // 
-            this.tb1lowfront.Enabled = false;
-            this.tb1lowfront.Location = new System.Drawing.Point(125, 410);
-            this.tb1lowfront.MaxLength = 1;
-            this.tb1lowfront.Name = "tb1lowfront";
-            this.tb1lowfront.Size = new System.Drawing.Size(71, 29);
-            this.tb1lowfront.TabIndex = 7;
-            // 
-            // tb1low1
-            // 
-            this.tb1low1.Enabled = false;
-            this.tb1low1.Location = new System.Drawing.Point(125, 376);
-            this.tb1low1.MaxLength = 1;
-            this.tb1low1.Name = "tb1low1";
-            this.tb1low1.Size = new System.Drawing.Size(71, 29);
-            this.tb1low1.TabIndex = 7;
-            // 
-            // cb2hu
-            // 
-            this.cb2hu.AutoSize = true;
-            this.cb2hu.Location = new System.Drawing.Point(15, 208);
-            this.cb2hu.Name = "cb2hu";
-            this.cb2hu.Size = new System.Drawing.Size(99, 28);
-            this.cb2hu.TabIndex = 9;
-            this.cb2hu.Text = "ร้อยหน่วย";
-            this.cb2hu.UseVisualStyleBackColor = true;
-            this.cb2hu.CheckedChanged += new System.EventHandler(this.cb2hu_CheckedChanged);
-            // 
-            // tb1back
-            // 
-            this.tb1back.Enabled = false;
-            this.tb1back.Location = new System.Drawing.Point(125, 342);
-            this.tb1back.MaxLength = 1;
-            this.tb1back.Name = "tb1back";
-            this.tb1back.Size = new System.Drawing.Size(71, 29);
-            this.tb1back.TabIndex = 7;
-            // 
-            // tb1up3
-            // 
-            this.tb1up3.Enabled = false;
-            this.tb1up3.Location = new System.Drawing.Point(279, 240);
-            this.tb1up3.MaxLength = 1;
-            this.tb1up3.Name = "tb1up3";
-            this.tb1up3.Size = new System.Drawing.Size(71, 29);
-            this.tb1up3.TabIndex = 7;
-            this.tb1up3.TextChanged += new System.EventHandler(this.tb1up_TextChanged);
-            // 
-            // tb1center
-            // 
-            this.tb1center.Enabled = false;
-            this.tb1center.Location = new System.Drawing.Point(125, 308);
-            this.tb1center.MaxLength = 1;
-            this.tb1center.Name = "tb1center";
-            this.tb1center.Size = new System.Drawing.Size(71, 29);
-            this.tb1center.TabIndex = 7;
-            // 
-            // tb1front
-            // 
-            this.tb1front.Enabled = false;
-            this.tb1front.Location = new System.Drawing.Point(125, 274);
-            this.tb1front.MaxLength = 1;
-            this.tb1front.Name = "tb1front";
-            this.tb1front.Size = new System.Drawing.Size(71, 29);
-            this.tb1front.TabIndex = 7;
-            // 
-            // tb1up2
-            // 
-            this.tb1up2.Enabled = false;
-            this.tb1up2.Location = new System.Drawing.Point(202, 240);
-            this.tb1up2.MaxLength = 1;
-            this.tb1up2.Name = "tb1up2";
-            this.tb1up2.Size = new System.Drawing.Size(71, 29);
-            this.tb1up2.TabIndex = 7;
-            this.tb1up2.TextChanged += new System.EventHandler(this.tb1up_TextChanged);
-            // 
-            // tb1up1
-            // 
-            this.tb1up1.Enabled = false;
-            this.tb1up1.Location = new System.Drawing.Point(125, 240);
-            this.tb1up1.MaxLength = 1;
-            this.tb1up1.Name = "tb1up1";
-            this.tb1up1.Size = new System.Drawing.Size(71, 29);
-            this.tb1up1.TabIndex = 7;
-            this.tb1up1.TextChanged += new System.EventHandler(this.tb1up_TextChanged);
-            // 
-            // cb2ht
-            // 
-            this.cb2ht.AutoSize = true;
-            this.cb2ht.Location = new System.Drawing.Point(15, 174);
-            this.cb2ht.Name = "cb2ht";
-            this.cb2ht.Size = new System.Drawing.Size(76, 28);
-            this.cb2ht.TabIndex = 9;
-            this.cb2ht.Text = "ร้อยสิบ";
-            this.cb2ht.UseVisualStyleBackColor = true;
-            this.cb2ht.CheckedChanged += new System.EventHandler(this.cb2ht_CheckedChanged);
-            // 
-            // tb2hu
-            // 
-            this.tb2hu.Enabled = false;
-            this.tb2hu.Location = new System.Drawing.Point(125, 206);
-            this.tb2hu.MaxLength = 2;
-            this.tb2hu.Name = "tb2hu";
-            this.tb2hu.Size = new System.Drawing.Size(71, 29);
-            this.tb2hu.TabIndex = 7;
-            // 
-            // cb2up
-            // 
-            this.cb2up.AutoSize = true;
-            this.cb2up.Location = new System.Drawing.Point(15, 140);
-            this.cb2up.Name = "cb2up";
-            this.cb2up.Size = new System.Drawing.Size(68, 28);
-            this.cb2up.TabIndex = 8;
-            this.cb2up.Text = "2 บน";
-            this.cb2up.UseVisualStyleBackColor = true;
-            this.cb2up.CheckedChanged += new System.EventHandler(this.cb2up_CheckedChanged);
-            // 
-            // tb2ht
-            // 
-            this.tb2ht.Enabled = false;
-            this.tb2ht.Location = new System.Drawing.Point(125, 172);
-            this.tb2ht.MaxLength = 2;
-            this.tb2ht.Name = "tb2ht";
-            this.tb2ht.Size = new System.Drawing.Size(71, 29);
-            this.tb2ht.TabIndex = 7;
-            // 
-            // tb2up
-            // 
-            this.tb2up.Enabled = false;
-            this.tb2up.Location = new System.Drawing.Point(125, 138);
-            this.tb2up.MaxLength = 2;
-            this.tb2up.Name = "tb2up";
-            this.tb2up.Size = new System.Drawing.Size(71, 29);
-            this.tb2up.TabIndex = 7;
-            // 
-            // tb2low
-            // 
-            this.tb2low.Enabled = false;
-            this.tb2low.Location = new System.Drawing.Point(125, 104);
-            this.tb2low.MaxLength = 2;
-            this.tb2low.Name = "tb2low";
-            this.tb2low.Size = new System.Drawing.Size(71, 29);
-            this.tb2low.TabIndex = 7;
-            // 
-            // cb2low
-            // 
-            this.cb2low.AutoSize = true;
-            this.cb2low.Location = new System.Drawing.Point(15, 106);
-            this.cb2low.Name = "cb2low";
-            this.cb2low.Size = new System.Drawing.Size(68, 28);
-            this.cb2low.TabIndex = 6;
-            this.cb2low.Text = "2 ล่าง";
-            this.cb2low.UseVisualStyleBackColor = true;
-            this.cb2low.CheckedChanged += new System.EventHandler(this.cb2low_CheckedChanged);
-            // 
-            // tb3low4
-            // 
-            this.tb3low4.Enabled = false;
-            this.tb3low4.Location = new System.Drawing.Point(356, 71);
-            this.tb3low4.MaxLength = 3;
-            this.tb3low4.Name = "tb3low4";
-            this.tb3low4.Size = new System.Drawing.Size(71, 29);
-            this.tb3low4.TabIndex = 5;
-            this.tb3low4.TextChanged += new System.EventHandler(this.tb3low_TextChanged);
-            // 
-            // tb3low3
-            // 
-            this.tb3low3.Enabled = false;
-            this.tb3low3.Location = new System.Drawing.Point(279, 71);
-            this.tb3low3.MaxLength = 3;
-            this.tb3low3.Name = "tb3low3";
-            this.tb3low3.Size = new System.Drawing.Size(71, 29);
-            this.tb3low3.TabIndex = 4;
-            this.tb3low3.TextChanged += new System.EventHandler(this.tb3low_TextChanged);
-            // 
-            // tb3low2
-            // 
-            this.tb3low2.Enabled = false;
-            this.tb3low2.Location = new System.Drawing.Point(202, 71);
-            this.tb3low2.MaxLength = 3;
-            this.tb3low2.Name = "tb3low2";
-            this.tb3low2.Size = new System.Drawing.Size(71, 29);
-            this.tb3low2.TabIndex = 4;
-            this.tb3low2.TextChanged += new System.EventHandler(this.tb3low_TextChanged);
-            // 
-            // tb3low1
-            // 
-            this.tb3low1.Enabled = false;
-            this.tb3low1.Location = new System.Drawing.Point(125, 70);
-            this.tb3low1.MaxLength = 3;
-            this.tb3low1.Name = "tb3low1";
-            this.tb3low1.Size = new System.Drawing.Size(71, 29);
-            this.tb3low1.TabIndex = 3;
-            this.tb3low1.TextChanged += new System.EventHandler(this.tb3low_TextChanged);
-            // 
-            // cb3low
-            // 
-            this.cb3low.AutoSize = true;
-            this.cb3low.Location = new System.Drawing.Point(15, 72);
-            this.cb3low.Name = "cb3low";
-            this.cb3low.Size = new System.Drawing.Size(68, 28);
-            this.cb3low.TabIndex = 2;
-            this.cb3low.Text = "3 ล่าง";
-            this.cb3low.UseVisualStyleBackColor = true;
-            this.cb3low.CheckedChanged += new System.EventHandler(this.cb3low_CheckedChanged);
-            // 
-            // tb3up
-            // 
-            this.tb3up.Enabled = false;
-            this.tb3up.Location = new System.Drawing.Point(125, 36);
-            this.tb3up.MaxLength = 3;
-            this.tb3up.Name = "tb3up";
-            this.tb3up.Size = new System.Drawing.Size(71, 29);
-            this.tb3up.TabIndex = 1;
-            this.tb3up.TextChanged += new System.EventHandler(this.tb3up_TextChanged);
-            // 
-            // cb3up
-            // 
-            this.cb3up.AutoSize = true;
-            this.cb3up.Location = new System.Drawing.Point(15, 38);
-            this.cb3up.Name = "cb3up";
-            this.cb3up.Size = new System.Drawing.Size(68, 28);
-            this.cb3up.TabIndex = 0;
-            this.cb3up.Text = "3 บน";
-            this.cb3up.UseVisualStyleBackColor = true;
-            this.cb3up.CheckedChanged += new System.EventHandler(this.cb3up_CheckedChanged);
+            this.tbMoney.Location = new System.Drawing.Point(98, 33);
+            this.tbMoney.Name = "tbMoney";
+            this.tbMoney.Size = new System.Drawing.Size(119, 29);
+            this.tbMoney.TabIndex = 1;
+            this.tbMoney.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tbMoney_KeyDown);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(6, 36);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(86, 24);
+            this.label1.TabIndex = 2;
+            this.label1.Text = "จำนวนเงิน";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(223, 36);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(41, 24);
+            this.label2.TabIndex = 2;
+            this.label2.Text = "บาท";
+            // 
+            // dgvResult
+            // 
+            this.dgvResult.AllowUserToAddRows = false;
+            this.dgvResult.AllowUserToDeleteRows = false;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvResult.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.dgvResult.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvResult.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Column1,
+            this.Column2,
+            this.Column3,
+            this.Column4,
+            this.Column5,
+            this.Column6,
+            this.Column8,
+            this.Column7});
+            this.dgvResult.Location = new System.Drawing.Point(33, 218);
+            this.dgvResult.Name = "dgvResult";
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.dgvResult.RowsDefaultCellStyle = dataGridViewCellStyle2;
+            this.dgvResult.RowTemplate.DefaultCellStyle.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.dgvResult.RowTemplate.Height = 25;
+            this.dgvResult.Size = new System.Drawing.Size(901, 367);
+            this.dgvResult.TabIndex = 3;
+            // 
+            // Column1
+            // 
+            this.Column1.HeaderText = "3 ตัว";
+            this.Column1.Name = "Column1";
+            // 
+            // Column2
+            // 
+            this.Column2.HeaderText = "จ่าย";
+            this.Column2.Name = "Column2";
+            // 
+            // Column3
+            // 
+            this.Column3.HeaderText = "2 ตัว";
+            this.Column3.Name = "Column3";
+            // 
+            // Column4
+            // 
+            this.Column4.HeaderText = "จ่าย";
+            this.Column4.Name = "Column4";
+            // 
+            // Column5
+            // 
+            this.Column5.HeaderText = "วิ่งบน";
+            this.Column5.Name = "Column5";
+            // 
+            // Column6
+            // 
+            this.Column6.HeaderText = "จ่าย";
+            this.Column6.Name = "Column6";
+            // 
+            // Column8
+            // 
+            this.Column8.HeaderText = "ยอดในมือ";
+            this.Column8.Name = "Column8";
+            this.Column8.Width = 120;
+            // 
+            // Column7
+            // 
+            this.Column7.HeaderText = "จ่ายสุทธิ";
+            this.Column7.Name = "Column7";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(29, 191);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(269, 24);
+            this.label3.TabIndex = 4;
+            this.label3.Text = "ตารางตัวเลขที่มีความเสียงเกินกำหนด";
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.label6);
+            this.groupBox1.Controls.Add(this.label5);
+            this.groupBox1.Controls.Add(this.lbNumber2up);
+            this.groupBox1.Controls.Add(this.lbNetPay);
+            this.groupBox1.Controls.Add(this.lbpay2up);
+            this.groupBox1.Controls.Add(this.lbpay3up);
+            this.groupBox1.Controls.Add(this.lbNumber3up);
+            this.groupBox1.Controls.Add(this.label8);
+            this.groupBox1.Controls.Add(this.label4);
+            this.groupBox1.Location = new System.Drawing.Point(312, 13);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(622, 171);
+            this.groupBox1.TabIndex = 5;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "ชุดตัวเลขเสี่ยงที่สุด";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.label5.Location = new System.Drawing.Point(15, 111);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(79, 31);
+            this.label5.TabIndex = 0;
+            this.label5.Text = "2 ตัว :";
+            // 
+            // lbNumber2up
+            // 
+            this.lbNumber2up.AutoSize = true;
+            this.lbNumber2up.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.lbNumber2up.Location = new System.Drawing.Point(100, 111);
+            this.lbNumber2up.Name = "lbNumber2up";
+            this.lbNumber2up.Size = new System.Drawing.Size(40, 31);
+            this.lbNumber2up.TabIndex = 0;
+            this.lbNumber2up.Text = "xx";
+            // 
+            // lbNetPay
+            // 
+            this.lbNetPay.AutoSize = true;
+            this.lbNetPay.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.lbNetPay.Location = new System.Drawing.Point(373, 70);
+            this.lbNetPay.Name = "lbNetPay";
+            this.lbNetPay.Size = new System.Drawing.Size(134, 31);
+            this.lbNetPay.TabIndex = 0;
+            this.lbNetPay.Text = "xx,xxx,xxx";
+            // 
+            // lbNumber3up
+            // 
+            this.lbNumber3up.AutoSize = true;
+            this.lbNumber3up.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.lbNumber3up.Location = new System.Drawing.Point(100, 70);
+            this.lbNumber3up.Name = "lbNumber3up";
+            this.lbNumber3up.Size = new System.Drawing.Size(53, 31);
+            this.lbNumber3up.TabIndex = 0;
+            this.lbNumber3up.Text = "xxx";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.label8.Location = new System.Drawing.Point(373, 29);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(146, 31);
+            this.label8.TabIndex = 0;
+            this.label8.Text = "ยอดจ่ายสุทธิ ";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.label4.Location = new System.Drawing.Point(15, 70);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(79, 31);
+            this.label4.TabIndex = 0;
+            this.label4.Text = "3 ตัว :";
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.btAnalyze);
+            this.groupBox2.Controls.Add(this.label2);
+            this.groupBox2.Controls.Add(this.tbMoney);
+            this.groupBox2.Controls.Add(this.label1);
+            this.groupBox2.Location = new System.Drawing.Point(33, 13);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(273, 171);
+            this.groupBox2.TabIndex = 6;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "กำหนดค่าความเสียง";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.label6.Location = new System.Drawing.Point(185, 29);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(52, 31);
+            this.label6.TabIndex = 1;
+            this.label6.Text = "จ่าย";
+            // 
+            // lbpay3up
+            // 
+            this.lbpay3up.AutoSize = true;
+            this.lbpay3up.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.lbpay3up.Location = new System.Drawing.Point(185, 70);
+            this.lbpay3up.Name = "lbpay3up";
+            this.lbpay3up.Size = new System.Drawing.Size(121, 31);
+            this.lbpay3up.TabIndex = 0;
+            this.lbpay3up.Text = "x,xxx,xxx";
+            // 
+            // lbpay2up
+            // 
+            this.lbpay2up.AutoSize = true;
+            this.lbpay2up.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.lbpay2up.Location = new System.Drawing.Point(185, 111);
+            this.lbpay2up.Name = "lbpay2up";
+            this.lbpay2up.Size = new System.Drawing.Size(121, 31);
+            this.lbpay2up.TabIndex = 0;
+            this.lbpay2up.Text = "x,xxx,xxx";
             // 
             // Analysis
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1070, 733);
+            this.ClientSize = new System.Drawing.Size(982, 597);
+            this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.dgvResult);
+            this.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.Margin = new System.Windows.Forms.Padding(6);
             this.Name = "Analysis";
             this.Text = "วิเคราะห์ความเสี่ยง";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Analysis_FormClosed);
+            this.Load += new System.EventHandler(this.Analysis_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvResult)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.CheckBox cbSelectAll;
+        private System.Windows.Forms.TextBox tbMoney;
         private System.Windows.Forms.Button btAnalyze;
-        private System.Windows.Forms.CheckBox cb1lowback;
-        private System.Windows.Forms.CheckBox cb1lowfront;
-        private System.Windows.Forms.CheckBox cb1low;
-        private System.Windows.Forms.CheckBox cb1back;
-        private System.Windows.Forms.CheckBox cb1center;
-        private System.Windows.Forms.CheckBox cb1front;
-        private System.Windows.Forms.CheckBox cb1up;
-        private System.Windows.Forms.TextBox tb1low2;
-        private System.Windows.Forms.TextBox tb1lowback;
-        private System.Windows.Forms.TextBox tb1lowfront;
-        private System.Windows.Forms.TextBox tb1low1;
-        private System.Windows.Forms.CheckBox cb2hu;
-        private System.Windows.Forms.TextBox tb1back;
-        private System.Windows.Forms.TextBox tb1up3;
-        private System.Windows.Forms.TextBox tb1center;
-        private System.Windows.Forms.TextBox tb1front;
-        private System.Windows.Forms.TextBox tb1up2;
-        private System.Windows.Forms.TextBox tb1up1;
-        private System.Windows.Forms.CheckBox cb2ht;
-        private System.Windows.Forms.TextBox tb2hu;
-        private System.Windows.Forms.CheckBox cb2up;
-        private System.Windows.Forms.TextBox tb2ht;
-        private System.Windows.Forms.TextBox tb2up;
-        private System.Windows.Forms.TextBox tb2low;
-        private System.Windows.Forms.CheckBox cb2low;
-        private System.Windows.Forms.TextBox tb3low4;
-        private System.Windows.Forms.TextBox tb3low3;
-        private System.Windows.Forms.TextBox tb3low2;
-        private System.Windows.Forms.TextBox tb3low1;
-        private System.Windows.Forms.CheckBox cb3low;
-        private System.Windows.Forms.TextBox tb3up;
-        private System.Windows.Forms.CheckBox cb3up;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.DataGridView dgvResult;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column8;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column7;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label lbNumber3up;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.Label lbNumber2up;
+        private System.Windows.Forms.Label lbNetPay;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label lbpay2up;
+        private System.Windows.Forms.Label lbpay3up;
     }
 }

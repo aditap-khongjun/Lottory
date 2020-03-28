@@ -171,7 +171,7 @@ namespace Lottory
             
             // Setting DropDown of MenuAboutNumber
             MenuAboutNumber_AddNumber.Text = "ป้อนตัวเลข";
-            MenuAboutNumber_AddNumber.ShortcutKeys = Keys.F1;
+            MenuAboutNumber_AddNumber.ShortcutKeys = Keys.F12;
             MenuAboutNumber_ShowNumber.Text = "แสดงตัวเลข (เรียงตามเงิน)";
             
             // Add DropDown of MenuMoneyLimit 
@@ -210,7 +210,7 @@ namespace Lottory
             // Setting DropDown of MenuCustomerAccount
             MenuCustomerAccount_Management.Text = "จัดการข้อมูลลูกค้า";
             MenuCustomerAccount_Report.Text = "รายงานบัญชีลูกค้า";
-            MenuCustomerAccount_Report.ShortcutKeys = Keys.F12;
+            MenuCustomerAccount_Report.ShortcutKeys = Keys.F9;
 
             // Add DropDown of MenuWinNumber 
             MenuWinNumber.DropDownItems.AddRange(new ToolStripItem[] {
@@ -361,6 +361,18 @@ namespace Lottory
         {
             // Show AddNumberSetting
             ShowForm(AddNumberSetting.Instance);
+
+            // Close Number Detail
+            if (AddNumberDetail.Instance != null)
+            {
+                foreach(Form child in this.MdiChildren)
+                {
+                    if(string.Equals(child.Name,"AddNumberDetail"))
+                    {
+                        child.Close();
+                    }
+                }
+            }
         }
 
         private void MenuAboutNumber_ShowNumber_Click(object sender, EventArgs e)
