@@ -73,7 +73,11 @@ namespace Lottory
                     break;
                 case Keys.Enter:
                     //MessageBox.Show("Analysis");
+                    e.Handled = true;
+                    e.SuppressKeyPress = true;
+
                     Fcn_Analysis();
+                    
                     break;
             }
         }
@@ -163,7 +167,7 @@ namespace Lottory
                 {
                     connection2up.Open();
                 }
-                string getNumber2up = string.Format(@"SELECT DISTINCT SUM(Price) AS Price
+                string getNumber2up = string.Format(@"SELECT DISTINCT ISNULL(SUM(Price),0) AS Price
                                                       FROM OrderListExpand
                                                       WHERE TypeID = {0} AND Number = '{1}'
                                                       GROUP BY Number", BaseTypeID.up2, number2up);
@@ -185,7 +189,7 @@ namespace Lottory
                 {
                     connection1up.Open();
                 }
-                string getNumber1up = string.Format(@"SELECT DISTINCT SUM(Price) AS Price
+                string getNumber1up = string.Format(@"SELECT DISTINCT ISNULL(SUM(Price),0) AS Price
                                                       FROM OrderListExpand
                                                       WHERE TypeID = {0} AND (Number = '{1}' OR Number = '{2}' OR Number = '{3}')
                                                      ", BaseTypeID.up1, number1up1, number1up2, number1up3);
@@ -237,5 +241,9 @@ namespace Lottory
             return moneyOut;
         }
 
+        private void tbMoney_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

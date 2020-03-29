@@ -4124,7 +4124,7 @@ namespace Lottory
         {
             // Delete Seleted Rows
             dgvCusBuyList.Rows.Remove(item);
-
+            
             // Delete Data from DB
             string Number = item.Cells[0].Value.ToString();
             string Type = item.Cells[1].Value.ToString();
@@ -4149,13 +4149,14 @@ namespace Lottory
                 string GroupPrice = item.Cells[3].Value.ToString();
                 DeleteBuyingListFromDB(this.OrderID, Number, Type, Price, GroupPrice);
             }
+            dgvCusBuyList.Refresh();
         }
         private void Delete_specific_Click(object sender, EventArgs e)
         {
-            DialogResult deleteRes = MessageBox.Show("ต้องการลบข้อมูลที่เลือกหรือไม่", "ยืนยันการลบข้อมูล", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-            switch (deleteRes)
-            {
-                case DialogResult.Yes:
+            //DialogResult deleteRes = MessageBox.Show("ต้องการลบข้อมูลที่เลือกหรือไม่", "ยืนยันการลบข้อมูล", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            //switch (deleteRes)
+            //{
+            //    case DialogResult.Yes:
                     // Delete specific Rows
                     foreach (DataGridViewRow item in this.dgvCusBuyList.Rows)
                     {
@@ -4164,36 +4165,39 @@ namespace Lottory
                             deleteBuyingListItem(item);
                         }
                     }
-                    break;
-                case DialogResult.No:
-                    // Do Nothing
-                    break;
-            }
-
+            //      break;
+            //  case DialogResult.No:
+            // Do Nothing
+            //      break;
+            //}
+            tbNumber.Focus();
+            tbNumber.SelectAll();
         }
 
         private void Delete_all_Click(object sender, EventArgs e)
         {
             
-            DialogResult deleteRes = MessageBox.Show("ต้องการลบข้อมูลทั้งหมดหรือไม่", "ยืนยันการลบข้อมูล", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-            switch (deleteRes)
-            {
-                case DialogResult.Yes:
-                // Delete Seleted Rows
-                
-                foreach (DataGridViewRow item in this.dgvCusBuyList.Rows)
+           // DialogResult deleteRes = MessageBox.Show("ต้องการลบข้อมูลทั้งหมดหรือไม่", "ยืนยันการลบข้อมูล", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+           // switch (deleteRes)
+           // {
+           //     case DialogResult.Yes:
+                    // Delete Seleted Rows
+                dgvCusBuyList.SelectAll();
+                //foreach (DataGridViewRow item in this.dgvCusBuyList.Rows)
+                foreach(DataGridViewRow item in this.dgvCusBuyList.SelectedRows)
                 {
 
                     deleteBuyingListItem(item);
 
                 }
-                
-                break;
-                case DialogResult.No:
-                    // Do Nothing
-                    break;
-            }
-            
+
+            //     break;
+            //     case DialogResult.No:
+            // Do Nothing
+            //         break;
+            // }
+            tbNumber.Focus();
+            tbNumber.SelectAll();
         }
 
         private void dgvCusBuyList_KeyDown(object sender, KeyEventArgs e)
@@ -4209,6 +4213,7 @@ namespace Lottory
                         foreach (DataGridViewRow item in this.dgvCusBuyList.SelectedRows)
                         {
                             deleteBuyingListItem(item);
+                            
                         }
                 // break;
                 //case DialogResult.No:

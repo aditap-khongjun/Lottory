@@ -102,6 +102,14 @@ namespace Lottory
             MenuReport_AllBuying.Click += new EventHandler(MenuReport_AllBuying_Click);
             MenuReport_PageBuying.Click += new EventHandler(MenuReport_PageBuying_Click);
             MenuReport_LimitNumber.Click += new EventHandler(MenuReport_LimitNumber_Click);
+
+            // Analysis
+            MenuMoneyLimit_AnalysisLimit.Click += new EventHandler(MenuMoneyLimit_AnalysisLimit_Click);
+        }
+
+        private void MenuMoneyLimit_AnalysisLimit_Click(object sender, EventArgs e)
+        {
+            ShowForm(Analysis.Instance);
         }
 
         private void MenuReport_LimitNumber_Click(object sender, EventArgs e)
@@ -180,8 +188,9 @@ namespace Lottory
                 MenuMoneyLimit_DefineLimit
             });
             // Setting DropDown of MenuMoneyLimit 
-            MenuMoneyLimit_AnalysisLimit.Enabled = false;
-            MenuMoneyLimit_AnalysisLimit.Text = "วิเคราะห์วงเงินอั้น";
+            //MenuMoneyLimit_AnalysisLimit.Enabled = false;
+            MenuMoneyLimit_AnalysisLimit.Text = "วิเคราะห์ความเสี่ยง";
+            MenuMoneyLimit_AnalysisLimit.ShortcutKeys = Keys.F10;
             MenuMoneyLimit_DefineLimit.Text = "ตีตัวเลขที่เกินวงเงินอั้น";
             
             
