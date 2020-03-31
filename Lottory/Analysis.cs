@@ -37,8 +37,7 @@ namespace Lottory
             //e.CellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             switch(e.ColumnIndex)
             {
-                case 1:
-                case 3:
+                case 2:
                 case 5:
                 case 7:
                     e.CellStyle.ForeColor = Color.Red;
@@ -100,14 +99,14 @@ namespace Lottory
             foreach(DataRow row in resultTb.Rows)
             {
                 string number3up = row["Number3up"].ToString();
+                string buy3up = Convert.ToDouble(row["Buy3up"]).ToString("N0");
                 string pay3up = Convert.ToDouble(row["Pay3up"]).ToString("N0");
                 string number2up = row["Number2up"].ToString();
+                string buy2up = Convert.ToDouble(row["Buy2up"]).ToString("N0");
                 string pay2up = Convert.ToDouble(row["Pay2up"]).ToString("N0");
-                string number1up = row["Number1up"].ToString();
-                string pay1up = Convert.ToDouble(row["Pay1up"]).ToString("N0");
                 string inHand = Convert.ToDouble(row["InHand"]).ToString("N0");
                 string netPay = Convert.ToDouble(row["Net"]).ToString("N0");
-                dgvResult.Rows.Add(number3up, pay3up, number2up, pay2up, number1up, pay1up, inHand, netPay);
+                dgvResult.Rows.Add(number3up,buy3up, pay3up, number2up,buy2up, pay2up, inHand, netPay);
             }
             // show first Row
             double lb_pay3up = Convert.ToDouble(resultTb.Rows[0]["Pay3up"]);
@@ -132,11 +131,11 @@ namespace Lottory
         {
             DataTable tbOut = new DataTable();
             tbOut.Columns.Add("Number3up");
+            tbOut.Columns.Add("Buy3up");
             tbOut.Columns.Add("Pay3up");
             tbOut.Columns.Add("Number2up");
+            tbOut.Columns.Add("Buy2up");
             tbOut.Columns.Add("Pay2up");
-            tbOut.Columns.Add("Number1up");
-            tbOut.Columns.Add("Pay1up");
             tbOut.Columns.Add("InHand");
             tbOut.Columns.Add("Net");
             tbOut.Columns["Net"].DataType = typeof(Double);
@@ -208,7 +207,7 @@ namespace Lottory
                 if(netPrice > Convert.ToDouble(tbMoney.Text))
                 {
                     // Add to Table
-                    tbOut.Rows.Add(number3up, price3up * 550, number2up, price2up * 70, string.Format("{0},{1},{2}", number1up1, number1up2, number1up3), price1up * 3, inHandPrice, netPrice);
+                    tbOut.Rows.Add(number3up,price3up, price3up * 550, number2up,price2up, price2up * 70, inHandPrice, netPrice);
                 }
             }
             connection.Close();
@@ -243,7 +242,92 @@ namespace Lottory
 
         private void tbMoney_TextChanged(object sender, EventArgs e)
         {
+           //tbMoney.Text = Convert.ToInt32(tbMoney.Text).ToString("N0");
+        }
 
+        private void dgvNumberDetail_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            
+        }
+
+        private List<string> ExpandTod3(string Number)
+        {
+            List<string> ExpandNumber = new List<string>();
+            ExpandNumber.Add(string.Format("{0}{1}{2}", Number[0], Number[1], Number[2]));
+            ExpandNumber.Add(string.Format("{2}{1}{0}", Number[0], Number[1], Number[2]));
+            ExpandNumber.Add(string.Format("{0}{2}{1}", Number[0], Number[1], Number[2]));
+            ExpandNumber.Add(string.Format("{1}{2}{0}", Number[0], Number[1], Number[2]));
+            ExpandNumber.Add(string.Format("{1}{0}{2}", Number[0], Number[1], Number[2]));
+            ExpandNumber.Add(string.Format("{2}{0}{1}", Number[0], Number[1], Number[2]));
+
+            //remove duplicated item
+            List<string> uniqeNumber = ExpandNumber.Distinct().ToList();
+            return uniqeNumber;
+        }
+        private double getPrice3upFromDB(string Number)
+        {
+            double priceOut = 0;
+            // query from DB
+            SqlConnection connection = new SqlConnection(Database.CnnVal("LottoryDB"));
+
+            if (connection.State == ConnectionState.Closed)
+            {
+                connection.Open(); // Open Database
+            }
+
+            string getNumber3up = string.Format(@"SELECT DISTINCT SUM(Price) AS Price 
+                                                  FROM OrderListExpand
+                                                  WHERE TypeID = {0} AND Number = '{1}'
+                                                  GROUP BY Number", BaseTypeID.up3, Number);
+            SqlCommand getNumber3upCom = new SqlCommand(getNumber3up, connection);
+            SqlDataReader number3upInfo = getNumber3upCom.ExecuteReader();
+            
+            if(number3upInfo.HasRows)
+            {
+                number3upInfo.Read();
+                priceOut = Convert.ToDouble(number3upInfo["Price"]);
+            }
+            return priceOut;
+        }
+
+        private void dgvResult_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            DataGridView dgv = (DataGridView)sender;
+            var cell = dgv.Rows[e.RowIndex].Cells[e.ColumnIndex];
+            string Number = cell.Value.ToString();
+            if (e.ColumnIndex == 0)
+            {
+                // show detail
+                dgvNumberDetail.Rows.Clear();
+                dgvNumberDetail.Refresh();
+                DataTable detailTb = getNumberDetail(Number);
+                foreach (DataRow row in detailTb.Rows)
+                {
+                    string itemNumber = row["Number"].ToString();
+                    string price = Convert.ToDouble(row["price"]).ToString("N0");
+                    dgvNumberDetail.Rows.Add(itemNumber, price);
+                }
+            }
+        }
+
+        private DataTable getNumberDetail(string Number)
+        {
+            DataTable tbOut = new DataTable();
+            tbOut.Columns.Add("Number");
+            tbOut.Columns.Add("price");
+            tbOut.Columns["price"].DataType = typeof(Double);
+            foreach (string itemNumber in ExpandTod3(Number))
+            {
+                if (!string.Equals(itemNumber, Number))
+                {
+                    double price = getPrice3upFromDB(itemNumber);
+                    tbOut.Rows.Add(itemNumber, price);
+                }
+            }
+            tbOut.DefaultView.Sort = "price DESC";
+            tbOut = tbOut.DefaultView.ToTable();
+
+            return tbOut;
         }
     }
 }

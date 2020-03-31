@@ -113,7 +113,10 @@ namespace Lottory
 
         private void btMoneyLimitAnalyz_Click(object sender, EventArgs e)
         {
-
+            Analysis analysisForm = Analysis.Instance;
+            analysisForm.MdiParent = this.MdiParent;
+            analysisForm.Show();
+            analysisForm.Activate();
         }
 
         private void btMoneyLimitDefine_Click(object sender, EventArgs e)

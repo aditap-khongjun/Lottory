@@ -219,7 +219,7 @@
             this.btMoneyLimitAnalyz.Name = "btMoneyLimitAnalyz";
             this.btMoneyLimitAnalyz.Size = new System.Drawing.Size(251, 46);
             this.btMoneyLimitAnalyz.TabIndex = 2;
-            this.btMoneyLimitAnalyz.Text = "วิเคราะห์วงเงินอั้น";
+            this.btMoneyLimitAnalyz.Text = "วิเคราะห์ความเสี่ยง";
             this.btMoneyLimitAnalyz.UseVisualStyleBackColor = true;
             this.btMoneyLimitAnalyz.Click += new System.EventHandler(this.btMoneyLimitAnalyz_Click);
             // 

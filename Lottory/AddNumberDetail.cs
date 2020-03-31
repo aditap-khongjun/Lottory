@@ -2898,7 +2898,7 @@ namespace Lottory
                             OrderListID = getOrderListIDDB();
 
                             // get customer discount (%)
-                            discount = getCustomerDiscount(BaseTypeID.ht2);
+                            discount = getCustomerDiscount(BaseTypeID.up2);
                             // update OrderListExpand
                             updateOrderListExpandDB(OrderListID.ToString(), BaseTypeID.ht2.ToString(), Number, Money, Money, discount);
                             NumberList.Add(Number);
@@ -2925,7 +2925,7 @@ namespace Lottory
                             OrderListID = getOrderListIDDB();
 
                             // get customer discount (%)
-                            discount = getCustomerDiscount(BaseTypeID.hu2);
+                            discount = getCustomerDiscount(BaseTypeID.up2);
                             // update OrderListExpand
                             updateOrderListExpandDB(OrderListID.ToString(), BaseTypeID.hu2.ToString(), Number, Money, Money, discount);
                             NumberList.Add(Number);

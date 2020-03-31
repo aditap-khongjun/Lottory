@@ -28,36 +28,41 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.btAnalyze = new System.Windows.Forms.Button();
             this.tbMoney = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.dgvResult = new System.Windows.Forms.DataGridView();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label3 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.lbNumber2up = new System.Windows.Forms.Label();
             this.lbNetPay = new System.Windows.Forms.Label();
+            this.lbpay2up = new System.Windows.Forms.Label();
+            this.lbpay3up = new System.Windows.Forms.Label();
             this.lbNumber3up = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.label6 = new System.Windows.Forms.Label();
-            this.lbpay3up = new System.Windows.Forms.Label();
-            this.lbpay2up = new System.Windows.Forms.Label();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgvNumberDetail = new System.Windows.Forms.DataGridView();
             this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.label7 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvResult)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvNumberDetail)).BeginInit();
             this.SuspendLayout();
             // 
             // btAnalyze
@@ -104,32 +109,84 @@
             // 
             this.dgvResult.AllowUserToAddRows = false;
             this.dgvResult.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvResult.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvResult.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvResult.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvResult.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column1,
+            this.Column9,
             this.Column2,
             this.Column3,
+            this.Column10,
             this.Column4,
-            this.Column5,
-            this.Column6,
             this.Column8,
             this.Column7});
             this.dgvResult.Location = new System.Drawing.Point(33, 218);
             this.dgvResult.Name = "dgvResult";
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.dgvResult.RowsDefaultCellStyle = dataGridViewCellStyle4;
+            this.dgvResult.RowHeadersVisible = false;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.dgvResult.RowsDefaultCellStyle = dataGridViewCellStyle2;
             this.dgvResult.RowTemplate.DefaultCellStyle.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             this.dgvResult.RowTemplate.Height = 25;
             this.dgvResult.Size = new System.Drawing.Size(901, 687);
             this.dgvResult.TabIndex = 3;
+            this.dgvResult.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvResult_CellMouseClick);
+            // 
+            // Column1
+            // 
+            this.Column1.HeaderText = "3 ตัว";
+            this.Column1.Name = "Column1";
+            this.Column1.ReadOnly = true;
+            // 
+            // Column9
+            // 
+            this.Column9.HeaderText = "ซื้อ";
+            this.Column9.Name = "Column9";
+            this.Column9.ReadOnly = true;
+            // 
+            // Column2
+            // 
+            this.Column2.HeaderText = "จ่าย";
+            this.Column2.Name = "Column2";
+            this.Column2.ReadOnly = true;
+            // 
+            // Column3
+            // 
+            this.Column3.HeaderText = "2 ตัว";
+            this.Column3.Name = "Column3";
+            this.Column3.ReadOnly = true;
+            // 
+            // Column10
+            // 
+            this.Column10.HeaderText = "ซื้อ";
+            this.Column10.Name = "Column10";
+            this.Column10.ReadOnly = true;
+            // 
+            // Column4
+            // 
+            this.Column4.HeaderText = "จ่าย";
+            this.Column4.Name = "Column4";
+            this.Column4.ReadOnly = true;
+            // 
+            // Column8
+            // 
+            this.Column8.HeaderText = "ยอดรับสุทธิ";
+            this.Column8.Name = "Column8";
+            this.Column8.ReadOnly = true;
+            this.Column8.Width = 120;
+            // 
+            // Column7
+            // 
+            this.Column7.HeaderText = "ขาดทุนสุทธิ";
+            this.Column7.Name = "Column7";
+            this.Column7.ReadOnly = true;
+            this.Column7.Width = 120;
             // 
             // label3
             // 
@@ -157,6 +214,16 @@
             this.groupBox1.TabIndex = 5;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "ชุดตัวเลขเสี่ยงที่สุด";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.label6.Location = new System.Drawing.Point(185, 29);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(52, 31);
+            this.label6.TabIndex = 1;
+            this.label6.Text = "จ่าย";
             // 
             // label5
             // 
@@ -187,6 +254,26 @@
             this.lbNetPay.Size = new System.Drawing.Size(134, 31);
             this.lbNetPay.TabIndex = 0;
             this.lbNetPay.Text = "xx,xxx,xxx";
+            // 
+            // lbpay2up
+            // 
+            this.lbpay2up.AutoSize = true;
+            this.lbpay2up.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.lbpay2up.Location = new System.Drawing.Point(185, 111);
+            this.lbpay2up.Name = "lbpay2up";
+            this.lbpay2up.Size = new System.Drawing.Size(121, 31);
+            this.lbpay2up.TabIndex = 0;
+            this.lbpay2up.Text = "x,xxx,xxx";
+            // 
+            // lbpay3up
+            // 
+            this.lbpay3up.AutoSize = true;
+            this.lbpay3up.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.lbpay3up.Location = new System.Drawing.Point(185, 70);
+            this.lbpay3up.Name = "lbpay3up";
+            this.lbpay3up.Size = new System.Drawing.Size(121, 31);
+            this.lbpay3up.TabIndex = 0;
+            this.lbpay3up.Text = "x,xxx,xxx";
             // 
             // lbNumber3up
             // 
@@ -231,83 +318,47 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "กำหนดค่าความเสียง";
             // 
-            // label6
+            // dgvNumberDetail
             // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.label6.Location = new System.Drawing.Point(185, 29);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(52, 31);
-            this.label6.TabIndex = 1;
-            this.label6.Text = "จ่าย";
-            // 
-            // lbpay3up
-            // 
-            this.lbpay3up.AutoSize = true;
-            this.lbpay3up.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.lbpay3up.Location = new System.Drawing.Point(185, 70);
-            this.lbpay3up.Name = "lbpay3up";
-            this.lbpay3up.Size = new System.Drawing.Size(121, 31);
-            this.lbpay3up.TabIndex = 0;
-            this.lbpay3up.Text = "x,xxx,xxx";
-            // 
-            // lbpay2up
-            // 
-            this.lbpay2up.AutoSize = true;
-            this.lbpay2up.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.lbpay2up.Location = new System.Drawing.Point(185, 111);
-            this.lbpay2up.Name = "lbpay2up";
-            this.lbpay2up.Size = new System.Drawing.Size(121, 31);
-            this.lbpay2up.TabIndex = 0;
-            this.lbpay2up.Text = "x,xxx,xxx";
-            // 
-            // Column1
-            // 
-            this.Column1.HeaderText = "3 ตัว";
-            this.Column1.Name = "Column1";
-            // 
-            // Column2
-            // 
-            this.Column2.HeaderText = "จ่าย";
-            this.Column2.Name = "Column2";
-            // 
-            // Column3
-            // 
-            this.Column3.HeaderText = "2 ตัว";
-            this.Column3.Name = "Column3";
-            // 
-            // Column4
-            // 
-            this.Column4.HeaderText = "จ่าย";
-            this.Column4.Name = "Column4";
+            this.dgvNumberDetail.AllowUserToAddRows = false;
+            this.dgvNumberDetail.AllowUserToDeleteRows = false;
+            this.dgvNumberDetail.AllowUserToOrderColumns = true;
+            this.dgvNumberDetail.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvNumberDetail.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Column5,
+            this.Column6});
+            this.dgvNumberDetail.Location = new System.Drawing.Point(953, 218);
+            this.dgvNumberDetail.Name = "dgvNumberDetail";
+            this.dgvNumberDetail.RowHeadersVisible = false;
+            this.dgvNumberDetail.Size = new System.Drawing.Size(231, 332);
+            this.dgvNumberDetail.TabIndex = 7;
             // 
             // Column5
             // 
-            this.Column5.HeaderText = "วิ่งบน";
+            this.Column5.HeaderText = "3 ตัว";
             this.Column5.Name = "Column5";
             // 
             // Column6
             // 
-            this.Column6.HeaderText = "จ่าย";
+            this.Column6.HeaderText = "ซื้อ";
             this.Column6.Name = "Column6";
             // 
-            // Column8
+            // label7
             // 
-            this.Column8.HeaderText = "ยอดในมือ";
-            this.Column8.Name = "Column8";
-            this.Column8.Width = 120;
-            // 
-            // Column7
-            // 
-            this.Column7.HeaderText = "ขาดทุนสุทธิ";
-            this.Column7.Name = "Column7";
-            this.Column7.Width = 120;
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(949, 191);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(201, 24);
+            this.label7.TabIndex = 8;
+            this.label7.Text = "รายละเอียดตัวเลขชุดที่เหลือ";
             // 
             // Analysis
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(982, 917);
+            this.ClientSize = new System.Drawing.Size(1246, 917);
+            this.Controls.Add(this.label7);
+            this.Controls.Add(this.dgvNumberDetail);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.label3);
@@ -323,6 +374,7 @@
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvNumberDetail)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -346,13 +398,17 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label lbpay2up;
         private System.Windows.Forms.Label lbpay3up;
+        private System.Windows.Forms.DataGridView dgvNumberDetail;
+        private System.Windows.Forms.Label label7;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column9;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column10;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column8;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column7;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
     }
 }
