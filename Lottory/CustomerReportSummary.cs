@@ -86,6 +86,23 @@ namespace Lottory
             DataTable CustomerPayingInfo = getPayingInfo(CustomerID, PageID);
             DataTable CustomerPayingSummary = getPayingSummary(CustomerPayingInfo);
 
+            // NetPay
+            DataTable NetPlay = new DataTable();
+            NetPlay.Columns.Add("payState");
+            NetPlay.Columns.Add("payPrice");
+
+            double receive = Convert.ToDouble(CustomerBuyingSummary.Rows[0][1]);
+            double payWin = Convert.ToDouble(CustomerPayingSummary.Rows[0][1]);
+
+            if(payWin - receive > 0)
+            {
+                NetPlay.Rows.Add("จ่าย", (payWin - receive).ToString("N0"));
+            }
+            else
+            {
+                NetPlay.Rows.Add("รับ", (receive - payWin).ToString("N0"));
+            }
+
             CustomerInfo.CustomerID = CustomerID;
             CustomerInfo.customerName = getCustomerName(CustomerID);
             CustomerInfo.PageID = PageID;
@@ -96,6 +113,7 @@ namespace Lottory
             this.BuyingSummaryBindingSource.DataSource = CustomerBuyingSummary;
             this.PayingTableBindingSource.DataSource = CustomerPayingInfo;
             this.PayingSummaryBindingSource.DataSource = CustomerPayingSummary;
+            this.NetPayBindingSource.DataSource = NetPlay;
             this.reportViewer1.RefreshReport();
         }
         private string getCustomerName(string customerID)

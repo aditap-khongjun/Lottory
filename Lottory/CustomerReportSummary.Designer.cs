@@ -29,17 +29,13 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            Microsoft.Reporting.WinForms.ReportDataSource reportDataSource1 = new Microsoft.Reporting.WinForms.ReportDataSource();
+            Microsoft.Reporting.WinForms.ReportDataSource reportDataSource2 = new Microsoft.Reporting.WinForms.ReportDataSource();
+            Microsoft.Reporting.WinForms.ReportDataSource reportDataSource3 = new Microsoft.Reporting.WinForms.ReportDataSource();
+            Microsoft.Reporting.WinForms.ReportDataSource reportDataSource4 = new Microsoft.Reporting.WinForms.ReportDataSource();
+            Microsoft.Reporting.WinForms.ReportDataSource reportDataSource5 = new Microsoft.Reporting.WinForms.ReportDataSource();
             Microsoft.Reporting.WinForms.ReportDataSource reportDataSource6 = new Microsoft.Reporting.WinForms.ReportDataSource();
-            Microsoft.Reporting.WinForms.ReportDataSource reportDataSource7 = new Microsoft.Reporting.WinForms.ReportDataSource();
-            Microsoft.Reporting.WinForms.ReportDataSource reportDataSource8 = new Microsoft.Reporting.WinForms.ReportDataSource();
-            Microsoft.Reporting.WinForms.ReportDataSource reportDataSource9 = new Microsoft.Reporting.WinForms.ReportDataSource();
-            Microsoft.Reporting.WinForms.ReportDataSource reportDataSource10 = new Microsoft.Reporting.WinForms.ReportDataSource();
             this.cusotmerInfo_page_reportBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.BuyingTableBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.page_Report = new Lottory.page_Report();
-            this.BuyingSummaryBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.PayingSummaryBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.PayingTableBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.ReportAll = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.ReportCustomer_pay = new System.Windows.Forms.Button();
@@ -52,44 +48,26 @@
             this.label1 = new System.Windows.Forms.Label();
             this.PageIDList = new System.Windows.Forms.ComboBox();
             this.CustomerIDList = new System.Windows.Forms.ComboBox();
+            this.BuyingTableBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.page_Report = new Lottory.page_Report();
+            this.BuyingSummaryBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.PayingSummaryBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.PayingTableBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.NetPayBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.cusotmerInfo_page_reportBindingSource)).BeginInit();
+            this.groupBox1.SuspendLayout();
+            this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.BuyingTableBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.page_Report)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.BuyingSummaryBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PayingSummaryBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PayingTableBindingSource)).BeginInit();
-            this.groupBox1.SuspendLayout();
-            this.groupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.NetPayBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // cusotmerInfo_page_reportBindingSource
             // 
             this.cusotmerInfo_page_reportBindingSource.DataSource = typeof(Lottory.cusotmerInfo_page_report);
-            // 
-            // BuyingTableBindingSource
-            // 
-            this.BuyingTableBindingSource.DataMember = "BuyingTable";
-            this.BuyingTableBindingSource.DataSource = this.page_Report;
-            // 
-            // page_Report
-            // 
-            this.page_Report.DataSetName = "page_Report";
-            this.page_Report.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // BuyingSummaryBindingSource
-            // 
-            this.BuyingSummaryBindingSource.DataMember = "BuyingSummary";
-            this.BuyingSummaryBindingSource.DataSource = this.page_Report;
-            // 
-            // PayingSummaryBindingSource
-            // 
-            this.PayingSummaryBindingSource.DataMember = "PayingSummary";
-            this.PayingSummaryBindingSource.DataSource = this.page_Report;
-            // 
-            // PayingTableBindingSource
-            // 
-            this.PayingTableBindingSource.DataMember = "PayingTable";
-            this.PayingTableBindingSource.DataSource = this.page_Report;
             // 
             // ReportAll
             // 
@@ -173,21 +151,24 @@
             // 
             // reportViewer1
             // 
-            reportDataSource6.Name = "CustomerInfo";
-            reportDataSource6.Value = this.cusotmerInfo_page_reportBindingSource;
-            reportDataSource7.Name = "buyinginfo";
-            reportDataSource7.Value = this.BuyingTableBindingSource;
-            reportDataSource8.Name = "buyingsum";
-            reportDataSource8.Value = this.BuyingSummaryBindingSource;
-            reportDataSource9.Name = "payingsum";
-            reportDataSource9.Value = this.PayingSummaryBindingSource;
-            reportDataSource10.Name = "payinginfo";
-            reportDataSource10.Value = this.PayingTableBindingSource;
+            reportDataSource1.Name = "CustomerInfo";
+            reportDataSource1.Value = this.cusotmerInfo_page_reportBindingSource;
+            reportDataSource2.Name = "buyinginfo";
+            reportDataSource2.Value = this.BuyingTableBindingSource;
+            reportDataSource3.Name = "buyingsum";
+            reportDataSource3.Value = this.BuyingSummaryBindingSource;
+            reportDataSource4.Name = "payingsum";
+            reportDataSource4.Value = this.PayingSummaryBindingSource;
+            reportDataSource5.Name = "payinginfo";
+            reportDataSource5.Value = this.PayingTableBindingSource;
+            reportDataSource6.Name = "NetPay";
+            reportDataSource6.Value = this.NetPayBindingSource;
+            this.reportViewer1.LocalReport.DataSources.Add(reportDataSource1);
+            this.reportViewer1.LocalReport.DataSources.Add(reportDataSource2);
+            this.reportViewer1.LocalReport.DataSources.Add(reportDataSource3);
+            this.reportViewer1.LocalReport.DataSources.Add(reportDataSource4);
+            this.reportViewer1.LocalReport.DataSources.Add(reportDataSource5);
             this.reportViewer1.LocalReport.DataSources.Add(reportDataSource6);
-            this.reportViewer1.LocalReport.DataSources.Add(reportDataSource7);
-            this.reportViewer1.LocalReport.DataSources.Add(reportDataSource8);
-            this.reportViewer1.LocalReport.DataSources.Add(reportDataSource9);
-            this.reportViewer1.LocalReport.DataSources.Add(reportDataSource10);
             this.reportViewer1.LocalReport.ReportEmbeddedResource = "Lottory.report_page_customer.rdlc";
             this.reportViewer1.Location = new System.Drawing.Point(286, 28);
             this.reportViewer1.Name = "reportViewer1";
@@ -239,6 +220,36 @@
             this.CustomerIDList.SelectedValueChanged += new System.EventHandler(this.comboBox1_SelectedValueChanged);
             this.CustomerIDList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CustomerIDList_KeyDown);
             // 
+            // BuyingTableBindingSource
+            // 
+            this.BuyingTableBindingSource.DataMember = "BuyingTable";
+            this.BuyingTableBindingSource.DataSource = this.page_Report;
+            // 
+            // page_Report
+            // 
+            this.page_Report.DataSetName = "page_Report";
+            this.page_Report.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // BuyingSummaryBindingSource
+            // 
+            this.BuyingSummaryBindingSource.DataMember = "BuyingSummary";
+            this.BuyingSummaryBindingSource.DataSource = this.page_Report;
+            // 
+            // PayingSummaryBindingSource
+            // 
+            this.PayingSummaryBindingSource.DataMember = "PayingSummary";
+            this.PayingSummaryBindingSource.DataSource = this.page_Report;
+            // 
+            // PayingTableBindingSource
+            // 
+            this.PayingTableBindingSource.DataMember = "PayingTable";
+            this.PayingTableBindingSource.DataSource = this.page_Report;
+            // 
+            // NetPayBindingSource
+            // 
+            this.NetPayBindingSource.DataMember = "NetPay";
+            this.NetPayBindingSource.DataSource = this.page_Report;
+            // 
             // CustomerReportSummary
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -254,14 +265,15 @@
             this.Load += new System.EventHandler(this.CustomerReportSummary_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CustomerReportSummary_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.cusotmerInfo_page_reportBindingSource)).EndInit();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.BuyingTableBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.page_Report)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.BuyingSummaryBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.PayingSummaryBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.PayingTableBindingSource)).EndInit();
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.NetPayBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -286,5 +298,6 @@
         private System.Windows.Forms.BindingSource BuyingSummaryBindingSource;
         private System.Windows.Forms.BindingSource PayingTableBindingSource;
         private System.Windows.Forms.BindingSource PayingSummaryBindingSource;
+        private System.Windows.Forms.BindingSource NetPayBindingSource;
     }
 }

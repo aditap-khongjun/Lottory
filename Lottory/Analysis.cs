@@ -96,35 +96,45 @@ namespace Lottory
             dgvResult.Rows.Clear();
             dgvResult.Refresh();
             DataTable resultTb = findNumber();
-            foreach(DataRow row in resultTb.Rows)
+            if(resultTb.Rows.Count != 0)
             {
-                string number3up = row["Number3up"].ToString();
-                string buy3up = Convert.ToDouble(row["Buy3up"]).ToString("N0");
-                string pay3up = Convert.ToDouble(row["Pay3up"]).ToString("N0");
-                string number2up = row["Number2up"].ToString();
-                string buy2up = Convert.ToDouble(row["Buy2up"]).ToString("N0");
-                string pay2up = Convert.ToDouble(row["Pay2up"]).ToString("N0");
-                string inHand = Convert.ToDouble(row["InHand"]).ToString("N0");
-                string netPay = Convert.ToDouble(row["Net"]).ToString("N0");
-                dgvResult.Rows.Add(number3up,buy3up, pay3up, number2up,buy2up, pay2up, inHand, netPay);
-            }
-            // show first Row
-            double lb_pay3up = Convert.ToDouble(resultTb.Rows[0]["Pay3up"]);
-            double lb_pay2up = Convert.ToDouble(resultTb.Rows[0]["Pay2up"]);
-            lbNumber3up.Text = resultTb.Rows[0]["Number3up"].ToString();
-            lbpay3up.Text = lb_pay3up.ToString("N0");
-            lbNumber2up.Text = resultTb.Rows[0]["Number2up"].ToString();
-            lbpay2up.Text = lb_pay2up.ToString("N0");
-            lbNetPay.Text = Convert.ToDouble(resultTb.Rows[0]["Net"]).ToString("N0");
+                foreach (DataRow row in resultTb.Rows)
+                {
+                    string number3up = row["Number3up"].ToString();
+                    string buy3up = Convert.ToDouble(row["Buy3up"]).ToString("N0");
+                    string pay3up = Convert.ToDouble(row["Pay3up"]).ToString("N0");
+                    string number2up = row["Number2up"].ToString();
+                    string buy2up = Convert.ToDouble(row["Buy2up"]).ToString("N0");
+                    string pay2up = Convert.ToDouble(row["Pay2up"]).ToString("N0");
+                    string inHand = Convert.ToDouble(row["InHand"]).ToString("N0");
+                    string netPay = Convert.ToDouble(row["Net"]).ToString("N0");
+                    dgvResult.Rows.Add(number3up, buy3up, pay3up, number2up, buy2up, pay2up, inHand, netPay);
+                }
+                // show first Row
+                double lb_pay3up = Convert.ToDouble(resultTb.Rows[0]["Pay3up"]);
+                double lb_pay2up = Convert.ToDouble(resultTb.Rows[0]["Pay2up"]);
+                lbNumber3up.Text = resultTb.Rows[0]["Number3up"].ToString();
+                lbpay3up.Text = lb_pay3up.ToString("N0");
+                lbNumber2up.Text = resultTb.Rows[0]["Number2up"].ToString();
+                lbpay2up.Text = lb_pay2up.ToString("N0");
+                lbNetPay.Text = Convert.ToDouble(resultTb.Rows[0]["Net"]).ToString("N0");
 
-            if(lb_pay3up > lb_pay2up)
-            {
-                lbpay3up.ForeColor = Color.Red;
+                if (lb_pay3up > lb_pay2up)
+                {
+                    lbpay3up.ForeColor = Color.Red;
+                }
+                else if (lb_pay2up > lb_pay3up)
+                {
+                    lbpay2up.ForeColor = Color.Red;
+                }
             }
-            else if(lb_pay2up > lb_pay3up)
+            else
             {
-                lbpay2up.ForeColor = Color.Red;
+                MessageBox.Show(string.Format("ไม่พบตัวเลขที่ขาดทุนเกิน {0} บาท", tbMoney.Text));
             }
+            
+
+
             
         }
         private DataTable findNumber()
@@ -204,7 +214,7 @@ namespace Lottory
                 double netPrice = (price3up * 550) + (price2up * 70) + (price1up * 3) - inHandPrice;
 
 
-                if(netPrice > Convert.ToDouble(tbMoney.Text))
+                if(netPrice > double.Parse(tbMoney.Text))
                 {
                     // Add to Table
                     tbOut.Rows.Add(number3up,price3up, price3up * 550, number2up,price2up, price2up * 70, inHandPrice, netPrice);
@@ -242,7 +252,12 @@ namespace Lottory
 
         private void tbMoney_TextChanged(object sender, EventArgs e)
         {
-           //tbMoney.Text = Convert.ToInt32(tbMoney.Text).ToString("N0");
+            if(!string.IsNullOrEmpty(tbMoney.Text))
+            {
+                tbMoney.Text = string.Format("{0:n0}", double.Parse(tbMoney.Text));
+                tbMoney.Focus();
+                tbMoney.SelectionStart = tbMoney.Text.Length;
+            }
         }
 
         private void dgvNumberDetail_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
