@@ -118,6 +118,7 @@
             this.customerName.Name = "customerName";
             this.customerName.Size = new System.Drawing.Size(147, 29);
             this.customerName.TabIndex = 3;
+            this.customerName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox_Move);
             // 
             // customerID
             // 
@@ -126,6 +127,7 @@
             this.customerID.Size = new System.Drawing.Size(147, 29);
             this.customerID.TabIndex = 2;
             this.customerID.TextChanged += new System.EventHandler(this.customerID_Change);
+            this.customerID.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox_Move);
             // 
             // label2
             // 
@@ -179,6 +181,7 @@
             this.limit_1low.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.limit_1low.Click += new System.EventHandler(this.select_all_click);
             this.limit_1low.TextChanged += new System.EventHandler(this.correct_checking);
+            this.limit_1low.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox_Move);
             // 
             // limit_1up
             // 
@@ -190,6 +193,7 @@
             this.limit_1up.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.limit_1up.Click += new System.EventHandler(this.select_all_click);
             this.limit_1up.TextChanged += new System.EventHandler(this.correct_checking);
+            this.limit_1up.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox_Move);
             // 
             // limit_2low
             // 
@@ -201,6 +205,7 @@
             this.limit_2low.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.limit_2low.Click += new System.EventHandler(this.select_all_click);
             this.limit_2low.TextChanged += new System.EventHandler(this.correct_checking);
+            this.limit_2low.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox_Move);
             // 
             // limit_2up
             // 
@@ -212,6 +217,7 @@
             this.limit_2up.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.limit_2up.Click += new System.EventHandler(this.select_all_click);
             this.limit_2up.TextChanged += new System.EventHandler(this.correct_checking);
+            this.limit_2up.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox_Move);
             // 
             // limit_3low
             // 
@@ -223,6 +229,7 @@
             this.limit_3low.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.limit_3low.Click += new System.EventHandler(this.select_all_click);
             this.limit_3low.TextChanged += new System.EventHandler(this.correct_checking);
+            this.limit_3low.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox_Move);
             // 
             // limit_3up
             // 
@@ -234,6 +241,7 @@
             this.limit_3up.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.limit_3up.Click += new System.EventHandler(this.select_all_click);
             this.limit_3up.TextChanged += new System.EventHandler(this.correct_checking);
+            this.limit_3up.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox_Move);
             // 
             // limit_3uptod
             // 
@@ -245,6 +253,7 @@
             this.limit_3uptod.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.limit_3uptod.Click += new System.EventHandler(this.select_all_click);
             this.limit_3uptod.TextChanged += new System.EventHandler(this.correct_checking);
+            this.limit_3uptod.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox_Move);
             // 
             // label9
             // 
@@ -385,6 +394,7 @@
             this.discount_1low.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.discount_1low.Click += new System.EventHandler(this.select_all_click);
             this.discount_1low.TextChanged += new System.EventHandler(this.correct_checking);
+            this.discount_1low.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox_Move);
             // 
             // discount_5tod
             // 
@@ -396,6 +406,7 @@
             this.discount_5tod.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.discount_5tod.Click += new System.EventHandler(this.select_all_click);
             this.discount_5tod.TextChanged += new System.EventHandler(this.correct_checking);
+            this.discount_5tod.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox_Move);
             // 
             // discount_3tod
             // 
@@ -407,6 +418,7 @@
             this.discount_3tod.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.discount_3tod.Click += new System.EventHandler(this.select_all_click);
             this.discount_3tod.TextChanged += new System.EventHandler(this.correct_checking);
+            this.discount_3tod.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox_Move);
             // 
             // discount_3low
             // 
@@ -418,6 +430,7 @@
             this.discount_3low.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.discount_3low.Click += new System.EventHandler(this.select_all_click);
             this.discount_3low.TextChanged += new System.EventHandler(this.correct_checking);
+            this.discount_3low.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox_Move);
             // 
             // discount_3up
             // 
@@ -429,6 +442,7 @@
             this.discount_3up.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.discount_3up.Click += new System.EventHandler(this.select_all_click);
             this.discount_3up.TextChanged += new System.EventHandler(this.correct_checking);
+            this.discount_3up.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox_Move);
             // 
             // discount_2uptod
             // 
@@ -440,6 +454,7 @@
             this.discount_2uptod.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.discount_2uptod.Click += new System.EventHandler(this.select_all_click);
             this.discount_2uptod.TextChanged += new System.EventHandler(this.correct_checking);
+            this.discount_2uptod.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox_Move);
             // 
             // discount_2low
             // 
@@ -451,6 +466,7 @@
             this.discount_2low.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.discount_2low.Click += new System.EventHandler(this.select_all_click);
             this.discount_2low.TextChanged += new System.EventHandler(this.correct_checking);
+            this.discount_2low.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox_Move);
             // 
             // discount_2up
             // 
@@ -462,6 +478,7 @@
             this.discount_2up.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.discount_2up.Click += new System.EventHandler(this.select_all_click);
             this.discount_2up.TextChanged += new System.EventHandler(this.correct_checking);
+            this.discount_2up.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox_Move);
             // 
             // discount_1back
             // 
@@ -473,6 +490,7 @@
             this.discount_1back.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.discount_1back.Click += new System.EventHandler(this.select_all_click);
             this.discount_1back.TextChanged += new System.EventHandler(this.correct_checking);
+            this.discount_1back.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox_Move);
             // 
             // discount_1center
             // 
@@ -484,6 +502,7 @@
             this.discount_1center.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.discount_1center.Click += new System.EventHandler(this.select_all_click);
             this.discount_1center.TextChanged += new System.EventHandler(this.correct_checking);
+            this.discount_1center.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox_Move);
             // 
             // discount_1front
             // 
@@ -495,6 +514,7 @@
             this.discount_1front.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.discount_1front.Click += new System.EventHandler(this.select_all_click);
             this.discount_1front.TextChanged += new System.EventHandler(this.correct_checking);
+            this.discount_1front.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox_Move);
             // 
             // discount_1up
             // 
@@ -506,6 +526,7 @@
             this.discount_1up.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.discount_1up.Click += new System.EventHandler(this.select_all_click);
             this.discount_1up.TextChanged += new System.EventHandler(this.correct_checking);
+            this.discount_1up.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox_Move);
             // 
             // label21
             // 
@@ -589,6 +610,7 @@
             this.payRate_1low.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.payRate_1low.Click += new System.EventHandler(this.select_all_click);
             this.payRate_1low.TextChanged += new System.EventHandler(this.correct_checking);
+            this.payRate_1low.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox_Move);
             // 
             // payRate_5tod
             // 
@@ -600,6 +622,7 @@
             this.payRate_5tod.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.payRate_5tod.Click += new System.EventHandler(this.select_all_click);
             this.payRate_5tod.TextChanged += new System.EventHandler(this.correct_checking);
+            this.payRate_5tod.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox_Move);
             // 
             // payRate_3tod
             // 
@@ -611,6 +634,7 @@
             this.payRate_3tod.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.payRate_3tod.Click += new System.EventHandler(this.select_all_click);
             this.payRate_3tod.TextChanged += new System.EventHandler(this.correct_checking);
+            this.payRate_3tod.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox_Move);
             // 
             // payRate_3low
             // 
@@ -622,6 +646,7 @@
             this.payRate_3low.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.payRate_3low.Click += new System.EventHandler(this.select_all_click);
             this.payRate_3low.TextChanged += new System.EventHandler(this.correct_checking);
+            this.payRate_3low.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox_Move);
             // 
             // payRate_3up
             // 
@@ -633,6 +658,7 @@
             this.payRate_3up.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.payRate_3up.Click += new System.EventHandler(this.select_all_click);
             this.payRate_3up.TextChanged += new System.EventHandler(this.correct_checking);
+            this.payRate_3up.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox_Move);
             // 
             // payRate_2uptod
             // 
@@ -644,6 +670,7 @@
             this.payRate_2uptod.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.payRate_2uptod.Click += new System.EventHandler(this.select_all_click);
             this.payRate_2uptod.TextChanged += new System.EventHandler(this.correct_checking);
+            this.payRate_2uptod.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox_Move);
             // 
             // payRate_2low
             // 
@@ -655,6 +682,7 @@
             this.payRate_2low.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.payRate_2low.Click += new System.EventHandler(this.select_all_click);
             this.payRate_2low.TextChanged += new System.EventHandler(this.correct_checking);
+            this.payRate_2low.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox_Move);
             // 
             // payRate_2up
             // 
@@ -666,6 +694,7 @@
             this.payRate_2up.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.payRate_2up.Click += new System.EventHandler(this.select_all_click);
             this.payRate_2up.TextChanged += new System.EventHandler(this.correct_checking);
+            this.payRate_2up.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox_Move);
             // 
             // payRate_1back
             // 
@@ -677,6 +706,7 @@
             this.payRate_1back.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.payRate_1back.Click += new System.EventHandler(this.select_all_click);
             this.payRate_1back.TextChanged += new System.EventHandler(this.correct_checking);
+            this.payRate_1back.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox_Move);
             // 
             // label13
             // 
@@ -697,6 +727,7 @@
             this.payRate_1center.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.payRate_1center.Click += new System.EventHandler(this.select_all_click);
             this.payRate_1center.TextChanged += new System.EventHandler(this.correct_checking);
+            this.payRate_1center.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox_Move);
             // 
             // label12
             // 
@@ -717,6 +748,7 @@
             this.payRate_1front.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.payRate_1front.Click += new System.EventHandler(this.select_all_click);
             this.payRate_1front.TextChanged += new System.EventHandler(this.correct_checking);
+            this.payRate_1front.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox_Move);
             // 
             // label11
             // 
@@ -737,6 +769,7 @@
             this.payRate_1up.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.payRate_1up.Click += new System.EventHandler(this.select_all_click);
             this.payRate_1up.TextChanged += new System.EventHandler(this.correct_checking);
+            this.payRate_1up.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox_Move);
             // 
             // label10
             // 

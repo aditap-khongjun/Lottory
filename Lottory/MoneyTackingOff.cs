@@ -113,6 +113,8 @@ namespace Lottory
                     // Nothing to do
                     break;
             }
+
+            clearTakeOutSummary();
         }
         private void ClearTakingOff()
         {
@@ -139,6 +141,8 @@ namespace Lottory
         private void btShowInHand_Click(object sender, EventArgs e)
         {
             showInHandNumberTable();
+
+            clearTakeOutSummary();
         }
         private DataTable getNumberXXXFromDB(int TypeID)
         {
@@ -262,12 +266,15 @@ namespace Lottory
         private void btShowAll_Click(object sender, EventArgs e)
         {
             showAllNumberTable();
+
+            clearTakeOutSummary();
         }
 
         private void btShowTakeOff_Click(object sender, EventArgs e)
         {
-            //
+            // show TakeOut Number
             showTackOffNumber();
+            showTakeOutSummary();
         }
         private void showTackOffNumber()
         {
@@ -290,6 +297,26 @@ namespace Lottory
 
             // update Number 1low
             dgvNumber1low.DataSource = null;
+
+        }
+        private void showTakeOutSummary()
+        {
+            // show summary 3up
+            lbTakeOut3up.Text = getTakeOutPriceFromDB(BaseTypeID.up3).ToString("N0");
+
+            // show summary 2up
+            lbTakeOut2up.Text = getTakeOutPriceFromDB(BaseTypeID.up2).ToString("N0");
+
+            // show summary 2low
+            lbTakeOut2low.Text = getTakeOutPriceFromDB(BaseTypeID.low2).ToString("N0");
+
+        }
+
+        private void clearTakeOutSummary()
+        {
+            lbTakeOut3up.Text = "xx,xxx";
+            lbTakeOut2up.Text = "xx,xxx";
+            lbTakeOut2low.Text = "xx,xxx";
         }
 
         private DataTable getTackOffNumberXXXFromDB(int TypeID)
@@ -332,6 +359,42 @@ namespace Lottory
             }
             connection.Close();
             return outNumber;
+        }
+
+        private double getTakeOutPriceFromDB(int TypeID)
+        {
+            double outPrice = 0;
+            string dbName = string.Empty;
+            switch (TypeID)
+            {
+                case BaseTypeID.up3:
+                    dbName = "Number_3up";
+                    break;
+                case BaseTypeID.up2:
+                    dbName = "Number_2up";
+                    break;
+                case BaseTypeID.low2:
+                    dbName = "Number_2low";
+                    break;
+            }
+            SqlConnection connection = new SqlConnection(Database.CnnVal("LottoryDB"));
+
+            // get orderlistID
+            if (connection.State == ConnectionState.Closed)
+            {
+                connection.Open(); // Open Database
+            }
+            string sqlgetOverPrice = string.Format(@"SELECT SUM(OutPrice) AS Price FROM {0}
+                                                      WHERE OutPrice > 0", dbName);
+            SqlCommand sqlgetOverPriceCom = new SqlCommand(sqlgetOverPrice, connection);
+            SqlDataReader OverPriceInfo = sqlgetOverPriceCom.ExecuteReader();
+            while (OverPriceInfo.Read())
+            {
+                outPrice = Convert.ToDouble(OverPriceInfo["Price"]);
+            }
+            connection.Close();
+
+            return outPrice;
         }
     }
 }

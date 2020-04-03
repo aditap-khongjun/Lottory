@@ -127,6 +127,7 @@ namespace Lottory
                                         GROUP BY ci.CustomerID";
             SqlDataAdapter da = new SqlDataAdapter(sqlgetCustomerID, connection);
             da.Fill(outCustomerID);
+            connection.Close();
 
             return outCustomerID;
         }
@@ -189,6 +190,7 @@ namespace Lottory
             {
                 outNumber.Add(winNumberInfo["Number"].ToString());
             }
+            connection.Close();
 
             return outNumber;
         }
@@ -199,7 +201,7 @@ namespace Lottory
             foreach (string winNumber in WinNumber)
             {
                 SqlConnection connection = new SqlConnection(Database.CnnVal("LottoryDB"));
-                if (connection.State == ConnectionState.Closed)
+                if(connection.State == ConnectionState.Closed)
                 {
                     connection.Open();
                 }

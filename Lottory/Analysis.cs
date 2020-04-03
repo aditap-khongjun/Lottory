@@ -260,10 +260,6 @@ namespace Lottory
             }
         }
 
-        private void dgvNumberDetail_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
-        {
-            
-        }
 
         private List<string> ExpandTod3(string Number)
         {
@@ -333,11 +329,8 @@ namespace Lottory
             tbOut.Columns["price"].DataType = typeof(Double);
             foreach (string itemNumber in ExpandTod3(Number))
             {
-                if (!string.Equals(itemNumber, Number))
-                {
-                    double price = getPrice3upFromDB(itemNumber);
-                    tbOut.Rows.Add(itemNumber, price);
-                }
+                double price = getPrice3upFromDB(itemNumber);
+                tbOut.Rows.Add(itemNumber, price);
             }
             tbOut.DefaultView.Sort = "price DESC";
             tbOut = tbOut.DefaultView.ToTable();

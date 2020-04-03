@@ -102,9 +102,15 @@ namespace Lottory
             MenuReport_AllBuying.Click += new EventHandler(MenuReport_AllBuying_Click);
             MenuReport_PageBuying.Click += new EventHandler(MenuReport_PageBuying_Click);
             MenuReport_LimitNumber.Click += new EventHandler(MenuReport_LimitNumber_Click);
+            MenuReport_CustomerBuying.Click += new EventHandler(MenuReport_CustomerBuying_Click);
 
             // Analysis
             MenuMoneyLimit_AnalysisLimit.Click += new EventHandler(MenuMoneyLimit_AnalysisLimit_Click);
+        }
+
+        private void MenuReport_CustomerBuying_Click(object sender, EventArgs e)
+        {
+            ShowForm(Summary_Customer_Report.Instance);
         }
 
         private void MenuMoneyLimit_AnalysisLimit_Click(object sender, EventArgs e)
@@ -240,10 +246,12 @@ namespace Lottory
             });
             // Setting DropDown of MenuReport
             MenuReport_AllNumber.Text = "แสดงข้อมูลที่ป้อน";
+            MenuReport_AllNumber.Enabled = false;
             MenuReport_AllBuying.Text = "แสดงยอดซื้อตามเลข (รวม)";
             MenuReport_PageBuying.Text = "แสดงยอดซื้อตามเลข (ตามหน้า)";
             MenuReport_LimitNumber.Text = "รายงานแสดงตัวเลขที่ตีออก (ทุกตัวที่เคยตีออก)";
             MenuReport_19DoorsBuying.Text = "รายงานแสดงตัวเลขยอดซื้อ 19ประตู";
+            MenuReport_19DoorsBuying.Enabled = false;
             MenuReport_CustomerBuying.Text = "รายงานแสดงยอดซื้อของลูกค้าแต่ละคน";
         }
 

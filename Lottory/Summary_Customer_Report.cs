@@ -117,7 +117,8 @@ namespace Lottory
                                         GROUP BY ci.CustomerID";
             SqlDataAdapter da = new SqlDataAdapter(sqlgetCustomerID, connection);
             da.Fill(outCustomerID);
-            
+            connection.Close();
+
             return outCustomerID;
         }
         private double getPrice(string customerID)
@@ -160,6 +161,7 @@ namespace Lottory
                 outDiscount = Convert.ToDouble(DiscountInfo["Discount"]);
             }
             connection.Close();
+
             return outDiscount;
 
         }
@@ -179,6 +181,7 @@ namespace Lottory
             {
                 outNumber.Add(winNumberInfo["Number"].ToString());
             }
+            connection.Close();
 
             return outNumber;
         }

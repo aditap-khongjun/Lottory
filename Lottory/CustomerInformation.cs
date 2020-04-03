@@ -555,6 +555,300 @@ namespace Lottory
 
         }
 
+        private void textBox_Move(object sender, KeyEventArgs e)
+        {
+            TextBox tbInfo = (TextBox)sender;
+            switch(e.KeyCode)
+            {
+                case Keys.Enter:
+                case Keys.Down:
+                    e.Handled = true;
+                    e.SuppressKeyPress = true;
+                    textBoxForword(tbInfo.Name);
+                    break;
+                case Keys.Up:
+                    textBoxBackword(tbInfo.Name);
+                    break;
+            }
+        }
 
+        private void textBoxBackword(string tbName)
+        {
+            switch (tbName)
+            {
+                case "customerID":
+                    discount_1low.Focus();
+                    discount_1low.SelectAll();
+                    break;
+                case "customerName":
+                    customerID.Focus();
+                    customerID.SelectAll();
+                    break;
+                case "limit_3uptod":
+                    customerName.Focus();
+                    customerName.SelectAll();
+                    break;
+                case "limit_3up":
+                    limit_3uptod.Focus();
+                    limit_3uptod.SelectAll();
+                    break;
+                case "limit_3low":
+                    limit_3up.Focus();
+                    limit_3up.SelectAll();
+                    break;
+                case "limit_2up":
+                    limit_3low.Focus();
+                    limit_3low.SelectAll();
+                    break;
+                case "limit_2low":
+                    limit_2up.Focus();
+                    limit_2up.SelectAll();
+                    break;
+                case "limit_1up":
+                    limit_2low.Focus();
+                    limit_2low.SelectAll();
+                    break;
+                case "limit_1low":
+                    limit_1up.Focus();
+                    limit_1up.SelectAll();
+                    break;
+                case "payRate_1up":
+                    limit_1low.Focus();
+                    limit_1low.SelectAll();
+                    break;
+                case "payRate_1front":
+                    payRate_1up.Focus();
+                    payRate_1up.SelectAll();
+                    break;
+                case "payRate_1center":
+                    payRate_1front.Focus();
+                    payRate_1front.SelectAll();
+                    break;
+                case "payRate_1back":
+                    payRate_1center.Focus();
+                    payRate_1center.SelectAll();
+                    break;
+                case "payRate_2up":
+                    payRate_1back.Focus();
+                    payRate_1back.SelectAll();
+                    break;
+                case "payRate_2low":
+                    payRate_2up.Focus();
+                    payRate_2up.SelectAll();
+                    break;
+                case "payRate_2uptod":
+                    payRate_2low.Focus();
+                    payRate_2low.SelectAll();
+                    break;
+                case "payRate_3up":
+                    payRate_2uptod.Focus();
+                    payRate_2uptod.SelectAll();
+                    break;
+                case "payRate_3low":
+                    payRate_3up.Focus();
+                    payRate_3up.SelectAll();
+                    break;
+                case "payRate_3tod":
+                    payRate_3low.Focus();
+                    payRate_3low.SelectAll();
+                    break;
+                case "payRate_5tod":
+                    payRate_3tod.Focus();
+                    payRate_3tod.SelectAll();
+                    break;
+                case "payRate_1low":
+                    payRate_5tod.Focus();
+                    payRate_5tod.SelectAll();
+                    break;
+                case "discount_1up":
+                    payRate_1low.Focus();
+                    payRate_1low.SelectAll();
+                    break;
+                case "discount_1front":
+                    discount_1up.Focus();
+                    discount_1up.SelectAll();
+                    break;
+                case "discount_1center":
+                    discount_1front.Focus();
+                    discount_1front.SelectAll();
+                    break;
+                case "discount_1back":
+                    discount_1center.Focus();
+                    discount_1center.SelectAll();
+                    break;
+                case "discount_2up":
+                    discount_1back.Focus();
+                    discount_1back.SelectAll();
+                    break;
+                case "discount_2low":
+                    discount_2up.Focus();
+                    discount_2up.SelectAll();
+                    break;
+                case "discount_2uptod":
+                    discount_2low.Focus();
+                    discount_2low.SelectAll();
+                    break;
+                case "discount_3up":
+                    discount_2uptod.Focus();
+                    discount_2uptod.SelectAll();
+                    break;
+                case "discount_3low":
+                    discount_3up.Focus();
+                    discount_3up.SelectAll();
+                    break;
+                case "discount_3tod":
+                    discount_3low.Focus();
+                    discount_3low.SelectAll();
+                    break;
+                case "discount_5tod":
+                    discount_3tod.Focus();
+                    discount_3tod.SelectAll();
+                    break;
+                case "discount_1low":
+                    discount_5tod.Focus();
+                    discount_5tod.SelectAll();
+                    break;
+
+            }
+        }
+
+        private void textBoxForword(string tbName)
+        {
+            switch(tbName)
+            {
+                case "customerID":
+                    customerName.Focus();
+                    customerName.SelectAll();
+                    break;
+                case "customerName":
+                    limit_3uptod.Focus();
+                    limit_3uptod.SelectAll();
+                    break;
+                case "limit_3uptod":
+                    limit_3up.Focus();
+                    limit_3up.SelectAll();
+                    break;
+                case "limit_3up":
+                    limit_3low.Focus();
+                    limit_3low.SelectAll();
+                    break;
+                case "limit_3low":
+                    limit_2up.Focus();
+                    limit_2up.SelectAll();
+                    break;
+                case "limit_2up":
+                    limit_2low.Focus();
+                    limit_2low.SelectAll();
+                    break;
+                case "limit_2low":
+                    limit_1up.Focus();
+                    limit_1up.SelectAll();
+                    break;
+                case "limit_1up":
+                    limit_1low.Focus();
+                    limit_1low.SelectAll();
+                    break;
+                case "limit_1low":
+                    payRate_1up.Focus();
+                    payRate_1up.SelectAll();
+                    break;
+                case "payRate_1up":
+                    payRate_1front.Focus();
+                    payRate_1front.SelectAll();
+                    break;
+                case "payRate_1front":
+                    payRate_1center.Focus();
+                    payRate_1center.SelectAll();
+                    break;
+                case "payRate_1center":
+                    payRate_1back.Focus();
+                    payRate_1back.SelectAll();
+                    break;
+                case "payRate_1back":
+                    payRate_2up.Focus();
+                    payRate_2up.SelectAll();
+                    break;
+                case "payRate_2up":
+                    payRate_2low.Focus();
+                    payRate_2low.SelectAll();
+                    break;
+                case "payRate_2low":
+                    payRate_2uptod.Focus();
+                    payRate_2uptod.SelectAll();
+                    break;
+                case "payRate_2uptod":
+                    payRate_3up.Focus();
+                    payRate_3up.SelectAll();
+                    break;
+                case "payRate_3up":
+                    payRate_3low.Focus();
+                    payRate_3low.SelectAll();
+                    break;
+                case "payRate_3low":
+                    payRate_3tod.Focus();
+                    payRate_3tod.SelectAll();
+                    break;
+                case "payRate_3tod":
+                    payRate_5tod.Focus();
+                    payRate_5tod.SelectAll();
+                    break;
+                case "payRate_5tod":
+                    payRate_1low.Focus();
+                    payRate_1low.SelectAll();
+                    break;
+                case "payRate_1low":
+                    discount_1up.Focus();
+                    discount_1up.SelectAll();
+                    break;
+                case "discount_1up":
+                    discount_1front.Focus();
+                    discount_1front.SelectAll();
+                    break;
+                case "discount_1front":
+                    discount_1center.Focus();
+                    discount_1center.SelectAll();
+                    break;
+                case "discount_1center":
+                    discount_1back.Focus();
+                    discount_1back.SelectAll();
+                    break;
+                case "discount_1back":
+                    discount_2up.Focus();
+                    discount_2up.SelectAll();
+                    break;
+                case "discount_2up":
+                    discount_2low.Focus();
+                    discount_2low.SelectAll();
+                    break;
+                case "discount_2low":
+                    discount_2uptod.Focus();
+                    discount_2uptod.SelectAll();
+                    break;
+                case "discount_2uptod":
+                    discount_3up.Focus();
+                    discount_3up.SelectAll();
+                    break;
+                case "discount_3up":
+                    discount_3low.Focus();
+                    discount_3low.SelectAll();
+                    break;
+                case "discount_3low":
+                    discount_3tod.Focus();
+                    discount_3tod.SelectAll();
+                    break;
+                case "discount_3tod":
+                    discount_5tod.Focus();
+                    discount_5tod.SelectAll();
+                    break;
+                case "discount_5tod":
+                    discount_1low.Focus();
+                    discount_1low.SelectAll();
+                    break;
+                case "discount_1low":
+                    customerID.Focus();
+                    customerID.SelectAll();
+                    break;
+            }
+        }
     }
 }

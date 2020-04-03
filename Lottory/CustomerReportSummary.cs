@@ -222,7 +222,7 @@ namespace Lottory
                 _disc3 = _price3 - Convert.ToInt32(_d3uptod + _d3up + _d3low + _d3door54 + _d3group + _dtGroup + _dGroupLow + _d4group + _d5group);
             }
 
-            if (_price3 > 0)
+            if (_price3 != 0)
             {
                 outBuyingInfo.Rows.Add("3", _price3, _disc3);
             }
@@ -300,7 +300,7 @@ namespace Lottory
 
                 _disc2 = _price2 - Convert.ToInt32(_d2up + _d2low + _d2uptod + _d2door6 + _d2updoor19 + _d2lowdoor19 + _d2ht + _d2hu);
             }
-            if (_price2 > 0)
+            if (_price2 != 0)
             {
                 outBuyingInfo.Rows.Add("2", _price2, _disc2);
             }
@@ -349,7 +349,7 @@ namespace Lottory
 
                 _dtod = _ptod - Convert.ToInt32(_d3uptod + _d2uptod + _d3tod + _d2tod);
             }
-            if (_ptod > 0)
+            if (_ptod != 0)
             {
                 outBuyingInfo.Rows.Add("T", _ptod, _dtod);
             }
@@ -384,7 +384,7 @@ namespace Lottory
                 _d5tod = getDiscountFromDB(CustomerID, BaseTypeID.tod5, PageID);
                 _disc5 = _price5 - Convert.ToInt32(_d5tod);
             }
-            if (_price5 > 0)
+            if (_price5 != 0)
             {
                 outBuyingInfo.Rows.Add("5", _price5, _disc5);
             }
@@ -464,7 +464,7 @@ namespace Lottory
                 //_price2hu = getPriceFromDB(CustomerID, BaseTypeID.hu2, PageID);
                 //_disc2hu = _price2hu - getDiscountFromDB(CustomerID, BaseTypeID.hu2, PageID);
             }
-            if (_price1 > 0)
+            if (_price1 != 0)
             {
                 outBuyingInfo.Rows.Add("1", _price1, _disc1);
             }
@@ -537,7 +537,7 @@ namespace Lottory
             // summary
             double _payPrice3up = _payP3uptod + _payP3up + _payP3group + _payP3door54 + _payP3tgroup;
             double _winPrice3up = _winP3uptod + _winP3up + _winP3group + _winP3door54 + _winP3tgroup;
-            if (_winPrice3up > 0)
+            if (_winPrice3up != 0)
             {
                 List<int> _Page3up = new List<int>();
                 if(Pageuptod3.Any())
@@ -596,7 +596,7 @@ namespace Lottory
                 _winP2updoor6 + _winP2htdoor6 + _winP2hudoor6;
             double _payPrice2up = _payP2uptod + _payP2up + _payP2ht + _payP2hu + _payP2updoor19 +
                 _payP2updoor6 + _payP2htdoor6 + _payP2hudoor6;
-            if (_winPrice2up > 0)
+            if (_winPrice2up != 0)
             {
                 List<int> _Page2up = new List<int>();
                 if (Pageuptod2.Any())
@@ -649,7 +649,7 @@ namespace Lottory
 
             double _winPrice2low = _winP2low + _winP2lowdoor19;
             double _payPrice2low = _payP2low + _payP2lowdoor19;
-            if (_winPrice2low > 0)
+            if (_winPrice2low != 0)
             {
                 List<int> _Page2low = new List<int>();
                 if (Pagelow2.Any())
@@ -675,7 +675,7 @@ namespace Lottory
             double _winPrice3tod = _winP3uptod + _winP3tod;
 
             double _payPrice3tod = _payP3uptod + _payP3tod;
-            if (_winPrice3tod > 0)
+            if (_winPrice3tod != 0)
             {
                 List<int> _Page3tod = new List<int>();
                 if (Pageuptod3.Any())
@@ -716,7 +716,7 @@ namespace Lottory
 
             double _payPrice2tod = _payP2uptodUP + _payP2uptodHT + _payP2uptodHU
                 + _payP2todUP + _payP2todHT + _payP2todHU;
-            if (_winPrice2tod > 0)
+            if (_winPrice2tod != 0)
             {
                 List<int> _Page2tod = new List<int>();
                 if (Pageuptod2up.Any())
@@ -759,7 +759,7 @@ namespace Lottory
 
             double _winPrice5 = _winP5group + _winP5tod;
             double _payPrice5 = _payP5group + _payP5tod;
-            if (_winPrice5 > 0)
+            if (_winPrice5 != 0)
             {
                 List<int> _Page5tod = new List<int>();
                 if (Pagegroup5.Any())
@@ -785,7 +785,7 @@ namespace Lottory
             double _payP1up = _winP1up * _winR1up;
             double _winPrice1up = _winP1up;
             double _payPrice1up = _payP1up;
-            if (_winPrice1up > 0)
+            if (_winPrice1up != 0)
             {
                 List<int> _Page1up = new List<int>();
                 if (Pageup1.Any())
@@ -806,7 +806,7 @@ namespace Lottory
             double _payP1low = _winP1low * _winR1low;
             double _winPrice1low = _winP1low;
             double _payPrice1low = _payP1low;
-            if (_winPrice1low > 0)
+            if (_winPrice1low != 0)
             {
                 List<int> _Page1low = new List<int>();
                 if (Pagelow1.Any())
@@ -831,7 +831,7 @@ namespace Lottory
             double _winPrice3low = _winP3low + _winP3lowgroup;
             double _payPrice3low = _payP3low + _payP3lowgroup;
             
-            if (_winPrice3low > 0)
+            if (_winPrice3low != 0)
             {
                 List<int> _Page3low = new List<int>();
                 if (Pagelow3.Any())
@@ -856,7 +856,7 @@ namespace Lottory
 
             double _winPrice1front = _winP1front;
             double _payPrice1front = _payP1front;
-            if (_winPrice1front > 0)
+            if (_winPrice1front != 0)
             {
                 List<int> _Page1upfront = new List<int>();
                 if (Pageupfront1.Any())
@@ -875,7 +875,7 @@ namespace Lottory
             List<int> Pageupcenter1 = getwinPriceFromDB(CustomerID, BaseTypeID.upcenter1, winNumber1center, PageID, out double _winPrice1center, out double _winRate1center);
             // get payprice
             double _payPrice1center = _winPrice1center * _winRate1center;
-            if (_winPrice1center > 0)
+            if (_winPrice1center != 0)
             {
                 List<int> _Page1upcenter = new List<int>();
                 if (Pageupcenter1.Any())
@@ -894,7 +894,7 @@ namespace Lottory
             List<int> Pageupback1 = getwinPriceFromDB(CustomerID, BaseTypeID.upback1, winNumber1back, PageID, out double _winPrice1back, out double _winRate1back);
             // get payprice
             double _payPrice1back = _winPrice1back * _winRate1back;
-            if (_winPrice1back > 0)
+            if (_winPrice1back != 0)
             {
                 List<int> _Page1upback = new List<int>();
                 if (Pageupback1.Any())
@@ -912,7 +912,7 @@ namespace Lottory
             List<int> Pagelowfront1 = getwinPriceFromDB(CustomerID, BaseTypeID.lowfront1, winNumber1lowfront, PageID, out double _winPrice1lowfront, out double _winRate1lowfront);
             // get payprice
             double _payPrice1lowfront = _winPrice1lowfront * _winRate1lowfront;
-            if (_winPrice1lowfront > 0)
+            if (_winPrice1lowfront != 0)
             {
                 List<int> _Page1lowfront = new List<int>();
                 if (Pagelowfront1.Any())
@@ -930,7 +930,7 @@ namespace Lottory
             List<int> Pagelowback1 = getwinPriceFromDB(CustomerID, BaseTypeID.lowback1, winNumber1lowback, PageID, out double _winPrice1lowback, out double _winRate1lowback);
             // get payprice
             double _payPrice1lowback = _winPrice1lowback * _winRate1lowback;
-            if (_winPrice1lowback > 0)
+            if (_winPrice1lowback != 0)
             {
                 List<int> _Page1lowback = new List<int>();
                 if (Pagelowback1.Any())

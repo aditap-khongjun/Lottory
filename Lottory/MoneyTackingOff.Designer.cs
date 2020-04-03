@@ -53,6 +53,13 @@
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.lbTakeOut2low = new System.Windows.Forms.Label();
+            this.lbTakeOut2up = new System.Windows.Forms.Label();
+            this.lbTakeOut3up = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvNumber3up)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvNumber2up)).BeginInit();
@@ -60,6 +67,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvNumber3low)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvNumber1up)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvNumber1low)).BeginInit();
+            this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -325,11 +333,82 @@
             this.label9.TabIndex = 12;
             this.label9.Text = "1 ล่าง";
             // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.lbTakeOut2low);
+            this.groupBox2.Controls.Add(this.lbTakeOut2up);
+            this.groupBox2.Controls.Add(this.lbTakeOut3up);
+            this.groupBox2.Controls.Add(this.label12);
+            this.groupBox2.Controls.Add(this.label11);
+            this.groupBox2.Controls.Add(this.label10);
+            this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.groupBox2.Location = new System.Drawing.Point(352, 293);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(184, 155);
+            this.groupBox2.TabIndex = 13;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "สรปยอดที่ตีออก";
+            // 
+            // lbTakeOut2low
+            // 
+            this.lbTakeOut2low.AutoSize = true;
+            this.lbTakeOut2low.Location = new System.Drawing.Point(81, 109);
+            this.lbTakeOut2low.Name = "lbTakeOut2low";
+            this.lbTakeOut2low.Size = new System.Drawing.Size(65, 24);
+            this.lbTakeOut2low.TabIndex = 4;
+            this.lbTakeOut2low.Text = "xx,xxx";
+            // 
+            // lbTakeOut2up
+            // 
+            this.lbTakeOut2up.AutoSize = true;
+            this.lbTakeOut2up.Location = new System.Drawing.Point(81, 70);
+            this.lbTakeOut2up.Name = "lbTakeOut2up";
+            this.lbTakeOut2up.Size = new System.Drawing.Size(65, 24);
+            this.lbTakeOut2up.TabIndex = 5;
+            this.lbTakeOut2up.Text = "xx,xxx";
+            // 
+            // lbTakeOut3up
+            // 
+            this.lbTakeOut3up.AutoSize = true;
+            this.lbTakeOut3up.Location = new System.Drawing.Point(81, 31);
+            this.lbTakeOut3up.Name = "lbTakeOut3up";
+            this.lbTakeOut3up.Size = new System.Drawing.Size(65, 24);
+            this.lbTakeOut3up.TabIndex = 6;
+            this.lbTakeOut3up.Text = "xx,xxx";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(16, 109);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(59, 24);
+            this.label12.TabIndex = 0;
+            this.label12.Text = "2 ล่าง :";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(16, 70);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(59, 24);
+            this.label11.TabIndex = 0;
+            this.label11.Text = "2 บน :";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(16, 31);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(59, 24);
+            this.label10.TabIndex = 0;
+            this.label10.Text = "3 บน :";
+            // 
             // MoneyTackingOff
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1904, 1041);
+            this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label7);
@@ -359,6 +438,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvNumber3low)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvNumber1up)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvNumber1low)).EndInit();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -391,5 +472,12 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.Label lbTakeOut2low;
+        private System.Windows.Forms.Label lbTakeOut2up;
+        private System.Windows.Forms.Label lbTakeOut3up;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label label10;
     }
 }
