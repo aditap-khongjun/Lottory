@@ -413,7 +413,7 @@ namespace Lottory
         private void MenuSystemInfo_Clear_Click(object sender, EventArgs e)
         {
             // Clear Imformation
-            DialogResult result = MessageBox.Show("ต้องการลบข้อมูลทั้งหมดหรือไม่","ลบข้อมูล",MessageBoxButtons.YesNo,MessageBoxIcon.Warning);
+            DialogResult result = MessageBox.Show("ต้องการลบข้อมูลทั้งหมดหรือไม่","ลบข้อมูล",MessageBoxButtons.YesNo,MessageBoxIcon.Warning,MessageBoxDefaultButton.Button2);
             switch(result)
             {
                 case DialogResult.Yes:
