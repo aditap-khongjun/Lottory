@@ -487,6 +487,10 @@ namespace Lottory
                         CreateOrder();
                     }
                     break;
+                case Keys.PageUp:
+                    customerID.Focus();
+                    customerID.SelectAll();
+                    break;
             }
         }
 
