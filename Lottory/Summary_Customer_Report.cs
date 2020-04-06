@@ -173,7 +173,7 @@ namespace Lottory
             {
                 connection.Open();
             }
-            string getWinNumber = string.Format(@"SELECT Number FROM WinNumber
+            string getWinNumber = string.Format(@"SELECT DISTINCT Number FROM WinNumber
                                                   WHERE TypeName = N'{0}'", WinType);
             SqlCommand getWinNumberCom = new SqlCommand(getWinNumber, connection);
             SqlDataReader winNumberInfo = getWinNumberCom.ExecuteReader();
