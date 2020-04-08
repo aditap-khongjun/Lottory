@@ -215,8 +215,11 @@ namespace Lottory
             });
             // Setting DropDown of MenuSystemInfo
             MenuSystemInfo_parameter.Text = "กำหนดค่าต่าง ๆ";
+            MenuSystemInfo_parameter.Enabled = Login.AdminState;
             MenuSystemInfo_Clear.Text = "ลบข้อมูลทั้งหมด";
-            
+            MenuSystemInfo_Clear.Enabled = Login.AdminState;
+
+
             // Add DropDown of MenuCustomerAccount
             MenuCustomerAccount.DropDownItems.AddRange(new ToolStripItem[] {
                 MenuCustomerAccount_Management,

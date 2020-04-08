@@ -2610,7 +2610,7 @@ namespace Lottory
                             OrderListID = getOrderListIDDB();
 
                             // get customer discount(%)
-                            discount = getCustomerDiscount(BaseTypeID.tod2);
+                            discount = getCustomerDiscount(BaseTypeID.up2);
 
                             // update OrderList Expand
                             updateOrderListExpandDB(OrderListID.ToString(), BaseTypeID.up2.ToString(), Number, Money, Money, discount);

@@ -294,7 +294,9 @@ namespace Lottory
                     connection.Open(); // Open Database
                 }
                 // check order from DB
-                string sqlCustomerOrder = "SELECT OrderID, CustomerID, Page FROM CustomerOrder WHERE (CustomerID = '" + customerID.Text + "') AND (Page = " + pageNumber.Text + ")";
+                //string sqlCustomerOrder = "SELECT OrderID, CustomerID, Page FROM CustomerOrder WHERE (CustomerID = '" + customerID.Text + "') AND (Page = " + pageNumber.Text + ")";
+                string sqlCustomerOrder = string.Format(@"SELECT OrderID, CustomerID, Page FROM CustomerOrder
+                                                          WHERE CustomerID = '{0}' AND Page = {1}", customerID.Text, pageNumber.Text);
                 SqlCommand sqlCustomerOrderCom = new SqlCommand(sqlCustomerOrder, connection);
                 SqlDataReader customerOrderInfo = sqlCustomerOrderCom.ExecuteReader();
                 if (customerOrderInfo.HasRows)
@@ -364,11 +366,12 @@ namespace Lottory
             SqlDataReader customerInfo = getcustomeridCom.ExecuteReader();
             if(customerInfo.HasRows)
             {
+                connection.Close();
                 return true;
             }
             else
             {
-                
+                connection.Close();
                 return false;
             }
         }
@@ -382,7 +385,9 @@ namespace Lottory
             {
                 connection.Open();
             }
-            string sqlgetCusName = "SELECT CustomerName FROM CustomerInfo WHERE CustomerID = '" + customerID + "'";
+            //string sqlgetCusName = "SELECT CustomerName FROM CustomerInfo WHERE CustomerID = '" + customerID + "'";
+            string sqlgetCusName = string.Format(@"SELECT CustomerName FROM CustomerInfo 
+                                                   WHERE CustomerID = '{0}'",customerID);
             SqlCommand sqlgetCusNameCom = new SqlCommand(sqlgetCusName, connection);
             SqlDataReader cusNameInfo = sqlgetCusNameCom.ExecuteReader();
             
@@ -403,13 +408,17 @@ namespace Lottory
             {
                 connection.Open(); // Open Database
             }
-            string sqlgetOrderID = "SELECT OrderID FROM CustomerOrder WHERE (CustomerID = '" + customerID + "') AND (Page = " + pageNumber + ")";
+            //string sqlgetOrderID = "SELECT OrderID FROM CustomerOrder WHERE (CustomerID = '" + customerID + "') AND (Page = " + pageNumber + ")";
+            string sqlgetOrderID = string.Format(@"SELECT OrderID FROM CustomerOrder 
+                                                   WHERE CustomerID = '{0}' AND Page = {1}",customerID,pageNumber);
+
             SqlCommand sqlgetOrderIDCom = new SqlCommand(sqlgetOrderID, connection);
             SqlDataReader OrderIDInfo = sqlgetOrderIDCom.ExecuteReader();
             if(OrderIDInfo.Read())
             {
                 orderID = Convert.ToString(OrderIDInfo["OrderID"]);
             }
+            connection.Close();
 
             return orderID;
         }
@@ -436,7 +445,10 @@ namespace Lottory
                 connection.Open(); // Open Database
             }
             // Insert Order
-            string sqlInsertOrder = "INSERT INTO CustomerOrder(EmployeeID, CustomerID,Page) VALUES('" + Login.EmpolyeeID +"','" + customerID + "'," + pageNumber + ")";
+            // string sqlInsertOrder = "INSERT INTO CustomerOrder(EmployeeID, CustomerID,Page) VALUES('" + Login.EmpolyeeID +"','" + customerID + "'," + pageNumber + ")";
+            string sqlInsertOrder = string.Format(@"INSERT INTO CustomerOrder(EmployeeID, CustomerID,Page) 
+                                                    VALUES('{0}','{1}',{2})",Login.EmpolyeeID,customerID,pageNumber);
+
             SqlCommand sqlInsertCom = new SqlCommand(sqlInsertOrder, connection);
             sqlInsertCom.ExecuteNonQuery();
 

@@ -8,6 +8,8 @@ namespace Lottory
     {
         public static string EmpolyeeID { get; set; }
         public static string EmpolyeeName { get; set; }
+
+        public static bool AdminState { get; set; }
         public Login()
         {
             InitializeComponent();
@@ -63,7 +65,7 @@ namespace Lottory
                 }
 
                 // get username, password from database
-                string sqlStr = "SELECT EmployeeID, Username, Password FROM Employee";
+                string sqlStr = "SELECT EmployeeID, Username, Password, Admin FROM Employee";
                 SqlCommand sqlcom = new SqlCommand(sqlStr, connection);
                 SqlDataReader queryData = sqlcom.ExecuteReader();
                 // check correct Login
@@ -74,6 +76,7 @@ namespace Lottory
                     string usrRead = (string)queryData["Username"];
                     string pasRead = (string)queryData["Password"];
                     string idRead = (string)queryData["EmployeeID"];
+                    int adminRead = Convert.ToInt32(queryData["Admin"]);
 
                     if (string.Equals(usrLogin, usrRead) && (string.Equals(pasLogin, pasRead)))
                     {
@@ -81,6 +84,14 @@ namespace Lottory
                         // update UserName & PassWord
                         Login.EmpolyeeID = idRead;
                         Login.EmpolyeeName = usrRead;
+                        if(adminRead == 1)
+                        {
+                            Login.AdminState = true;
+                        }
+                        else
+                        {
+                            Login.AdminState = false;
+                        }
                     }
 
                 }

@@ -314,7 +314,7 @@ namespace Lottory
                         connection.Open();
                     }
                     sqlupdateCustomerInfo = string.Format(@"UPDATE CustomerInfo 
-                                                               SET CustomerName = '{0}',
+                                                               SET CustomerName = N'{0}',
                                                                    dc_3up = {1}, dc_3low = {2}, dc_3freeup = {3}, dc_2up = {4}, dc_2low = {5}, dc_2freeup = {6},
                                                                    dc_1freeup = {7}, dc_1front = {8}, dc_1center = {9}, dc_1back = {10}, dc_1freelow = {11}, dc_5free = {12},
                                                                    limit_3freeup = {13}, limit_3up = {14}, limit_3low = {15}, limit_2up = {16}, limit_2low = {17}, limit_1freeup = {18}, limit_1freelow = {19},
