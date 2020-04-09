@@ -911,18 +911,6 @@ namespace Lottory
             connection.Close();
             return outPrice;
         }
-        private double getPriceEachCommand3up(int TypeID)
-        {
-            double outPrice = 0;
-            SqlConnection connection = new SqlConnection(Database.CnnVal("LottoryDB"));
-            if (connection.State == ConnectionState.Closed)
-            {
-                connection.Open();
-            }
-
-
-            return outPrice;
-        }
         /*
         private int getDiscountFromDB(int TypeID)
         {
@@ -1419,6 +1407,7 @@ namespace Lottory
             {
                 outNumber.Add(winNumberInfo["Number"].ToString());
             }
+            connection.Close();
 
             return outNumber;
         }

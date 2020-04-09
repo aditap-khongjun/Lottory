@@ -298,6 +298,8 @@ namespace Lottory
                 number3upInfo.Read();
                 priceOut = Convert.ToDouble(number3upInfo["Price"]);
             }
+            connection.Close();
+
             return priceOut;
         }
 

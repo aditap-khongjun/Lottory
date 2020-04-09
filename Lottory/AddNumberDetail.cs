@@ -3912,6 +3912,7 @@ namespace Lottory
                     overLimit = true;
                 }
             }
+            connection.Close();
             return overLimit;
         }
         private int getTypeID(string typeName, int Numberlen)
@@ -4371,6 +4372,7 @@ namespace Lottory
                 sqldeleteOrderListCom.ExecuteNonQuery();
                 connection1.Close();
             }
+            connection.Close();
         }
 
         private void timer1_Tick(object sender, EventArgs e)

@@ -528,6 +528,7 @@ namespace Lottory
             {
                 outNumber.Add(winNumberInfo["Number"].ToString());
             }
+            connection.Close();
 
             return outNumber;
         }

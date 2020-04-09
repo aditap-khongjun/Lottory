@@ -167,6 +167,7 @@ namespace Lottory
             }
             SqlCommand sqlgetLimitNumberCom = new SqlCommand(sqlsetLimitNumber, connection);
             sqlgetLimitNumberCom.ExecuteNonQuery();
+            connection.Close();
         }
 
         private void btDelete_Click(object sender, EventArgs e)
