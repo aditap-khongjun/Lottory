@@ -89,7 +89,7 @@ namespace Lottory
             {
                 connection.Open(); // Open Database
             }
-            string sqlgetCustomerInfo = string.Format("SELECT * FROM CustomerInfo WHERE CustomerID = {0}", this.CustomerID);
+            string sqlgetCustomerInfo = string.Format("SELECT * FROM CustomerInfo WHERE CustomerID = '{0}'", this.CustomerID);
             SqlCommand sqlgetCustomerInfoCom = new SqlCommand(sqlgetCustomerInfo, connection);
             SqlDataReader CustomerInfo = sqlgetCustomerInfoCom.ExecuteReader();
             while(CustomerInfo.Read())
