@@ -426,13 +426,13 @@ namespace Lottory
         private void OpenAddNumberDetail(string orderID,string customerID, string pageNumber,string customerName)
         {
             AddNumberDetail addNumDetail = AddNumberDetail.Instance;
-            addNumDetail.MdiParent = this.MdiParent;
             addNumDetail.OrderID = orderID;
             addNumDetail.CustomerID = customerID;
             addNumDetail.Page = pageNumber;
             addNumDetail.lbCustomerID.Text = customerID;
             addNumDetail.lbCustomerName.Text = customerName;
             addNumDetail.lbPage.Text = pageNumber;
+            addNumDetail.MdiParent = this.MdiParent;
             addNumDetail.Show();
             addNumDetail.Activate();
         }

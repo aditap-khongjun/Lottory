@@ -336,10 +336,10 @@ namespace Lottory
                 connection.Open(); // Open Database
             }
             // get TypeID
-            string sqlgetBuyingInfo = string.Format(@"SELECT TypeNumberInfo.TypeName, OrderList.Number, OrderList.Price, OrderList.GroupPrice
-                                                      FROM (CustomerOrder INNER JOIN OrderList ON CustomerOrder.OrderID = OrderList.OrderID)
-                                                      INNER JOIN TypeNumberInfo ON OrderList.TypeID = TypeNumberInfo.TypeID
-                                                      WHERE (CustomerOrder.CustomerID = '{0}') AND (CustomerOrder.Page = {1})",this.CustomerID,this.Page);
+            string sqlgetBuyingInfo = string.Format(@"SELECT t.TypeName, o.Number, o.Price, o.GroupPrice
+                                                      FROM ((CustomerOrder c INNER JOIN OrderList o ON c.OrderID = o.OrderID)
+                                                      INNER JOIN TypeNumberInfo t ON o.TypeID = t.TypeID)
+                                                      WHERE c.CustomerID = '{0}' AND c.Page = {1}",this.CustomerID,this.Page);
             SqlCommand sqlgetBuyingInfoCom = new SqlCommand(sqlgetBuyingInfo, connection);
             SqlDataReader BuyingInfo = sqlgetBuyingInfoCom.ExecuteReader();
             while(BuyingInfo.Read())
