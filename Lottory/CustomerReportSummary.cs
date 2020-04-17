@@ -551,6 +551,8 @@ namespace Lottory
             List<int> Pagetgroup3 = getwinPriceFromDB(CustomerID, BaseTypeID.tgroup3, winNumber3up, PageID, out double _winP3tgroup, out double _winR3tgroup);
 
             List<int> Pagegroup5 = getwinPriceFromDB(CustomerID, BaseTypeID.group5, winNumber3up, PageID, out double _winP5group, out double _winR5group);
+            List<int> Pagegroup4 = getwinPriceFromDB(CustomerID, BaseTypeID.group4, winNumber3up, PageID, out double _winP4group, out double _winR4group);
+            
             // get payprice
             double _payP3uptod = _winP3uptod * _winR3uptod;
             double _payP3up = _winP3up * _winR3up;
@@ -559,9 +561,10 @@ namespace Lottory
             double _payP3tgroup = _winP3tgroup * _winR3tgroup;
 
             double _payP5group = _winP5group * _winR5group;
+            double _payP4group = _winP4group * _winR4group;
             // summary
-            double _payPrice3up = _payP3uptod + _payP3up + _payP3group + _payP3door54 + _payP3tgroup + _payP5group;
-            double _winPrice3up = _winP3uptod + _winP3up + _winP3group + _winP3door54 + _winP3tgroup + _winP5group;
+            double _payPrice3up = _payP3uptod + _payP3up + _payP3group + _payP3door54 + _payP3tgroup + _payP5group + _payP4group;
+            double _winPrice3up = _winP3uptod + _winP3up + _winP3group + _winP3door54 + _winP3tgroup + _winP5group + _winP4group;
             if (_winPrice3up != 0)
             {
                 List<int> _Page3up = new List<int>();
@@ -588,6 +591,10 @@ namespace Lottory
                 if(Pagegroup5.Any())
                 {
                     _Page3up.AddRange(Pagegroup5);
+                }
+                if(Pagegroup4.Any())
+                {
+                    _Page3up.AddRange(Pagegroup4);
                 }
                 List<int> uniqPage3up = _Page3up.Distinct().ToList();
                 string strPage3up = string.Join(",", uniqPage3up);
@@ -1357,6 +1364,7 @@ namespace Lottory
                         break;
                     case BaseTypeID.up3:
                     case BaseTypeID.group3:
+                    case BaseTypeID.group4:
                     case BaseTypeID.door543:
                     case BaseTypeID.tgroup3:
                         if (string.Equals(PageID, "ทั้งหมด"))

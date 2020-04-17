@@ -387,6 +387,7 @@ namespace Lottory
                         break;
                     case BaseTypeID.up3:
                     case BaseTypeID.group3:
+                    case BaseTypeID.group4:
                     case BaseTypeID.door543:
                     case BaseTypeID.tgroup3:
                         sqlgetWinPrice = string.Format(@"SELECT oe.Number, oe.Price, ci.{2} AS winRate
@@ -531,6 +532,7 @@ namespace Lottory
             double paydoor543 = getwinPriceFromDB(CustomerID, BaseTypeID.door543, winNumber3up);
             double paytgroup3 = getwinPriceFromDB(CustomerID, BaseTypeID.tgroup3, winNumber3up);
             double paygroup5 = getwinPriceFromDB(CustomerID, BaseTypeID.group5, winNumber3up);
+            double paygroup4 = getwinPriceFromDB(CustomerID, BaseTypeID.group4, winNumber3up);
 
             outWinList.Add(payuptod3);
             outWinList.Add(payup3);
@@ -538,6 +540,7 @@ namespace Lottory
             outWinList.Add(paydoor543);
             outWinList.Add(paytgroup3);
             outWinList.Add(paygroup5);
+            outWinList.Add(paygroup4);
 
             // for 2up
             // for 2up

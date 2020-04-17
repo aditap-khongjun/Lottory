@@ -382,6 +382,8 @@ namespace Lottory
             double paygroup3 = getwinPriceFromDB(BaseTypeID.group3, winNumber3up);
             double paydoor543 = getwinPriceFromDB(BaseTypeID.door543, winNumber3up);
             double paytgroup3 = getwinPriceFromDB(BaseTypeID.tgroup3, winNumber3up);
+            double paygroup5 = getwinPriceFromDB(BaseTypeID.group5, winNumber3up);
+            double paygroup4 = getwinPriceFromDB(BaseTypeID.group4, winNumber3up);
             // sum PayPrice 3up
             List<double> PayList3up = new List<double>();
             PayList3up.Add(payuptod3);
@@ -389,6 +391,8 @@ namespace Lottory
             PayList3up.Add(paygroup3);
             PayList3up.Add(paydoor543);
             PayList3up.Add(paytgroup3);
+            PayList3up.Add(paygroup4);
+            PayList3up.Add(paygroup5);
 
             // for 2up
             List<string> winNumber2up = getWinNumber(WinNumberType.up2);
@@ -1260,6 +1264,7 @@ namespace Lottory
                         break;
                     case BaseTypeID.up3:
                     case BaseTypeID.group3:
+                    case BaseTypeID.group4:
                     case BaseTypeID.door543:
                     case BaseTypeID.tgroup3:
                         sqlgetWinPrice = string.Format(@"SELECT oe.Number, oe.Price, ci.{2} AS winRate
