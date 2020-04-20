@@ -476,7 +476,7 @@ namespace Lottory
             }
             // Insert Order
             List<string> pageList = new List<string>();
-            string sqlgetAllPageNumber = string.Format("SELECT Page FROM CustomerOrder WHERE CustomerID = '{0}'",customerID.Text);
+            string sqlgetAllPageNumber = string.Format("SELECT Page FROM CustomerOrder WHERE CustomerID = '{0}' ORDER BY Page",customerID.Text);
             SqlCommand sqlgetAllPageNumberCom = new SqlCommand(sqlgetAllPageNumber, connection);
             SqlDataReader PageNumberInfo = sqlgetAllPageNumberCom.ExecuteReader();
             while(PageNumberInfo.Read())

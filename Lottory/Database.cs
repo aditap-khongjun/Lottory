@@ -143,5 +143,4 @@ namespace Lottory
         public const string tod3 = "winRate_3freeup";
         public const string tod5 = "winRate_5free";
     }
-
 }

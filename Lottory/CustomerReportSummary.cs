@@ -2230,7 +2230,8 @@ namespace Lottory
                 connection.Open();
             }
             string sqlgetPage = string.Format(@"SELECT Page FROM CustomerOrder
-                                                WHERE CustomerID = '{0}'", customerID);
+                                                WHERE CustomerID = '{0}'
+                                                ORDER BY Page", customerID);
             SqlCommand sqlgetPageCom = new SqlCommand(sqlgetPage, connection);
             SqlDataReader PageInfo = sqlgetPageCom.ExecuteReader();
             while(PageInfo.Read())

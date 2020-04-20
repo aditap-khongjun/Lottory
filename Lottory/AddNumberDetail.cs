@@ -339,7 +339,8 @@ namespace Lottory
             string sqlgetBuyingInfo = string.Format(@"SELECT t.TypeName, o.Number, o.Price, o.GroupPrice
                                                       FROM ((CustomerOrder c INNER JOIN OrderList o ON c.OrderID = o.OrderID)
                                                       INNER JOIN TypeNumberInfo t ON o.TypeID = t.TypeID)
-                                                      WHERE c.CustomerID = '{0}' AND c.Page = {1}",this.CustomerID,this.Page);
+                                                      WHERE c.CustomerID = '{0}' AND c.Page = {1}
+                                                      ORDER BY o.OrderListID", this.CustomerID,this.Page);
             SqlCommand sqlgetBuyingInfoCom = new SqlCommand(sqlgetBuyingInfo, connection);
             SqlDataReader BuyingInfo = sqlgetBuyingInfoCom.ExecuteReader();
             while(BuyingInfo.Read())
@@ -1016,6 +1017,14 @@ namespace Lottory
                 // close Windows
                 this.Close();
             }
+            else if(e.KeyCode == Keys.F5)
+            {
+                ForceUpdate();
+            }
+        }
+        private void ForceUpdate()
+        {
+            timer1_Tick(null, null);
         }
         private bool checkGroupBuying()
         {

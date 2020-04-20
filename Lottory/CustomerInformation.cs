@@ -13,6 +13,7 @@ namespace Lottory
 {
     public partial class CustomerInformation : Form
     {
+        private Discount oldDiscount;
         private static CustomerInformation _instance;
         public static CustomerInformation Instance
         {
@@ -30,6 +31,21 @@ namespace Lottory
         public CustomerInformation()
         {
             InitializeComponent();
+        }
+        private struct Discount
+        {
+            public int dc_3up;
+            public int dc_3low;
+            public int dc_3freeup;
+            public int dc_2up;
+            public int dc_2low;
+            public int dc_2freeup;
+            public int dc_1freeup;
+            public int dc_1front;
+            public int dc_1center;
+            public int dc_1back;
+            public int dc_1freelow;
+            public int dc_5free;
         }
         private struct CustomerStruct
         {
@@ -327,6 +343,10 @@ namespace Lottory
                                                                     payRate_1front.Text, payRate_1center.Text, payRate_1back.Text, payRate_1low.Text, payRate_5tod.Text, customerID.Text);
                     caption = "แก้ไข";
                     message = "แก้ไข้ข้อมูลลูกค้าเรียบร้อยแล้ว";
+
+                    //update Discount
+                    UpdateDiscountFromDB();
+                   
                 }
                 else
                 {
@@ -340,7 +360,7 @@ namespace Lottory
                                                            dc_3up, dc_3low, dc_3freeup, dc_2up, dc_2low, dc_2freeup, dc_1freeup, dc_1front, dc_1center, dc_1back, dc_1freelow, dc_5free,
                                                            limit_3freeup, limit_3up, limit_3low, limit_2up, limit_2low, limit_1freeup, limit_1freelow,
                                                            winRate_3up, winRate_3low, winRate_3freeup, winRate_2up, winRate_2low, winRate_2freeup, winRate_1freeup, winRate_1front, winRate_1center, winRate_1back, winRate_1freelow, winRate_5free) 
-                                                           VALUES('{0}','{1}',{2}, {3}, {4}, {5}, {6}, {7}, {8}, {9}, {10}, {11}, {12}, {13}, {14}, {15}, {16}, {17},
+                                                           VALUES('{0}',N'{1}',{2}, {3}, {4}, {5}, {6}, {7}, {8}, {9}, {10}, {11}, {12}, {13}, {14}, {15}, {16}, {17},
                                                            {18}, {19}, {20}, {21}, {22}, {23}, {24}, {25}, {26}, {27}, {28}, {29}, {30}, {31}, {32})", customerID.Text, customerName.Text,
                                                                discount_3up.Text, discount_3low.Text, discount_3tod.Text, discount_2up.Text, discount_2low.Text, discount_2uptod.Text,
                                                                discount_1up.Text, discount_1front.Text, discount_1center.Text, discount_1back.Text, discount_1low.Text, discount_5tod.Text,
@@ -364,7 +384,284 @@ namespace Lottory
             }
 
         }
+        private void updateDiscount(int typeID)
+        {
+            SqlConnection connection = new SqlConnection(Database.CnnVal("LottoryDB"));
+            if (connection.State == ConnectionState.Closed)
+            {
+                connection.Open();
+            }
+            // get orderlist ID
+            string getOrderList = string.Format(@"SELECT DISTINCT o.OrderListID,o.TypeID 
+                                                  FROM ((CustomerOrder c INNER JOIN OrderList o ON c.OrderID = o.OrderID)
+                                                  INNER JOIN OrderListExpand oe ON o.OrderListID = oe.OrderListID)
+                                                  WHERE BINARY_CHECKSUM(c.CustomerID) = BINARY_CHECKSUM('{0}') AND o.TypeID = {1}", customerID.Text, typeID.ToString());
+            SqlCommand getOrderListCom = new SqlCommand(getOrderList, connection);
+            SqlDataReader orderListInfo = getOrderListCom.ExecuteReader();
+            while(orderListInfo.Read())
+            {
+                //update table
+                int orderListID = Convert.ToInt32(orderListInfo["OrderListID"]);
+                int tID = Convert.ToInt32(orderListInfo["TypeID"]);
 
+                //get Discount
+                double discount = getDiscount(tID);
+                updateTable(orderListID, (discount / 100));
+                
+            }
+        }
+        
+        private void updateDiscountOnlyUp(int typeID)
+        {
+            SqlConnection connection = new SqlConnection(Database.CnnVal("LottoryDB"));
+            if (connection.State == ConnectionState.Closed)
+            {
+                connection.Open();
+            }
+            // get orderlist ID
+            string getOrderList = string.Format(@"SELECT DISTINCT o.OrderListID,o.TypeID,o.Price 
+                                                  FROM ((CustomerOrder c INNER JOIN OrderList o ON c.OrderID = o.OrderID)
+                                                  INNER JOIN OrderListExpand oe ON o.OrderListID = oe.OrderListID)
+                                                  WHERE BINARY_CHECKSUM(c.CustomerID) = BINARY_CHECKSUM('{0}') AND o.TypeID = {1}", customerID.Text, typeID.ToString());
+            SqlCommand getOrderListCom = new SqlCommand(getOrderList, connection);
+            SqlDataReader orderListInfo = getOrderListCom.ExecuteReader();
+            while (orderListInfo.Read())
+            {
+                double discount = 0;
+                switch(typeID)
+                {
+                    case BaseTypeID.uptod2:
+                        //get Discount
+                        discount = getDiscount(BaseTypeID.up2);
+                        break;
+                    case BaseTypeID.uptod3:
+                        discount = getDiscount(BaseTypeID.up3);
+                        break;
+                }
+                int Price = Convert.ToInt32(orderListInfo["Price"]);
+                int orderListID = Convert.ToInt32(orderListInfo["OrderListID"]);
+                updateTableOnlyUp(orderListID, Price * (discount / 100), Price);
+            }
+        }
+        private void updateDiscountOnlyTod(int typeID)
+        {
+            SqlConnection connection = new SqlConnection(Database.CnnVal("LottoryDB"));
+            if (connection.State == ConnectionState.Closed)
+            {
+                connection.Open();
+            }
+            // get orderlist ID
+            string getOrderList = string.Format(@"SELECT DISTINCT o.OrderListID,o.TypeID,o.Price 
+                                                  FROM ((CustomerOrder c INNER JOIN OrderList o ON c.OrderID = o.OrderID)
+                                                  INNER JOIN OrderListExpand oe ON o.OrderListID = oe.OrderListID)
+                                                  WHERE BINARY_CHECKSUM(c.CustomerID) = BINARY_CHECKSUM('{0}') AND o.TypeID = {1}", customerID.Text, typeID.ToString());
+            SqlCommand getOrderListCom = new SqlCommand(getOrderList, connection);
+            SqlDataReader orderListInfo = getOrderListCom.ExecuteReader();
+            while (orderListInfo.Read())
+            {
+                double discount = 0;
+                switch (typeID)
+                {
+                    case BaseTypeID.uptod2:
+                        discount = getDiscount(BaseTypeID.tod2);
+                        break;
+                    case BaseTypeID.uptod3:
+                        discount = getDiscount(BaseTypeID.tod3);
+                        break;
+                }
+                int Price = Convert.ToInt32(orderListInfo["Price"]);
+                int orderListID = Convert.ToInt32(orderListInfo["OrderListID"]);
+                updateTableOnlyTod(orderListID, (discount / 100), Price);
+            }
+        }
+        private int getDiscount(int typeID)
+        {
+            int discount;
+            switch (typeID)
+            {
+                case BaseTypeID.up3:
+                case BaseTypeID.group3:
+                case BaseTypeID.group4:
+                case BaseTypeID.group5:
+                case BaseTypeID.door543:
+                case BaseTypeID.tgroup3:
+                    discount = Convert.ToInt32(discount_3up.Text);
+                    break;
+                case BaseTypeID.low3:
+                case BaseTypeID.lowgroup3:
+                    discount = Convert.ToInt32(discount_3low.Text);
+                    break;
+                case BaseTypeID.tod3:
+                    discount = Convert.ToInt32(discount_3tod.Text);
+                    break;
+                case BaseTypeID.up2:
+                case BaseTypeID.ht2:
+                case BaseTypeID.hu2:
+                case BaseTypeID.door19up2:
+                    discount = Convert.ToInt32(discount_2up.Text);
+                    break;
+                case BaseTypeID.low2:
+                case BaseTypeID.door19low2:
+                    discount = Convert.ToInt32(discount_2low.Text);
+                    break;
+                case BaseTypeID.tod2:
+                    discount = Convert.ToInt32(discount_2uptod.Text);
+                    break;
+                case BaseTypeID.up1:
+                    discount = Convert.ToInt32(discount_1up.Text);
+                    break;
+                case BaseTypeID.upfront1:
+                    discount = Convert.ToInt32(discount_1front.Text);
+                    break;
+                case BaseTypeID.upcenter1:
+                    discount = Convert.ToInt32(discount_1center.Text);
+                    break;
+                case BaseTypeID.upback1:
+                    discount = Convert.ToInt32(discount_1back.Text);
+                    break;
+                case BaseTypeID.low1:
+                case BaseTypeID.lowfront1:
+                case BaseTypeID.lowback1:
+                    discount = Convert.ToInt32(discount_1low.Text);
+                    break;
+                case BaseTypeID.tod5:
+                    discount = Convert.ToInt32(discount_5tod.Text);
+                    break;
+                default:
+                    discount = 0;
+                    MessageBox.Show(string.Format("get Discount Error from typeID = {0}", typeID.ToString()), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    break;
+            }
+            return discount;
+        }
+        private void updateTable(int OrderListID, double discount)
+        {
+            SqlConnection connection = new SqlConnection(Database.CnnVal("LottoryDB"));
+            if (connection.State == ConnectionState.Closed)
+            {
+                connection.Open();
+            }
+            // update orderList
+            string updateOrderList = string.Format(@"UPDATE OrderListExpand
+                                                     SET DiscPrice = OwnPrice*{1}
+                                                     WHERE OrderListID = {0}", OrderListID.ToString(), discount.ToString());
+            SqlCommand updateOrderListCom = new SqlCommand(updateOrderList, connection);
+            updateOrderListCom.ExecuteNonQuery();
+            connection.Close();
+        }
+        private void updateTableOnlyUp(int OrderListID, double discUpdate, int OwnPrice)
+        {
+            SqlConnection connection = new SqlConnection(Database.CnnVal("LottoryDB"));
+            if (connection.State == ConnectionState.Closed)
+            {
+                connection.Open();
+            }
+            // update orderList
+            string updateOrderList = string.Format(@"UPDATE OrderListExpand
+                                                     SET DiscPrice = {1}
+                                                     WHERE OrderListID = {0} AND OwnPrice = {2}", OrderListID.ToString(), discUpdate.ToString(),OwnPrice.ToString());
+            SqlCommand updateOrderListCom = new SqlCommand(updateOrderList, connection);
+            updateOrderListCom.ExecuteNonQuery();
+            connection.Close();
+        }
+        private void updateTableOnlyTod(int OrderListID, double discount, int Price)
+        {
+            SqlConnection connection = new SqlConnection(Database.CnnVal("LottoryDB"));
+            if (connection.State == ConnectionState.Closed)
+            {
+                connection.Open();
+            }
+            // update orderList
+            string updateOrderList = string.Format(@"UPDATE OrderListExpand
+                                                     SET DiscPrice = OwnPrice*{1}
+                                                     WHERE OrderListID = {0} AND OwnPrice != {2}", OrderListID.ToString(), discount.ToString(), Price.ToString());
+            SqlCommand updateOrderListCom = new SqlCommand(updateOrderList, connection);
+            updateOrderListCom.ExecuteNonQuery();
+            connection.Close();
+        }
+        private void UpdateDiscountFromDB()
+        {
+            // for 1up
+            if(oldDiscount.dc_1freeup != Convert.ToInt32(discount_1up.Text))
+            {
+                updateDiscount(BaseTypeID.up1);
+            }
+            // for 1front
+            if (oldDiscount.dc_1front != Convert.ToInt32(discount_1front.Text))
+            {
+                updateDiscount(BaseTypeID.upfront1);
+            }
+            // for 1center
+            if (oldDiscount.dc_1center != Convert.ToInt32(discount_1center.Text))
+            {
+                updateDiscount(BaseTypeID.upcenter1);
+            }
+            // for 1back
+            if (oldDiscount.dc_1back != Convert.ToInt32(discount_1back.Text))
+            {
+                updateDiscount(BaseTypeID.upback1);
+            }
+            // for 2up
+            if (oldDiscount.dc_2up != Convert.ToInt32(discount_2up.Text))
+            {
+                updateDiscount(BaseTypeID.up2);
+                updateDiscountOnlyUp(BaseTypeID.uptod2); // only 2up
+                updateDiscount(BaseTypeID.ht2);
+                updateDiscount(BaseTypeID.hu2);
+                updateDiscount(BaseTypeID.door62);
+                updateDiscount(BaseTypeID.door19up2);
+            }
+            // for 2low
+            if (oldDiscount.dc_2low != Convert.ToInt32(discount_2low.Text))
+            {
+                updateDiscount(BaseTypeID.low2);
+                updateDiscount(BaseTypeID.door19low2);
+            }
+            // for 2tod
+            if (oldDiscount.dc_2freeup != Convert.ToInt32(discount_2uptod.Text))
+            {
+                updateDiscount(BaseTypeID.tod2);
+                updateDiscountOnlyTod(BaseTypeID.uptod2); // only Tod
+            }
+            // for 3up
+            if (oldDiscount.dc_3up != Convert.ToInt32(discount_3up.Text))
+            {
+                updateDiscount(BaseTypeID.up3);
+                updateDiscountOnlyUp(BaseTypeID.uptod3);
+                updateDiscount(BaseTypeID.group3);
+                updateDiscount(BaseTypeID.door543);
+                updateDiscount(BaseTypeID.tgroup3);
+                updateDiscount(BaseTypeID.group4);
+                updateDiscount(BaseTypeID.group5);
+            }
+            // for 3low
+            if (oldDiscount.dc_3low != Convert.ToInt32(discount_3low.Text))
+            {
+                updateDiscount(BaseTypeID.low3);
+                updateDiscount(BaseTypeID.lowgroup3);
+            }
+            // for 3tod
+            if (oldDiscount.dc_3freeup != Convert.ToInt32(discount_3tod.Text))
+            {
+                updateDiscount(BaseTypeID.tod3);
+                updateDiscountOnlyTod(BaseTypeID.uptod3);
+            }
+            // for 5tod
+            if (oldDiscount.dc_5free != Convert.ToInt32(discount_5tod.Text))
+            {
+                updateDiscount(BaseTypeID.tod5);
+            }
+            // for 1low
+            if (oldDiscount.dc_1freelow != Convert.ToInt32(discount_1low.Text))
+            {
+                updateDiscount(BaseTypeID.low1);
+                updateDiscount(BaseTypeID.lowfront1);
+                updateDiscount(BaseTypeID.lowback1);
+            }
+
+            // update old discount
+            updateOldDiscount();
+        }
         private void correct_checking(object sender, EventArgs e)
         {
             // correct numeric checking when text is always changed
@@ -409,7 +706,6 @@ namespace Lottory
         
         private void customerID_Change(object sender, EventArgs e)
         {
-            
             // Enable Delect Button
             //
             // get customerID from DB
@@ -433,6 +729,9 @@ namespace Lottory
                     
                     // get customer infomation from DB
                     custInfo = readCustomerInfoFromDB(customerInfo);
+
+                    // get Old Discount
+                    getOldDiscount(custInfo);
                     
                 }
             }
@@ -457,7 +756,37 @@ namespace Lottory
             }
 
         }
-        
+        private void getOldDiscount(CustomerStruct custInfo)
+        {
+            oldDiscount.dc_1freeup = Convert.ToInt32(custInfo.dc_1freeup);
+            oldDiscount.dc_1front = Convert.ToInt32(custInfo.dc_1front);
+            oldDiscount.dc_1center = Convert.ToInt32(custInfo.dc_1center);
+            oldDiscount.dc_1back = Convert.ToInt32(custInfo.dc_1back);
+            oldDiscount.dc_2up = Convert.ToInt32(custInfo.dc_2up);
+            oldDiscount.dc_2low = Convert.ToInt32(custInfo.dc_2low);
+            oldDiscount.dc_2freeup = Convert.ToInt32(custInfo.dc_2freeup);
+            oldDiscount.dc_3up = Convert.ToInt32(custInfo.dc_3up);
+            oldDiscount.dc_3low = Convert.ToInt32(custInfo.dc_3low);
+            oldDiscount.dc_3freeup = Convert.ToInt32(custInfo.dc_3freeup);
+            oldDiscount.dc_5free = Convert.ToInt32(custInfo.dc_5free);
+            oldDiscount.dc_1freelow = Convert.ToInt32(custInfo.dc_1freelow);
+
+        }
+        private void updateOldDiscount()
+        {
+            oldDiscount.dc_1freeup = Convert.ToInt32(discount_1up.Text);
+            oldDiscount.dc_1front = Convert.ToInt32(discount_1front.Text);
+            oldDiscount.dc_1center = Convert.ToInt32(discount_1center.Text);
+            oldDiscount.dc_1back = Convert.ToInt32(discount_1back.Text);
+            oldDiscount.dc_2up = Convert.ToInt32(discount_2up.Text);
+            oldDiscount.dc_2low = Convert.ToInt32(discount_2low.Text);
+            oldDiscount.dc_2freeup = Convert.ToInt32(discount_2uptod.Text);
+            oldDiscount.dc_3up = Convert.ToInt32(discount_3up.Text);
+            oldDiscount.dc_3low = Convert.ToInt32(discount_3low.Text);
+            oldDiscount.dc_3freeup = Convert.ToInt32(discount_3tod.Text);
+            oldDiscount.dc_5free = Convert.ToInt32(discount_5tod.Text);
+            oldDiscount.dc_1freelow = Convert.ToInt32(discount_1low.Text);
+        }
         private void clear_CustomerInfo()
         {
             // customer Info
