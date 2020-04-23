@@ -107,7 +107,7 @@ namespace Lottory
             string sqlgetcustomerinfo = string.Format(@"SELECT DISTINCT ci.CustomerID, ci.CustomerName, oe.Number
                                                         FROM (((OrderListExpand oe INNER JOIN OrderList o ON oe.OrderListID = o.OrderListID)
                                                         INNER JOIN CustomerOrder c ON o.OrderID = c.OrderID)
-                                                        INNER JOIN CustomerInfo ci ON c.CustomerID = ci.CustomerID)
+                                                        INNER JOIN CustomerInfo ci ON BINARY_CHECKSUM(c.CustomerID) = BINARY_CHECKSUM(ci.CustomerID))
                                                         WHERE oe.Number = '{0}' AND oe.TypeID = {1}", Number, TypeID.ToString());
             SqlCommand sqlgetcustomerinfoCom = new SqlCommand(sqlgetcustomerinfo, connection);
             SqlDataReader customerInfo = sqlgetcustomerinfoCom.ExecuteReader();
@@ -141,8 +141,8 @@ namespace Lottory
             string sqlgetBuying = string.Format(@"SELECT SUM(oe.OwnPrice) AS Price
                                                   FROM (((OrderListExpand oe INNER JOIN OrderList o ON oe.OrderListID = o.OrderListID)
                                                   INNER JOIN CustomerOrder c ON o.OrderID = c.OrderID)
-                                                  INNER JOIN CustomerInfo ci ON c.CustomerID = ci.CustomerID)
-                                                  WHERE oe.Number = '{0}' AND oe.TypeID = {1} AND ci.CustomerID = '{2}'", Number, TypeID.ToString(), CustomerID);
+                                                  INNER JOIN CustomerInfo ci ON BINARY_CHECKSUM(c.CustomerID) = BINARY_CHECKSUM(ci.CustomerID))
+                                                  WHERE oe.Number = '{0}' AND oe.TypeID = {1} AND BINARY_CHECKSUM(ci.CustomerID) = BINARY_CHECKSUM('{2}')", Number, TypeID.ToString(), CustomerID);
              
             SqlCommand sqlgetBuyingCom = new SqlCommand(sqlgetBuying, connection);
             SqlDataReader BuyingInfo = sqlgetBuyingCom.ExecuteReader();

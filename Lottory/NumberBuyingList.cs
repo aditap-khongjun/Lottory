@@ -189,7 +189,7 @@ namespace Lottory
 		                                            FROM (
 			                                            SELECT OrderID
 			                                            FROM CustomerOrder
-			                                            WHERE CustomerID = '{0}'
+			                                            WHERE BINARY_CHECKSUM(CustomerID) = BINARY_CHECKSUM('{0}')
 			                                            ) r INNER JOIN OrderList o ON o.OrderID = r.OrderID
 		                                            ) r1 INNER JOIN OrderListExpand oe ON r1.OrderListID = oe.OrderListID
 	                                            WHERE TypeID = {1}
@@ -206,7 +206,7 @@ namespace Lottory
 		                                            FROM (
 			                                            SELECT OrderID
 			                                            FROM CustomerOrder
-			                                            WHERE CustomerID = '{0}' AND Page = {1}
+			                                            WHERE BINARY_CHECKSUM(CustomerID) = BINARY_CHECKSUM('{0}') AND Page = {1}
 			                                            ) r INNER JOIN OrderList o ON o.OrderID = r.OrderID
 		                                            ) r1 INNER JOIN OrderListExpand oe ON r1.OrderListID = oe.OrderListID
 	                                            WHERE TypeID = {2}
@@ -283,7 +283,7 @@ namespace Lottory
 	                                                    FROM (
 		                                                    SELECT OrderID
 		                                                    FROM CustomerOrder
-		                                                    WHERE CustomerID = '{0}'
+		                                                    WHERE BINARY_CHECKSUM(CustomerID) = BINARY_CHECKSUM('{0}')
 		                                                    ) r INNER JOIN OrderList o ON o.OrderID = r.OrderID
 	                                                    ) r1 INNER JOIN OrderListExpand oe ON r1.OrderListID = oe.OrderListID
                                                         WHERE TypeID = {1}
@@ -298,7 +298,7 @@ namespace Lottory
 	                                                    FROM (
 		                                                    SELECT OrderID
 		                                                    FROM CustomerOrder
-		                                                    WHERE CustomerID = '{0}' AND Page = {1}
+		                                                    WHERE BINARY_CHECKSUM(CustomerID) = BINARY_CHECKSUM('{0}') AND Page = {1}
 		                                                    ) r INNER JOIN OrderList o ON o.OrderID = r.OrderID
 	                                                    ) r1 INNER JOIN OrderListExpand oe ON r1.OrderListID = oe.OrderListID
                                                         WHERE TypeID = {2}

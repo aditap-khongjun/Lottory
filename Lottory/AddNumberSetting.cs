@@ -241,7 +241,7 @@ namespace Lottory
                     connection.Open(); // Open Database
                 }
                 // get page all page number of customer
-                string sqlgetPage = "SELECT Page FROM CustomerOrder WHERE CustomerID = '" + customerID.Text + "'";
+                string sqlgetPage = string.Format("SELECT Page FROM CustomerOrder WHERE BINARY_CHECKSUM(CustomerID) = BINARY_CHECKSUM('{0}')",customerID.Text);
                 SqlCommand sqlgetPageCom = new SqlCommand(sqlgetPage, connection);
                 SqlDataReader pageInfo = sqlgetPageCom.ExecuteReader();
                 List<int> pageListInfo = new List<int>();
@@ -296,7 +296,7 @@ namespace Lottory
                 // check order from DB
                 //string sqlCustomerOrder = "SELECT OrderID, CustomerID, Page FROM CustomerOrder WHERE (CustomerID = '" + customerID.Text + "') AND (Page = " + pageNumber.Text + ")";
                 string sqlCustomerOrder = string.Format(@"SELECT OrderID, CustomerID, Page FROM CustomerOrder
-                                                          WHERE CustomerID = '{0}' AND Page = {1}", customerID.Text, pageNumber.Text);
+                                                          WHERE BINARY_CHECKSUM(CustomerID) = BINARY_CHECKSUM('{0}') AND Page = {1}", customerID.Text, pageNumber.Text);
                 SqlCommand sqlCustomerOrderCom = new SqlCommand(sqlCustomerOrder, connection);
                 SqlDataReader customerOrderInfo = sqlCustomerOrderCom.ExecuteReader();
                 if (customerOrderInfo.HasRows)
@@ -361,7 +361,7 @@ namespace Lottory
             {
                 connection.Open();
             }
-            string getcustomerid = string.Format("SELECT CustomerID FROM CustomerInfo WHERE CustomerID = '{0}'", customerid);
+            string getcustomerid = string.Format("SELECT CustomerID FROM CustomerInfo WHERE BINARY_CHECKSUM(CustomerID) = BINARY_CHECKSUM('{0}')", customerid);
             SqlCommand getcustomeridCom = new SqlCommand(getcustomerid, connection);
             SqlDataReader customerInfo = getcustomeridCom.ExecuteReader();
             if(customerInfo.HasRows)
@@ -387,7 +387,7 @@ namespace Lottory
             }
             //string sqlgetCusName = "SELECT CustomerName FROM CustomerInfo WHERE CustomerID = '" + customerID + "'";
             string sqlgetCusName = string.Format(@"SELECT CustomerName FROM CustomerInfo 
-                                                   WHERE CustomerID = '{0}'",customerID);
+                                                   WHERE BINARY_CHECKSUM(CustomerID) = BINARY_CHECKSUM('{0}')", customerID);
             SqlCommand sqlgetCusNameCom = new SqlCommand(sqlgetCusName, connection);
             SqlDataReader cusNameInfo = sqlgetCusNameCom.ExecuteReader();
             
@@ -410,7 +410,7 @@ namespace Lottory
             }
             //string sqlgetOrderID = "SELECT OrderID FROM CustomerOrder WHERE (CustomerID = '" + customerID + "') AND (Page = " + pageNumber + ")";
             string sqlgetOrderID = string.Format(@"SELECT OrderID FROM CustomerOrder 
-                                                   WHERE CustomerID = '{0}' AND Page = {1}",customerID,pageNumber);
+                                                   WHERE BINARY_CHECKSUM(CustomerID) = BINARY_CHECKSUM('{0}') AND Page = {1}", customerID,pageNumber);
 
             SqlCommand sqlgetOrderIDCom = new SqlCommand(sqlgetOrderID, connection);
             SqlDataReader OrderIDInfo = sqlgetOrderIDCom.ExecuteReader();
@@ -476,7 +476,7 @@ namespace Lottory
             }
             // Insert Order
             List<string> pageList = new List<string>();
-            string sqlgetAllPageNumber = string.Format("SELECT Page FROM CustomerOrder WHERE CustomerID = '{0}' ORDER BY Page",customerID.Text);
+            string sqlgetAllPageNumber = string.Format("SELECT Page FROM CustomerOrder WHERE BINARY_CHECKSUM(CustomerID) = BINARY_CHECKSUM('{0}') ORDER BY Page", customerID.Text);
             SqlCommand sqlgetAllPageNumberCom = new SqlCommand(sqlgetAllPageNumber, connection);
             SqlDataReader PageNumberInfo = sqlgetAllPageNumberCom.ExecuteReader();
             while(PageNumberInfo.Read())
@@ -499,7 +499,7 @@ namespace Lottory
                         CreateOrder();
                     }
                     break;
-                case Keys.PageUp:
+                case Keys.Home:
                     customerID.Focus();
                     customerID.SelectAll();
                     break;
@@ -519,6 +519,11 @@ namespace Lottory
             {
                 MessageBox.Show("กรุณากำหนดเลขหน้าให้เป็นตัวเลข", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
+        }
+
+        private void pageNumber_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            MessageBox.Show("Key Press");
         }
     }
 }

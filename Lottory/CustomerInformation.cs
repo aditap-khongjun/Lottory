@@ -189,7 +189,7 @@ namespace Lottory
                 {
                     connection.Open();
                 }
-                string sqlgetCustomerInfo = string.Format("SELECT * FROM CustomerInfo WHERE CustomerID = '{0}'", Choose_customer_dialog.CustomerID);
+                string sqlgetCustomerInfo = string.Format("SELECT * FROM CustomerInfo WHERE BINARY_CHECKSUM(CustomerID) = BINARY_CHECKSUM('{0}')", Choose_customer_dialog.CustomerID);
                 SqlCommand sqlgetCustomerInfoCom = new SqlCommand(sqlgetCustomerInfo, connection);
                 SqlDataReader customerInfo = sqlgetCustomerInfoCom.ExecuteReader();
                 if (customerInfo.Read())
@@ -217,7 +217,7 @@ namespace Lottory
                 connection.Open();
             }
             // check customerID to update or insert
-            string sqlgetcustomerID = string.Format("SELECT CustomerID FROM CustomerInfo WHERE CustomerID = '{0}'", customerID.Text);
+            string sqlgetcustomerID = string.Format("SELECT CustomerID FROM CustomerInfo WHERE BINARY_CHECKSUM(CustomerID) = BINARY_CHECKSUM('{0}')", customerID.Text);
             SqlCommand sqlgetcustomerIDCom = new SqlCommand(sqlgetcustomerID, connection);
             SqlDataReader customerIDinfo = sqlgetcustomerIDCom.ExecuteReader();
             if(customerIDinfo.Read())
@@ -240,7 +240,7 @@ namespace Lottory
                                                                    limit_3freeup = {13}, limit_3up = {14}, limit_3low = {15}, limit_2up = {16}, limit_2low = {17}, limit_1freeup = {18}, limit_1freelow = {19},
                                                                    winRate_3up = {20}, winRate_3low = {21}, winRate_3freeup = {22}, winRate_2up = {23}, winRate_2low = {24}, winRate_2freeup = {25}, winRate_1freeup = {26},
                                                                    winRate_1front = {27}, winRate_1center = {28}, winRate_1back = {29}, winRate_1freelow = {30}, winRate_5free = {31}
-                                                                WHERE CustomerID = '{32}'", customerName.Text, discount_3up.Text, discount_3low.Text, discount_3tod.Text, discount_2up.Text,
+                                                                WHERE BINARY_CHECKSUM(CustomerID) = BINARY_CHECKSUM('{32}')", customerName.Text, discount_3up.Text, discount_3low.Text, discount_3tod.Text, discount_2up.Text,
                                                                     discount_2low.Text, discount_2uptod.Text, discount_1up.Text, discount_1front.Text, discount_1center.Text, discount_1back.Text,
                                                                     discount_1low.Text, discount_5tod.Text, limit_3uptod.Text, limit_3up.Text, limit_3low.Text, limit_2up.Text, limit_2low.Text, limit_1up.Text,
                                                                     limit_1low.Text, payRate_3up.Text, payRate_3low.Text, payRate_3tod.Text, payRate_2up.Text, payRate_2low.Text, payRate_2uptod.Text, payRate_1up.Text,
@@ -315,7 +315,7 @@ namespace Lottory
                     connection.Open();
                 }
                 // check customerID to update or insert
-                string sqlgetcustomerID = string.Format("SELECT CustomerID FROM CustomerInfo WHERE CustomerID = '{0}'", customerID.Text);
+                string sqlgetcustomerID = string.Format("SELECT CustomerID FROM CustomerInfo WHERE BINARY_CHECKSUM(CustomerID) = BINARY_CHECKSUM('{0}')", customerID.Text);
                 SqlCommand sqlgetcustomerIDCom = new SqlCommand(sqlgetcustomerID, connection);
                 SqlDataReader customerIDinfo = sqlgetcustomerIDCom.ExecuteReader();
                 string sqlupdateCustomerInfo;
@@ -336,7 +336,7 @@ namespace Lottory
                                                                    limit_3freeup = {13}, limit_3up = {14}, limit_3low = {15}, limit_2up = {16}, limit_2low = {17}, limit_1freeup = {18}, limit_1freelow = {19},
                                                                    winRate_3up = {20}, winRate_3low = {21}, winRate_3freeup = {22}, winRate_2up = {23}, winRate_2low = {24}, winRate_2freeup = {25}, winRate_1freeup = {26},
                                                                    winRate_1front = {27}, winRate_1center = {28}, winRate_1back = {29}, winRate_1freelow = {30}, winRate_5free = {31}
-                                                                WHERE CustomerID = '{32}'", customerName.Text, discount_3up.Text, discount_3low.Text, discount_3tod.Text, discount_2up.Text,
+                                                                WHERE BINARY_CHECKSUM(CustomerID) = BINARY_CHECKSUM('{32}')", customerName.Text, discount_3up.Text, discount_3low.Text, discount_3tod.Text, discount_2up.Text,
                                                                     discount_2low.Text, discount_2uptod.Text, discount_1up.Text, discount_1front.Text, discount_1center.Text, discount_1back.Text,
                                                                     discount_1low.Text, discount_5tod.Text, limit_3uptod.Text, limit_3up.Text, limit_3low.Text, limit_2up.Text, limit_2low.Text, limit_1up.Text,
                                                                     limit_1low.Text, payRate_3up.Text, payRate_3low.Text, payRate_3tod.Text, payRate_2up.Text, payRate_2low.Text, payRate_2uptod.Text, payRate_1up.Text,
@@ -841,7 +841,7 @@ namespace Lottory
                 {
                     connection.Open();
                 }
-                string sqldeleteCustomerID = string.Format("DELETE FROM CustomerInfo WHERE CustomerID = '{0}'", customerID.Text);
+                string sqldeleteCustomerID = string.Format("DELETE FROM CustomerInfo WHERE BINARY_CHECKSUM(CustomerID) = BINARY_CHECKSUM('{0}')", customerID.Text);
                 SqlCommand sqldeleteCutomerIDCom = new SqlCommand(sqldeleteCustomerID, connection);
                 sqldeleteCutomerIDCom.ExecuteNonQuery();
                 connection.Close();

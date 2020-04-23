@@ -840,7 +840,7 @@ namespace Lottory
                         sqlgetWinPrice = string.Format(@"SELECT oe.Number, oe.Price, ci.{2} AS winRate
                                             FROM (((OrderListExpand oe INNER JOIN OrderList o ON oe.OrderListID = o.OrderListID)
                                             INNER JOIN CustomerOrder c ON c.OrderID = o.OrderID)
-                                            INNER JOIN CustomerInfo ci ON ci.CustomerID = c.CustomerID)
+                                            INNER JOIN CustomerInfo ci ON BINARY_CHECKSUM(ci.CustomerID) = BINARY_CHECKSUM(c.CustomerID))
                                             WHERE oe.Number = '{0}' AND o.TypeID = {1} AND oe.TypeID = {3}", winNumber, TypeID.ToString(), DBWinRate.up2, _typeID.ToString());
                         break;
                 }
@@ -1126,14 +1126,14 @@ namespace Lottory
                         sqlgetWinPrice = string.Format(@"SELECT o.Number, o.GroupPrice, ci.{2} AS winRate
                                             FROM (((OrderListExpand oe INNER JOIN OrderList o ON oe.OrderListID = o.OrderListID)
                                             INNER JOIN CustomerOrder c ON c.OrderID = o.OrderID)
-                                            INNER JOIN CustomerInfo ci ON ci.CustomerID = c.CustomerID)
+                                            INNER JOIN CustomerInfo ci ON BINARY_CHECKSUM(ci.CustomerID) = BINARY_CHECKSUM(c.CustomerID))
                                             WHERE oe.Number = '{0}' AND o.TypeID = {1}", winNumber, TypeID.ToString(), DBWinRate.tod3);
                         break;
                     case BaseTypeID.tod3:
                         sqlgetWinPrice = string.Format(@"SELECT o.Number, o.Price AS GroupPrice, ci.{2} AS winRate
                                             FROM (((OrderListExpand oe INNER JOIN OrderList o ON oe.OrderListID = o.OrderListID)
                                             INNER JOIN CustomerOrder c ON c.OrderID = o.OrderID)
-                                            INNER JOIN CustomerInfo ci ON ci.CustomerID = c.CustomerID)
+                                            INNER JOIN CustomerInfo ci ON BINARY_CHECKSUM(ci.CustomerID) = BINARY_CHECKSUM(c.CustomerID))
                                             WHERE oe.Number = '{0}' AND o.TypeID = {1}", winNumber, TypeID.ToString(), DBWinRate.tod3);
                         break;
                     case BaseTypeID.uptod2:
@@ -1153,7 +1153,7 @@ namespace Lottory
                         sqlgetWinPrice = string.Format(@"SELECT DISTINCT o.Number, o.GroupPrice, ci.{2} AS winRate
                                             FROM (((OrderListExpand oe INNER JOIN OrderList o ON oe.OrderListID = o.OrderListID)
                                             INNER JOIN CustomerOrder c ON c.OrderID = o.OrderID)
-                                            INNER JOIN CustomerInfo ci ON ci.CustomerID = c.CustomerID)
+                                            INNER JOIN CustomerInfo ci ON BINARY_CHECKSUM(ci.CustomerID) = BINARY_CHECKSUM(c.CustomerID))
                                             WHERE oe.Number = '{0}' AND o.TypeID = {1} AND oe.TypeID = {3}", winNumber, TypeID.ToString(), DBWinRate.tod2, _typeID.ToString());
                         break;
                     case BaseTypeID.tod2:
@@ -1172,7 +1172,7 @@ namespace Lottory
                         sqlgetWinPrice = string.Format(@"SELECT o.Number, o.Price AS GroupPrice, ci.{2} AS winRate
                                             FROM (((OrderListExpand oe INNER JOIN OrderList o ON oe.OrderListID = o.OrderListID)
                                             INNER JOIN CustomerOrder c ON c.OrderID = o.OrderID)
-                                            INNER JOIN CustomerInfo ci ON ci.CustomerID = c.CustomerID)
+                                            INNER JOIN CustomerInfo ci ON BINARY_CHECKSUM(ci.CustomerID) = BINARY_CHECKSUM(c.CustomerID))
                                             WHERE oe.Number = '{0}' AND o.TypeID = {1} AND oe.TypeID = {3}", winNumber, TypeID.ToString(), DBWinRate.tod2, _typeID.ToString());
                         break;
                 }
@@ -1205,28 +1205,28 @@ namespace Lottory
                         sqlgetWinPrice = string.Format(@"SELECT o.Number, o.GroupPrice, ci.{2} AS winRate
                                             FROM (((OrderListExpand oe INNER JOIN OrderList o ON oe.OrderListID = o.OrderListID)
                                             INNER JOIN CustomerOrder c ON c.OrderID = o.OrderID)
-                                            INNER JOIN CustomerInfo ci ON ci.CustomerID = c.CustomerID)
+                                            INNER JOIN CustomerInfo ci ON BINARY_CHECKSUM(ci.CustomerID) = BINARY_CHECKSUM(c.CustomerID))
                                             WHERE oe.Number = '{0}' AND o.TypeID = {1}", winNumber, TypeID.ToString(), DBWinRate.tod3);
                         break;
                     case BaseTypeID.tod3:
                         sqlgetWinPrice = string.Format(@"SELECT o.Number, o.Price AS GroupPrice, ci.{2} AS winRate
                                             FROM (((OrderListExpand oe INNER JOIN OrderList o ON oe.OrderListID = o.OrderListID)
                                             INNER JOIN CustomerOrder c ON c.OrderID = o.OrderID)
-                                            INNER JOIN CustomerInfo ci ON ci.CustomerID = c.CustomerID)
+                                            INNER JOIN CustomerInfo ci ON BINARY_CHECKSUM(ci.CustomerID) = BINARY_CHECKSUM(c.CustomerID))
                                             WHERE oe.Number = '{0}' AND o.TypeID = {1}", winNumber, TypeID.ToString(), DBWinRate.tod3);
                         break;
                     case BaseTypeID.uptod2:
                         sqlgetWinPrice = string.Format(@"SELECT o.Number, o.GroupPrice, ci.{2} AS winRate
                                             FROM (((OrderListExpand oe INNER JOIN OrderList o ON oe.OrderListID = o.OrderListID)
                                             INNER JOIN CustomerOrder c ON c.OrderID = o.OrderID)
-                                            INNER JOIN CustomerInfo ci ON ci.CustomerID = c.CustomerID)
+                                            INNER JOIN CustomerInfo ci ON BINARY_CHECKSUM(ci.CustomerID) = BINARY_CHECKSUM(c.CustomerID))
                                             WHERE oe.Number = '{0}' AND o.TypeID = {1}", winNumber, TypeID.ToString(), DBWinRate.tod2);
                         break;
                     case BaseTypeID.tod2:
                         sqlgetWinPrice = string.Format(@"SELECT o.Number, o.Price AS GroupPrice, ci.{2} AS winRate
                                             FROM (((OrderListExpand oe INNER JOIN OrderList o ON oe.OrderListID = o.OrderListID)
                                             INNER JOIN CustomerOrder c ON c.OrderID = o.OrderID)
-                                            INNER JOIN CustomerInfo ci ON ci.CustomerID = c.CustomerID)
+                                            INNER JOIN CustomerInfo ci ON BINARY_CHECKSUM(ci.CustomerID) = BINARY_CHECKSUM(c.CustomerID))
                                             WHERE oe.Number = '{0}' AND o.TypeID = {1}", winNumber, TypeID.ToString(), DBWinRate.tod2);
                         break;
                 }
@@ -1259,7 +1259,7 @@ namespace Lottory
                         sqlgetWinPrice = string.Format(@"SELECT o.Number, o.Price, ci.{2} AS winRate
                                             FROM ((OrderList o
                                             INNER JOIN CustomerOrder c ON c.OrderID = o.OrderID)
-                                            INNER JOIN CustomerInfo ci ON ci.CustomerID = c.CustomerID)
+                                            INNER JOIN CustomerInfo ci ON BINARY_CHECKSUM(ci.CustomerID) = BINARY_CHECKSUM(c.CustomerID))
                                             WHERE o.Number = '{0}' AND o.TypeID = {1}", winNumber, TypeID.ToString(), DBWinRate.up3);
                         break;
                     case BaseTypeID.up3:
@@ -1270,7 +1270,7 @@ namespace Lottory
                         sqlgetWinPrice = string.Format(@"SELECT oe.Number, oe.Price, ci.{2} AS winRate
                                             FROM (((OrderListExpand oe INNER JOIN OrderList o ON oe.OrderListID = o.OrderListID)
                                             INNER JOIN CustomerOrder c ON c.OrderID = o.OrderID)
-                                            INNER JOIN CustomerInfo ci ON ci.CustomerID = c.CustomerID)
+                                            INNER JOIN CustomerInfo ci ON BINARY_CHECKSUM(ci.CustomerID) = BINARY_CHECKSUM(c.CustomerID))
                                             WHERE oe.Number = '{0}' AND o.TypeID = {1}", winNumber, TypeID.ToString(), DBWinRate.up3);
 
                         break;
@@ -1281,7 +1281,7 @@ namespace Lottory
                         sqlgetWinPrice = string.Format(@"SELECT o.Number, o.Price, ci.{2} AS winRate
                                             FROM ((OrderList o
                                             INNER JOIN CustomerOrder c ON c.OrderID = o.OrderID)
-                                            INNER JOIN CustomerInfo ci ON ci.CustomerID = c.CustomerID)
+                                            INNER JOIN CustomerInfo ci ON BINARY_CHECKSUM(ci.CustomerID) = BINARY_CHECKSUM(c.CustomerID))
                                             WHERE o.Number = '{0}' AND o.TypeID = {1}", winNumber, TypeID.ToString(), DBWinRate.up2);
                         break;
                     case BaseTypeID.door19up2:
@@ -1289,7 +1289,7 @@ namespace Lottory
                         sqlgetWinPrice = string.Format(@"SELECT oe.Number, oe.Price, ci.{2} AS winRate
                                             FROM (((OrderListExpand oe INNER JOIN OrderList o ON oe.OrderListID = o.OrderListID)
                                             INNER JOIN CustomerOrder c ON c.OrderID = o.OrderID)
-                                            INNER JOIN CustomerInfo ci ON ci.CustomerID = c.CustomerID)
+                                            INNER JOIN CustomerInfo ci ON BINARY_CHECKSUM(ci.CustomerID) = BINARY_CHECKSUM(c.CustomerID))
                                             WHERE oe.Number = '{0}' AND o.TypeID = {1}", winNumber, TypeID.ToString(), DBWinRate.up2);
                         break;
                     case BaseTypeID.lowgroup3:
@@ -1297,14 +1297,14 @@ namespace Lottory
                         sqlgetWinPrice = string.Format(@"SELECT oe.Number, oe.Price, ci.{2} AS winRate
                                             FROM (((OrderListExpand oe INNER JOIN OrderList o ON oe.OrderListID = o.OrderListID)
                                             INNER JOIN CustomerOrder c ON c.OrderID = o.OrderID)
-                                            INNER JOIN CustomerInfo ci ON ci.CustomerID = c.CustomerID)
+                                            INNER JOIN CustomerInfo ci ON BINARY_CHECKSUM(ci.CustomerID) = BINARY_CHECKSUM(c.CustomerID))
                                             WHERE oe.Number = '{0}' AND o.TypeID = {1}", winNumber, TypeID.ToString(), DBWinRate.low3);
                         break;
                     case BaseTypeID.low2:
                         sqlgetWinPrice = string.Format(@"SELECT o.Number, o.Price, ci.{2} AS winRate
                                             FROM ((OrderList o
                                             INNER JOIN CustomerOrder c ON c.OrderID = o.OrderID)
-                                            INNER JOIN CustomerInfo ci ON ci.CustomerID = c.CustomerID)
+                                            INNER JOIN CustomerInfo ci ON BINARY_CHECKSUM(ci.CustomerID) = BINARY_CHECKSUM(c.CustomerID))
                                             WHERE o.Number = '{0}' AND o.TypeID = {1}", winNumber, TypeID.ToString(), DBWinRate.low2);
 
                         break;
@@ -1312,49 +1312,49 @@ namespace Lottory
                         sqlgetWinPrice = string.Format(@"SELECT oe.Number, oe.Price, ci.{2} AS winRate
                                             FROM (((OrderListExpand oe INNER JOIN OrderList o ON oe.OrderListID = o.OrderListID)
                                             INNER JOIN CustomerOrder c ON c.OrderID = o.OrderID)
-                                            INNER JOIN CustomerInfo ci ON ci.CustomerID = c.CustomerID)
+                                            INNER JOIN CustomerInfo ci ON BINARY_CHECKSUM(ci.CustomerID) = BINARY_CHECKSUM(c.CustomerID))
                                             WHERE oe.Number = '{0}' AND o.TypeID = {1}", winNumber, TypeID.ToString(), DBWinRate.low2);
                         break;
                     case BaseTypeID.tod5:
                         sqlgetWinPrice = string.Format(@"SELECT o.Number, o.Price, ci.{2} AS winRate
                                             FROM (((OrderListExpand oe INNER JOIN OrderList o ON oe.OrderListID = o.OrderListID)
                                             INNER JOIN CustomerOrder c ON c.OrderID = o.OrderID)
-                                            INNER JOIN CustomerInfo ci ON ci.CustomerID = c.CustomerID)
+                                            INNER JOIN CustomerInfo ci ON BINARY_CHECKSUM(ci.CustomerID) = BINARY_CHECKSUM(c.CustomerID))
                                             WHERE oe.Number = '{0}' AND o.TypeID = {1}", winNumber, TypeID.ToString(), DBWinRate.tod5);
                         break;
                     case BaseTypeID.group5:
                         sqlgetWinPrice = string.Format(@"SELECT oe.Number, oe.Price, ci.{2} AS winRate
                                             FROM (((OrderListExpand oe INNER JOIN OrderList o ON oe.OrderListID = o.OrderListID)
                                             INNER JOIN CustomerOrder c ON c.OrderID = o.OrderID)
-                                            INNER JOIN CustomerInfo ci ON ci.CustomerID = c.CustomerID)
+                                            INNER JOIN CustomerInfo ci ON BINARY_CHECKSUM(ci.CustomerID) = BINARY_CHECKSUM(c.CustomerID))
                                             WHERE oe.Number = '{0}' AND o.TypeID = {1}", winNumber, TypeID.ToString(), DBWinRate.up3);
                         break;
                     case BaseTypeID.up1:
                         sqlgetWinPrice = string.Format(@"SELECT o.Number, o.Price, ci.{2} AS winRate
                                             FROM ((OrderList o
                                             INNER JOIN CustomerOrder c ON c.OrderID = o.OrderID)
-                                            INNER JOIN CustomerInfo ci ON ci.CustomerID = c.CustomerID)
+                                            INNER JOIN CustomerInfo ci ON BINARY_CHECKSUM(ci.CustomerID) = BINARY_CHECKSUM(c.CustomerID))
                                             WHERE o.Number = '{0}' AND o.TypeID = {1}", winNumber, TypeID.ToString(), DBWinRate.up1);
                         break;
                     case BaseTypeID.low1:
                         sqlgetWinPrice = string.Format(@"SELECT o.Number, o.Price, ci.{2} AS winRate
                                             FROM ((OrderList o
                                             INNER JOIN CustomerOrder c ON c.OrderID = o.OrderID)
-                                            INNER JOIN CustomerInfo ci ON ci.CustomerID = c.CustomerID)
+                                            INNER JOIN CustomerInfo ci ON BINARY_CHECKSUM(ci.CustomerID) = BINARY_CHECKSUM(c.CustomerID))
                                             WHERE o.Number = '{0}' AND o.TypeID = {1}", winNumber, TypeID.ToString(), DBWinRate.low1);
                         break;
                     case BaseTypeID.upfront1:
                         sqlgetWinPrice = string.Format(@"SELECT oe.Number, oe.Price, ci.{2} AS winRate
                                                 FROM (((OrderListExpand oe INNER JOIN OrderList o ON oe.OrderListID = o.OrderListID)
                                                 INNER JOIN CustomerOrder c ON c.OrderID = o.OrderID)
-                                                INNER JOIN CustomerInfo ci ON ci.CustomerID = c.CustomerID)
+                                                INNER JOIN CustomerInfo ci ON BINARY_CHECKSUM(ci.CustomerID) = BINARY_CHECKSUM(c.CustomerID))
                                                 WHERE oe.Number = '{0}' AND oe.TypeID = {1}", winNumber, TypeID.ToString(), DBWinRate.upfront1);
                         break;
                     case BaseTypeID.upback1:
                         sqlgetWinPrice = string.Format(@"SELECT oe.Number, oe.Price, ci.{2} AS winRate
                                                 FROM (((OrderListExpand oe INNER JOIN OrderList o ON oe.OrderListID = o.OrderListID)
                                                 INNER JOIN CustomerOrder c ON c.OrderID = o.OrderID)
-                                                INNER JOIN CustomerInfo ci ON ci.CustomerID = c.CustomerID)
+                                                INNER JOIN CustomerInfo ci ON BINARY_CHECKSUM(ci.CustomerID) = BINARY_CHECKSUM(c.CustomerID))
                                                 WHERE oe.Number = '{0}' AND oe.TypeID = {1}", winNumber, TypeID.ToString(), DBWinRate.upback1);
 
                         break;
@@ -1362,7 +1362,7 @@ namespace Lottory
                         sqlgetWinPrice = string.Format(@"SELECT oe.Number, oe.Price, ci.{2} AS winRate
                                                 FROM (((OrderListExpand oe INNER JOIN OrderList o ON oe.OrderListID = o.OrderListID)
                                                 INNER JOIN CustomerOrder c ON c.OrderID = o.OrderID)
-                                                INNER JOIN CustomerInfo ci ON ci.CustomerID = c.CustomerID)
+                                                INNER JOIN CustomerInfo ci ON BINARY_CHECKSUM(ci.CustomerID) = BINARY_CHECKSUM(c.CustomerID))
                                                 WHERE oe.Number = '{0}' AND oe.TypeID = {1}", winNumber, TypeID.ToString(), DBWinRate.upcenter1);
 
                         break;
@@ -1370,7 +1370,7 @@ namespace Lottory
                         sqlgetWinPrice = string.Format(@"SELECT oe.Number, oe.Price, ci.{2} AS winRate
                                                 FROM (((OrderListExpand oe INNER JOIN OrderList o ON oe.OrderListID = o.OrderListID)
                                                 INNER JOIN CustomerOrder c ON c.OrderID = o.OrderID)
-                                                INNER JOIN CustomerInfo ci ON ci.CustomerID = c.CustomerID)
+                                                INNER JOIN CustomerInfo ci ON BINARY_CHECKSUM(ci.CustomerID) = BINARY_CHECKSUM(c.CustomerID))
                                                 WHERE oe.Number = '{0}' AND oe.TypeID = {1}", winNumber, TypeID.ToString(), DBWinRate.upfront1);
 
                         break;
@@ -1378,7 +1378,7 @@ namespace Lottory
                         sqlgetWinPrice = string.Format(@"SELECT oe.Number, oe.Price, ci.{2} AS winRate
                                                 FROM (((OrderListExpand oe INNER JOIN OrderList o ON oe.OrderListID = o.OrderListID)
                                                 INNER JOIN CustomerOrder c ON c.OrderID = o.OrderID)
-                                                INNER JOIN CustomerInfo ci ON ci.CustomerID = c.CustomerID)
+                                                INNER JOIN CustomerInfo ci ON BINARY_CHECKSUM(ci.CustomerID) = BINARY_CHECKSUM(c.CustomerID))
                                                 WHERE oe.Number = '{0}' AND oe.TypeID = {1}", winNumber, TypeID.ToString(), DBWinRate.upback1);
 
                         break;

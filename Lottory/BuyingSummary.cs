@@ -366,7 +366,7 @@ namespace Lottory
                 connection.Open();
             }
             string sqlgetPageList = string.Format(@"SELECT Page FROM CustomerOrder
-                                                    WHERE CustomerID = '{0}'", CustomerList.Text);
+                                                    WHERE BINARY_CHECKSUM(CustomerID) = BINARY_CHECKSUM('{0}')", CustomerList.Text);
             SqlCommand sqlgetPageListCom = new SqlCommand(sqlgetPageList, connection);
             SqlDataReader PageListInfo = sqlgetPageListCom.ExecuteReader();
             while (PageListInfo.Read())

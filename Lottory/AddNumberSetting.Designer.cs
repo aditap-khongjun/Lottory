@@ -291,8 +291,8 @@
             this.pageNumber.Name = "pageNumber";
             this.pageNumber.Size = new System.Drawing.Size(189, 32);
             this.pageNumber.TabIndex = 7;
-            this.pageNumber.TextChanged += new System.EventHandler(this.pageNumber_TextChanged);
             this.pageNumber.KeyDown += new System.Windows.Forms.KeyEventHandler(this.pageNumber_KeyDown);
+            this.pageNumber.TextChanged += new System.EventHandler(this.pageNumber_TextChanged);
             // 
             // btAddNumber
             // 

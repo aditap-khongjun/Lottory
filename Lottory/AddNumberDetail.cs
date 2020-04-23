@@ -89,7 +89,7 @@ namespace Lottory
             {
                 connection.Open(); // Open Database
             }
-            string sqlgetCustomerInfo = string.Format("SELECT * FROM CustomerInfo WHERE CustomerID = '{0}'", this.CustomerID);
+            string sqlgetCustomerInfo = string.Format("SELECT * FROM CustomerInfo WHERE BINARY_CHECKSUM(CustomerID) = BINARY_CHECKSUM('{0}')", this.CustomerID);
             SqlCommand sqlgetCustomerInfoCom = new SqlCommand(sqlgetCustomerInfo, connection);
             SqlDataReader CustomerInfo = sqlgetCustomerInfoCom.ExecuteReader();
             while(CustomerInfo.Read())
@@ -296,7 +296,7 @@ namespace Lottory
             }
             // Insert Order
             string sqlInsertOrder = string.Format(@"DELETE FROM CustomerOrder
-                                                    WHERE CustomerID = {0} AND Page = {1}",customerID, pageNumber);
+                                                    WHERE BINARY_CHECKSUM(CustomerID) = BINARY_CHECKSUM('{0}') AND Page = {1}", customerID, pageNumber);
             SqlCommand sqlInsertCom = new SqlCommand(sqlInsertOrder, connection);
             sqlInsertCom.ExecuteNonQuery();
 
@@ -339,7 +339,7 @@ namespace Lottory
             string sqlgetBuyingInfo = string.Format(@"SELECT t.TypeName, o.Number, o.Price, o.GroupPrice
                                                       FROM ((CustomerOrder c INNER JOIN OrderList o ON c.OrderID = o.OrderID)
                                                       INNER JOIN TypeNumberInfo t ON o.TypeID = t.TypeID)
-                                                      WHERE c.CustomerID = '{0}' AND c.Page = {1}
+                                                      WHERE BINARY_CHECKSUM(c.CustomerID) = BINARY_CHECKSUM('{0}') AND c.Page = {1}
                                                       ORDER BY o.OrderListID", this.CustomerID,this.Page);
             SqlCommand sqlgetBuyingInfoCom = new SqlCommand(sqlgetBuyingInfo, connection);
             SqlDataReader BuyingInfo = sqlgetBuyingInfoCom.ExecuteReader();
@@ -1938,7 +1938,7 @@ namespace Lottory
                 string sqlgetsumNumber = string.Format(@"SELECT SUM(OwnPrice) AS numPrice
                                                      FROM ((CustomerOrder c INNER JOIN OrderList o ON c.OrderID = o.OrderID)
                                                      INNER JOIN OrderListExpand oe ON o.OrderListID = oe.OrderListID) 
-                                                     WHERE (c.CustomerID = {0}) AND (oe.Number = '{1}') AND (oe.TypeID = {2})", this.CustomerID, Number[i], TypeID[i].ToString());
+                                                     WHERE (BINARY_CHECKSUM(c.CustomerID) = BINARY_CHECKSUM('{0}')) AND (oe.Number = '{1}') AND (oe.TypeID = {2})", this.CustomerID, Number[i], TypeID[i].ToString());
                 SqlCommand sqlgetsumNumberCom = new SqlCommand(sqlgetsumNumber, connection);
                 SqlDataReader sumNumberInfo = sqlgetsumNumberCom.ExecuteReader();
                 while (sumNumberInfo.Read())
@@ -5005,7 +5005,7 @@ namespace Lottory
             string sqlgetPagePrice = string.Format(@"SELECT c.Page, SUM(oe.Price) AS Price
                                                          FROM (OrderListExpand oe INNER JOIN OrderList o ON oe.OrderListID = o.OrderListID)
                                                          INNER JOIN CustomerOrder c ON c.OrderID = o.OrderID
-                                                         WHERE c.CustomerID = '{0}' AND oe.Number = '{1}' AND oe.TypeID = {2}
+                                                         WHERE BINARY_CHECKSUM(c.CustomerID) = BINARY_CHECKSUM('{0}') AND oe.Number = '{1}' AND oe.TypeID = {2}
                                                          GROUP BY c.Page
                                                          ORDER BY Price DESC", CustomerID, Number, TypeID.ToString());
             SqlCommand sqlgetPagePriceCom = new SqlCommand(sqlgetPagePrice, connection);

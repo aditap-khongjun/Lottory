@@ -111,7 +111,7 @@ namespace Lottory
             }
             string sqlgetcustomerinfo = string.Format(@"SELECT DISTINCT c.CustomerID,ci.CustomerName, c.Page
                                                         FROM ((OrderListExpand oe INNER JOIN OrderList o ON oe.OrderListID = o.OrderListID)
-                                                        INNER JOIN CustomerOrder c ON c.OrderID = o.OrderID) INNER JOIN CustomerInfo ci ON ci.CustomerID = c.CustomerID
+                                                        INNER JOIN CustomerOrder c ON c.OrderID = o.OrderID) INNER JOIN CustomerInfo ci ON BINARY_CHECKSUM(ci.CustomerID) = BINARY_CHECKSUM(c.CustomerID)
                                                         WHERE oe.Number = '{0}' AND oe.TypeID = {1}
                                                         ORDER BY c.CustomerID, c.Page ", Number, TypeID.ToString());
             SqlCommand sqlgetcustomerinfoCom = new SqlCommand(sqlgetcustomerinfo, connection);
@@ -160,7 +160,7 @@ namespace Lottory
                                                   FROM ((OrderListExpand oe INNER JOIN OrderList o ON oe.OrderListID = o.OrderListID)
                                                   INNER JOIN CustomerOrder c ON c.OrderID = o.OrderID)
                                                   INNER JOIN TypeNumberInfo t ON o.TypeID = t.TypeID
-                                                  WHERE oe.Number = '{0}' AND oe.TypeID = {1} AND c.Page = {2} AND c.CustomerID = '{3}'", Number, TypeID.ToString(), PageID, CustomerID);
+                                                  WHERE oe.Number = '{0}' AND oe.TypeID = {1} AND c.Page = {2} AND BINARY_CHECKSUM(c.CustomerID) = BINARY_CHECKSUM('{3}')", Number, TypeID.ToString(), PageID, CustomerID);
 
             SqlCommand sqlgetBuyingCom = new SqlCommand(sqlgetBuying, connection);
             SqlDataReader BuyingInfo = sqlgetBuyingCom.ExecuteReader();
