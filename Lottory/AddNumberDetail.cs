@@ -3769,6 +3769,8 @@ namespace Lottory
                     discount = this.dc_1back;
                     break;
                 case BaseTypeID.low1:
+                case BaseTypeID.lowfront1:
+                case BaseTypeID.lowback1:
                     discount = this.dc_1freelow;
                     break;
                 case BaseTypeID.tod5:
@@ -3776,6 +3778,7 @@ namespace Lottory
                     break;
                 default:
                     discount = 0;
+                    MessageBox.Show("Discount is zero", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     break;
             }
             return discount;
